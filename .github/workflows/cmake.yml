@@ -19,7 +19,7 @@ jobs:
         personal_token: ${{ secrets.API_GITHUB }}
         src_path: /.
         src_branch: main
-        dst_branch: master
+        dst_branch: main
         dst_path: /.
         dst_owner: EpitechPromo2025
         dst_repo_name: B-CPP-500-TLS-5-2-rtype-antoine.cadeau
