@@ -1,15 +1,1 @@
-/**
- * Project Untitled
- */
-
-
-#include "Game.h"
-
-/**
- * Game implementation
- */
-
-
-void Game::mainLoop() {
-
-}
+#include "Gamec.cpp"

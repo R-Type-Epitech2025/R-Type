@@ -1,10 +1,1 @@
-/**
- * Project Untitled
- */
-
-
-#include "Player.h"
-
-/**
- * Player implementation
- */
+#include "Player.hpp"
