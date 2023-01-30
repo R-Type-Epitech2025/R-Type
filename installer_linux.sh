@@ -1,5 +1,64 @@
 #!/bin/bash
 
+# check if apt installed
+if ! [ -x "$(command -v apt-get)" ]; then
+    echo "Error: apt-get is not installed." >&2
+else
+    # install autoconf-archive
+    echo "Installing autoconf-archive..."
+    sudo apt-get install autoconf-archive
+    echo "autoconf-archive installed."
+fi
+
+# check if brew installed
+if ! [ -x "$(command -v brew)" ]; then
+    echo "Error: brew is not installed." >&2
+else
+    # install autoconf-archive
+    echo "Installing autoconf-archive..."
+    brew install autoconf-archive
+    echo "autoconf-archive installed."
+fi
+
+# check if pacman installed
+if ! [ -x "$(command -v pacman)" ]; then
+    echo "Error: pacman is not installed." >&2
+else
+    # install autoconf-archive
+    echo "Installing autoconf-archive..."
+    sudo pacman -S autoconf-archive
+    echo "autoconf-archive installed."
+fi
+
+# check if yum installed
+if ! [ -x "$(command -v yum)" ]; then
+    echo "Error: yum is not installed." >&2
+else
+    # install autoconf-archive
+    echo "Installing autoconf-archive..."
+    sudo yum install autoconf-archive
+    echo "autoconf-archive installed."
+fi
+
+# check if dnf installed
+if ! [ -x "$(command -v dnf)" ]; then
+    echo "Error: dnf is not installed." >&2
+else
+    # install autoconf-archive
+    echo "Installing autoconf-archive..."
+    sudo dnf install autoconf-archive
+    echo "autoconf-archive installed."
+fi
+
+# check if zypper installed
+if ! [ -x "$(command -v zypper)" ]; then
+    echo "Error: zypper is not installed." >&2
+else
+    # install autoconf-archive
+    echo "Installing autoconf-archive..."
+    sudo zypper install autoconf-archive
+    echo "autoconf-archive installed."
+fi
 
 
 cmake > /dev/null
@@ -37,29 +96,23 @@ else
   echo "bison is already installed."
 fi
 
+# check if autoconf is installed
+echo "Checking if autoconf is installed...\n"
+if ! [ -x "$(command -v autoconf)" ]; then
+    echo 'Error: autoconf is not installed.' >&2
+    echo "Installing autoconf..."
+    sudo wget http://ftp.gnu.org/gnu/autoconf/autoconf-2.69.tar.gz
+    sudo tar -xzf autoconf-2.69.tar.gz
+    cd autoconf-2.69
+    sudo ./configure
+    sudo make
+    sudo make install
+    echo "autoconf installed."
+    cd ..
+else
+  echo "autoconf is already installed."
+fi
 
-wget https://xcb.freedesktop.org/dist/libxcb-1.14.tar.gz
-
-# Extract the downloaded archive
-tar xvf libxcb-1.14.tar.gz
-cd libxcb-1.14
-
-# Compile and install the library
-./configure
-make
-sudo make install
-
-# Clean up
-cd ..
-rm -rf libxcb-1.14
-rm libxcb-1.14.tar.gz
-
-#wget https://github.com/unicode-org/icu/releases/download/release-72-1/icu4c-72_1-src.tgz
-# tar -xzf icu4c-72_1-src.tgz
-# cd icu/source
-# ./configure --prefix=/usr/local/icu
-# make
-# sudo make install
 echo "Checking if vcpkg is installed...\n"
 
 if [ ! -d "vcpkg" ]; then
@@ -68,26 +121,22 @@ if [ ! -d "vcpkg" ]; then
     sudo ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
     echo "vcpkg installed"
     echo "Installing packages..."
+    echo "Installing autoconf..."
+    sudo ./vcpkg/vcpkg install autoconf-archive
+    echo "autoconf installed."
     echo "Installing SFML..."
-    sudo ./vcpkg/vcpkg install libxkbcommon
-    sudo ./vcpkg/vcpkg install libxrender
-    sudo ./vcpkg/vcpkg install libxi
-    sudo ./vcpkg/vcpkg install libxext
-    sudo ./vcpkg/vcpkg install freetype
-    sudo ./vcpkg/vcpkg install icu
-    sudo ./vcpkg/vcpkg install fontconfig
     sudo ./vcpkg/vcpkg install sfml
     echo "SFML installed."
     echo "Installing Qt5..."
-    sudo ./vcpkg/vcpkg install qt5-base --recurse
+    sudo ./vcpkg/vcpkg install qt5-base --recurse --keep-going
     echo "Qt5 installed."
 else
     echo "vcpkg est déjà installé."
     echo "Installing packages..."
     echo "Installing SFML..."
+    sudo ./vcpkg/vcpkg install sfml
     echo "SFML installed."
     echo "Installing Qt5..."
-    ./vcpkg/vcpkg install qt5
-    ./vcpkg/vcpkg install sfml
+    sudo ./vcpkg/vcpkg install qt5-base --recurse --keep-going
     echo "Qt5 installed."
 fi
