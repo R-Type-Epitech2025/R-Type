@@ -113,30 +113,20 @@ else
   echo "autoconf is already installed."
 fi
 
-echo "Checking if vcpkg is installed...\n"
-
+# check if vcpkg is installed
 if [ ! -d "vcpkg" ]; then
     echo "vcpkg n'est pas installé. Installation en cours..."
     git clone https://github.com/Microsoft/vcpkg.git
     sudo ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
     echo "vcpkg installed"
-    echo "Installing packages..."
-    echo "Installing autoconf..."
-    sudo ./vcpkg/vcpkg install autoconf-archive
-    echo "autoconf installed."
-    echo "Installing SFML..."
-    sudo ./vcpkg/vcpkg install sfml
-    echo "SFML installed."
-    echo "Installing Qt5..."
-    sudo ./vcpkg/vcpkg install qt5-base --recurse --keep-going
-    echo "Qt5 installed."
 else
     echo "vcpkg est déjà installé."
-    echo "Installing packages..."
-    echo "Installing SFML..."
-    sudo ./vcpkg/vcpkg install sfml
-    echo "SFML installed."
-    echo "Installing Qt5..."
-    sudo ./vcpkg/vcpkg install qt5-base --recurse --keep-going
-    echo "Qt5 installed."
 fi
+
+echo "Installing packages..."
+echo "Installing SFML..."
+sudo ./vcpkg/vcpkg install sfml
+echo "SFML installed."
+echo "Installing Qt5..."
+sudo ./vcpkg/vcpkg install qt5-base --recurse --keep-going
+echo "Qt5 installed."
