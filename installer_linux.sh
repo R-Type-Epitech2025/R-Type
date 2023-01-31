@@ -12,7 +12,7 @@ if ! [ -x "$(command -v apt-get)" ]; then
 else
     # install autoconf-archive
     echo -e "${GREEN}Installing autoconf-archive...${WHITE}"
-    sudo apt-get install autoconf-archive
+    sudo apt-get install autoconf-archive &> /dev/null
     echo -e "${GREEN}autoconf-archive installed.${WHITE}"
 fi
 
@@ -22,7 +22,7 @@ if ! [ -x "$(command -v brew)" ]; then
 else
     # install autoconf-archive
     echo -e "${GREEN}Installing autoconf-archive...${WHITE}"
-    brew install autoconf-archive
+    brew install autoconf-archive &> /dev/null
     echo -e "${GREEN}autoconf-archive installed.${WHITE}"
 fi
 
@@ -32,7 +32,7 @@ if ! [ -x "$(command -v pacman)" ]; then
 else
     # install autoconf-archive
     echo -e "${GREEN}Installing autoconf-archive...${WHITE}"
-    sudo pacman -S autoconf-archive
+    sudo pacman -S autoconf-archive &> /dev/null
     echo -e "${GREEN}autoconf-archive installed.${WHITE}"
 fi
 
@@ -42,7 +42,7 @@ if ! [ -x "$(command -v yum)" ]; then
 else
     # install autoconf-archive
     echo -e "${GREEN}Installing autoconf-archive...${WHITE}"
-    sudo yum install autoconf-archive
+    sudo yum install autoconf-archive &> /dev/null
     echo -e "${GREEN}autoconf-archive installed.${WHITE}"
 fi
 
@@ -52,7 +52,7 @@ if ! [ -x "$(command -v dnf)" ]; then
 else
     # install autoconf-archive
     echo -e "${GREEN}Installing autoconf-archive...${WHITE}"
-    sudo dnf install autoconf-archive
+    sudo dnf install autoconf-archive &> /dev/null
     echo -e "${GREEN}autoconf-archive installed.${WHITE}"
 fi
 
@@ -62,36 +62,33 @@ if ! [ -x "$(command -v zypper)" ]; then
 else
     # install autoconf-archive
     echo -e "${GREEN}Installing autoconf-archive...${WHITE}"
-    sudo zypper install autoconf-archive
+    sudo zypper install autoconf-archive &> /dev/null
     echo -e "${GREEN}autoconf-archive installed.${WHITE}"
 fi
-
-
-cmake > /dev/null
 
 if [ $? -ne 0 ]; then
     echo -e "${RED}CMake is not installed.${WHITE}" >&2
     echo -e "${GREEN}Installing CMake...${WHITE}"
-    curl -L https://github.com/Kitware/CMake/releases/download/v3.25.1/cmake-3.25.1-linux-aarch64.sh -o cmake.sh
-    chmod +x cmake.sh
-    sudo ./cmake.sh --skip-license --prefix=/usr/local
-    rm cmake.sh
+    curl -L https://github.com/Kitware/CMake/releases/download/v3.25.1/cmake-3.25.1-linux-aarch64.sh -o cmake.sh &> /dev/null
+    chmod +x cmake.sh &> /dev/null
+    sudo ./cmake.sh --skip-license --prefix=/usr/local &> /dev/null
+    rm cmake.sh &> /dev/null
     echo -e "${GREEN}CMake installed.${WHITE}"
 else
     echo -e "${RED}CMake is already installed.${WHITE}"
 fi
 
-echo -e "${GREEN}Installing packages...${WHITE}"
+echo -e "${GREEN}Check if bison is installed...${WHITE}"
 if ! [ -x "$(command -v bison)" ]; then
-    echo -e "${RED}bison is not installed." >&2
+    echo -e "${RED}bison is not installed."
     echo -e "${GREEN}Installing bison...${WHITE}"
-    wget http://ftp.gnu.org/gnu/bison/bison-2.3.tar.gz
-    tar -xzf bison-2.3.tar.gz
-    cd bison-2.3
-    ./configure
+    wget http://ftp.gnu.org/gnu/bison/bison-2.3.tar.gz &> /dev/null
+    tar -xzf bison-2.3.tar.gz &> /dev/null
+    cd bison-2.3 &> /dev/null
+    ./configure &> /dev/null
     # --prefix=/usr/local/bison --with-libiconv-prefix=/usr/local/libiconv/
-    make
-    sudo make install
+    make &> /dev/null
+    sudo make install &> /dev/null
     if ! echo "$PATH" | grep -q "/usr/local/bin"; then
         echo "Ajout de /usr/local/bin au PATH..."
         sudo export PATH=$PATH:/usr/local/bin
@@ -104,7 +101,8 @@ fi
 
 # check if vcpkg is installed
 if [ ! -d "vcpkg" ]; then
-    echo -e "${RED}vcpkg n'est pas installé. ${GREEN}Installation en cours...${WHITE}}"
+    echo -e "${RED}vcpkg n'est pas installé."
+    echo -e "${GREEN}Installation en cours...${WHITE}"
     # clone vcpkg without logs
     git clone https://github.com/Microsoft/vcpkg.git &> /dev/null
     sudo ./vcpkg/bootstrap-vcpkg.sh -disableMetrics &> /dev/null
