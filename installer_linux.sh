@@ -1,84 +1,90 @@
 #!/bin/bash
 
+# color variables
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+WHITE='\033[0m'
+YELLOW='\033[1;33m'
+
 # check if apt installed
 if ! [ -x "$(command -v apt-get)" ]; then
-    echo "Error: apt-get is not installed." >&2
+    echo -e "${RED}apt-get is not installed.${WHITE}" >&2
 else
     # install autoconf-archive
-    echo "Installing autoconf-archive..."
+    echo -e "${GREEN}Installing autoconf-archive...${WHITE}"
     sudo apt-get install autoconf-archive
-    echo "autoconf-archive installed."
+    echo -e "${GREEN}autoconf-archive installed.${WHITE}"
 fi
 
 # check if brew installed
 if ! [ -x "$(command -v brew)" ]; then
-    echo "Error: brew is not installed." >&2
+    echo -e "${RED}brew is not installed.${WHITE}" >&2
 else
     # install autoconf-archive
-    echo "Installing autoconf-archive..."
+    echo -e "${GREEN}Installing autoconf-archive...${WHITE}"
     brew install autoconf-archive
-    echo "autoconf-archive installed."
+    echo -e "${GREEN}autoconf-archive installed.${WHITE}"
 fi
 
 # check if pacman installed
 if ! [ -x "$(command -v pacman)" ]; then
-    echo "Error: pacman is not installed." >&2
+    echo -e "${RED}pacman is not installed.${WHITE}" >&2
 else
     # install autoconf-archive
-    echo "Installing autoconf-archive..."
+    echo -e "${GREEN}Installing autoconf-archive...${WHITE}"
     sudo pacman -S autoconf-archive
-    echo "autoconf-archive installed."
+    echo -e "${GREEN}autoconf-archive installed.${WHITE}"
 fi
 
 # check if yum installed
 if ! [ -x "$(command -v yum)" ]; then
-    echo "Error: yum is not installed." >&2
+    echo -e "${RED}yum is not installed.${WHITE}" >&2
 else
     # install autoconf-archive
-    echo "Installing autoconf-archive..."
+    echo -e "${GREEN}Installing autoconf-archive...${WHITE}"
     sudo yum install autoconf-archive
-    echo "autoconf-archive installed."
+    echo -e "${GREEN}autoconf-archive installed.${WHITE}"
 fi
 
 # check if dnf installed
 if ! [ -x "$(command -v dnf)" ]; then
-    echo "Error: dnf is not installed." >&2
+    echo -e "${RED}dnf is not installed.${WHITE}" >&2
 else
     # install autoconf-archive
-    echo "Installing autoconf-archive..."
+    echo -e "${GREEN}Installing autoconf-archive...${WHITE}"
     sudo dnf install autoconf-archive
-    echo "autoconf-archive installed."
+    echo -e "${GREEN}autoconf-archive installed.${WHITE}"
 fi
 
 # check if zypper installed
 if ! [ -x "$(command -v zypper)" ]; then
-    echo "Error: zypper is not installed." >&2
+    echo -e "${RED}zypper is not installed.${WHITE}" >&2
 else
     # install autoconf-archive
-    echo "Installing autoconf-archive..."
+    echo -e "${GREEN}Installing autoconf-archive...${WHITE}"
     sudo zypper install autoconf-archive
-    echo "autoconf-archive installed."
+    echo -e "${GREEN}autoconf-archive installed.${WHITE}"
 fi
 
 
 cmake > /dev/null
 
 if [ $? -ne 0 ]; then
-    echo "CMake is not installed.\n"
-    echo "Insatlling CMake...\n"
+    echo -e "${RED}CMake is not installed.${WHITE}" >&2
+    echo -e "${GREEN}Installing CMake...${WHITE}"
     curl -L https://github.com/Kitware/CMake/releases/download/v3.25.1/cmake-3.25.1-linux-aarch64.sh -o cmake.sh
     chmod +x cmake.sh
     sudo ./cmake.sh --skip-license --prefix=/usr/local
     rm cmake.sh
-    echo "CMake installed.\n"
+    echo -e "${GREEN}CMake installed.${WHITE}"
 else
-    echo "CMake is already installed.\n"
+    echo -e "${RED}CMake is already installed.${WHITE}"
 fi
 
-echo "Checking if bison is installed...\n"
+echo -e "${GREEN}Installing packages...${WHITE}"
 if ! [ -x "$(command -v bison)" ]; then
-    echo 'Error: bison is not installed.' >&2
-    echo "Installing bison..."
+    echo -e "${RED}bison is not installed." >&2
+    echo -e "${GREEN}Installing bison...${WHITE}"
     wget http://ftp.gnu.org/gnu/bison/bison-2.3.tar.gz
     tar -xzf bison-2.3.tar.gz
     cd bison-2.3
@@ -90,27 +96,10 @@ if ! [ -x "$(command -v bison)" ]; then
         echo "Ajout de /usr/local/bin au PATH..."
         sudo export PATH=$PATH:/usr/local/bin
     fi
-    echo "bison installed."
+    echo -e "${GREEN}bison installed.${WHITE}"
     cd ..
 else
-  echo "bison is already installed."
-fi
-
-# check if autoconf is installed
-echo "Checking if autoconf is installed...\n"
-if ! [ -x "$(command -v autoconf)" ]; then
-    echo 'Error: autoconf is not installed.' >&2
-    echo "Installing autoconf..."
-    sudo wget http://ftp.gnu.org/gnu/autoconf/autoconf-2.69.tar.gz
-    sudo tar -xzf autoconf-2.69.tar.gz
-    cd autoconf-2.69
-    sudo ./configure
-    sudo make
-    sudo make install
-    echo "autoconf installed."
-    cd ..
-else
-  echo "autoconf is already installed."
+  echo -e "${RED}bison is already installed.${WHITE}"
 fi
 
 # check if vcpkg is installed
@@ -123,10 +112,10 @@ else
     echo "vcpkg est déjà installé."
 fi
 
-echo "Installing packages..."
-echo "Installing SFML..."
+echo -e "${GREEN}Installing packages...${WHITE}"
+echo -e "Installing ${YELLOW}SFML${WHITE}..."
 sudo ./vcpkg/vcpkg install sfml
-echo "SFML installed."
-echo "Installing Qt5..."
+echo -e "${YELLOW}SFML${WHITE} installed."
+echo -e "Installing ${YELLOW}Qt5${WHITE}..."
 sudo ./vcpkg/vcpkg install qt5-base --recurse --keep-going
-echo "Qt5 installed."
+echo -e "${YELLOW}Qt5${WHITE} installed."
