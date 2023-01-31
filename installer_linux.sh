@@ -104,18 +104,19 @@ fi
 
 # check if vcpkg is installed
 if [ ! -d "vcpkg" ]; then
-    echo "vcpkg n'est pas installé. Installation en cours..."
-    git clone https://github.com/Microsoft/vcpkg.git
-    sudo ./vcpkg/bootstrap-vcpkg.sh -disableMetrics
-    echo "vcpkg installed"
+    echo -e "${RED}vcpkg n'est pas installé. ${GREEN}Installation en cours...${WHITE}}"
+    # clone vcpkg without logs
+    git clone https://github.com/Microsoft/vcpkg.git &> /dev/null
+    sudo ./vcpkg/bootstrap-vcpkg.sh -disableMetrics &> /dev/null
+    echo -e "${GREEN}vcpkg installé.${WHITE}"
 else
-    echo "vcpkg est déjà installé."
+    echo -e "${RED}vcpkg est déjà installé.${WHITE}"
 fi
 
 echo -e "${GREEN}Installing packages...${WHITE}"
 echo -e "Installing ${YELLOW}SFML${WHITE}..."
-sudo ./vcpkg/vcpkg install sfml
+sudo ./vcpkg/vcpkg install sfml &> /dev/null
 echo -e "${YELLOW}SFML${WHITE} installed."
 echo -e "Installing ${YELLOW}Qt5${WHITE}..."
-sudo ./vcpkg/vcpkg install qt5-base --recurse --keep-going
+sudo ./vcpkg/vcpkg install qt5-base --recurse --keep-going &> /dev/null
 echo -e "${YELLOW}Qt5${WHITE} installed."
