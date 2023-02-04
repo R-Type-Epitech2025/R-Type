@@ -4,4 +4,17 @@
 ** File description:
 ** Entity
 */
-#include "IEntity.hpp"
+#ifndef ENTITY_HPP_
+#define ENTITY_HPP_
+namespace rtype {
+    class Entity
+    {
+    private:
+        /* data */
+    public:
+        int x;
+        int y;
+    };
+    
+}
+#endif /* !ENTITY_HPP_ */
