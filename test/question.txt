@@ -1,0 +1,29 @@
+Un IComponent, c'est par exemple, un sprite ou un son
+Si j'ai bien compris, il doit simplement avoir un constructeur/Destructeur
+
+Une Entity, c'est une sorte de IComponent
+    Si c'est un sprite, je dois pouvoir l'afficher (méthode Render, qui prends une référence à une sf::RenderWindow)
+    Si c'est un son, je dois pouvoir l'écouter (méthode Play)
+
+Ces méthodes, c'est pas des méthodes d'Entity, mais de component.
+-> Une Entity sprite va donc hériter de IComponent, et de... un truc qui dit que c'est affichable ?
+
+Dans mon Entity, je dois avoir quelque chose comme
+    std::vector<std::shared_ptr<IComponent>>
+qui contient toutes mes entities.
+(j'ai vu que je pouvais aussi faire un entityManager, avec une unordered map ID-shared_ptr)
+
+-> Comment je fais pour savoir si mon component est un sprite, ou un son,
+quand je veux itérer sur mon vecteur, pour par exemple, afficher tous les sprites,
+qu'est ce que je dois vérifier pour pouvoir appeler le Render ?
+-> Pourquoi je dois faire un std::shared_ptr (est ce que je dois seulement faire ça ?) Pourquoi pas IComponent * ? ou autre ?
+
+Dans mon main :
+    - je crée un ??? qui va initialiser la window, gérer le jeu, et les events
+        -> Il a besoin de la liste d'entité
+    - je crée un sceneManager, qui va lancer une scène qui crée les entités, etc.
+        -> Il a besoin d'une référence à la sf::RenderWindow
+
+-> Comment j'appelle la méthode pour intéragir avec le component X quand un event se déclanche ?
+-> Les inputs.
+
