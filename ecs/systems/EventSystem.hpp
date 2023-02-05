@@ -11,6 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include "../Entity.hpp"
 #include <memory>
+#include "../components/MovementManager.hpp"
 
 namespace rtype {
     class EventSystem {
@@ -23,6 +24,8 @@ namespace rtype {
         protected:
         private:
             sf::RenderWindow& _window;
+            rtype::MouvementManager  _mouvement;
+
 };
 }
 

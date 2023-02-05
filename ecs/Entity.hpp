@@ -14,7 +14,9 @@ namespace rtype {
     public:
         int x;
         int y;
+        bool Player;
         Entity();
+        void setPosition(int x, int y);
     };
     
 }

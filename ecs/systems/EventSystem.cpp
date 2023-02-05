@@ -9,7 +9,7 @@
 #include <iostream>
 #include "../Entity.hpp"
 
-rtype::EventSystem::EventSystem(sf::RenderWindow &window ) : _window( window )
+rtype::EventSystem::EventSystem(sf::RenderWindow &window ) : _window( window) , _mouvement()
 {
 }
 
@@ -31,7 +31,14 @@ void rtype::EventSystem::update(std::vector<std::shared_ptr<rtype::Entity> > &en
             auto& newEntity = entities.back();
             newEntity->x = event.mouseButton.x;
             newEntity->y = event.mouseButton.y;
+            newEntity->Player = true;
             std::cout<<"New entity"<<std::endl;
+        }
+        for (int i = 0; i < entities.size(); i++){
+            if (entities.at(i)->Player){   
+                std::cout<<"works"<<std::endl;
+                _mouvement.LinkKeybordPosition(event, entities.at(i));
+            }
         }
     }
 }

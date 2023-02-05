@@ -12,7 +12,13 @@ namespace rtype
         std::cout << "hey " << std::endl;
     }   
 
-    
+    void Entity::setPosition(int x , int y){
+        this->x = x;
+        this->y = y;
+        std::cout <<"changed position " << std::endl;
+    }
+
+
 
     
 
