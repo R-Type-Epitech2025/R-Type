@@ -14,6 +14,7 @@ namespace rtype {
     public:
         int x;
         int y;
+        Entity();
     };
     
 }

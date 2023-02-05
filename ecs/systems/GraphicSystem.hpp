@@ -17,7 +17,7 @@ namespace rtype {
             public:
                 GraphicSystem(sf::RenderWindow& window);
                 ~GraphicSystem();
-                void update(std::vector<std::shared_ptr<rtype::Entity>>& entities);
+                void update(std::vector<std::shared_ptr<rtype::Entity> > & entities);
             protected:
             private:
                 sf::RenderWindow& _window;

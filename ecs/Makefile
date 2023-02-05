@@ -1,6 +1,6 @@
 CC=g++
-CFLAGS=-c -Wall -I"../../../SFML-2.5.1/include"
-LDFLAGS=-L"../../../SFML-2.5.1/lib" -lsfml-graphics -lsfml-window -lsfml-system
+# CFLAGS=-c -Wall -I"../../../SFML-2.5.1/include"
+LDFLAGS=-L"/opt/homebrew/Cellar/sfml/2.5.1_2/lib" -lsfml-graphics -lsfml-window -lsfml-system
 SOURCES=systems/GraphicSystem.cpp systems/EventSystem.cpp main.cpp
 OBJECTS=$(SOURCES:.cpp=.o)
 EXECUTABLE=MyGame

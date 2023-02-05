@@ -19,7 +19,7 @@ int main()
     rtype::GraphicSystem graphicsSystem(window);
     rtype::EventSystem eventSystem(window);
 
-    std::vector<std::shared_ptr<rtype::Entity>> entities;
+    std::vector<std::shared_ptr<rtype::Entity> > entities;
 
     while (window.isOpen())
     {

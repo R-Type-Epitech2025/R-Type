@@ -18,7 +18,7 @@ namespace rtype {
         
             EventSystem(sf::RenderWindow& window);
             ~EventSystem();
-            void update(std::vector<std::shared_ptr<rtype::Entity>>& entities);
+            void update(std::vector<std::shared_ptr<rtype::Entity> >& entities);
 
         protected:
         private:

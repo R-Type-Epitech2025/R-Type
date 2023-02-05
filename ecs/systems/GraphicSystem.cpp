@@ -19,7 +19,7 @@ rtype::GraphicSystem::~GraphicSystem()
 {
 }
 
-void rtype::GraphicSystem::update(std::vector<std::shared_ptr<rtype::Entity>>& entities)
+void rtype::GraphicSystem::update(std::vector<std::shared_ptr<rtype::Entity> >& entities)
 {
     _window.clear();
         for (const auto& entity : entities)
@@ -30,6 +30,5 @@ void rtype::GraphicSystem::update(std::vector<std::shared_ptr<rtype::Entity>>& e
 
             _window.draw(shape);
         }
-
         _window.display();
     }
