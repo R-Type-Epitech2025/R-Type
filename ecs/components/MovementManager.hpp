@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <memory>
 #include <SFML/Graphics.hpp>
 #include "../Entity.hpp"
 

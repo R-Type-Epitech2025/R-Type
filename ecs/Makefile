@@ -1,22 +1,18 @@
-CC=g++
-# CFLAGS=-c -Wall -I"../../../SFML-2.5.1/include"
-LDFLAGS=-L"/opt/homebrew/Cellar/sfml/2.5.1_2/lib" -lsfml-graphics -lsfml-window -lsfml-system
-SOURCES=systems/GraphicSystem.cpp systems/EventSystem.cpp main.cpp
-OBJECTS=$(SOURCES:.cpp=.o)
-EXECUTABLE=MyGame
+CXXARGS = -Wall -Wextra -std=c++17 -lsfml-graphics -lsfml-window -lsfml-system
+NAME = rtype
 
-all: $(SOURCES) $(EXECUTABLE)
+SRC =	systems/GraphicSystem.cpp	\
+		systems/EventSystem.cpp		\
+		components/MovementManager.cpp \
+		Entity.cpp					\
+		main.cpp
 
-$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
+compilar: $(SRC)
+	g++ -c $(SRC)
+	g++ $(SRC) -o $(NAME) $(CXXARGS)
 
-.cpp.o:
-	$(CC) $(CFLAGS) $< -o $@
+debug: $(SRC)
+	g++ $(SRC) -o $(NAME) $(CXXARGS) -g
 
-clean:
-	rm -rf $(OBJECTS) $(EXECUTABLE)
-
-
-
-
-
+apagar:
+	rm $(NAME)
