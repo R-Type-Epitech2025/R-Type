@@ -6,6 +6,7 @@
 */
 #include "../../include/systems/GraphicSystem.hpp"
 #include <iostream>
+#include <string>
 
 namespace rtype {
     namespace system {
@@ -40,7 +41,11 @@ namespace rtype {
             for (const auto& entity : entities)
             {
                 sf::CircleShape shape(30.f);
-                shape.setFillColor(sf::Color::Green);
+                if (entity->color == "blue"){
+                    shape.setFillColor(sf::Color::Blue);
+                } else if (entity->color == "red"){
+                    shape.setFillColor(sf::Color::Red);
+                }
                 shape.setPosition(entity->x, entity->y);
 
                 _window.draw(shape);

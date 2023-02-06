@@ -7,6 +7,7 @@
 #ifndef ENTITY_HPP_
 #define ENTITY_HPP_
 #include <QtCore>
+#include <string>
 
 namespace rtype {
     struct Entity_Mouvement {
@@ -28,6 +29,10 @@ namespace rtype {
     public:
         int x;
         int y;
+        //std::string sprite_src;
+        std::string color;
+        int size_x;
+        int size_y;
         bool Player;
         Entity();
         void setPosition(int x, int y);

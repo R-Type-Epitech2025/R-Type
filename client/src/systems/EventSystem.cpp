@@ -47,10 +47,13 @@ namespace rtype{
                     auto& newEntity = entities.back();
                     newEntity->x = event.mouseButton.x;
                     newEntity->y = event.mouseButton.y;
-                    if (entities.size() == 1)
+                    if (entities.size() == 1){
                         newEntity->Player = true;
-                    else
+                        newEntity->color = "Red";
+                    }else{
                         newEntity->Player = false;
+                        newEntity->color = "blue";
+                    }
                     std::cout<<"New entity"<<std::endl;
                 }
                 for (int i = 0; i < entities.size(); i++){
