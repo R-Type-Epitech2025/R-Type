@@ -9,24 +9,23 @@
 #include <QtCore>
 
 namespace rtype {
-    class Entity : public QObject {
-    private:
-        /* data */
-    public:
-
-        struct Entity_Mouvement {
+    struct Entity_Mouvement {
                 int index;
                 int x_Coordinate;
                 int y_Coordinate;
                 int sprit_width;
                 int sprit_height;
             };
-        enum DIRECTION {
+    enum DIRECTION {
                 UP,
                 DOWN,
                 LEFT,
                 RIGHT
-        };
+    };
+    class Entity : public QObject {
+    private:
+        /* data */
+    public:
         int x;
         int y;
         bool Player;
@@ -35,7 +34,7 @@ namespace rtype {
         public slots:
             void onNewData(Entity_Mouvement Mouvement);
         signals:
-            void new_data(DIRECTION Direction);
+            void new_data(rtype::DIRECTION Direction);
        
         
     };
