@@ -75,7 +75,7 @@ if [ $? -ne 0 ]; then
     rm cmake.sh &> /dev/null
     echo -e "${GREEN}CMake installed.${WHITE}"
 else
-    echo -e "${RED}CMake is already installed.${WHITE}"
+    echo -e "${GREEN}CMake is already installed.${WHITE}"
 fi
 
 echo -e "${GREEN}Check if bison is installed...${WHITE}"
@@ -96,7 +96,7 @@ if ! [ -x "$(command -v bison)" ]; then
     echo -e "${GREEN}bison installed.${WHITE}"
     cd ..
 else
-  echo -e "${RED}bison is already installed.${WHITE}"
+  echo -e "${GREEN} bison est déjà installé.${WHITE}"
 fi
 
 # check if vcpkg is installed
@@ -108,7 +108,7 @@ if [ ! -d "vcpkg" ]; then
     sudo ./vcpkg/bootstrap-vcpkg.sh -disableMetrics &> /dev/null
     echo -e "${GREEN}vcpkg installé.${WHITE}"
 else
-    echo -e "${RED}vcpkg est déjà installé.${WHITE}"
+    echo -e "${GREEN}vcpkg est déjà installé.${WHITE}"
 fi
 
 echo -e "${GREEN}Installing packages...${WHITE}"
