@@ -9,9 +9,9 @@
 #define EVENTSYSTEM_HPP_
 
 #include <SFML/Graphics.hpp>
-#include "../Entity.hpp"
+#include "../ecs/Entity.hpp"
 #include <memory>
-#include "../components/MovementManager.hpp"
+#include "../ecs/components/MovementManager.hpp"
 
 namespace rtype {
     namespace system {

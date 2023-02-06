@@ -4,7 +4,7 @@
 ** File description:
 ** graphicSystem
 */
-#include "GraphicSystem.hpp"
+#include "../../include/systems/GraphicSystem.hpp"
 #include <iostream>
 
 namespace rtype {

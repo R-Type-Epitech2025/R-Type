@@ -1,5 +1,5 @@
-#include "MovementManager.hpp"
-#include "../Entity.hpp"
+#include "../../../include/ecs/components/MovementManager.hpp"
+#include "../../../include/ecs/Entity.hpp"
 
 //structure pour faire bouger les sprites
     // position

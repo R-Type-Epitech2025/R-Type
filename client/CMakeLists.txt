@@ -1,38 +1,24 @@
-cmake_minimum_required(VERSION 3.1.0)
+cmake_minimum_required(VERSION 3.0)
+project(rtype)
 
-project(R-Type VERSION 1.0.0 LANGUAGES CXX)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
+add_executable(${PROJECT_NAME})
 
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+# Adding QT5 dependencies
+find_package(Qt5 COMPONENTS Core Widgets REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core Qt5::Widgets)
 
-set(CMAKE_AUTOMOC ON)
+find_package(SFML COMPONENTS system window graphics CONFIG REQUIRED)
 
-set(CMAKE_PREFIX_PATH $ENV{HOME}/Qt/5.15.2/gcc_64)
+target_sources(${PROJECT_NAME} 
+    PRIVATE
+    src/ecs/components/MovementManager.cpp
+    src/ecs/Entity.cpp
+    src/ecs/main.cpp
+    src/systems/EventSystem.cpp
+    src/systems/GraphicSystem.cpp )
 
-if(CMAKE_VERSION VERSION_LESS "3.7.0")
-    set(CMAKE_INCLUDE_CURRENT_DIR ON)
-endif()
 
-find_package(Qt5 COMPONENTS Core REQUIRED)
-find_package(Qt5 COMPONENTS Network REQUIRED)
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
-
-add_executable(server
-    src/ISystem/ISystem.cpp
-    src/ISystem/NetworkSystem.cpp
-    src/ISystem/Server.cpp
-    src/ISystem/main_server.cpp
-)
-
-target_link_libraries(server Qt5::Core Qt5::Network)
-
-add_executable(client
-    src/ISystem/ISystem.cpp
-    src/ISystem/NetworkSystem.cpp
-    src/ISystem/Client.cpp
-    src/ISystem/main_client.cpp
-)
-
-target_link_libraries(client Qt5::Core Qt5::Network)
+target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-network sfml-graphics sfml-window)

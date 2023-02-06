@@ -5,9 +5,9 @@
 ** EventSystem
 */
 
-#include "EventSystem.hpp"
+#include "../../include/systems/EventSystem.hpp"
 #include <iostream>
-#include "../Entity.hpp"
+#include "../../include/ecs/Entity.hpp"
 
 namespace rtype{
     namespace system {

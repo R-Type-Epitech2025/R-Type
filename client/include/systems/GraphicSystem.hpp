@@ -9,7 +9,7 @@
 
 
 #include <SFML/Graphics.hpp>
-#include "../Entity.hpp"
+#include "../ecs/Entity.hpp"
 #include <memory>
 
 namespace rtype {

@@ -4,7 +4,7 @@
 ** File description:
 ** Entity
 */
-#include "Entity.hpp"
+#include "../../include/ecs/Entity.hpp"
 #include <iostream>
 namespace rtype
 {
