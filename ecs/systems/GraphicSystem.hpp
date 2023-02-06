@@ -15,8 +15,25 @@
 namespace rtype {
         class GraphicSystem {
             public:
+
+                /**
+                 * @brief Construct a new Graphic System object
+                 * 
+                 * @param window 
+                 */
                 GraphicSystem(sf::RenderWindow& window);
+
+                /**
+                 * @brief Destroy the Graphic System object
+                 * 
+                 */
                 ~GraphicSystem();
+
+                /**
+                 * @brief Update the graphic of the window
+                 * 
+                 * @param entities 
+                 */
                 void update(std::vector<std::shared_ptr<rtype::Entity> > & entities);
             protected:
             private:

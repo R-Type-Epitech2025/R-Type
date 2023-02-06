@@ -14,5 +14,6 @@ compilar: $(SRC)
 debug: $(SRC)
 	g++ $(SRC) -o $(NAME) $(CXXARGS) -g
 
-apagar:
+clean:
 	rm $(NAME)
+	rm *.o

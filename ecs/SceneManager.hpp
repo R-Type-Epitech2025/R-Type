@@ -9,7 +9,7 @@
 #define SCENEMANAGER_HPP
 
 #include <iostream>
-
+#include <vector>
 #include "IScene.hpp"
 
 namespace rtype 
@@ -17,6 +17,11 @@ namespace rtype
     class SceneManager 
     {
     public:
+
+        /**
+         * @brief Enum of all the scene
+         * 
+         */
         enum class SceneType {
             NONE = -1,
             GAME,
@@ -27,29 +32,41 @@ namespace rtype
             END
         };
 
-        void addScene(std::unique_ptr<IScene> scene, SceneType sceneType);
+        /**
+         * @brief Construct a new Scene Manager object
+         * 
+         * @param scene 
+         */
+        void addScene(IScene *scene);
 
-        IScene &getCurrentScene();
+        /**
+         * @brief Destroy the Scene Manager object
+         * 
+         */
+        void removeScene(int Index);
 
-        void setCurrentScene(SceneType scene, bool initScene = false);
+        /**
+         * @brief Set the Active Scene object
+         * 
+         * @param Index 
+         */
+        void setActiveScene(int Index);
 
-        std::map<SceneType, std::unique_ptr<IScene>> &getScenes();
+        /**
+         * @brief Update the scene
+         * 
+         */
+        void update();
 
-        
-        // void setAddEntityCallback(std::function<void(std::shared_ptr<IEntity>)> callback);
-        void setShouldClose(bool shouldClose);
-        bool getShouldClose();
-        // void setRemoveEntityCallback(std::function<void(std::shared_ptr<IEntity>)> callback);
-
-        static SceneType &getCurrentSceneType();
-        static SceneType &getPreviousSceneType();
-        std::vector<SceneType> getSceneTypeList();
-        IScene &getScene(SceneType sceneType);
+        /**
+         * @brief Draw the scene
+         * 
+         */
+        void draw();
 
     private:
-        std::map<SceneType, std::unique_ptr<IScene>> _scenes;
-        SceneType _currentScene = SceneType::NONE;
-        bool _shouldClose = false;
+        std::vector<IScene*> scenes;
+        int activeScene;
     };
 }
 

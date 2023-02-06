@@ -16,9 +16,25 @@
 namespace rtype {
     class EventSystem {
         public:
-        
+
+            /**
+             * @brief Construct a new Event System object
+             * 
+             * @param window 
+             */
             EventSystem(sf::RenderWindow& window);
+
+            /**
+             * @brief Destroy the Event System object
+             * 
+             */
             ~EventSystem();
+
+            /**
+             * @brief Update the event of the window
+             * 
+             * @param entities 
+             */
             void update(std::vector<std::shared_ptr<rtype::Entity> >& entities);
 
         protected:

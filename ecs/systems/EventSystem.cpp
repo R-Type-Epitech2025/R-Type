@@ -9,28 +9,14 @@
 #include <iostream>
 #include "../Entity.hpp"
 
-/**
- * @brief Construct a new rtype::Event System::Event System object
- * 
- * @param window 
- */
 rtype::EventSystem::EventSystem(sf::RenderWindow &window ) : _window( window) , _mouvement()
 {
 }
 
-/**
- * @brief Destroy the rtype::Event System::Event System object
- * 
- */
 rtype::EventSystem::~EventSystem()
 {
 }
 
-/**
- * @brief Handle the event of the window
- * 
- * @param entities 
- */
 void rtype::EventSystem::update(std::vector<std::shared_ptr<rtype::Entity> > &entities)
 {
     sf::Event event;
@@ -46,7 +32,6 @@ void rtype::EventSystem::update(std::vector<std::shared_ptr<rtype::Entity> > &en
             newEntity->x = event.mouseButton.x;
             newEntity->y = event.mouseButton.y;
             newEntity->Player = true;
-            std::cout<<"New entity"<<std::endl;
         }
         for (int i = 0; i < entities.size(); i++){
             if (entities.at(i)->Player){   

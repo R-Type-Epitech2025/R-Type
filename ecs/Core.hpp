@@ -18,6 +18,11 @@ namespace rtype
     class Core
     {
     public:
+
+        /**
+         * @brief Enum of all the system
+         * 
+         */
         enum class SystemType {
             GAME,
             EVENT,
@@ -25,8 +30,25 @@ namespace rtype
             TEST
         }; 
         Core();
+
+        /**
+         * @brief main loop of the game
+         * 
+         */
         void mainLoop();
+
+        /**
+         * @brief load an entity
+         * 
+         * @param entity 
+         */
         void loadEntity(std::shared_ptr<IEntity> entity);
+
+        /**
+         * @brief unload an entity
+         * 
+         * @param entity 
+         */
         void unloadEntity(std::shared_ptr<IEntity> entity);
     private:
         std::map<SystemType, std::shared_ptr<ISystem>> _systems;
