@@ -9,12 +9,18 @@
 #define ISYSTEM_HPP_
 
 #include <QtNetwork>
+#include <QtCore>
+#include <iostream>
+#include <string>
 
 class ISystem {
     public:
         ISystem();
         ~ISystem();
 
+        void init();
+        void update();
+        void destroy();
     protected:
     private:
 };

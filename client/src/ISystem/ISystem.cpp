@@ -2,16 +2,15 @@
 ** EPITECH PROJECT, 2023
 ** R-Type
 ** File description:
-** Client
+** ISystem
 */
 
-#include "Client.hpp"
+#include "ISystem.hpp"
 
-Client::Client()
+ISystem::ISystem()
 {
 }
 
-Client::~Client()
+ISystem::~ISystem()
 {
 }
-
