@@ -12,6 +12,11 @@
 #include "systems/EventSystem.hpp"
 #include "Entity.hpp"
 
+/**
+ * @brief Main function
+ * 
+ * @return int 
+ */
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "My Game");

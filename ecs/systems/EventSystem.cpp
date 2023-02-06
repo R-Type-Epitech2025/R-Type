@@ -9,14 +9,28 @@
 #include <iostream>
 #include "../Entity.hpp"
 
+/**
+ * @brief Construct a new rtype::Event System::Event System object
+ * 
+ * @param window 
+ */
 rtype::EventSystem::EventSystem(sf::RenderWindow &window ) : _window( window) , _mouvement()
 {
 }
 
+/**
+ * @brief Destroy the rtype::Event System::Event System object
+ * 
+ */
 rtype::EventSystem::~EventSystem()
 {
 }
 
+/**
+ * @brief Handle the event of the window
+ * 
+ * @param entities 
+ */
 void rtype::EventSystem::update(std::vector<std::shared_ptr<rtype::Entity> > &entities)
 {
     sf::Event event;
@@ -36,7 +50,6 @@ void rtype::EventSystem::update(std::vector<std::shared_ptr<rtype::Entity> > &en
         }
         for (int i = 0; i < entities.size(); i++){
             if (entities.at(i)->Player){   
-                std::cout<<"works"<<std::endl;
                 _mouvement.LinkKeybordPosition(event, entities.at(i));
             }
         }
