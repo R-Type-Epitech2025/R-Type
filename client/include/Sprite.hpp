@@ -10,21 +10,25 @@
 
 #include "ISystem.hpp"
 
-class Sprite {
-    public:
-        Sprite(QDataStream &stream);
-        ~Sprite();
+namespace rtype {
+    namespace system {
+        class Sprite {
+            public:
+                Sprite(QDataStream &stream);
+                ~Sprite();
 
-    protected:
-    private:
-        qint32 _id;
-        qint32 _x_spritesheet;
-        qint32 _y_spritesheet;
-        qint32 _width;
-        qint32 _height;
-        qint32 _x;
-        qint32 _y;
+            protected:
+            private:
+                qint32 _id;
+                qint32 _x_spritesheet;
+                qint32 _y_spritesheet;
+                qint32 _width;
+                qint32 _height;
+                qint32 _x;
+                qint32 _y;
 
-};
+        };
+    }
+}
 
 #endif /* !SPRITE_HPP_ */

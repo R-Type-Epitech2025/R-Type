@@ -5,24 +5,38 @@
 ** ISystem
 */
 
-#ifndef ISYSTEM_HPP_
-#define ISYSTEM_HPP_
+#ifndef ISYSTEM_HPP
+#define ISYSTEM_HPP
 
+#include <memory>
 #include <QtNetwork>
-#include <QtCore>
-#include <iostream>
-#include <string>
+#include <QDataStream>
 
-class ISystem {
-    public:
-        ISystem();
-        ~ISystem();
+namespace rtype {    
+    namespace system {
+        enum class SystemType {
+            MOVEMENT,
+            GRAPHIC
+        };
+        class SceneManager;
+        class IEntity;
 
-        void init();
-        void update();
-        void destroy();
-    protected:
-    private:
-};
+        class ISystem 
+        {
+        public:
+            virtual ~ISystem() = default;
+            virtual SystemType getType() const = 0;
 
-#endif /* !ISYSTEM_HPP_ */
+            
+            virtual void init(SceneManager &sceneManager) = 0;
+            virtual void update(SceneManager &manager, uint64_t time) = 0;
+            virtual void destroy() = 0;
+            virtual void loadEntity(std::shared_ptr<IEntity> entity) = 0;
+            virtual void unloadEntity(std::shared_ptr<IEntity> entity) = 0;
+        protected:
+        private:
+    };
+    } // namespace system
+} // namespace rType
+
+#endif /* !ISYSTEM_HPP */

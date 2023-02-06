@@ -6,7 +6,6 @@
     // 
 
 namespace rtype{
-
     /**
      * @brief Construct a new Mouvement Manager:: Mouvement Manager object
      * 

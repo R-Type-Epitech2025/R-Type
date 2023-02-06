@@ -11,30 +11,34 @@
 #include "ISystem.hpp"
 #include "Message.hpp"
 
-class MyApp : public QCoreApplication {
+namespace rtype {
+    namespace system {
+        class MyApp : public QCoreApplication {
 
-    Q_OBJECT
-    
-    public:
-        MyApp(int &argc, char **argv);
-        ~MyApp() = default;
+            Q_OBJECT
+            
+            public:
+                MyApp(int &argc, char **argv);
+                ~MyApp() = default;
 
-    public slots:
-        void onReadInput();
+            public slots:
+                void onReadInput();
 
-    signals:
-        void readInput();
-};
+            signals:
+                void readInput();
+        };
 
-class NetworkSystem : public ISystem {
-    public:
-        NetworkSystem();
-        ~NetworkSystem();
+        class NetworkSystem : public ISystem {
+            public:
+                NetworkSystem();
+                ~NetworkSystem();
 
-    protected:
-        QByteArray _message;
-    private:
-};
+            protected:
+                QByteArray _message;
+            private:
+        };
+    }
+}
 
 
 #endif /* !NETWORKSYSTEM_HPP_ */

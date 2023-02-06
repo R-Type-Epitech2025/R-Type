@@ -10,21 +10,25 @@
 
 #include "NetworkSystem.hpp"
 
-class Client : public QObject, public NetworkSystem {
+namespace rtype{
+    namespace system {
+        class Client : public QObject, public NetworkSystem {
 
-    Q_OBJECT
+            Q_OBJECT
 
-    public:
-        Client(QObject *parent = nullptr);
-        ~Client();
+            public:
+                Client(QObject *parent = nullptr);
+                ~Client();
 
-    protected:
-    private:
-        QHostAddress _serverIp;
-        quint16 _serverPort;
-        QUdpSocket *_udpSocket;
+            protected:
+            private:
+                QHostAddress _serverIp;
+                quint16 _serverPort;
+                QUdpSocket *_udpSocket;
 
-        QTcpSocket *_tcpSocket;
-};
+                QTcpSocket *_tcpSocket;
+        };
+    }
+}
 
 #endif /* !CLIENT_HPP_ */

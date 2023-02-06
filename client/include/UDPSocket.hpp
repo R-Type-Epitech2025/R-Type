@@ -13,24 +13,28 @@
 #include <QtNetwork>
 #include "Message.hpp"
 
-class UDPSocket : public QObject 
-{
-    Q_OBJECT
+namespace rtype {
+    namespace system {
+        class UDPSocket : public QObject 
+        {
+            Q_OBJECT
 
-public:
-    UDPSocket(QObject *parent = nullptr, QHostAddress addr = QHostAddress::AnyIPv4,
-        int port = 0, QAbstractSocket::BindMode mode = QAbstractSocket::DefaultForPlatform);
-    ~UDPSocket();
+        public:
+            UDPSocket(QObject *parent = nullptr, QHostAddress addr = QHostAddress::AnyIPv4,
+                int port = 0, QAbstractSocket::BindMode mode = QAbstractSocket::DefaultForPlatform);
+            ~UDPSocket();
 
-public slots:
-    void onMessageReceived();
+        public slots:
+            void onMessageReceived();
 
-signals:
-    void messageReceived(Message &msg);
+        signals:
+            void messageReceived(Message &msg);
 
-private:
-    QUdpSocket *_socket;
-};
+        private:
+            QUdpSocket *_socket;
+        };
+    }
+}
 
 
 #endif /* !UDPSOCKET_HPP_ */

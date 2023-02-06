@@ -4,6 +4,6 @@
 ** File description:
 ** core
 */
-#include "Core.cpp"
+#include "Core.hpp"
 
 //        _systems[SystemType::GRAPHIC] = std::make_unique<GraphicSystem>();

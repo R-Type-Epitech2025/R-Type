@@ -13,6 +13,7 @@
 #include <memory>
 
 namespace rtype {
+    namespace system {
         class GraphicSystem {
             public:
                 GraphicSystem(sf::RenderWindow& window);
@@ -22,6 +23,7 @@ namespace rtype {
             private:
                 sf::RenderWindow& _window;
         };
+    }
 } // namespace rType
 
 #endif /* !GRAPHICSYSTEM_HPP */

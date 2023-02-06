@@ -9,7 +9,7 @@
 namespace rtype {
     class MouvementManager : public QObject {
     public:
-    enum Mouvement_Keyboard {
+        enum Mouvement_Keyboard {
             Up = sf::Keyboard::Up ,
             Down = sf::Keyboard::Down,
             Left = sf::Keyboard::Left,
@@ -19,6 +19,5 @@ namespace rtype {
         bool SetNewPosition(Mouvement_Keyboard mouv);
         bool LinkKeybordPosition(sf::Event &event, std::shared_ptr<rtype::Entity> entity);
     private :
-
     };
 }
