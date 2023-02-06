@@ -25,8 +25,8 @@ namespace rtype{
 
 
     bool MouvementManager::SetNewPosition(Mouvement_Keyboard mouv){
-
     }
+    
 
 
     bool MouvementManager::LinkKeybordPosition(sf::Event &event, std::shared_ptr<rtype::Entity> entity){
@@ -49,3 +49,4 @@ namespace rtype{
     }
 
 }
+
