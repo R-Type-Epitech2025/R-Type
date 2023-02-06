@@ -28,7 +28,15 @@ namespace rtype
         std::cout <<"changed position " << std::endl;
     }
 
+    void Entity::onNewData(Entity_Mouvement Mouvement){
+        Mouvement.x_Coordinate = this->x;
+        Mouvement.y_Coordinate = this->y;
+    }
 
+
+    void Entity::new_data(DIRECTION Direction){
+        emit new_data(Direction);
+    }
 
     
 
