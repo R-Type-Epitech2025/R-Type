@@ -33,16 +33,16 @@ namespace rtype{
         if (event.type == sf::Event::KeyPressed){
                     if (event.key.code == sf::Keyboard::Down){
                         entity->setPosition(entity->x, entity->y + 10);
-                        entity->new_data(DIRECTION::UP);
+                        //entity->new_data(DIRECTION::UP);
                     }else if (event.key.code == sf::Keyboard::Up){
                         entity->setPosition(entity->x, entity->y - 10);
-                        entity->new_data(DIRECTION::DOWN);
+                        //entity->new_data(DIRECTION::DOWN);
                     } else if (event.key.code == sf::Keyboard::Left){
                         entity->setPosition(entity->x - 10, entity->y);
-                        entity->new_data(DIRECTION::LEFT);
+                        //entity->new_data(DIRECTION::LEFT);
                     }else if (event.key.code == sf::Keyboard::Right){
                         entity->setPosition(entity->x + 10, entity->y);
-                        entity->new_data(DIRECTION::RIGHT);
+                        //entity->new_data(DIRECTION::RIGHT);
             }
             return true;
         }

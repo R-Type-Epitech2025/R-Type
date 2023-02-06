@@ -45,7 +45,10 @@ void rtype::EventSystem::update(std::vector<std::shared_ptr<rtype::Entity> > &en
             auto& newEntity = entities.back();
             newEntity->x = event.mouseButton.x;
             newEntity->y = event.mouseButton.y;
-            newEntity->Player = true;
+            if (entities.size() == 1)
+                newEntity->Player = true;
+            else
+                newEntity->Player = false;
             std::cout<<"New entity"<<std::endl;
         }
         for (int i = 0; i < entities.size(); i++){

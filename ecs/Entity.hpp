@@ -31,6 +31,7 @@ namespace rtype {
         bool Player;
         Entity();
         void setPosition(int x, int y);
+        void send_data(rtype::DIRECTION Direction);
         public slots:
             void onNewData(Entity_Mouvement Mouvement);
         signals:
