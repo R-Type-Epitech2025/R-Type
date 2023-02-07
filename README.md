@@ -14,8 +14,8 @@ Just run install.sh file
 
 ### Usage
 
-Laucnh "How To" in de first menu for know how to play.
+Launch "How To" in de first menu for know how to play.
 
-### Athors
+### Authors
 
 Ilan / Antoine / Loic / Saad / Léo / Arthur / Ali
