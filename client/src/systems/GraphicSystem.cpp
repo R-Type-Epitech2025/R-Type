@@ -43,7 +43,7 @@ namespace rtype {
                 sf::CircleShape shape(30.f);
                 if (entity->color == "blue"){
                     shape.setFillColor(sf::Color::Blue);
-                } else if (entity->color == "red"){
+                } else if (entity->color == "red") {
                     shape.setFillColor(sf::Color::Red);
                 }
                 shape.setPosition(entity->x, entity->y);
