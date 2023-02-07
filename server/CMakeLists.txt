@@ -1,6 +1,9 @@
+project(R-Type VERSION 1.0.0 LANGUAGES CXX)
+target_link_libraries(client Qt5::Core Qt5::Network)
+PROJECT(master_project NONE)
 cmake_minimum_required(VERSION 3.1.0)
-
-project(server VERSION 1.0.0 LANGUAGES CXX)
+SET(LATEX_OUTPUT_PATH build)
+INCLUDE(UseLATEX.cmake)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -17,9 +20,32 @@ endif()
 
 find_package(Qt5 COMPONENTS Core REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
-add_executable(${PROJECT_NAME}
-    src/server.cpp
+add_executable(server
+    src/ISystem/ISystem.cpp
+    src/ISystem/NetworkSystem.cpp
+    src/ISystem/Server.cpp
+    src/ISystem/main_server.cpp
 )
 
-target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Network)
+target_link_libraries(server Qt5::Core Qt5::Network)
+
+add_executable(client
+    src/ISystem/ISystem.cpp
+    src/ISystem/NetworkSystem.cpp
+    src/ISystem/Client.cpp
+    src/ISystem/main_client.cpp
+)
+
+file(GLOB_RECURSE contents_files RELATIVE ${CMAKE_SOURCE_DIR} contents/*.tex)
+
+ADD_LATEX_DOCUMENT(
+    master.tex
+    INPUTS ${contents_files}
+    IMAGE_DIRS images
+    BIBFILES bibliography.bib
+    USE_INDEX
+    USE_GLOSSARY
+    FILTER_OUTPUT
+)
