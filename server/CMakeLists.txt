@@ -1,51 +1,32 @@
-project(R-Type VERSION 1.0.0 LANGUAGES CXX)
-target_link_libraries(client Qt5::Core Qt5::Network)
-PROJECT(master_project NONE)
-cmake_minimum_required(VERSION 3.1.0)
-SET(LATEX_OUTPUT_PATH build)
-INCLUDE(UseLATEX.cmake)
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
-set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+cmake_minimum_required(VERSION 3.0)
+project(rtype)
 
 set(CMAKE_AUTOMOC ON)
 
-set(CMAKE_PREFIX_PATH $ENV{HOME}/Qt/5.15.2/gcc_64)
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
-if(CMAKE_VERSION VERSION_LESS "3.7.0")
-    set(CMAKE_INCLUDE_CURRENT_DIR ON)
-endif()
+add_executable(${PROJECT_NAME})
 
-find_package(Qt5 COMPONENTS Core REQUIRED)
-find_package(Qt5 COMPONENTS Network REQUIRED)
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
+# Adding QT5 dependencies
+find_package(Qt5 COMPONENTS Core Network REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core Qt5::Network)
 
-add_executable(server
-    src/ISystem/ISystem.cpp
-    src/ISystem/NetworkSystem.cpp
-    src/ISystem/Server.cpp
-    src/ISystem/main_server.cpp
-)
+find_package(SFML COMPONENTS system window graphics CONFIG REQUIRED)
 
-target_link_libraries(server Qt5::Core Qt5::Network)
 
-add_executable(client
-    src/ISystem/ISystem.cpp
-    src/ISystem/NetworkSystem.cpp
-    src/ISystem/Client.cpp
-    src/ISystem/main_client.cpp
-)
+target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-network sfml-graphics sfml-window)
+
+SET(LATEX_OUTPUT_PATH build)
+INCLUDE(CMakeFiles/UseLATEX.cmake)
 
 file(GLOB_RECURSE contents_files RELATIVE ${CMAKE_SOURCE_DIR} contents/*.tex)
 
 ADD_LATEX_DOCUMENT(
-    master.tex
+    RFC.tex
     INPUTS ${contents_files}
     IMAGE_DIRS images
-    BIBFILES bibliography.bib
     USE_INDEX
     USE_GLOSSARY
     FILTER_OUTPUT
-)
+    )
