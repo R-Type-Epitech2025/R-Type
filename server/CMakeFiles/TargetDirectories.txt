@@ -1,0 +1,4 @@
+/Users/loicrouzaud/epitech/PROJECTS/R-TYPE/R-Type/server/CMakeFiles/rtype.dir
+/Users/loicrouzaud/epitech/PROJECTS/R-TYPE/R-Type/server/CMakeFiles/edit_cache.dir
+/Users/loicrouzaud/epitech/PROJECTS/R-TYPE/R-Type/server/CMakeFiles/rebuild_cache.dir
+/Users/loicrouzaud/epitech/PROJECTS/R-TYPE/R-Type/server/CMakeFiles/rtype_autogen.dir
