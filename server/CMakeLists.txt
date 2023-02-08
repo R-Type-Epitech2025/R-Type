@@ -14,19 +14,13 @@ target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core Qt5::Network)
 
 find_package(SFML COMPONENTS system window graphics CONFIG REQUIRED)
 
+target_sources(${PROJECT_NAME} 
+    PRIVATE
+    src/ecs/components/MovementManager.cpp
+     src/ecs/Entity.cpp
+     src/ecs/main.cpp
+     src/systems/EventSystem.cpp
+     src/systems/GraphicSystem.cpp )
+
 
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-network sfml-graphics sfml-window)
-
-SET(LATEX_OUTPUT_PATH build)
-INCLUDE(CMakeFiles/UseLATEX.cmake)
-
-file(GLOB_RECURSE contents_files RELATIVE ${CMAKE_SOURCE_DIR} contents/*.tex)
-
-ADD_LATEX_DOCUMENT(
-    RFC.tex
-    INPUTS ${contents_files}
-    IMAGE_DIRS images
-    USE_INDEX
-    USE_GLOSSARY
-    FILTER_OUTPUT
-    )
