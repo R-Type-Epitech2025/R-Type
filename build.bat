@@ -1,4 +1,5 @@
 @echo off
+cls
 
 echo [93mcheck if chocolatey is installed[0m
 
