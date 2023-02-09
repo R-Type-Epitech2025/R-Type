@@ -11,6 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include "Position.hpp"
 
+namespace r_type{
 class Sprite {
     public:
         /**
@@ -73,5 +74,5 @@ class Sprite {
     protected:
     private:
 };
-
+};
 #endif /* !SPRITE_HPP_ */
