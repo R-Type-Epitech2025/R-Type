@@ -36,3 +36,4 @@ echo [93mInstalling Qt5[0m
 echo [34;102mQt5 installed[0m
 .\vcpkg\vcpkg install sfml:x64-windows
 echo [34;102msfml installed[0m
+.\vcpkg\vcpkg integrate install
