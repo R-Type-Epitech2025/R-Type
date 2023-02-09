@@ -8,6 +8,10 @@
 #ifndef COMPONENT_HPP_
 #define COMPONENT_HPP_
 
+#include <iostream>
+#include <vector>
+
+
 class IEntity {
     public:
         /**
@@ -22,6 +26,11 @@ class IEntity {
          */
         ~IEntity();
 
+        /**
+         * @brief 
+         * 
+         * @param id 
+         */
         void addComponent(int id); // push back in vector
 
 

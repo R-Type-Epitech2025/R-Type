@@ -22,10 +22,23 @@ class Entity {
          */
         ~Entity();
 
+        /**
+         * @brief Create a Entity object
+         * 
+         */
         void createEntity();
 
+        /**
+         * @brief Destroy the Entity object
+         * 
+         */
         void EntityPath(); // Path in the map
 
+        /**
+         * @brief Get the Id Creator object
+         * 
+         * @return int 
+         */
         int idCreator(); // id of the entity
 
     protected:
