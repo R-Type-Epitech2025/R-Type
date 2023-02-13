@@ -8,6 +8,9 @@
 #ifndef ENTITY_HPP_
 #define ENTITY_HPP_
 
+#include <vector>
+#include <iostream>
+
 class Entity {
     public:
         /**
@@ -25,21 +28,32 @@ class Entity {
         /**
          * @brief Create a Entity object
          * 
+         * @return std::vector<Entity> 
          */
-        void createEntity();
+        std::vector<Entity> createEntity();
 
         /**
-         * @brief Destroy the Entity object
+         * @brief 
          * 
+         * @param XY 
+         * @param entityID 
          */
-        void EntityPath(); // Path in the map
+        void EntityPath(std::vector<int> XY, int entityID); // Path in the map
 
         /**
-         * @brief Get the Id Creator object
+         * @brief 
          * 
+         * @param entity 
          * @return int 
          */
-        int idCreator(); // id of the entity
+        std::vector<Entity> idCreator(std::vector<Entity> entity); // id of the entity
+
+        /**
+         * @brief 
+         * 
+         * @return std::vector<Entity> 
+         */
+        std::vector<Entity> entityList(); // Get the components of the entity
 
     protected:
     private:

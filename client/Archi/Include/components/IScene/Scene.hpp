@@ -8,6 +8,9 @@
 #ifndef SCENE_HPP_
 #define SCENE_HPP_
 
+#include "IEntity.hpp"
+#include <vector>
+
 class Scene {
  public:
         /**
@@ -30,6 +33,12 @@ class Scene {
          */
         // std::vector getScene(std::vector<IEntity> entities); // Get the scene
 
+        /**
+         * @brief Get the Entities object
+         * 
+         * @return std::vector<IEntity> 
+         */
+        std::vector<IEntity> getEntities();
 
     protected:
     private:
