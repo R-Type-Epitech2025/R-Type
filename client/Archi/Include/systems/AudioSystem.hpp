@@ -8,13 +8,16 @@
 #ifndef AUDIOSYSTEM_HPP_
 #define AUDIOSYSTEM_HPP_
 
-class AudioSystem {
-    public:
-        AudioSystem();
-        ~AudioSystem();
 
-    protected:
-    private:
-};
+namespace rtype{
+    class AudioSystem {
+        public:
+            AudioSystem();
+            ~AudioSystem();
+
+        protected:
+        private:
+    };
+}
 
 #endif /* !AUDIOSYSTEM_HPP_ */

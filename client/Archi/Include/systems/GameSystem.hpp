@@ -8,6 +8,9 @@
 #ifndef GAMESYSTEM_HPP_
 #define GAMESYSTEM_HPP_
 
+
+
+namespace rtype{
 class GameSystem {
     public:
         GameSystem();
@@ -16,5 +19,6 @@ class GameSystem {
     protected:
     private:
 };
+}
 
 #endif /* !GAMESYSTEM_HPP_ */

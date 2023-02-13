@@ -8,13 +8,16 @@
 #ifndef GRAPHICSYSTEM_HPP_
 #define GRAPHICSYSTEM_HPP_
 
-class GraphicSystem {
-    public:
-        GraphicSystem();
-        ~GraphicSystem();
 
-    protected:
-    private:
-};
+namespace rtype{
+    class GraphicSystem {
+        public:
+            GraphicSystem();
+            ~GraphicSystem();
+
+        protected:
+        private:
+    };
+}
 
 #endif /* !GRAPHICSYSTEM_HPP_ */

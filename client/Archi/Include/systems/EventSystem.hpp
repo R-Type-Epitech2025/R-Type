@@ -8,13 +8,15 @@
 #ifndef EVENTSYSTEM_HPP_
 #define EVENTSYSTEM_HPP_
 
-class EventSystem {
-    public:
-        EventSystem();
-        ~EventSystem();
+namespace rtype{
+    class EventSystem {
+        public:
+            EventSystem();
+            ~EventSystem();
 
-    protected:
-    private:
-};
+        protected:
+        private:
+    };
+}
 
 #endif /* !EVENTSYSTEM_HPP_ */

@@ -7,14 +7,31 @@
 
 #ifndef ISYSTEM_HPP_
 #define ISYSTEM_HPP_
+#include "SceneManager.hpp"
 
-class ISystem {
-    public:
-        ISystem();
-        ~ISystem();
+namespace rtype{
+    enum SystemType{
+        GAME,
+        GRAPHIQUE,
+        EVENT,
+        PARTICLE,
+        COLLIDE,
+        AUDIO,
+        NETWORK
+    };
 
-    protected:
-    private:
-};
+    class ISystem {
+        public:
+            ISystem();
+            ~ISystem();
+            void init(SceneManager&);
+            void Update(SceneManager&, int deltaTime);
+            void destroy(SceneManager&);
+            void loadEntity();
+            void unloadEntity();
+        protected:
+        private:
+    };
+}
 
 #endif /* !ISYSTEM_HPP_ */
