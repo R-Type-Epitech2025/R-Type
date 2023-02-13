@@ -10,6 +10,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
+#include "Entity.hpp"
 
 namespace rtype{
     enum SceneType{

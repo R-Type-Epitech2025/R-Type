@@ -24,11 +24,11 @@ namespace rtype{
         public:
             ISystem();
             ~ISystem();
-            void init(SceneManager&);
-            void Update(SceneManager&, int deltaTime);
-            void destroy(SceneManager&);
-            void loadEntity();
-            void unloadEntity();
+            virtual void init(SceneManager&) = 0;
+            virtual void Update(SceneManager&, int deltaTime) = 0;
+            virtual void destroy(SceneManager&) = 0;
+            virtual void loadEntity() = 0;
+            virtual void unloadEntity() = 0;
         protected:
         private:
     };

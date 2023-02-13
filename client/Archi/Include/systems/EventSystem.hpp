@@ -14,7 +14,11 @@ namespace rtype{
         public:
             EventSystem();
             ~EventSystem();
-
+            void init(SceneManager&) override;
+            void Update(SceneManager&, int deltaTime) override;
+            void destroy(SceneManager&) override;
+            void loadEntity() override;
+            void unloadEntity() override;
         protected:
         private:
     };
