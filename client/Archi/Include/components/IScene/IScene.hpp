@@ -11,7 +11,6 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 
-
 namespace rtype{
     enum SceneType{
         NONE,

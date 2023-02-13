@@ -11,7 +11,7 @@
 #include <iostream>
 #include <vector>
 
-
+namespace rtype {
 class IEntity {
     public:
         /**
@@ -36,6 +36,7 @@ class IEntity {
 
     protected:
     private:
+};
 };
 
 #endif /* !IENTITY_HPP_ */

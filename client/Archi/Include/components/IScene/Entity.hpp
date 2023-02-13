@@ -8,10 +8,13 @@
 #ifndef ENTITY_HPP_
 #define ENTITY_HPP_
 
+#include "IEntity.hpp"
 #include <vector>
 #include <iostream>
 
-class Entity {
+
+namespace rtype {
+    class Entity : public IEntity {
     public:
         /**
          * @brief Construct a new Entity object
@@ -55,8 +58,12 @@ class Entity {
          */
         std::vector<Entity> entityList(); // Get the components of the entity
 
+        // Load the entity
+
+
     protected:
     private:
+};
 };
 
 #endif /* !ENTITY_HPP_ */

@@ -11,6 +11,7 @@
 #include "IEntity.hpp"
 #include <vector>
 
+namespace rtype {
 class Scene {
  public:
         /**
@@ -42,6 +43,7 @@ class Scene {
 
     protected:
     private:
+};
 };
 
 #endif /* !SCENE_HPP_ */
