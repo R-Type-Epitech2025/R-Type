@@ -1,20 +1,15 @@
 /*
 ** EPITECH PROJECT, 2023
-** client
+** R-Type
 ** File description:
-** Component
+** Scene
 */
 
-#ifndef COMPONENT_HPP_
-#define COMPONENT_HPP_
-
-#include "IEntity.hpp"
-#include <iostream>
-#include <vector>
-
+#ifndef SCENE_HPP_
+#define SCENE_HPP_
 
 class Scene {
-    public:
+ public:
         /**
          * @brief Construct a new Scene object
          * 
@@ -33,11 +28,12 @@ class Scene {
          * @param entities 
          * @return std::vector 
          */
-        std::vector getScene(std::vector<IEntity> entities); // Get the scene
+        // std::vector getScene(std::vector<IEntity> entities); // Get the scene
 
 
     protected:
     private:
 };
 
-#endif /* !COMPONENT_HPP_ */
+#endif /* !SCENE_HPP_ */
+

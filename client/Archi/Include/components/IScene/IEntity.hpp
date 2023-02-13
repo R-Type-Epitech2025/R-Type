@@ -5,8 +5,8 @@
 ** Component
 */
 
-#ifndef COMPONENT_HPP_
-#define COMPONENT_HPP_
+#ifndef IEntity_HPP_
+#define IEntity_HPP_
 
 #include <iostream>
 #include <vector>
@@ -38,4 +38,4 @@ class IEntity {
     private:
 };
 
-#endif /* !COMPONENT_HPP_ */
+#endif /* !IENTITY_HPP_ */

@@ -5,8 +5,8 @@
 ** Iscene
 */
 
-#ifndef COMPONENT_HPP_
-#define COMPONENT_HPP_
+#ifndef ISCENE_HPP_
+#define ISCENE_HPP_
 
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -55,4 +55,4 @@ namespace rtype{
     };
 }
 
-#endif /* !COMPONENT_HPP_ */
+#endif /* !ISCENE_HPP_ */

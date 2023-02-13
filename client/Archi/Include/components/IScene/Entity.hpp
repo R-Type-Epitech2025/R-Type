@@ -5,8 +5,8 @@
 ** Component
 */
 
-#ifndef COMPONENT_HPP_
-#define COMPONENT_HPP_
+#ifndef ENTITY_HPP_
+#define ENTITY_HPP_
 
 class Entity {
     public:
@@ -45,4 +45,4 @@ class Entity {
     private:
 };
 
-#endif /* !COMPONENT_HPP_ */
+#endif /* !ENTITY_HPP_ */
