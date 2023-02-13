@@ -51,21 +51,21 @@ if not exist ".\vcpkg" (
     echo [93mInstalling vcpkg[0m
     git clone https://github.com/Microsoft/vcpkg.git
     call .\vcpkg\bootstrap-vcpkg.bat
-    echo [34;102mchoco just installed and configured[0m
+    echo [34;102mvcpkg just installed and configured[0m
 ) else (
     echo [92mvcpkg already installed[0m
 )
 
 echo [93mInstalling dependencies[0m
 echo [93mInstalling Qt5[0m
-.\vcpkg\vcpkg install qt5:x64-windows
+.\vcpkg\vcpkg install qt5-base
 echo [34;102mQt5 installed[0m
 .\vcpkg\vcpkg install sfml:x64-windows
 .\vcpkg\vcpkg integrate install
 echo [34;102msfml installed[0m
 
 echo [93mCompilation en cours...[0m
-cd ecs
-cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=../vcpkg/scripts/buildsystems/vcpkg.cmake
-cmake --build build -v
-echo [34;102mCompilation terminée.[0m
+cd src_build_test
+cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=..\vcpkg\scripts\buildsystems\vcpkg.cmake -DCMAKE_BUILD_TYPE=Release
+cmake --build build --config Release
+echo [34;102mCompilation terminee.[0m
