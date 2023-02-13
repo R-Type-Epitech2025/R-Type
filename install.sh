@@ -136,7 +136,7 @@ sudo ./vcpkg/vcpkg integrate install
 
 # CMake compilation
 echo -e "${GREEN}Compilation en cours...${WHITE}"
-cd ecs
+cd client
 cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=../vcpkg/scripts/buildsystems/vcpkg.cmake
 cmake --build build -v
 echo -e "${GREEN}Compilation terminée.${WHITE}"
