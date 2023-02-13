@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1.0)
 
-project(server VERSION 1.0.0 LANGUAGES CXX)
+project(R-Type_server VERSION 1.0.0 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -17,9 +17,13 @@ endif()
 
 find_package(Qt5 COMPONENTS Core REQUIRED)
 find_package(Qt5 COMPONENTS Network REQUIRED)
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
-add_executable(${PROJECT_NAME}
-    src/server.cpp
+add_executable(R-Type_server
+    src/ISystem/ISystem.cpp
+    src/ISystem/NetworkSystem.cpp
+    src/ISystem/Server.cpp
+    src/ISystem/main_server.cpp
 )
 
 target_link_libraries(${PROJECT_NAME} Qt5::Core Qt5::Network)
