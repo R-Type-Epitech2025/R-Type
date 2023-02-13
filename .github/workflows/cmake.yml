@@ -2,25 +2,33 @@ name: Build
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 env:
   BUILD_TYPE: Release
 
 jobs:
+# Build with CMake
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install dependencies & build
+
   push:
     runs-on: ubuntu-latest
     steps:
-    - name: push
-      uses: andstor/copycat-action@v3
-      with:
-        personal_token: ${{ secrets.API_GITHUB }}
-        src_path: /.
-        src_branch: main
-        dst_branch: main
-        dst_path: /.
-        dst_owner: EpitechPromo2025
-        dst_repo_name: B-CPP-500-TLS-5-2-rtype-antoine.cadeau
-        commit_message: "[CI] - Push to ID: ${{ github.run_id }} by github action from ${{ github.repository }}"
+      - name: push
+        uses: andstor/copycat-action@v3
+        with:
+          personal_token: ${{ secrets.API_GITHUB }}
+          src_path: /.
+          src_branch: main
+          dst_branch: main
+          dst_path: /.
+          dst_owner: EpitechPromo2025
+          dst_repo_name: B-CPP-500-TLS-5-2-rtype-antoine.cadeau
+          commit_message: "[CI] - Push to ID: ${{ github.run_id }} by github action from ${{ github.repository }}"
