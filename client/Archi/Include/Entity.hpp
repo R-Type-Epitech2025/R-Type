@@ -1,49 +1,69 @@
 /*
 ** EPITECH PROJECT, 2023
-** R-Type
+** client
 ** File description:
-** Entity
+** Component
 */
+
 #ifndef ENTITY_HPP_
 #define ENTITY_HPP_
-#include <QtCore>
-#include <string>
+
+#include "IEntity.hpp"
+#include <vector>
+#include <iostream>
+
 
 namespace rtype {
-    struct Entity_Mouvement {
-                int index;
-                int x_Coordinate;
-                int y_Coordinate;
-                int sprit_width;
-                int sprit_height;
-            };
-    enum DIRECTION {
-                UP,
-                DOWN,
-                LEFT,
-                RIGHT
-    };
-    class Entity : public QObject {
-    private:
-        /* data */
+    class Entity : public IEntity {
     public:
-        int x;
-        int y;
-        //std::string sprite_src;
-        std::string color;
-        int size_x;
-        int size_y;
-        bool Player;
+        /**
+         * @brief Construct a new Entity object
+         * 
+         */
         Entity();
-        void setPosition(int x, int y);
-        void send_data(rtype::DIRECTION Direction);
-        public slots:
-            void onNewData(Entity_Mouvement Mouvement);
-        signals:
-            void new_data(rtype::DIRECTION Direction);
-       
-        
-    };
-    
-}
+
+        /**
+         * @brief Destroy the Entity object
+         * 
+         */
+        ~Entity();
+
+        /**
+         * @brief Create a Entity object
+         * 
+         * @return std::vector<Entity> 
+         */
+        std::vector<Entity> createEntity();
+
+        /**
+         * @brief 
+         * 
+         * @param XY 
+         * @param entityID 
+         */
+        void EntityPath(std::vector<int> XY, int entityID); // Path in the map
+
+        /**
+         * @brief 
+         * 
+         * @param entity 
+         * @return int 
+         */
+        std::vector<Entity> idCreator(std::vector<Entity> entity); // id of the entity
+
+        /**
+         * @brief 
+         * 
+         * @return std::vector<Entity> 
+         */
+        std::vector<Entity> entityList(); // Get the components of the entity
+
+        // Load the entity
+
+
+    protected:
+    private:
+};
+};
+
 #endif /* !ENTITY_HPP_ */
