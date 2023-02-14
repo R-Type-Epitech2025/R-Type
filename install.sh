@@ -6,6 +6,9 @@ GREEN='\033[0;32m'
 WHITE='\033[0m'
 YELLOW='\033[1;33m'
 
+# boolean variables
+INSTALLED=false
+
 # check if user is root
 if [ "$EUID" -ne 0 ]
   then echo -e "${RED}Please run as root${WHITE}"
@@ -22,61 +25,91 @@ fi
 # check if apt installed
 if ! [ -x "$(command -v apt-get)" ]; then
     echo -e "${RED}apt-get is not installed.${WHITE}" >&2
-else
+elif [ "$INSTALLED" = false ]; then
     # install automake
     echo -e "${GREEN}Installing automake by ${YELLOW}apt-get${GREEN}...${WHITE}"
     sudo apt-get install automake &> /dev/null
     echo -e "${GREEN}automake installed.${WHITE}"
+    # install curl
+    echo -e "${GREEN}Installing curl by ${YELLOW}apt-get${GREEN}...${WHITE}"
+    sudo apt-get install curl &> /dev/null
+    echo -e "${GREEN}curl installed.${WHITE}"
+    INSTALLED=true
 fi
 
 # check if brew installed
 if ! [ -x "$(command -v brew)" ]; then
     echo -e "${RED}brew is not installed.${WHITE}" >&2
-else
+elif [ "$INSTALLED" = false ]; then
     # install automake
     echo -e "${GREEN}Installing automake by ${YELLOW}brew${GREEN}...${WHITE}"
     brew install automake &> /dev/null
     echo -e "${GREEN}automake installed.${WHITE}"
+    # install curl
+    echo -e "${GREEN}Installing curl by ${YELLOW}brew${GREEN}...${WHITE}"
+    brew install curl &> /dev/null
+    echo -e "${GREEN}curl installed.${WHITE}"
+    INSTALLED=true
 fi
 
 # check if pacman installed
 if ! [ -x "$(command -v pacman)" ]; then
     echo -e "${RED}pacman is not installed.${WHITE}" >&2
-else
+elif [ "$INSTALLED" = false ]; then
     # install automake
     echo -e "${GREEN}Installing automake by ${YELLOW}pacman${GREEN}...${WHITE}"
     sudo pacman -S automake &> /dev/null
     echo -e "${GREEN}automake installed.${WHITE}"
+    # install curl
+    echo -e "${GREEN}Installing curl by ${YELLOW}pacman${GREEN}...${WHITE}"
+    sudo pacman -S curl &> /dev/null
+    echo -e "${GREEN}curl installed.${WHITE}"
+    INSTALLED=true
 fi
 
 # check if yum installed
 if ! [ -x "$(command -v yum)" ]; then
     echo -e "${RED}yum is not installed.${WHITE}" >&2
-else
+elif [ "$INSTALLED" = false ]; then
     # install automake
     echo -e "${GREEN}Installing automake by ${YELLOW}yum${GREEN}...${WHITE}"
     sudo yum install automake &> /dev/null
     echo -e "${GREEN}automake installed.${WHITE}"
+    # install curl
+    echo -e "${GREEN}Installing curl by ${YELLOW}yum${GREEN}...${WHITE}"
+    sudo yum install curl &> /dev/null
+    echo -e "${GREEN}curl installed.${WHITE}"
+    INSTALLED=true
 fi
 
 # check if dnf installed
 if ! [ -x "$(command -v dnf)" ]; then
     echo -e "${RED}dnf is not installed.${WHITE}" >&2
-else
+elif [ "$INSTALLED" = false ]; then
     # install automake
     echo -e "${GREEN}Installing automake by ${YELLOW}dnf${GREEN}...${WHITE}"
     sudo dnf install automake &> /dev/null
     echo -e "${GREEN}automake installed.${WHITE}"
+    # install curl
+    echo -e "${GREEN}Installing curl by ${YELLOW}dnf${GREEN}...${WHITE}"
+    sudo dnf install curl &> /dev/null
+    echo -e "${GREEN}curl installed.${WHITE}"
+    INSTALLED=true
 fi
 
 # check if zypper installed
 if ! [ -x "$(command -v zypper)" ]; then
     echo -e "${RED}zypper is not installed.${WHITE}" >&2
-else
+elif [ "$INSTALLED" = false ]; then
     # install automake
     echo -e "${GREEN}Installing automake by ${YELLOW}zypper${GREEN}...${WHITE}"
     sudo zypper install automake &> /dev/null
     echo -e "${GREEN}automake installed.${WHITE}"
+    # install curl
+    echo -e "${GREEN}Installing curl by ${YELLOW}zypper${GREEN}...${WHITE}"
+    sudo zypper install curl &> /dev/null
+    echo -e "${GREEN}curl installed.${WHITE}"
+    INSTALLED=true
 fi
 
 if [ $? -ne 0 ]; then
@@ -126,17 +159,23 @@ fi
 
 echo -e "${GREEN}Installing packages...${WHITE}"
 echo -e "Installing ${YELLOW}SFML${WHITE}..."
-sudo ./vcpkg/vcpkg install sfml
+sudo ./vcpkg/vcpkg install sfml &> /dev/null
 echo -e "${YELLOW}SFML${WHITE} installed."
 echo -e "Installing ${YELLOW}Qt5${WHITE}..."
-sudo ./vcpkg/vcpkg install qt5-base --recurse --keep-going
+sudo ./vcpkg/vcpkg install qt5-base --recurse --keep-going &> /dev/null
 echo -e "${YELLOW}Qt5${WHITE} installed."
 
 sudo ./vcpkg/vcpkg integrate install
 
 # CMake compilation
-echo -e "${GREEN}Compilation en cours...${WHITE}"
 cd client
-cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=../vcpkg/scripts/buildsystems/vcpkg.cmake
-cmake --build build -v
+echo -e "${GREEN}Compilation du ${YELLOW}client${GREEN}...${WHITE}"
+cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=../vcpkg/scripts/buildsystems/vcpkg.cmake &> /dev/null
+cmake --build build -v &> /dev/null
+echo -e "${GREEN}Compilation terminée.${WHITE}"
+
+# CPack compilation
+echo -e "${GREEN}Compilation du ${YELLOW}client${GREEN}...${WHITE}"
+cd build
+cpack -G ZIP
 echo -e "${GREEN}Compilation terminée.${WHITE}"
