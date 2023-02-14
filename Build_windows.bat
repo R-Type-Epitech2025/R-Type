@@ -69,3 +69,8 @@ cd src_build_test
 cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=..\vcpkg\scripts\buildsystems\vcpkg.cmake -DCMAKE_BUILD_TYPE=Release
 cmake --build build --config Release
 echo [34;102mCompilation terminee.[0m
+
+cd build
+
+cpack --config CPackConfig.cmake -G ZIP
+cpack --config CPackSourceConfig.cmake -G ZIP

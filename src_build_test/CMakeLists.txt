@@ -10,7 +10,7 @@ add_executable(${PROJECT_NAME})
 
 # Adding QT5 dependencies
 find_package(Qt5 COMPONENTS Core Network REQUIRED)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core Qt5::Network)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
 
 find_package(SFML COMPONENTS system window graphics CONFIG REQUIRED)
 
@@ -21,6 +21,7 @@ target_sources(${PROJECT_NAME}
 
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-network sfml-graphics sfml-window)
 
+include(cpack)
 #    systems/GraphicSystem.cpp
 #systems/EventSystem.cpp
 #components/MovementManager.cpp
