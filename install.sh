@@ -153,16 +153,17 @@ if [ ! -d "vcpkg" ]; then
     git clone https://github.com/Microsoft/vcpkg.git &> /dev/null
     sudo ./vcpkg/bootstrap-vcpkg.sh -disableMetrics &> /dev/null
     echo -e "${GREEN}vcpkg installé.${WHITE}"
+    export PATH=$PATH:$PWD/vcpkg
 else
     echo -e "${GREEN}vcpkg est déjà installé.${WHITE}"
 fi
 
 echo -e "${GREEN}Installing packages...${WHITE}"
 echo -e "Installing ${YELLOW}SFML${WHITE}..."
-sudo ./vcpkg/vcpkg install sfml &> /dev/null
+sudo vcpkg install sfml &> /dev/null
 echo -e "${YELLOW}SFML${WHITE} installed."
 echo -e "Installing ${YELLOW}Qt5${WHITE}..."
-sudo ./vcpkg/vcpkg install qt5-base --recurse --keep-going &> /dev/null
+sudo vcpkg install qt5-base --recurse --keep-going &> /dev/null
 echo -e "${YELLOW}Qt5${WHITE} installed."
 
-sudo ./vcpkg/vcpkg integrate install
+sudo vcpkg integrate install
