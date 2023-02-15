@@ -160,6 +160,11 @@ if [ ! -d "vcpkg" ]; then
     fi
 else
     echo -e "${GREEN}vcpkg est déjà installé.${WHITE}"
+    # add vcpkg to PATH
+    if ! echo "$PATH" | grep -q "/usr/local/bin"; then
+        echo "Ajout de /usr/local/bin au PATH..."
+        sudo export PATH=$PATH:/usr/local/bin
+    fi
 fi
 
 echo -e "${GREEN}Installing packages...${WHITE}"
