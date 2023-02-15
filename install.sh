@@ -154,25 +154,19 @@ if [ ! -d "vcpkg" ]; then
     sudo ./vcpkg/bootstrap-vcpkg.sh -disableMetrics &> /dev/null
     echo -e "${GREEN}vcpkg installé.${WHITE}"
     # add vcpkg to PATH
-    if ! echo "$PATH" | grep -q "/usr/local/bin"; then
-        echo "Ajout de /usr/local/bin au PATH..."
-        sudo export PATH=$PATH:/usr/local/bin
-    fi
+    export PATH=$PATH:$PWD/vcpkg
 else
     echo -e "${GREEN}vcpkg est déjà installé.${WHITE}"
     # add vcpkg to PATH
-    if ! echo "$PATH" | grep -q "/usr/local/bin"; then
-        echo "Ajout de /usr/local/bin au PATH..."
-        sudo export PATH=$PATH:/usr/local/bin
-    fi
+    export PATH=$PATH:$PWD/vcpkg
 fi
 
 echo -e "${GREEN}Installing packages...${WHITE}"
 echo -e "Installing ${YELLOW}SFML${WHITE}..."
-sudo vcpkg install sfml &> /dev/null
+vcpkg install sfml &> /dev/null
 echo -e "${YELLOW}SFML${WHITE} installed."
 echo -e "Installing ${YELLOW}Qt5${WHITE}..."
-sudo vcpkg install qt5-base --recurse --keep-going &> /dev/null
+vcpkg install qt5-base --recurse --keep-going &> /dev/null
 echo -e "${YELLOW}Qt5${WHITE} installed."
 
-sudo vcpkg integrate install
+vcpkg integrate install
