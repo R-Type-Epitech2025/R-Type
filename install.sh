@@ -150,6 +150,7 @@ if [ ! -d "vcpkg" ]; then
     echo -e "${RED}vcpkg n'est pas installé."
     echo -e "${GREEN}Installation en cours...${WHITE}"
     # clone vcpkg without logs
+    mkdir ~/.vcpkg
     git clone https://github.com/Microsoft/vcpkg.git &> /dev/null
     sudo ./vcpkg/bootstrap-vcpkg.sh -disableMetrics &> /dev/null
     echo -e "${GREEN}vcpkg installé.${WHITE}"
