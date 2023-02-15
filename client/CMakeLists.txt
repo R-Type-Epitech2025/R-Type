@@ -28,7 +28,11 @@ target_include_directories(${PROJECT_NAME}
     ${SFML_INCLUDE_DIRS})
 
 # Setting up the CPack generator
-set(CPACK_GENERATOR ZIP)
+set(CPACK_GENERATOR ZIP) # for macOS and Linux
+set(CPACK_BUNDLE_NAME ${PROJECT_NAME})
+set(CPACK_BUNDLE_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/Info.plist)
+set(CPACK_BUNDLE_ICON ${CMAKE_CURRENT_SOURCE_DIR}/icon.icns)
+set(CPACK_GENERATOR NSIS) # for Windows
 set(CPACK_PACKAGE_NAME "RType")
 set(CPACK_PACKAGE_VERSION_MAJOR ${VERSION_MAJOR})
 set(CPACK_PACKAGE_VERSION_MINOR ${VERSION_MINOR})
@@ -38,5 +42,7 @@ include(CPack)
 # Setting up the install targets
 install(TARGETS ${PROJECT_NAME}
         RUNTIME DESTINATION bin)
-install(FILES README.md LICENSE
+install(FILES README.md
+        DESTINATION .)
+install(PROGRAMS ${CMAKE_CURRENT_SOURCE_DIR}/build.sh
         DESTINATION .)
