@@ -11,46 +11,30 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
-class GameComponent {
-    public:
-        enum class Type {
-            TURRET,
-            SHIP,
-            MONSTER,
-            BOSS
-        };
 
-        GameComponent();
-        ~GameComponent();
-        
-        bool isAlive() const;
-        bool isDead() const;
+namespace rtype{
+    class GameComponent {
+        public:
+            enum class Type {
+                TURRET,
+                SHIP,
+                MONSTER,
+                BOSS
+            };
 
-        void setAlive(bool alive);
-        void setDead(bool dead);
-
-        void takeDamage(int damage);
-        Type getType() const;
-        void setHealth(int health);
-        int getHealth() const;
-
-        void setDrop();
-        bool isAttacking();
-        void setSpeed(int speed);
-        void getSpeed() const;
-
-        sf::Sound setSound();
-        void getSound() const;
-
-        protected:
-    private:
-        int _health;
-        int _speed;
-        bool _alive;
-        bool _dead;
-        bool _drop;
-        bool _attack;
-        Type _type;
-};
+            GameComponent();
+            ~GameComponent();
+            int _health;
+            bool _alive;
+            bool _attack;
+            struct position{
+                int x;
+                int y;
+            };
+            typedef struct position position;
+            protected:
+        private:
+    };
+}
 
 #endif /* !GAMECOMPONENT_HPP_ */
