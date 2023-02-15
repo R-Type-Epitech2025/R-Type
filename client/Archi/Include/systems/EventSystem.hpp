@@ -8,6 +8,7 @@
 #ifndef EVENTSYSTEM_HPP_
 #define EVENTSYSTEM_HPP_
 #include "ISystem.hpp"
+#include "EventComponent.hpp"
 
 namespace rtype{
     class EventSystem : public ISystem{
@@ -20,7 +21,8 @@ namespace rtype{
             void loadEntity() override;
             void unloadEntity() override;
         protected:
-        private:
+        private:   
+            EventComponent _entity;
     };
 }
 

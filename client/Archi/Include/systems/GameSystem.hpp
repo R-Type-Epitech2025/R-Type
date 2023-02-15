@@ -8,7 +8,7 @@
 #ifndef GAMESYSTEM_HPP_
 #define GAMESYSTEM_HPP_
 #include "ISystem.hpp"
-
+#include "GameComponent.hpp"
 
 namespace rtype{
 class GameSystem : public ISystem {
@@ -21,8 +21,8 @@ class GameSystem : public ISystem {
         void loadEntity() override;
         void unloadEntity() override;
     protected:
-        
     private:
+        GameComponent _game;
 };
 }
 

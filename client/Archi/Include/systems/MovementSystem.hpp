@@ -4,6 +4,7 @@
 #include "Entity.hpp"
 #include <QtCore>
 #include "ISystem.hpp"
+#include "MovementComponent.hpp"
 
 namespace rtype {
     class MouvementSystem : public ISystem {
@@ -16,5 +17,6 @@ namespace rtype {
         void loadEntity() override;
         void unloadEntity() override;
     private :
+        MovementComponent _MovementComponent;
     };
 }

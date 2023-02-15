@@ -8,7 +8,7 @@
 #ifndef GRAPHICSYSTEM_HPP_
 #define GRAPHICSYSTEM_HPP_
 #include "ISystem.hpp"
-
+#include "GraphicComponent.hpp"
 
 namespace rtype{
     class GraphicSystem : public ISystem {
@@ -23,6 +23,7 @@ namespace rtype{
             void update(std::vector<std::shared_ptr<Entity> >& entities);
         protected:
         private:
+            GraphicComponent _graph;
     };
 }
 
