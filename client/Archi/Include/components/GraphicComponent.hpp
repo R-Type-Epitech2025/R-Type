@@ -15,22 +15,33 @@ namespace rtype{
         public:
             GraphicComponent();
             ~GraphicComponent();
-            sf::sprite *createSprite;
-            struct position{
+            void createSprite(const std::string &imagePath, int spriteWidth, int spriteHeight);
+            void setPosition(int x, int y);
+            void setSpritePosition(int x, int y);
+            void setSize(int width, int height);
+            bool getIsPrintable();
+            sf::Sprite* getSprite();
+
+            struct Position {
                 int x;
                 int y;
                 int sprite_x;
                 int sprite_y;
-            }; 
-            typedef struct position position;
-            bool isPrintable;
-            struct size{
+            };
+        
+            Position position;
+        
+            struct Size {
                 int width;
                 int height;
             };
-            typedef struct size size;
+        
+            Size size;
         protected:
         private:
+            sf::Texture texture;
+            sf::Sprite* sprite;
+            bool isPrintable;
     };
 }
 
