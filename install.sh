@@ -153,7 +153,11 @@ if [ ! -d "vcpkg" ]; then
     git clone https://github.com/Microsoft/vcpkg.git &> /dev/null
     sudo ./vcpkg/bootstrap-vcpkg.sh -disableMetrics &> /dev/null
     echo -e "${GREEN}vcpkg installé.${WHITE}"
-    export PATH=$PATH:$PWD/vcpkg
+    # add vcpkg to PATH
+    if ! echo "$PATH" | grep -q "/usr/local/bin"; then
+        echo "Ajout de /usr/local/bin au PATH..."
+        sudo export PATH=$PATH:/usr/local/bin
+    fi
 else
     echo -e "${GREEN}vcpkg est déjà installé.${WHITE}"
 fi
