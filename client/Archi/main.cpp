@@ -24,17 +24,26 @@
 // }   
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Mon jeu ECS");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "My Game");
     window.setFramerateLimit(60);
     window.clear(sf::Color::Black);
 
-    Entity entity;
-    entity.texture.loadFromFile("background.png");
+    rtype::Entity entity;
+    entity.texture.loadFromFile("../../assets/r-typeBackground.png");
 
-    RenderSystem renderSystem;
-    renderSystem.update(entity, window);
+    rtype::Scene scene;
+    scene.update(entity, window);
 
-    window.display();
+    while(window.isOpen()){
+        sf::Event event;
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+                window.close();
+        }
+        window.clear();
+        window.display();
+    }
 
     return 0;
 }
