@@ -29,10 +29,9 @@ class IEntity {
         /**
          * @brief 
          * 
-         * @param id 
+         * @return std::vector<Entity> 
          */
-        void addComponent(int id); // push back in vector
-
+        void ComponentList(); // Get the components of the entity
 
     protected:
     private:

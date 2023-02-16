@@ -1,6 +1,6 @@
 /*
 ** EPITECH PROJECT, 2023
-** Archi
+** R-Type
 ** File description:
 ** SceneManager
 */
@@ -15,12 +15,3 @@ rtype::SceneManager::~SceneManager()
 {
 }
 
-void setScene(std::map<std::string, std::string> scene)
-{
-    this->_scene = scene;
-}
-
-const std::map<std::string, std::string> &getScene()
-{
-    return (this->scene);
-}

@@ -12,7 +12,7 @@
 #include <vector>
 #include "Entity.hpp"
 
-namespace rtype{
+namespace rtype {
     enum SceneType{
         NONE,
         MAIN_MENU,
@@ -20,7 +20,7 @@ namespace rtype{
         ENDGAME,
         DEATH,
         PAUSE
-    }
+    };
     class IScene {
         public:
             
@@ -50,9 +50,25 @@ namespace rtype{
              */
             void getScene(std::vector<IScene> scene);
 
+            /**
+            * @brief 
+            * 
+            * @param id 
+            */
+            void addEntity(int id); // push back in vector
+
+            /**
+            * @brief 
+            * 
+            * @param id 
+            */
+            void removeEntity(int id); // remove in vector
+
+            
+
         protected:
         private:
     };
-}
+};
 
 #endif /* !ISCENE_HPP_ */

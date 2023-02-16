@@ -51,13 +51,6 @@ namespace rtype {
          */
         std::vector<Entity> idCreator(std::vector<Entity> entity); // id of the entity
 
-        /**
-         * @brief 
-         * 
-         * @return std::vector<Entity> 
-         */
-        std::vector<Entity> entityList(); // Get the components of the entity
-
         // Load the entity
 
 

@@ -28,6 +28,20 @@ class SceneManager {
          */
         ~SceneManager();
 
+        /**
+         * @brief 
+         * 
+         * @param scene 
+         */
+        const std::string &getScene() const;
+
+        /**
+         * @brief 
+         * 
+         * @param scene 
+         */
+        void setScene(std::string scene);
+
     protected:
         std::map<std::string, std::string> _scenes;
         SceneType _currentScene;

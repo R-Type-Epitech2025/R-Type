@@ -8,11 +8,11 @@
 #ifndef SCENE_HPP_
 #define SCENE_HPP_
 
-#include "IEntity.hpp"
+#include "IScene.hpp"
 #include <vector>
 
 namespace rtype {
-class Scene {
+class Scene : public IScene{
  public:
         /**
          * @brief Construct a new Scene object
@@ -39,7 +39,7 @@ class Scene {
          * 
          * @return std::vector<IEntity> 
          */
-        std::vector<IEntity> getEntities();
+        std::vector<IScene> entityList();
 
     protected:
     private:
