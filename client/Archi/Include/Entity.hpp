@@ -15,7 +15,7 @@
 
 
 namespace rtype {
-    class Entity : public IEntity {
+    class Entity : public rtype::IEntity {
     public:
         /**
          * @brief Construct a new Entity object

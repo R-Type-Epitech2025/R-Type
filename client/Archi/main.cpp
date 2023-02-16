@@ -2,6 +2,9 @@
 #include <iostream>
 #include <memory>
 #include "./Include/SceneManager.hpp"
+#include "./Include/IScene.hpp"
+#include "./Include/IEntity.hpp"
+#include "./Include/Entity.hpp"
 #include "./Include/Scene.hpp"
 #include <map>
 
@@ -28,11 +31,11 @@ int main() {
     window.setFramerateLimit(60);
     window.clear(sf::Color::Black);
 
-    rtype::Entity entity;
-    entity.texture.loadFromFile("../../assets/r-typeBackground.png");
+    rtype::IEntity *entity = new rtype::Entity();
+    // entity.texture.loadFromFile("../../assets/r-typeBackground.png");
 
-    rtype::Scene scene;
-    scene.update(entity, window);
+    rtype::IScene *scene = new rtype::Scene();
+    // scene.update(entity, window);
 
     while(window.isOpen()){
         sf::Event event;

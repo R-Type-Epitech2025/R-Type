@@ -8,12 +8,12 @@
 #ifndef SCENE_HPP_
 #define SCENE_HPP_
 
-#include "IScene.hpp"
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include "IScene.hpp"
 
 namespace rtype {
-class Scene : public IScene{
+class Scene : public rtype::IScene{
  public:
         /**
          * @brief Construct a new Scene object
@@ -35,14 +35,18 @@ class Scene : public IScene{
          */
         // std::vector getScene(std::vector<IEntity> entities); // Get the scene
 
-        /**
-         * @brief Get the Entities object
-         * 
-         * @return std::vector<IEntity> 
-         */
-        std::vector<IScene> entityList();
+        // /**
+        //  * @brief Get the Entities object
+        //  * 
+        //  * @return std::vector<IEntity> 
+        //  */
+        // std::vector<IScene> entityList();
 
         void update(Entity& entity, sf::RenderWindow& window); // Update the scene
+
+        void draw(sf::RenderWindow& window) final; // Draw the scene
+
+        void getScene(std::vector<IScene> scene) final;
 
     protected:
     private:

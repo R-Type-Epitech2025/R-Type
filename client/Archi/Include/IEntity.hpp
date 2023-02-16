@@ -15,16 +15,10 @@ namespace rtype {
 class IEntity {
     public:
         /**
-         * @brief Construct a new IEntity object
-         * 
-         */
-        IEntity();
-
-        /**
          * @brief Destroy the IEntity object
          * 
          */
-        ~IEntity();
+        virtual ~IEntity() = 0;
 
         /**
          * @brief 

@@ -14,5 +14,4 @@ target_sources(${PROJECT_NAME}
     PRIVATE
     Archi/main.cpp)
 
-
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-network sfml-graphics sfml-window)

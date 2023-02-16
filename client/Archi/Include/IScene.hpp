@@ -10,7 +10,6 @@
 
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "Entity.hpp"
 
 namespace rtype {
     enum SceneType{
@@ -23,48 +22,41 @@ namespace rtype {
     };
     class IScene {
         public:
-            
-            /**
-             * @brief Construct a new IScene object
-             * 
-             */
-            IScene();
-
             /**
              * @brief Destroy the IScene object
              * 
              */
-            ~IScene();
+            virtual ~IScene() = 0;
 
             /**
              * @brief 
              * 
              * @param window 
              */
-            void draw(sf::RenderWindow &window);
+            virtual void draw(sf::RenderWindow &window) = 0;
 
             /**
              * @brief Get the Scene object
              * 
              * @param scene 
              */
-            void getScene(std::vector<IScene> scene);
+            virtual void getScene(std::vector<IScene> scene) = 0;
 
-            /**
-            * @brief 
-            * 
-            * @param id 
-            */
-            void addEntity(int id); // push back in vector
+            // /**
+            // * @brief 
+            // * 
+            // * @param id 
+            // */
+            // virtual void addEntity(int id) = 0; // push back in vector
 
-            /**
-            * @brief 
-            * 
-            * @param id 
-            */
-            void removeEntity(int id); // remove in vector
+            // /**
+            // * @brief 
+            // * 
+            // * @param id 
+            // */
+            // virtual void removeEntity(int id) = 0; // remove in vector
 
-            
+
 
         protected:
         private:
