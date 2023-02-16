@@ -11,6 +11,7 @@
 #include "IEntity.hpp"
 #include <vector>
 #include <iostream>
+#include <SFML/Graphics.hpp>
 
 
 namespace rtype {
@@ -52,6 +53,8 @@ namespace rtype {
         std::vector<Entity> idCreator(std::vector<Entity> entity); // id of the entity
 
         // Load the entity
+        sf::Vector2f position;
+        sf::Texture texture;
 
 
     protected:

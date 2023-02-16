@@ -10,6 +10,7 @@
 
 #include "IScene.hpp"
 #include <vector>
+#include <SFML/Graphics.hpp>
 
 namespace rtype {
 class Scene : public IScene{
@@ -40,6 +41,8 @@ class Scene : public IScene{
          * @return std::vector<IEntity> 
          */
         std::vector<IScene> entityList();
+
+        void update(Entity& entity, sf::RenderWindow& window); // Update the scene
 
     protected:
     private:
