@@ -22,11 +22,6 @@ namespace rtype {
     };
     class IScene {
         public:
-            /**
-             * @brief Destroy the IScene object
-             * 
-             */
-            virtual ~IScene() = 0;
 
             /**
              * @brief 

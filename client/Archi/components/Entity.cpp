@@ -5,7 +5,8 @@
 ** Entity
 */
 
-#include "./Include/Entity.hpp"
+#include "../Include/Entity.hpp"
+
 
 rtype::Entity::Entity()
 {

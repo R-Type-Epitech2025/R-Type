@@ -5,10 +5,12 @@
 ** Scene
 */
 
-#include "Scene.hpp"
+#include "../Include/Scene.hpp"
+#include <iostream>
 
 rtype::Scene::Scene()
 {
+    std::cout << "Scene created" << std::endl;
 }
 
 rtype::Scene::~Scene()
@@ -23,14 +25,14 @@ rtype::Scene::~Scene()
 
 void rtype::Scene::draw(sf::RenderWindow& window)
 {
-    for (auto& entity : entities) {
-        sf::Sprite sprite(entity.texture);
-        sprite.setPosition(entity.position);
-        window.draw(sprite);
-    }
+//    for (auto& entity : entities) {
+//         sf::Sprite sprite(entity.texture);
+//         sprite.setPosition(entity.position);
+//         window.draw(sprite);
+//     }
 }
 
-void rtype::getScene(std::vector<IScene> scene)
+void rtype::Scene::getScene(std::vector<IScene> scene)
 {
     // for (auto& entity : entities) {
     //     sf::Sprite sprite(entity.texture);

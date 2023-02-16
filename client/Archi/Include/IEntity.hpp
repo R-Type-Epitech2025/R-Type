@@ -14,11 +14,6 @@
 namespace rtype {
 class IEntity {
     public:
-        /**
-         * @brief Destroy the IEntity object
-         * 
-         */
-        virtual ~IEntity() = 0;
 
         /**
          * @brief 

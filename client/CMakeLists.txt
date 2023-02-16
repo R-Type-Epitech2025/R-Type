@@ -12,6 +12,8 @@ find_package(SFML COMPONENTS system window graphics CONFIG REQUIRED)
 
 target_sources(${PROJECT_NAME} 
     PRIVATE
-    Archi/main.cpp)
+    Archi/main.cpp
+    Archi/components/Scene.cpp
+    Archi/components/Entity.cpp)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-network sfml-graphics sfml-window)

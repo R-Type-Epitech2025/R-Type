@@ -11,6 +11,7 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include "IScene.hpp"
+#include "Entity.hpp"
 
 namespace rtype {
 class Scene : public rtype::IScene{
