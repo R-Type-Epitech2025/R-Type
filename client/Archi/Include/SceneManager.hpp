@@ -10,7 +10,7 @@
 
 #include <iostream>
 #include <map>
-#include "IScene.hpp"
+#include "Scene.hpp"
 
 
 namespace rtype {
@@ -41,10 +41,11 @@ class SceneManager {
          * @param scene 
          */
         void setScene(std::string scene);
+        void addScene(std::string scene_name, rtype::Scene *scene);
 
     protected:
-        std::map<std::string, std::string> _scenes;
-        SceneType _currentScene;
+        std::map<std::string, rtype::Scene*> _scenes;
+        rtype::Scene* _currentscene;
         bool _shouldClose;
 
     private:

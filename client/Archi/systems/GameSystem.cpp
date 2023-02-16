@@ -7,8 +7,9 @@
 
 #include "GameSystem.hpp"
 
-GameSystem::GameSystem()
+GameSystem::GameSystem(SceneManager& scene)
 {
+    if(scene.)
 }
 
 GameSystem::~GameSystem()

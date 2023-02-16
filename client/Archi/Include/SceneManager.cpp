@@ -15,12 +15,16 @@ rtype::SceneManager::~SceneManager()
 {
 }
 
-void setScene(std::map<std::string, std::string> scene)
+void rtype::SceneManager::setScene(std::string scene)
 {
-    this->_scene = scene;
+    this->_currentscene = this->_scenes[scene];
 }
 
-const std::map<std::string, std::string> &getScene()
-{
-    return (this->scene);
+void rtype::SceneManager::addScene(std::string scene_name, rtype::Scene *scene){
+    this->_scenes[scene_name] = scene;
 }
+
+// const std::string &getScene()
+// {
+//     return (this->scene);
+// }

@@ -9,14 +9,13 @@
 
 
 #include <SFML/Graphics.hpp>
-#include "../ecs/Entity.hpp"
 #include <memory>
 
 namespace rtype {
     namespace system {
         class GraphicSystem {
             public:
-                GraphicSystem(sf::RenderWindow& window);
+                GraphicSystem();
                 ~GraphicSystem();
                 void update(std::vector<std::shared_ptr<rtype::Entity> > & entities);
             protected:

@@ -70,13 +70,12 @@ namespace rtype {
          */
 
         void get_containers();
-
+        struct Containers container; // c'est le temps de tester !!!pas du tout definitif;
 
         // Load the entity
     protected:
         
     private:
-        struct Containers container;
         sf::Vector2f position;
         sf::Texture texture;
 };  

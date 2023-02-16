@@ -2,7 +2,6 @@
 #include <memory>
 #include <SFML/Graphics.hpp>
 #include "Entity.hpp"
-#include <QtCore>
 #include "ISystem.hpp"
 #include "MovementComponent.hpp"
 

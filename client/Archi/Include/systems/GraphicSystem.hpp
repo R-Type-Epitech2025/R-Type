@@ -7,20 +7,22 @@
 
 #ifndef GRAPHICSYSTEM_HPP_
 #define GRAPHICSYSTEM_HPP_
-#include "ISystem.hpp"
-#include "GraphicComponent.hpp"
+#include "../components/GraphicComponent.hpp"
+#include "../SceneManager.hpp"
+#include <SFML/Graphics.hpp>
+#include "../Entity.hpp"
 
 namespace rtype{
-    class GraphicSystem : public ISystem {
+    class GraphicSystem {
         public:
             GraphicSystem();
             ~GraphicSystem();
-            void init(SceneManager&) override;
-            void Update(SceneManager&, int deltaTime) override;
-            void destroy(SceneManager&) override;
-            void loadEntity() override;
-            void unloadEntity() override;
-            void update(std::vector<std::shared_ptr<Entity> >& entities);
+            void init(SceneManager&);
+            void Update(SceneManager&, int deltaTime);
+            void destroy(SceneManager&);
+            void loadEntity();
+            void unloadEntity();
+            void update(std::vector<Entity *>& entities);
         protected:
         private:
             GraphicComponent _graph;

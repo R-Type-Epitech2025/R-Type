@@ -14,7 +14,7 @@
 #include "Entity.hpp"
 
 namespace rtype {
-class Scene : public rtype::IScene{
+class Scene{
  public:
         /**
          * @brief Construct a new Scene object
@@ -43,14 +43,14 @@ class Scene : public rtype::IScene{
         //  */
         // std::vector<IScene> entityList();
 
-        void update(Entity& entity, sf::RenderWindow& window); // Update the scene
+        // void update(Entity& entity, sf::RenderWindow& window); // Update the scene
 
-        void draw(sf::RenderWindow& window) final; // Draw the scene
-
-        void getScene(std::vector<IScene> scene) final;
+        // void draw(sf::RenderWindow& window) final; // Draw the scene
+        void addEntity(Entity* entity);
 
     protected:
     private:
+        std::vector<Entity*> _entities;
 };
 };
 
