@@ -11,12 +11,15 @@ if errorlevel 1 (
     echo [92mInternet connection is available[0m
 )
 
+
+
 git --version >nul
 
 if %errorlevel% neq 0 (
     echo [101;93m git is missing [0m
     echo [93mInstalling git[0m
-    
+    powershell -Command "Invoke-WebRequest -UseBasicParsing  -URI https://github.com/git-for-windows/git/releases/download/v2.39.2.windows.1/Git-2.39.2-64-bit.exe -OutFile install_git.exe"
+    start /WAIT install_git.exe
     echo [34;102mgit just installed[0m
 ) else (
     echo [92mgit already installed[0m
@@ -65,12 +68,11 @@ echo [34;102mQt5 installed[0m
 echo [34;102msfml installed[0m
 
 echo [93mCompilation en cours...[0m
-cd src_build_test
+cd client
 cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=..\vcpkg\scripts\buildsystems\vcpkg.cmake -DCMAKE_BUILD_TYPE=Release
 cmake --build build --config Release
 echo [34;102mCompilation terminee.[0m
 
 cd build
 
-cpack --config CPackConfig.cmake -G ZIP
-cpack --config CPackSourceConfig.cmake -G ZIP
+cpack -G ZIP
