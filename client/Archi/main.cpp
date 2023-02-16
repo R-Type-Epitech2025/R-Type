@@ -6,6 +6,7 @@
 #include "./Include/IEntity.hpp"
 #include "./Include/Entity.hpp"
 #include "./Include/Scene.hpp"
+#include "./Include/components/IComponent.hpp"
 #include <map>
 
 
@@ -31,7 +32,9 @@ int main() {
     window.setFramerateLimit(60);
     window.clear(sf::Color::Black);
 
-    rtype::IEntity *entity = new rtype::Entity();
+    rtype::Entity *entity = new rtype::Entity();
+    entity->add_Container(rtype::ComponentType::GameComponent);
+    entity->add_Container(rtype::ComponentType::GraphicComponent);
     // entity.texture.loadFromFile("../../assets/r-typeBackground.png");
 
     rtype::IScene *scene = new rtype::Scene();

@@ -12,10 +12,16 @@
 #include <vector>
 #include <iostream>
 #include <SFML/Graphics.hpp>
-
+#include "./components/IComponent.hpp"
 
 namespace rtype {
-    class Entity : public rtype::IEntity {
+       struct Containers {
+            GameComponent *game_component;
+            EventComponent *event_component;
+            GraphicComponent *graphic_component;
+            MovementComponent *movement_component;
+        };
+    class Entity {
     public:
         /**
          * @brief Construct a new Entity object
@@ -35,31 +41,45 @@ namespace rtype {
          * @return std::vector<Entity> 
          */
         std::vector<Entity> createEntity();
+        /**
+         * @brief 
+         * 
+         * @return std::vector<Entity>
+         * 
+         * 
+         */
 
         /**
          * @brief 
          * 
-         * @param XY 
-         * @param entityID 
+         * 
+         * 
          */
-        void EntityPath(std::vector<int> XY, int entityID); // Path in the map
 
+        void add_Container(const ComponentType &componentype);
         /**
          * @brief 
          * 
-         * @param entity 
-         * @return int 
+         * 
          */
-        std::vector<Entity> idCreator(std::vector<Entity> entity); // id of the entity
+        void remove_Container(const ComponentType &componentype);
+        /**
+         * @brief 
+         * 
+         * 
+         */
+
+        void get_containers();
+
 
         // Load the entity
+    protected:
+        
+    private:
+        struct Containers container;
         sf::Vector2f position;
         sf::Texture texture;
-
-
-    protected:
-    private:
-};
+};  
 };
 
 #endif /* !ENTITY_HPP_ */

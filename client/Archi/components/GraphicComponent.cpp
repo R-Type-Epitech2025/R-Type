@@ -5,7 +5,7 @@
 ** GraphicComponent
 */
 
-#include "GraphicComponent.hpp"
+#include "../Include/components/GraphicComponent.hpp"
 #include <SFML/Graphics.hpp>
 
 namespace rtype {

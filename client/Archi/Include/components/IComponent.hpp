@@ -10,22 +10,21 @@
 
 #include <memory>
 #include <stdexcept>
+#include "GraphicComponent.hpp"
+#include "EventComponent.hpp"
+#include "MovementComponent.hpp"
+#include "GameComponent.hpp"
 
-class IComponent {
-    public:
-        enum class ComponentType {
-            AUDIO,
-            EVENT,
-            PLAYER,
-            ENNEMY,
-            POSITION,
-            PROJECTILE,
-            SPRITE,
-            TEXT,
-            VELOCITY,
-        };
-        virtual ~IComponent() = default;
-        virtual const ComponentType &getType() const = 0;
+
+namespace rtype{
+    enum class ComponentType {
+            GameComponent = 0,
+            GraphicComponent = 1,
+            EventComponent = 2,
+            MovemementComponent = 3,
+            SoundComponent = 4
+    };
 };
+
 
 #endif /* !ICOMPONENT_HPP_ */
