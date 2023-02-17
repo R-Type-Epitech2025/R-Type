@@ -21,6 +21,8 @@ namespace rtype{
             void setSize(int width, int height);
             bool getIsPrintable();
             sf::Sprite* getSprite();
+            void setRotation(float angle);
+            void setHitbox(sf::IntRect rect);
 
             struct Position {
                 int x;
@@ -42,6 +44,8 @@ namespace rtype{
             sf::Texture texture;
             sf::Sprite* sprite;
             bool isPrintable;
+            float angle;
+            sf::IntRect rect;
     };
 }
 

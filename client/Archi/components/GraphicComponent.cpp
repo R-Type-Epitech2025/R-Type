@@ -48,4 +48,14 @@ namespace rtype {
         sf::Sprite* GraphicComponent::getSprite() {
             return sprite;
         }
+
+        void GraphicComponent::setRotation(float angle) {
+            this->angle = angle;
+            sprite->setRotation(angle);
+        }
+
+        void GraphicComponent::setHitbox(sf::IntRect rect) {
+            this->rect = rect;
+            sprite->setTextureRect(rect);
+        };
 };
