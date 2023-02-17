@@ -18,6 +18,7 @@ target_sources(${PROJECT_NAME}
     Archi/components/GraphicComponent.cpp
     Archi/components/GameComponent.cpp
     Archi/components/MovementComponent.cpp
+    Archi/components/MovementComponent.cpp
     Archi/components/Scene.cpp
     Archi/Include/SceneManager.cpp
     Archi/systems/GraphicSystem.cpp
