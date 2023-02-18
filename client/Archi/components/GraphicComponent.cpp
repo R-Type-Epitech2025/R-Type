@@ -14,30 +14,30 @@ namespace rtype {
         }
         
         GraphicComponent::~GraphicComponent() {
-            delete sprite;
+        
         }
         
         void GraphicComponent::createSprite(const std::string& imagePath, int spriteWidth, int spriteHeight) {
             texture.loadFromFile(imagePath);
-            sprite = new sf::Sprite(texture, sf::IntRect(0, 0, spriteWidth, spriteHeight));
+            sprite = sf::Sprite(texture, sf::IntRect(0, 0, spriteWidth, spriteHeight));
         }
         
         void GraphicComponent::setPosition(int x, int y) {
             position.x = x;
             position.y = y;
-            sprite->setPosition(x, y);
+            sprite.setPosition(x, y);
         }
         
         void GraphicComponent::setSpritePosition(int x, int y) {
             position.sprite_x = x;
             position.sprite_y = y;
-            sprite->setTextureRect(sf::IntRect(x, y, size.width, size.height));
+            sprite.setTextureRect(sf::IntRect(x, y, size.width, size.height));
         }
         
         void GraphicComponent::setSize(int width, int height) {
             size.width = width;
             size.height = height;
-            sprite->setScale((float)width / sprite->getTextureRect().width, (float)height / sprite->getTextureRect().height);
+            sprite.setScale((float)width / sprite.getTextureRect().width, (float)height / sprite.getTextureRect().height);
         }
         
         bool GraphicComponent::getIsPrintable() {
@@ -45,17 +45,17 @@ namespace rtype {
         }
         
         
-        sf::Sprite* GraphicComponent::getSprite() {
+        sf::Sprite GraphicComponent::getSprite() {
             return sprite;
         }
 
         void GraphicComponent::setRotation(float angle) {
             this->angle = angle;
-            sprite->setRotation(angle);
+            sprite.setRotation(angle);
         }
 
         void GraphicComponent::setHitbox(sf::IntRect rect) {
             this->rect = rect;
-            sprite->setTextureRect(rect);
+            sprite.setTextureRect(rect);
         };
 };

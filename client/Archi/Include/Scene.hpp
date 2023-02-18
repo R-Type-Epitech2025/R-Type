@@ -43,14 +43,16 @@ class Scene{
         //  */
         // std::vector<IScene> entityList();
 
-        // void update(Entity& entity, sf::RenderWindow& window); // Update the scene
+        void update(Entity& entity, sf::RenderWindow& window);
 
         // void draw(sf::RenderWindow& window) final; // Draw the scene
         void addEntity(Entity* entity);
-
+        
+        std::vector<Entity*> get_entity();
     protected:
     private:
         std::vector<Entity*> _entities;
+
 };
 };
 

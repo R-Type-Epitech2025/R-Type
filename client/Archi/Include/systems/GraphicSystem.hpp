@@ -11,6 +11,7 @@
 #include "../SceneManager.hpp"
 #include <SFML/Graphics.hpp>
 #include "../Entity.hpp"
+#include <iostream>
 
 namespace rtype{
     class GraphicSystem {
@@ -18,7 +19,7 @@ namespace rtype{
             GraphicSystem();
             ~GraphicSystem();
             void init(SceneManager&);
-            void Update(SceneManager&, int deltaTime);
+            void Update(SceneManager* Manager, int deltaTime, sf::RenderWindow &window);
             void destroy(SceneManager&);
             void loadEntity();
             void unloadEntity();

@@ -20,7 +20,7 @@ namespace rtype{
             void setSpritePosition(int x, int y);
             void setSize(int width, int height);
             bool getIsPrintable();
-            sf::Sprite* getSprite();
+            sf::Sprite getSprite();
             void setRotation(float angle);
             void setHitbox(sf::IntRect rect);
 
@@ -42,7 +42,7 @@ namespace rtype{
         protected:
         private:
             sf::Texture texture;
-            sf::Sprite* sprite;
+            sf::Sprite sprite;
             bool isPrintable;
             float angle;
             sf::IntRect rect;

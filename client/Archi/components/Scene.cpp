@@ -6,6 +6,7 @@
 */
 
 #include "../Include/Scene.hpp"
+#include "../Include/Entity.hpp"
 #include <iostream>
 
 rtype::Scene::Scene()
@@ -19,6 +20,12 @@ rtype::Scene::~Scene()
 
 void rtype::Scene::addEntity(rtype::Entity *entity){
     _entities.push_back(entity);
+}
+
+std::vector<rtype::Entity*> rtype::Scene::get_entity(){
+    return(
+        _entities
+    );
 }
 
 // void update(Entity& entity, sf::RenderWindow& window) {

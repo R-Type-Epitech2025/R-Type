@@ -37,24 +37,26 @@ int main() {
     entity->add_Container(rtype::ComponentType::GameComponent);
     entity->add_Container(rtype::ComponentType::GraphicComponent);
     entity->add_Container(rtype::ComponentType::MovemementComponent);
-    entity->container.graphic_component->position.x = 200;
-    entity->container.graphic_component->position.y = 100;
-    // entity.texture.loadFromFile("../../assets/r-typeBackground.png");
+    entity->container.graphic_component->createSprite("./Archi/assets/pacman.png", 100, 100);
+    entity->container.graphic_component->setPosition(0, 0);
+    entity->test = "test";
     rtype::Scene *scene = new rtype::Scene();
     scene->addEntity(entity);
+    scene->test = "caca";
     rtype::SceneManager *sceneManager = new rtype::SceneManager();
     sceneManager->addScene("first", scene);
+    sceneManager->setScene("first");
 
     while(window.isOpen()){
         sf::Event event;
+        rtype::Scene *scene = sceneManager->getCurrentScene();
         while (window.pollEvent(event))
         {
-        
+            graphic->Update(sceneManager, 12, window);
             if (event.type == sf::Event::Closed)
                 window.close();
+            window.clear();
         }
-        window.clear();
-        window.display();
     }
 
     return 0;

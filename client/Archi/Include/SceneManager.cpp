@@ -24,6 +24,10 @@ void rtype::SceneManager::addScene(std::string scene_name, rtype::Scene *scene){
     this->_scenes[scene_name] = scene;
 }
 
+rtype::Scene* rtype::SceneManager::getCurrentScene(){
+    return (this->_currentscene);
+}
+
 // const std::string &getScene()
 // {
 //     return (this->scene);
