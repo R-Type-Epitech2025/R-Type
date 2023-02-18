@@ -8,6 +8,7 @@
 #include "./Include/Scene.hpp"
 #include "./Include/components/IComponent.hpp"
 #include "./Include/systems/GraphicSystem.hpp"
+#include "./Include/systems/MovementSystem.hpp"
 #include <map>
 
 
@@ -33,16 +34,17 @@ int main() {
     window.setFramerateLimit(60);
     window.clear(sf::Color::Black);
     rtype::GraphicSystem *graphic = new rtype::GraphicSystem();
+    rtype::MouvementSystem *mouvement = new rtype::MouvementSystem();
     rtype::Entity *entity = new rtype::Entity();
     entity->add_Container(rtype::ComponentType::GameComponent);
     entity->add_Container(rtype::ComponentType::GraphicComponent);
     entity->add_Container(rtype::ComponentType::MovemementComponent);
     entity->container.graphic_component->createSprite("./Archi/assets/pacman.png", 100, 100);
-    entity->container.graphic_component->setPosition(0, 0);
-    entity->test = "test";
+    entity->container.movement_component->pos.x = 0;
+    entity->container.movement_component->pos.y = 0;
+    entity->container.movement_component->LinktoKeybord(true);
     rtype::Scene *scene = new rtype::Scene();
     scene->addEntity(entity);
-    scene->test = "caca";
     rtype::SceneManager *sceneManager = new rtype::SceneManager();
     sceneManager->addScene("first", scene);
     sceneManager->setScene("first");
@@ -52,6 +54,7 @@ int main() {
         rtype::Scene *scene = sceneManager->getCurrentScene();
         while (window.pollEvent(event))
         {
+            mouvement->update(sceneManager, event);
             graphic->Update(sceneManager, 12, window);
             if (event.type == sf::Event::Closed)
                 window.close();

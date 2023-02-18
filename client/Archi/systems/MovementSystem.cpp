@@ -5,38 +5,35 @@
 ** MovementSystem
 */
 
-#include "MovementSystem.hpp"
-#include "Entity.hpp"
+#include "../Include/systems/MovementSystem.hpp"
+#include <iostream>
 
 namespace rtype{
 
-    MouvementManager::MouvementManager(){
+    MouvementSystem::MouvementSystem(){
     }
 
-
-    // bool MouvementManager::SetNewPosition(Mouvement_Keyboard mouv){
-    // }
+    MouvementSystem::~MouvementSystem(){
+    }
     
+    void MouvementSystem::update(SceneManager *Manager, sf::Event event){
 
+        Scene *Scene = Manager->getCurrentScene();
 
-    // bool MouvementManager::LinkKeybordPosition(sf::Event &event, std::shared_ptr<rtype::Entity> entity){
-    //     if (event.type == sf::Event::KeyPressed){
-    //                 if (event.key.code == sf::Keyboard::Down){
-    //                     entity->setPosition(entity->x, entity->y + 10);
-    //                     //entity->new_data(DIRECTION::UP);
-    //                 }else if (event.key.code == sf::Keyboard::Up){
-    //                     entity->setPosition(entity->x, entity->y - 10);
-    //                     //entity->new_data(DIRECTION::DOWN);
-    //                 } else if (event.key.code == sf::Keyboard::Left){
-    //                     entity->setPosition(entity->x - 10, entity->y);
-    //                     //entity->new_data(DIRECTION::LEFT);
-    //                 }else if (event.key.code == sf::Keyboard::Right){
-    //                     entity->setPosition(entity->x + 10, entity->y);
-    //                     //entity->new_data(DIRECTION::RIGHT);
-    //         }
-    //         return true;
-    //     }
-    // }
+        for (const Entity *entity : Scene->get_entity()){
+            if (entity->container.movement_component->is_linked()){
+                if (event.type == sf::Event::KeyPressed){   
+                    if (event.key.code == sf::Keyboard::Up) {
+                        entity->container.movement_component->pos.y -= 5;
+                    } else if (event.key.code == sf::Keyboard::Down){
+                        entity->container.movement_component->pos.y += 5;
+                    }
+                }       
+            }   
+        }
+    }
+    
+    
 
 }
 

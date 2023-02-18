@@ -1,21 +1,17 @@
 #include <iostream>
 #include <memory>
 #include <SFML/Graphics.hpp>
-#include "Entity.hpp"
-#include "ISystem.hpp"
-#include "MovementComponent.hpp"
+#include "../SceneManager.hpp"
+#include "../Entity.hpp"
 
 namespace rtype {
-    class MouvementSystem : public ISystem {
+    class MouvementSystem {
     public:
        MouvementSystem();
        ~MouvementSystem();
-        void init(SceneManager&) override;
-        void Update(SceneManager&, int deltaTime) override;
-        void destroy(SceneManager&) override;
-        void loadEntity() override;
-        void unloadEntity() override;
+        void update(SceneManager *Manager, sf::Event event);
     private :
-        MovementComponent _MovementComponent;
+        bool _link;
+
     };
 }

@@ -38,10 +38,11 @@ namespace rtype {
          */
         void GraphicSystem::Update(SceneManager* Manager, int deltaTime, sf::RenderWindow &window)
         {
-             Scene *scene = Manager->getCurrentScene();
+            Scene *scene = Manager->getCurrentScene();
 
             for (const auto& entity : scene->get_entity())
             {
+                entity->container.graphic_component->setPosition(entity->container.movement_component->pos.x, entity->container.movement_component->pos.y);
                 window.draw(entity->container.graphic_component->getSprite());
             }
             window.display();
