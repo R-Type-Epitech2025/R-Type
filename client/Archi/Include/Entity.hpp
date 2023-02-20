@@ -15,6 +15,18 @@
 #include "./components/IComponent.hpp"
 
 namespace rtype {
+        enum DIRECTION{
+            FORWARD,
+            BACKWARD,
+            TOP,
+            BOTTOM,
+        };
+        enum type {
+            BUTTON = 3,
+            PLAYER = 2,
+            MAIN_PLAYER = 1,
+            BACKGROUND = 0,
+        };
        struct Containers {
             GameComponent *game_component;
             EventComponent *event_component;
@@ -25,9 +37,8 @@ namespace rtype {
     public:
         /**
          * @brief Construct a new Entity object
-         * 
          */
-        Entity();
+        Entity(rtype::type type);
 
         /**
          * @brief Destroy the Entity object
@@ -40,7 +51,6 @@ namespace rtype {
          * 
          * @return std::vector<Entity> 
          */
-        std::vector<Entity> createEntity();
         /**
          * @brief 
          * 
@@ -70,15 +80,19 @@ namespace rtype {
          */
 
         void get_containers();
-        struct Containers container;  // c'est le temps de tester !!!pas du tout definitif;
 
+        rtype::DIRECTION get_directions();
+        void set_direction(rtype::DIRECTION direction);
+        struct Containers container;  // c'est le temps de tester !!!pas du tout definitif;
+        rtype::type _type;
         // Load the entity
     protected:
         
     private:
+        rtype::DIRECTION direction;
         sf::Vector2f position;
         sf::Texture texture;
-};  
+};      
 };
 
 #endif /* !ENTITY_HPP_ */

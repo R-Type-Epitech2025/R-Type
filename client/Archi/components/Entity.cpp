@@ -8,12 +8,14 @@
 #include "../Include/Entity.hpp"
 
 
-rtype::Entity::Entity()
+rtype::Entity::Entity(rtype::type type)
 {
     this->container.event_component = NULL;
     this->container.game_component = NULL;
     this->container.graphic_component = NULL;
     this->container.movement_component = NULL;
+    this->direction = rtype::DIRECTION::FORWARD;
+    this->_type = type;
 }
 
 
@@ -27,12 +29,22 @@ void rtype::Entity::add_Container(const ComponentType &componentype){
             break;
         case ComponentType::MovemementComponent:
             this->container.movement_component = new MovementComponent();
+            if (_type == rtype::type::MAIN_PLAYER)
+                this->container.movement_component->LinktoKeybord(true);
+            break;
+        case ComponentType::EventComponent:
+            this->container.event_component = new EventComponent();
             break;
     }
 }
 
+    rtype::DIRECTION rtype::Entity::get_directions(){
+        return direction;
+    }
 
-
-rtype::Entity::~Entity()
-{
-}
+    void rtype::Entity::set_direction( rtype::DIRECTION direction )  {
+        this->direction = direction;
+    }
+    rtype::Entity::~Entity()
+    {
+    }

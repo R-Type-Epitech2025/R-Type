@@ -17,7 +17,11 @@ namespace rtype {
         
         }
         
-        void GraphicComponent::createSprite(const std::string& imagePath, int spriteWidth, int spriteHeight) {
+        void GraphicComponent::createSprite(const std::string& imagePath, int spriteWidth, int spriteHeight, int nb_sprite, rtype::Sprite_Direction direction) {
+            _direction = direction;
+            size.height = spriteHeight;
+            size.width = spriteWidth;
+            nb_sprites = nb_sprite;
             texture.loadFromFile(imagePath);
             sprite = sf::Sprite(texture, sf::IntRect(0, 0, spriteWidth, spriteHeight));
         }
@@ -28,15 +32,15 @@ namespace rtype {
             sprite.setPosition(x, y);
         }
         
-        void GraphicComponent::setSpritePosition(int x, int y) {
+        void GraphicComponent::setSpritePosition(int x, int y, bool init) {
+            if (init)
+                initial_sprite_x = x;
             position.sprite_x = x;
             position.sprite_y = y;
             sprite.setTextureRect(sf::IntRect(x, y, size.width, size.height));
         }
         
         void GraphicComponent::setSize(int width, int height) {
-            size.width = width;
-            size.height = height;
             sprite.setScale((float)width / sprite.getTextureRect().width, (float)height / sprite.getTextureRect().height);
         }
         

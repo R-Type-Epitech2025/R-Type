@@ -39,12 +39,21 @@ namespace rtype {
         void GraphicSystem::Update(SceneManager* Manager, int deltaTime, sf::RenderWindow &window)
         {
             Scene *scene = Manager->getCurrentScene();
-
-            for (const auto& entity : scene->get_entity())
+            int i = 0;
+            int save = 0;
+            for (const Entity *entity : scene->get_entity())
             {
+                // if (entity->container.graphic_component->counter_sprites == entity->container.graphic_component->nb_sprites){
+                //     entity->container.graphic_component->setSpritePosition(entity->container.graphic_component->initial_sprite_x, entity->container.graphic_component->position.sprite_y);
+                //     entity->container.graphic_component->counter_sprites = 0;
+                // }
+                // entity->container.graphic_component->counter_sprites += 1;
                 entity->container.graphic_component->setPosition(entity->container.movement_component->pos.x, entity->container.movement_component->pos.y);
+                save = entity->container.graphic_component->position.sprite_x;
+                entity->container.graphic_component->setSpritePosition(entity->container.graphic_component->position.sprite_x, entity->container.graphic_component->position.sprite_y);
                 window.draw(entity->container.graphic_component->getSprite());
-            }
+            }   
             window.display();
+            window.clear();
         }
 } // namespace rType

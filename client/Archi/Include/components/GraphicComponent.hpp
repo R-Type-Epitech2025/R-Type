@@ -11,13 +11,18 @@
 
 
 namespace rtype{
+
+    enum Sprite_Direction {
+        LEFT,
+        RIGHT
+    };
     class GraphicComponent {
         public:
             GraphicComponent();
             ~GraphicComponent();
-            void createSprite(const std::string &imagePath, int spriteWidth, int spriteHeight);
+            void createSprite(const std::string &imagePath, int spriteWidth, int spriteHeight, int nb_sprite, rtype::Sprite_Direction direction);
             void setPosition(int x, int y);
-            void setSpritePosition(int x, int y);
+            void setSpritePosition(int x, int y, bool init = false);
             void setSize(int width, int height);
             bool getIsPrintable();
             sf::Sprite getSprite();
@@ -39,6 +44,11 @@ namespace rtype{
             };
         
             Size size;
+            int nb_sprites;
+            int counter_sprites;
+            int initial_sprite_x;
+            rtype::Sprite_Direction _direction;
+
         protected:
         private:
             sf::Texture texture;
