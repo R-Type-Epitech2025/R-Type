@@ -4,40 +4,47 @@
 ** File description:
 ** Entity
 */
-#include "../../include/ecs/Entity.hpp"
-#include <iostream>
-namespace rtype
+
+#include "ecs/Entity.hpp"
+
+
+rtype::Entity::Entity(rtype::type type)
 {
-    /**
-     * @brief Construct a new Entity:: Entity object
-     * 
-     */
-    Entity::Entity(){
-        std::cout << "hey " << std::endl;
-    }   
+    this->container.event_component = NULL;
+    this->container.game_component = NULL;
+    this->container.graphic_component = NULL;
+    this->container.movement_component = NULL;
+    this->direction = rtype::DIRECTION::FORWARD;
+    this->_type = type;
+}
 
-    /**
-     * @brief Set the Position object
-     * 
-     * @param x 
-     * @param y 
-     */
-    void Entity::setPosition(int x , int y){
-        this->x = x;
-        this->y = y;
-        std::cout <<"changed position " << std::endl;
+
+void rtype::Entity::add_Container(const ComponentType &componentype){
+    switch (componentype){
+        case ComponentType::GameComponent: 
+            this->container.game_component = new GameComponent();
+            break;
+        case ComponentType::GraphicComponent:
+            this->container.graphic_component = new GraphicComponent();
+            break;
+        case ComponentType::MovemementComponent:
+            this->container.movement_component = new MovementComponent();
+            if (_type == rtype::type::MAIN_PLAYER)
+                this->container.movement_component->LinktoKeybord(true);
+            break;
+        case ComponentType::EventComponent:
+            this->container.event_component = new EventComponent();
+            break;
+    }
+}
+
+    rtype::DIRECTION rtype::Entity::get_directions(){
+        return direction;
     }
 
-    void Entity::onNewData(Entity_Mouvement Mouvement){
-        Mouvement.x_Coordinate = this->x;
-        Mouvement.y_Coordinate = this->y;
+    void rtype::Entity::set_direction( rtype::DIRECTION direction )  {
+        this->direction = direction;
     }
-
-
-    void Entity::new_data(DIRECTION Direction){
-        emit new_data(Direction);
+    rtype::Entity::~Entity()
+    {
     }
-
-    
-
-} // namespace rtype

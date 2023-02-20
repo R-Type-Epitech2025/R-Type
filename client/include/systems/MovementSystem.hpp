@@ -1,8 +1,8 @@
 #include <iostream>
 #include <memory>
 #include <SFML/Graphics.hpp>
-#include "../SceneManager.hpp"
-#include "../Entity.hpp"
+#include "ecs/SceneManager.hpp"
+#include "ecs/Entity.hpp"
 
 namespace rtype {
     class MouvementSystem {

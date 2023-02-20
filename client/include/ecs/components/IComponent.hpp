@@ -1,29 +1,30 @@
 /*
 ** EPITECH PROJECT, 2023
-** R-Type
+** client
 ** File description:
-** IComponent.hpp
+** IComponent
 */
 
-#ifndef ICOMPONENT_HPP
-#define ICOMPONENT_HPP
+#ifndef ICOMPONENT_HPP_
+#define ICOMPONENT_HPP_
 
-namespace rtype
-{
-    class IEntity;
-    class IComponent
-    {
-    public:
-        enum class Type {
-            SPRITE,
-            MODEL,
-            HITBOX,
-            MUSIC,
-            SOUND
-        };
-        virtual const Type &getType() const = 0;
-        virtual bool isInitialized() const = 0;
+#include <memory>
+#include <stdexcept>
+#include "GraphicComponent.hpp"
+#include "EventComponent.hpp"
+#include "MovementComponent.hpp"
+#include "GameComponent.hpp"
+
+
+namespace rtype{
+    enum class ComponentType {
+            GameComponent = 0,
+            GraphicComponent = 1,
+            EventComponent = 2,
+            MovemementComponent = 3,
+            SoundComponent = 4
     };
-}
+};
 
-#endif /* ICOMPONENT_HPP */
+
+#endif /* !ICOMPONENT_HPP_ */

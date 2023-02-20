@@ -1,28 +1,33 @@
 /*
 ** EPITECH PROJECT, 2023
-** R-Type
+** client
 ** File description:
 ** GraphicSystem
 */
-#ifndef GRAPHICSYSTEM_HPP
-#define GRAPHICSYSTEM_HPP
 
-
+#ifndef GRAPHICSYSTEM_HPP_
+#define GRAPHICSYSTEM_HPP_
+#include "ecs/components/GraphicComponent.hpp"
+#include "ecs/SceneManager.hpp"
 #include <SFML/Graphics.hpp>
-#include <memory>
+#include "ecs/Entity.hpp"
+#include <iostream>
 
-namespace rtype {
-    namespace system {
-        class GraphicSystem {
-            public:
-                GraphicSystem();
-                ~GraphicSystem();
-                void update(std::vector<std::shared_ptr<rtype::Entity> > & entities);
-            protected:
-            private:
-                sf::RenderWindow& _window;
-        };
-    }
-} // namespace rType
+namespace rtype{
+    class GraphicSystem {
+        public:
+            GraphicSystem();
+            ~GraphicSystem();
+            void init(SceneManager&);
+            void Update(SceneManager* Manager, int deltaTime, sf::RenderWindow &window);
+            void destroy(SceneManager&);
+            void loadEntity();
+            void unloadEntity();
+            void update(std::vector<Entity *>& entities);
+        protected:
+        private:
+            GraphicComponent _graph;
+    };
+}
 
-#endif /* !GRAPHICSYSTEM_HPP */
+#endif /* !GRAPHICSYSTEM_HPP_ */

@@ -4,7 +4,7 @@
 ** File description:
 ** MovementComponent
 */
-#include "../Include/components/MovementComponent.hpp"
+#include "ecs/components/MovementComponent.hpp"
 
 
 

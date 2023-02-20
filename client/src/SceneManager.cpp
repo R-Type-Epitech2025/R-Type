@@ -5,8 +5,8 @@
 ** SceneManager
 */
 
-#include "SceneManager.hpp"
-#include "Entity.hpp"
+#include "ecs/SceneManager.hpp"
+#include "ecs/Entity.hpp"
 
 rtype::SceneManager::SceneManager()
 {

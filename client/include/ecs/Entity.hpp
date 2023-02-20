@@ -1,49 +1,98 @@
 /*
 ** EPITECH PROJECT, 2023
-** R-Type
+** client
 ** File description:
-** Entity
+** Component
 */
+
 #ifndef ENTITY_HPP_
 #define ENTITY_HPP_
-#include <QtCore>
-#include <string>
+
+#include "IEntity.hpp"
+#include <vector>
+#include <iostream>
+#include <SFML/Graphics.hpp>
+#include "./components/IComponent.hpp"
 
 namespace rtype {
-    struct Entity_Mouvement {
-                int index;
-                int x_Coordinate;
-                int y_Coordinate;
-                int sprit_width;
-                int sprit_height;
-            };
-    enum DIRECTION {
-                UP,
-                DOWN,
-                LEFT,
-                RIGHT
-    };
-    class Entity : public QObject {
-    private:
-        /* data */
+        enum DIRECTION{
+            FORWARD,
+            BACKWARD,
+            TOP,
+            BOTTOM,
+        };
+        enum type {
+            BUTTON = 3,
+            PLAYER = 2,
+            MAIN_PLAYER = 1,
+            BACKGROUND = 0,
+        };
+       struct Containers {
+            GameComponent *game_component;
+            EventComponent *event_component;
+            GraphicComponent *graphic_component;
+            MovementComponent *movement_component;
+        };
+    class Entity {
     public:
-        int x;
-        int y;
-        //std::string sprite_src;
-        std::string color;
-        int size_x;
-        int size_y;
-        bool Player;
-        Entity();
-        void setPosition(int x, int y);
-        void send_data(rtype::DIRECTION Direction);
-        public slots:
-            void onNewData(Entity_Mouvement Mouvement);
-        signals:
-            void new_data(rtype::DIRECTION Direction);
-       
+        /**
+         * @brief Construct a new Entity object
+         */
+        Entity(rtype::type type);
+
+        /**
+         * @brief Destroy the Entity object
+         * 
+         */
+        ~Entity();
+
+        /**
+         * @brief Create a Entity object
+         * 
+         * @return std::vector<Entity> 
+         */
+        /**
+         * @brief 
+         * 
+         * @return std::vector<Entity>
+         * 
+         * 
+         */
+
+        /**
+         * @brief 
+         * 
+         * 
+         * 
+         */
+
+        void add_Container(const ComponentType &componentype);
+        /**
+         * @brief 
+         * 
+         * 
+         */
+        void remove_Container(const ComponentType &componentype);
+        /**
+         * @brief 
+         * 
+         * 
+         */
+
+        void get_containers();
+
+        rtype::DIRECTION get_directions();
+        void set_direction(rtype::DIRECTION direction);
+        struct Containers container;  // c'est le temps de tester !!!pas du tout definitif;
+        rtype::type _type;
+        // Load the entity
+    protected:
         
-    };
-    
-}
+    private:
+        rtype::DIRECTION direction;
+        sf::Vector2f position;
+        sf::Texture texture;
+};      
+};
+
 #endif /* !ENTITY_HPP_ */

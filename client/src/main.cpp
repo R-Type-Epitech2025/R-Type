@@ -1,14 +1,11 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <memory>
-#include "./Include/SceneManager.hpp"
-#include "./Include/IScene.hpp"
-#include "./Include/IEntity.hpp"
-#include "./Include/Entity.hpp"
-#include "./Include/Scene.hpp"
-#include "./Include/components/IComponent.hpp"
-#include "./Include/systems/GraphicSystem.hpp"
-#include "./Include/systems/MovementSystem.hpp"
+#include "ecs/SceneManager.hpp"
+#include "ecs/Entity.hpp"
+#include "ecs/Scene.hpp"
+#include "systems/GraphicSystem.hpp"
+#include "systems/MovementSystem.hpp"
 #include <map>
 
 
@@ -28,7 +25,7 @@ int main() {
     entity->add_Container(rtype::ComponentType::GameComponent);
     entity->add_Container(rtype::ComponentType::GraphicComponent);
     entity->add_Container(rtype::ComponentType::MovemementComponent);
-    entity->container.graphic_component->createSprite("./Archi/assets/r-typesheet1.gif", 34, 14, 1, rtype::Sprite_Direction::RIGHT);
+    entity->container.graphic_component->createSprite("./assets/r-typesheet1.gif", 34, 14, 1, rtype::Sprite_Direction::RIGHT);
     entity->container.graphic_component->setSpritePosition(534/2 - 68, 0, true);
     entity->container.graphic_component->setSize(200, 100);
     entity->container.movement_component->pos.x = 0;
@@ -38,7 +35,7 @@ int main() {
     entity2->add_Container(rtype::ComponentType::GraphicComponent);
     entity2->add_Container(rtype::ComponentType::MovemementComponent);
     entity2->add_Container(rtype::ComponentType::EventComponent);
-    entity2->container.graphic_component->createSprite("./Archi/assets/r-typesheet1.gif", 34, 14, 1, rtype::Sprite_Direction::RIGHT);
+    entity2->container.graphic_component->createSprite("./assets/r-typesheet1.gif", 34, 14, 1, rtype::Sprite_Direction::RIGHT);
     entity2->container.graphic_component->setSpritePosition(534/2 - 68, 0, true);
     entity2->container.graphic_component->setSize(200, 100);
     entity2->container.movement_component->pos.x = 0;

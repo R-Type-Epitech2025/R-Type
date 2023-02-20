@@ -1,38 +1,61 @@
 /*
 ** EPITECH PROJECT, 2023
-** R-Type
+** client
 ** File description:
-** IScene
+** Iscene
 */
 
-#ifndef ISCENE_HPP
-#define ISCENE_HPP
+#ifndef ISCENE_HPP_
+#define ISCENE_HPP_
 
-#include <map>
-#include <memory>
+#include <SFML/Graphics.hpp>
 #include <vector>
-#include "IEntity.hpp"
 
-namespace rtype
-{
-    class IScene
-    {
-    public:
-        virtual ~IScene() = default;
-
-        virtual IScene &addEntity(std::shared_ptr<IEntity> entity) = 0;
-        // virtual IScene &addEntities(std::vector<std::shared_ptr<IEntity>> entity) = 0;
-        virtual void removeEntity(std::shared_ptr<IEntity> entity) = 0;
-        virtual std::unique_ptr<IScene> initScene() = 0;
-
-        // virtual std::map<IEntity::Tags, std::vector<std::shared_ptr<IEntity>>> getTaggedEntities(std::vector<IEntity::Tags> tags) = 0;
-
-        // virtual void setAddEntityCallback(std::function<void(std::shared_ptr<IEntity>)> callback) = 0;
-        // virtual void setRemoveEntityCallback(std::function<void(std::shared_ptr<IEntity>)> callback) = 0;
-        // virtual std::function<void(std::shared_ptr<IEntity>)> getAddEntityCallback() = 0;
-        // virtual std::function<void(std::shared_ptr<IEntity>)> getRemoveEntityCallback() = 0;
-        // virtual std::vector<std::shared_ptr<IEntity>> &operator[](IEntity::Tags tag) = 0;
+namespace rtype {
+    enum SceneType{
+        NONE,
+        MAIN_MENU,
+        HELP,
+        ENDGAME,
+        DEATH,
+        PAUSE
     };
-}
+    class IScene {
+        public:
 
-#endif /* !ISCENE_HPP */
+            /**
+             * @brief 
+             * 
+             * @param window 
+             */
+            virtual void draw(sf::RenderWindow &window) = 0;
+
+            /**
+             * @brief Get the Scene object
+             * 
+             * @param scene 
+             */
+            virtual void getScene(std::vector<IScene> scene) = 0;
+
+            // /**
+            // * @brief 
+            // * 
+            // * @param id 
+            // */
+            // virtual void addEntity(int id) = 0; // push back in vector
+
+            // /**
+            // * @brief 
+            // * 
+            // * @param id 
+            // */
+            // virtual void removeEntity(int id) = 0; // remove in vector
+
+
+
+        protected:
+        private:
+    };
+};
+
+#endif /* !ISCENE_HPP_ */

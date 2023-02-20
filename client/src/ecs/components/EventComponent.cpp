@@ -5,7 +5,7 @@
 ** EventComponent
 */
 
-#include "../Include/components/EventComponent.hpp"
+#include "ecs/components/EventComponent.hpp"
 
 
 namespace rtype{

@@ -5,8 +5,8 @@
 ** Scene
 */
 
-#include "../Include/Scene.hpp"
-#include "../Include/Entity.hpp"
+#include "ecs/Scene.hpp"
+#include "ecs/Entity.hpp"
 #include <iostream>
 
 rtype::Scene::Scene()

@@ -29,7 +29,15 @@ namespace rtype{
                     } else if (event.key.code == sf::Keyboard::Down){
                         entity->set_direction(rtype::DIRECTION::BOTTOM);
                         entity->container.movement_component->pos.y += 5;
+                    } else if (event.key.code == sf::Keyboard::Left){
+                        entity->set_direction(rtype::DIRECTION::FORWARD);
+                        entity->container.movement_component->pos.x -= 5;
                     }
+                    else if (event.key.code == sf::Keyboard::Right){
+                        entity->set_direction(rtype::DIRECTION::BACKWARD);
+                        entity->container.movement_component->pos.x += 5;
+                    }
+
                 }       
             }   
         }

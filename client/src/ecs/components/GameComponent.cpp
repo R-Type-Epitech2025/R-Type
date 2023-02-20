@@ -4,7 +4,7 @@
 ** File description:
 ** GameComponent
 */
-#include "../Include/components/GameComponent.hpp"
+#include "ecs/components/GameComponent.hpp"
 
 namespace rtype{
     GameComponent::GameComponent()

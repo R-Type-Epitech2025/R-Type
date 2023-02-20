@@ -1,34 +1,29 @@
 /*
 ** EPITECH PROJECT, 2023
-** R-Type
+** client
 ** File description:
 ** EventSystem
 */
 
 #ifndef EVENTSYSTEM_HPP_
 #define EVENTSYSTEM_HPP_
+#include "ISystem.hpp"
+#include "EventComponent.hpp"
 
-#include <SFML/Graphics.hpp>
-#include "../ecs/Entity.hpp"
-#include <memory>
-#include "../ecs/components/MovementManager.hpp"
-
-namespace rtype {
-    namespace system {
-        class EventSystem {
-            public:
-            
-                EventSystem(sf::RenderWindow& window);
-                ~EventSystem();
-                void update(std::vector<std::shared_ptr<rtype::Entity> >& entities);
-
-            protected:
-            private:
-                sf::RenderWindow& _window;
-                rtype::MouvementManager  _mouvement;
-
-        };
-    }
+namespace rtype{
+    class EventSystem : public ISystem{
+        public:
+            EventSystem();
+            ~EventSystem();
+            void init(SceneManager&) override;
+            void Update(SceneManager&, int deltaTime) override;
+            void destroy(SceneManager&) override;
+            void loadEntity() override;
+            void unloadEntity() override;
+        protected:
+        private:   
+            EventComponent _entity;
+    };
 }
 
 #endif /* !EVENTSYSTEM_HPP_ */
