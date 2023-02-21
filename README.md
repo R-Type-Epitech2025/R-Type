@@ -10,11 +10,23 @@ Requirements for the software and other tools to build, test and push
 
 ### Installing
 
-Just run install.sh file
+## Linux
+Just run install.sh file in sudo mode
+
+## Windows
+Just run install.bat file
 
 ### Usage
 
-Launch "How To" in de first menu for know how to play.
+## Linux
+Just run build.sh file
+
+## Windows
+Just run build.bat file
+
+## On Linux
+
+./build.sh 
 
 ### Authors
 
