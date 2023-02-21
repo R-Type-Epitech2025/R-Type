@@ -35,9 +35,10 @@ fi
 
 # CPack Build for MacOS on DMG
 if [ $OS == "Darwin" ] && [ $COMPILED == false ]; then
-    echo -e "${GREEN}Build du ${YELLOW}client${GREEN}...${WHITE}"
+    echo -e "${GREEN}Build du ${YELLOW}client${GREEN}...${WHITE} pour ${YELLOW}MacOS${WHITE}"
     cd build
     cpack -G DragNDrop
+    hdiutil create -volname R-Type -srcfolder ${APP_NAME}.app -srcfolder assets -ov -format UDZO ${APP_NAME}.dmg
     echo -e "${GREEN}Build terminée.${WHITE}"
 fi
 

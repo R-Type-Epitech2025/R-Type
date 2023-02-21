@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.0)
 project(rtype)
 
+set(PROJECT_NAME R-Type)
+
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
@@ -11,34 +13,32 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 # adding include directories
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-set(RESOURCES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/resources)
+set(RESOURCES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/assets)
 
-add_executable(${PROJECT_NAME} src/ecs/main.cpp)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_CURRENT_SOURCE_DIR}/bin)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+set(SRC_FILES
+    src/main.cpp
+    src/ecs/components/Scene.cpp
+    src/ecs/Entity.cpp
+    src/ecs/components/GraphicComponent.cpp
+    src/ecs/components/GameComponent.cpp
+    src/ecs/components/MovementComponent.cpp
+    src/systems/MovementSystem.cpp
+    src/ecs/components/Scene.cpp
+    src/SceneManager.cpp
+    src/systems/GraphicSystem.cpp
+    src/ecs/components/EventComponent.cpp
+)
 
-# adding include directories
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-
-set(RESOURCES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/resources)
-
-add_executable(${PROJECT_NAME} src/ecs/main.cpp)
+add_executable(${PROJECT_NAME} ${SRC_FILES})
 
 # Adding QT5 dependencies
 find_package(Qt5 COMPONENTS Core Network REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
 
 # Adding SFML dependencies
 find_package(SFML COMPONENTS system window graphics REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics)
-# Adding SFML dependencies
-find_package(SFML COMPONENTS system window graphics REQUIRED)
-target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics)
 
-# Ajouter les includes pour SFML
-target_include_directories(${PROJECT_NAME} 
 # Ajouter les includes pour SFML
 target_include_directories(${PROJECT_NAME} 
     PRIVATE
@@ -58,7 +58,9 @@ if(WIN32)
 elseif(APPLE)
     # Setting up the CPack generator for MacOS
     set(CPACK_GENERATOR DragNDrop)
-    set(CPACK_PACKAGE_NAME "r-type")
+    set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
+    set(CPACK_PROJECT_NAME "R-Type")
+    set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}")
     set(CPACK_PACKAGE_ICON ${CMAKE_CURRENT_SOURCE_DIR}/icon.icns)
 elseif(UNIX AND NOT APPLE)
     # Setting up the CPack generator for Debian
@@ -84,12 +86,9 @@ install(FILES README.md
         DESTINATION .)
 install(PROGRAMS ${CMAKE_CURRENT_SOURCE_DIR}/build.sh
         DESTINATION .)
-install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/bin/rtype.exe DESTINATION .)
-
-# Adding -g3 if in debug mode
-if(CMAKE_BUILD_TYPE MATCHES Debug)
-    target_compile_options(${PROJECT_NAME} PRIVATE -g3)
-endif()
+# Adding assets to the install target
+install(DIRECTORY ${RESOURCES_DIR}
+        DESTINATION .)
 
 # Adding -g3 if in debug mode
 if(CMAKE_BUILD_TYPE MATCHES Debug)
