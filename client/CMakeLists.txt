@@ -14,15 +14,31 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(RESOURCES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/resources)
 
 add_executable(${PROJECT_NAME} src/ecs/main.cpp)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_CURRENT_SOURCE_DIR}/bin)
+
+# adding include directories
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+set(RESOURCES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/resources)
+
+add_executable(${PROJECT_NAME} src/ecs/main.cpp)
 
 # Adding QT5 dependencies
 find_package(Qt5 COMPONENTS Core Network REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
 
 # Adding SFML dependencies
 find_package(SFML COMPONENTS system window graphics REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics)
+# Adding SFML dependencies
+find_package(SFML COMPONENTS system window graphics REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE sfml-system sfml-window sfml-graphics)
 
+# Ajouter les includes pour SFML
+target_include_directories(${PROJECT_NAME} 
 # Ajouter les includes pour SFML
 target_include_directories(${PROJECT_NAME} 
     PRIVATE
@@ -70,6 +86,10 @@ install(PROGRAMS ${CMAKE_CURRENT_SOURCE_DIR}/build.sh
         DESTINATION .)
 install(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/bin/rtype.exe DESTINATION .)
 
+# Adding -g3 if in debug mode
+if(CMAKE_BUILD_TYPE MATCHES Debug)
+    target_compile_options(${PROJECT_NAME} PRIVATE -g3)
+endif()
 
 # Adding -g3 if in debug mode
 if(CMAKE_BUILD_TYPE MATCHES Debug)
