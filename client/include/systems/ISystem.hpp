@@ -18,6 +18,13 @@ namespace rtype {
             MOVEMENT,
             GRAPHIC
         };
+
+        enum DIRECTION {
+            UP,
+            DOWN,
+            LEFT,
+            RIGHT
+        };
         class SceneManager;
         class IEntity;
 

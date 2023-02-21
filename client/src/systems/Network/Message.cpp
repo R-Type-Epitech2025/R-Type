@@ -9,7 +9,7 @@
 
 namespace rtype {
     namespace system {
-        Message::Message()
+        Message::Message(): _sprites()
         {
         }
 
@@ -24,19 +24,14 @@ namespace rtype {
 
         QDataStream &readMessage(QDataStream &in, Message &msg)
         {
-            in >> msg._event;
-            in >> msg._direction;
-            return in;
+            while (!in.atEnd()) {
+                msg._sprites.push_back(new Sprite(in));
+            }
         }
 
-        quint8 Message::getEvent() const
+        std::list<job_dsl copy *> Message::getSprites() const
         {
-            return _event;
-        }
-
-        quint8 Message::getDirection() const
-        {
-            return _direction;
+            return _sprites;
         }
     }
 }

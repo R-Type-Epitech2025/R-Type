@@ -5,40 +5,39 @@
 ** NetworkSystem
 */
 
-#ifndef NETWORKSYSTEM_HPP_
-#define NETWORKSYSTEM_HPP_
+#ifndef CLIENT_HPP_
+#define CLIENT_HPP_
 
-#include "ISystem.hpp"
-#include "Message.hpp"
+#include "NetworkSystem.hpp"
+#include "UDPSocket.hpp"
 
-namespace rtype {
+namespace rtype{
     namespace system {
-        class MyApp : public QCoreApplication {
+
+        class NetworkSystem : public QObject, public ISystem {
 
             Q_OBJECT
-            
+
             public:
-                MyApp(int &argc, char **argv);
-                ~MyApp() = default;
+                NetworkSystem(QObject *parent, QString addr, quint32 port);
+                virtual ~NetworkSystem() {};
+
+                void linkToMovementSystem(MovementSystem *movementSystem);
+                void linkToGraphicsSystem(GraphicSystem *graphicSystem);
 
             public slots:
-                void onReadInput();
+                void onSendMovePlayer(DIRECTION dir);
+                void onMessageReceived(Message &msg);
 
             signals:
-                void readInput();
-        };
+                void onUpdateSprites(std::list<Sprite *> sprites);
 
-        class NetworkSystem : public ISystem {
-            public:
-                NetworkSystem();
-                ~NetworkSystem();
 
             protected:
-                QByteArray _message;
             private:
+                UDPSocket *_udpSocket;
         };
     }
 }
 
-
-#endif /* !NETWORKSYSTEM_HPP_ */
+#endif /* !CLIENT_HPP_ */

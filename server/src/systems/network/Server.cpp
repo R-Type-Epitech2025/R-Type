@@ -7,124 +7,67 @@
 
 #include "Server.hpp"
 
-Server::Server(QObject *parent, quint16 port): QObject(parent), _udpSocket(this, QHostAddress::AnyIPv6, port), _lobbyName("")
-{
-    _tcpServer = new QTcpServer(this);
+namespace rtype{
+    namespace server {
+        Server::Server(QObject *parent): QObject(parent)
+        {
+            try {
+                _udpSocket = new UDPSocket(this);
+            } catch (std::invalid_argument &e) {
+                std::cerr << e.what() << std::endl;
+                std::cerr << "Exiting..." << std::endl;
+                exit(84);
+            }
+            connect(_udpSocket, SIGNAL(messageReceived(Message &)), this, SLOT(onMessageReceived(Message &)));
+            // connect(this, SIGNAL(playerMoveEvent), nullptr, SLOT(nullptr));
+            // connect(this, SIGNAL(playerShootEvent), nullptr, SLOT(nullptr));
+            // connect(this, SIGNAL(playerQuitEvent), nullptr, SLOT(nullptr));
+        }
 
-    QHostAddress address = QHostAddress::AnyIPv6;
+        // Server::~Server()
+        // {
+        // }
 
-    connect(&_udpSocket, &UDPSocket::messageReceived, this, &Server::onUdpMessage);
-    connect(_tcpServer, SIGNAL(newConnection()), this, SLOT(onNewTcpConnection()));
+        void Server::onSendUpdatedEntities(std::vector<std::shared_ptr<Sprite>> &entities)
+        {
+            QByteArray data;
+            QDataStream ds(&data, QIODevice::WriteOnly);
 
-    if (!_tcpServer->listen(address, port)) {
-        std::cerr << "Couldn't start TCP server" << std::endl;
-        return;
-    }
-    std::cout << "Server started on IP: " << QHostAddress(address).toString().toStdString() << " and PORT: " << port << std::endl;
-}
+            quint32 nb = 0;
 
-Server::~Server()
-{
-}
+            for (auto &entity : entities) {
+                // ds << entity->getId();
+                // ds << entity->getPosX();
+                // ds << entity->getPosY();
+                // ds << entity->getDirection();
+                // ds << entity->getSpeed();
+                // ds << entity->getHealth();
+                // ds << entity->getDamage();
+                // ds << entity->getScore();
+                // ds << entity->getEntityType();
+                // ds << entity->getEntityState();
+                ds << nb;
+                nb++;
+            }
+            _udpSocket->sendDatagram(data);
+        }
 
-void Server::onNewTcpConnection()
-{
-    QTcpSocket *socket = _tcpServer->nextPendingConnection();
-    std::cout << "New connection from: " << socket->peerAddress().toString().toStdString() << std::endl;
 
-    connect(socket, SIGNAL(disconnected()), socket, SLOT(deleteLater()));
-    connect(socket, SIGNAL(readyRead()), this, SLOT(onTcpReadyRead()));
-}
-
-void Server::onTcpReadyRead()
-{
-    QTcpSocket *socket = qobject_cast<QTcpSocket *>(sender());
-
-    QDataStream in(socket);
-
-    while (socket->bytesAvailable() > 0) {
-        int action = 0;
-        in >> action;
-
-        switch (action) {
-            case ACTION::CONNECT:
-            {
+        void Server::onMessageReceived(Message &msg)
+        {
+            if (msg.getEvent() == EVENT::MOVE)
+                std::cout << "MOVE" << std::endl;
+                // emit playerMoveEvent(msg.getId(), msg.getDirection());
+            else if (msg.getEvent() == EVENT::SHOOT)
+                std::cout << "SHOOT" << std::endl;
+                // emit playerShootEvent(msg.getId());
+            else if (msg.getEvent() == EVENT::QUIT)
+                std::cout << "QUIT" << std::endl;
+                // emit playerQuitEvent(msg.getId());
+            else if (msg.getEvent() == EVENT::CONNECT)
                 std::cout << "CONNECT" << std::endl;
-                _clients[socket] = "";
-                quint8 nameSize = 0;
-                in >> nameSize;
-                for (int i = 0; i < nameSize; i++) {
-                    quint8 c;
-                    in >> c;
-                    _clients[socket].push_back(c);
-                }
-                // Send OK
-                QByteArray block;
-                QDataStream out(&block, QIODevice::WriteOnly);
-                out << ACTION::OK;
-                socket->write(block);
-                break;
-            }
-            case ACTION::CREATE:
-            {
-                if (_clients[socket] == "" || !_clients.contains(socket) || _lobbyName != "") {
-                    // Send KO
-                    QByteArray block;
-                    QDataStream out(&block, QIODevice::WriteOnly);
-                    out << ACTION::KO;
-                    socket->write(block);
-                    break;
-                }
-                std::cout << "CREATE" << std::endl;
-                _lobbyName = "";
-                quint8 nameSize = 0;
-                in >> nameSize;
-                for (int i = 0; i < nameSize; i++) {
-                    quint8 c;
-                    in >> c;
-                    _lobbyName.push_back(c);
-                }
-                // Send OK
-                QByteArray block;
-                QDataStream out(&block, QIODevice::WriteOnly);
-                out << ACTION::OK;
-                socket->write(block);
-                break;
-            }
-            case ACTION::LIST:
-                std::cout << "LIST" << std::endl;
-                
-                break;
-            case ACTION::JOIN:
-                std::cout << "JOIN" << std::endl;
-                break;
-            case ACTION::JOINED:
-                std::cout << "JOINED" << std::endl;
-                break;
-            case ACTION::READY:
-                std::cout << "READY" << std::endl;
-                break;
-            case ACTION::START:
-                std::cout << "START" << std::endl;
-                break;
-            default:
-                std::cout << "Unknown action" << std::endl;
-                break;
+                // emit playerConnectEvent(msg.getId());
         }
     }
 }
 
-void Server::onUdpMessage(Message msg)
-{
-    UDPSocket *socket = qobject_cast<UDPSocket *>(sender());
-
-    if (msg.getEvent() == EVENT::MOVE) {
-        emit moveEvent("user", DIRECTION::LEFT);
-    } else if (msg.getEvent() == EVENT::SHOOT) {
-        emit shootEvent("user");
-    } else if (msg.getEvent() == EVENT::QUIT) {
-        emit quitEvent("user");
-    } else {
-        std::cout << "Unknown event" << std::endl;
-    }
-}

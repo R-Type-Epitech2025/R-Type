@@ -8,25 +8,25 @@
 #ifndef NETWORKSYSTEM_HPP_
 #define NETWORKSYSTEM_HPP_
 
-#include "ISystem.hpp"
+#include "../ISystem.hpp"
 #include "Message.hpp"
 
 namespace rtype {
-    namespace system {
-        class MyApp : public QCoreApplication {
+    namespace server {
+        // class MyApp : public QCoreApplication {
 
-            Q_OBJECT
+        //     Q_OBJECT
             
-            public:
-                MyApp(int &argc, char **argv);
-                ~MyApp() = default;
+        //     public:
+        //         MyApp(int &argc, char **argv);
+        //         ~MyApp() = default;
 
-            public slots:
-                void onReadInput();
+        //     public slots:
+        //         void onReadInput();
 
-            signals:
-                void readInput();
-        };
+        //     signals:
+        //         void readInput();
+        // };
 
         class NetworkSystem : public ISystem {
             public:

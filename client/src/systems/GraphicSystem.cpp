@@ -56,4 +56,10 @@ namespace rtype {
             window.display();
             window.clear();
         }
+
+        void GraphicSystem::onUpdateSprites(std::list<Sprite *> sprites)
+        {
+            return;
+        }
+
 } // namespace rType

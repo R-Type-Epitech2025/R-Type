@@ -14,7 +14,7 @@
 #include <iostream>
 
 namespace rtype{
-    class GraphicSystem {
+    class GraphicSystem: public QObject, public ISystem {
         public:
             GraphicSystem();
             ~GraphicSystem();
@@ -27,6 +27,9 @@ namespace rtype{
         protected:
         private:
             GraphicComponent _graph;
+
+        public slots:
+            void onUpdateSprites(std::list<Sprite *> sprites);
     };
 }
 

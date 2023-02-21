@@ -10,7 +10,7 @@
 
 namespace rtype{
 
-    MouvementSystem::MouvementSystem(){
+    MouvementSystem::MouvementSystem(): QObject(nullptr) {
     }
 
     MouvementSystem::~MouvementSystem(){

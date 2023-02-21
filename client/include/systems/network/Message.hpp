@@ -8,8 +8,13 @@
 #ifndef MESSAGE_HPP_
 #define MESSAGE_HPP_
 
+#include <iostream>
 #include <QDataStream>
 #include <QNetworkDatagram>
+#include <QtNetwork>
+#include <QObject>
+#include <list>
+#include "Sprite.hpp"
 
 namespace rtype {
     namespace system {
@@ -19,13 +24,6 @@ namespace rtype {
             QUIT
         };
 
-        enum DIRECTION {
-            UP,
-            DOWN,
-            LEFT,
-            RIGHT
-        };
-
         class Message {
         public:
             Message();
@@ -33,16 +31,12 @@ namespace rtype {
 
             friend QDataStream &operator>>(QDataStream &in, Message &msg);
             
-            quint8 getEvent() const;
-            quint8 getDirection() const;
-
-            void print() const;
+            std::list<Sprite *> getSprites() const;
 
         private:
             friend QDataStream &readMessage(QDataStream &in, Message &msg);
-
-            quint8 _event;
-            quint8 _direction;
+            
+            std::list<Sprite *> _sprites;
         protected:
 
         };

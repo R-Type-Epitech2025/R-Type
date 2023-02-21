@@ -9,21 +9,23 @@
 
 namespace rtype {
     namespace system {
-        UDPSocket::UDPSocket(QObject *parent, QHostAddress addr, int port, QAbstractSocket::BindMode mode): QObject(parent)
+        UDPSocket::UDPSocket(QObject *parent, QString serverIp, int port): QObject(parent)
         {
             _socket = new QUdpSocket(this);
-            if (!_socket->bind(addr, port, mode)) {
+            if (!_socket->bind(QHostAddress::LocalHost, 8080)) {
                 throw std::invalid_argument("UDP Socket bind failed");
             }
-            if (!connect(_socket, SIGNAL(QUdpSocket::readyRead), this, &UDPSocket::onMessageReceived, Qt::QueuedConnection)) {
-                throw std::invalid_argument("UDP Socket connect failed");
+            if (!connect(_socket, SIGNAL(readyRead()), this, SLOT(onMessageReceived()), Qt::QueuedConnection)) {
+                throw std::invalid_argument("Connect failed");
             }
-            std::cout << "UDP Socket binded on " << addr.toString().toStdString() << ":" << port << std::endl;
+            _serverAddress = QHostAddress(serverIp);
+            _serverPort = port;
+            askConnection();
         }
 
-        UDPSocket::~UDPSocket()
-        {
-        }
+        // UDPSocket::~UDPSocket()
+        // {
+        // }
 
         void UDPSocket::onMessageReceived()
         {
@@ -35,6 +37,22 @@ namespace rtype {
                 ds >> msg;
                 emit messageReceived(msg);
             }
+
+        }
+
+        void UDPSocket::sendDatagram(QByteArray &data)
+        {
+            _socket->writeDatagram(data, _serverAddress, _serverPort);
+        }
+
+        void UDPSocket::askConnection()
+        {
+            QByteArray datagram;
+            QDataStream out(&datagram, QIODevice::WriteOnly);
+
+            out << (quint8)0;
+
+            _socket->writeDatagram(datagram, _serverAddress, _serverPort);
         }
     }
 }

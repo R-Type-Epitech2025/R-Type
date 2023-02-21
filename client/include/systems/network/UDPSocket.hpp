@@ -8,9 +8,6 @@
 #ifndef UDPSOCKET_HPP_
 #define UDPSOCKET_HPP_
 
-#include <iostream>
-#include <QObject>
-#include <QtNetwork>
 #include "Message.hpp"
 
 namespace rtype {
@@ -20,9 +17,12 @@ namespace rtype {
             Q_OBJECT
 
         public:
-            UDPSocket(QObject *parent = nullptr, QHostAddress addr = QHostAddress::AnyIPv4,
-                int port = 0, QAbstractSocket::BindMode mode = QAbstractSocket::DefaultForPlatform);
-            ~UDPSocket();
+            UDPSocket(QObject *parent, QString serverIp, int port);
+            virtual ~UDPSocket() {};
+
+            void sendDatagram(QByteArray &data);
+
+            void askConnection();
 
         public slots:
             void onMessageReceived();
@@ -32,6 +32,8 @@ namespace rtype {
 
         private:
             QUdpSocket *_socket;
+            QHostAddress _serverAddress;
+            quint16 _serverPort;
         };
     }
 }
