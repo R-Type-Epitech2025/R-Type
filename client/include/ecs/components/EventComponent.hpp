@@ -13,7 +13,7 @@
 namespace rtype {
      enum Action{
             Click,
-            shoot
+            Shoot
         };
 class EventComponent {
         public:
@@ -26,7 +26,8 @@ class EventComponent {
                 int height;
             };
             bool ishooting;
-            void eventHandler(sf::Event event, sf::Keyboard::Key key, rtype::Action action, void(*direction)()= NULL);
+            void shoot(sf::RenderWindow& window);
+            void eventHandler(sf::RenderWindow& window, sf::Event event, sf::Keyboard::Key key, rtype::Action action, void(*direction)()= NULL);
             typedef struct hitbox hitbox;
         protected:
         private:

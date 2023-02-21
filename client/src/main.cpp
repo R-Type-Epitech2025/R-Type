@@ -54,7 +54,8 @@ int main() {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-        entity2->container.event_component->eventHandler(event, sf::Keyboard::Up, rtype::Action::Click, &print);
+        entity2->container.event_component->eventHandler(window, event, sf::Keyboard::Up, rtype::Action::Click, &print);
+        entity->container.event_component->eventHandler(window, event, sf::Keyboard::Space, rtype::Action::Shoot);
         mouvement->update(sceneManager, event);
         graphic->Update(sceneManager, 12, window);
         window.clear();

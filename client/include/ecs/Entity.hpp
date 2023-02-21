@@ -22,6 +22,7 @@ namespace rtype {
             BOTTOM,
         };
         enum type {
+            PROJECTILE = 4,
             BUTTON = 3,
             PLAYER = 2,
             MAIN_PLAYER = 1,
