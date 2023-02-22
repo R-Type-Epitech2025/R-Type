@@ -8,70 +8,56 @@
 #include "systems/MovementSystem.hpp"
 #include <map>
 
-<<<<<<< HEAD
 void print(){
-=======
-void print()
-{
->>>>>>> menu_scene
     std::cout << "hey" << std::endl;
 }
 
-int main()
-{
-    sf::RenderWindow window(sf::VideoMode(800, 600), "R-Type");
+int main() {
+    sf::RenderWindow window(sf::VideoMode(800, 600), "My Game");
     window.setFramerateLimit(60);
     window.clear(sf::Color::Black);
     rtype::GraphicSystem *graphic = new rtype::GraphicSystem();
     rtype::MouvementSystem *mouvement = new rtype::MouvementSystem();
-    rtype::Entity *entity = new rtype::Entity(rtype::type::BUTTON);
+    rtype::Entity *entity = new rtype::Entity(rtype::type::MAIN_PLAYER);
     entity->add_Container(rtype::ComponentType::GameComponent);
     entity->add_Container(rtype::ComponentType::GraphicComponent);
     entity->add_Container(rtype::ComponentType::MovemementComponent);
-    entity->container.graphic_component->createSprite("./assets/button_play.png", 331, 329, 1, rtype::Sprite_Direction::RIGHT);
-    entity->container.graphic_component->setSpritePosition(0, 0, true);
-    entity->container.graphic_component->setSize(331, 329);
-    entity->container.movement_component->pos = {10, 10};
+    entity->container.graphic_component->createSprite("./assets/r-typesheet1.gif", 34, 14, 1, rtype::Sprite_Direction::RIGHT);
+    entity->container.graphic_component->setSpritePosition(534/2 - 68, 0, true);
+    entity->container.graphic_component->setSize(200, 100);
+    entity->container.movement_component->pos.x = 0;
+    entity->container.movement_component->pos.y = 0;
     rtype::Entity *entity2 = new rtype::Entity(rtype::type::BUTTON);
     entity2->add_Container(rtype::ComponentType::GameComponent);
     entity2->add_Container(rtype::ComponentType::GraphicComponent);
     entity2->add_Container(rtype::ComponentType::MovemementComponent);
     entity2->add_Container(rtype::ComponentType::EventComponent);
-<<<<<<< HEAD
     entity2->container.graphic_component->createSprite("./assets/r-typesheet1.gif", 34, 14, 1, rtype::Sprite_Direction::RIGHT);
     entity2->container.graphic_component->setSpritePosition(534/2 - 68, 0, true);
     entity2->container.graphic_component->setSize(200, 100);
     entity2->container.movement_component->pos.x = 0;
     entity2->container.movement_component->pos.y = 100;
-    rtype::Entity *entity3 = new rtype::Entity(rtype::type::PROJECTILE);
-    entity3->add_Container(rtype::ComponentType::GameComponent);
-    entity3->add_Container(rtype::ComponentType::GraphicComponent);
-    entity3->add_Container(rtype::ComponentType::MovemementComponent);
-    entity3->container.graphic_component->createSprite("./assets/r-typesheet1.gif", 34, 14, 1, rtype::Sprite_Direction::RIGHT);
-    entity3->container.graphic_component->setSpritePosition(200, 0, true);
-    entity3->container.graphic_component->setSize(200, 100);
-    entity3->container.movement_component->pos.x = 0;
-    entity3->container.movement_component->pos.y = 0;
-=======
-    entity2->container.graphic_component->createSprite("./assets/button_settings.png", 176, 175, 1, rtype::Sprite_Direction::RIGHT);
-    entity2->container.graphic_component->setSpritePosition(0, 0, true);
-    entity2->container.graphic_component->setSize(176, 175);
-    entity2->container.movement_component->pos = {30, 30};
->>>>>>> menu_scene
+    // rtype::Entity *entity3 = new rtype::Entity(rtype::type::PROJECTILE);
+    // entity3->add_Container(rtype::ComponentType::GameComponent);
+    // entity3->add_Container(rtype::ComponentType::GraphicComponent);
+    // entity3->add_Container(rtype::ComponentType::MovemementComponent);
+    // entity3->container.graphic_component->createSprite("./assets/r-typesheet1.gif", 34, 14, 1, rtype::Sprite_Direction::RIGHT);
+    // entity3->container.graphic_component->setSpritePosition(200, 0, true);
+    // entity3->container.graphic_component->setSize(200, 100);
+    // entity3->container.movement_component->pos.x = 0;
+    // entity3->container.movement_component->pos.y = 0;
     rtype::Scene *scene = new rtype::Scene();
     scene->addEntity(entity);
     scene->addEntity(entity2);
     scene->addEntity(entity3);
     rtype::SceneManager *sceneManager = new rtype::SceneManager();
-    sceneManager->addScene("menu", scene);
-    sceneManager->setScene("menu");
+    sceneManager->addScene("first", scene);
+    sceneManager->setScene("first");
 
-    while (window.isOpen())
-    {
+    while(window.isOpen()){
         sf::Event event;
         rtype::Scene *scene = sceneManager->getCurrentScene();
-        while (window.pollEvent(event))
-        {
+        while (window.pollEvent(event)){
             if (event.type == sf::Event::Closed)
                 window.close();
         }
@@ -84,3 +70,6 @@ int main()
 
     return 0;
 }
+
+
+
