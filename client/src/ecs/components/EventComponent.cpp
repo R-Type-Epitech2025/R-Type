@@ -18,7 +18,7 @@ namespace rtype{
     {
     }
 
-    void shoot(sf::RenderWindow& window) {
+    void EventComponent::shoot(sf::RenderWindow& window) {
     sf::Clock clock;
     rtype::Entity *entity = new rtype::Entity(rtype::type::PROJECTILE);
     entity->add_Container(rtype::ComponentType::GameComponent);

@@ -8,9 +8,6 @@
 #include "systems/MovementSystem.hpp"
 #include <map>
 
-
-
-
 void print(){
     std::cout << "hey" << std::endl;
 }
@@ -40,9 +37,19 @@ int main() {
     entity2->container.graphic_component->setSize(200, 100);
     entity2->container.movement_component->pos.x = 0;
     entity2->container.movement_component->pos.y = 100;
+    rtype::Entity *entity3 = new rtype::Entity(rtype::type::PROJECTILE);
+    entity3->add_Container(rtype::ComponentType::GameComponent);
+    entity3->add_Container(rtype::ComponentType::GraphicComponent);
+    entity3->add_Container(rtype::ComponentType::MovemementComponent);
+    entity3->container.graphic_component->createSprite("./assets/r-typesheet1.gif", 34, 14, 1, rtype::Sprite_Direction::RIGHT);
+    entity3->container.graphic_component->setSpritePosition(200, 0, true);
+    entity3->container.graphic_component->setSize(200, 100);
+    entity3->container.movement_component->pos.x = 0;
+    entity3->container.movement_component->pos.y = 0;
     rtype::Scene *scene = new rtype::Scene();
     scene->addEntity(entity);
     scene->addEntity(entity2);
+    scene->addEntity(entity3);
     rtype::SceneManager *sceneManager = new rtype::SceneManager();
     sceneManager->addScene("first", scene);
     sceneManager->setScene("first");
@@ -55,7 +62,7 @@ int main() {
                 window.close();
         }
         entity2->container.event_component->eventHandler(window, event, sf::Keyboard::Up, rtype::Action::Click, &print);
-        entity->container.event_component->eventHandler(window, event, sf::Keyboard::Space, rtype::Action::Shoot);
+        entity->container.event_component->eventHandler(window, event, sf::Keyboard::Space, rtype::Action::Shoot, &print);
         mouvement->update(sceneManager, event);
         graphic->Update(sceneManager, 12, window);
         window.clear();
