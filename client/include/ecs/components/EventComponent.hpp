@@ -13,23 +13,27 @@
 namespace rtype {
      enum Action{
             Click,
-            shoot
+            shoot,
         };
-class EventComponent {
-        public:
-            EventComponent();
-            ~EventComponent();
-            struct hitbox{
+          struct hitbox{
                 int x;
                 int y;
                 int width;
                 int height;
             };
-            bool ishooting;
-            void eventHandler(sf::Event event, sf::Keyboard::Key key, rtype::Action action, void(*direction)()= NULL);
             typedef struct hitbox hitbox;
+class EventComponent {
+        public:
+            EventComponent();
+            ~EventComponent();
+            bool ishooting;
+            void eventHandler(sf::Event event, sf::Keyboard::Key key, rtype::Action action, sf::RenderWindow &window, void(*direction)()= NULL);
+            void setHitbox(int x, int y, int width, int height);
+
         protected:
         private:
+            rtype::hitbox _hitbox;
+            bool is_hitbox;
     };
 }
 

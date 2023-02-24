@@ -35,6 +35,7 @@ int main() {
     entity2->add_Container(rtype::ComponentType::GraphicComponent);
     entity2->add_Container(rtype::ComponentType::MovemementComponent);
     entity2->add_Container(rtype::ComponentType::EventComponent);
+    entity2->container.event_component->setHitbox(0, 100, 200, 100); // on set la hitbox
     entity2->container.graphic_component->createSprite("./assets/r-typesheet1.gif", 34, 14, 1, rtype::Sprite_Direction::RIGHT);
     entity2->container.graphic_component->setSpritePosition(534/2 - 68, 0, true);
     entity2->container.graphic_component->setSize(200, 100);
@@ -54,7 +55,9 @@ int main() {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-        entity2->container.event_component->eventHandler(event, sf::Keyboard::Up, rtype::Action::Click, &print);
+        entity2->container.event_component->eventHandler(event, sf::Keyboard::Up, rtype::Action::Click, window, &print); // des parametres en plus attention
+        // si sa prend click. la fonction void * s'execute quand la souris et sur l'entité et que la touche definis et cliqué. la prochaine mise a jour c'est le 
+        //hitbox mouvent + le fait de pouvoir choisir entre sf::keyboard et sf::Mouse
         mouvement->update(sceneManager, event);
         graphic->Update(sceneManager, 12, window);
         window.clear();
