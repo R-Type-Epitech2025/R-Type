@@ -28,6 +28,7 @@ class EventComponent {
             ~EventComponent();
             bool ishooting;
             void eventHandler(sf::Event event, sf::Keyboard::Key key, rtype::Action action, sf::RenderWindow &window, void(*direction)()= NULL);
+            void eventHandler(sf::Event event, sf::Mouse::Button key, rtype::Action action, sf::RenderWindow &window, void(*direction)());
             void setHitbox(int x, int y, int width, int height);
 
         protected:

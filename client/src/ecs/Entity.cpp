@@ -8,7 +8,7 @@
 #include "ecs/Entity.hpp"
 
 
-rtype::Entity::Entity(rtype::type type)
+rtype::Entity::Entity(rtype::type type, std::vector<rtype::ComponentType> containers, int x, int y, int width, int height)
 {
     this->container.event_component = NULL;
     this->container.game_component = NULL;
@@ -16,6 +16,17 @@ rtype::Entity::Entity(rtype::type type)
     this->container.movement_component = NULL;
     this->direction = rtype::DIRECTION::FORWARD;
     this->_type = type;
+
+    for(rtype::ComponentType component : containers){
+        add_Container(component);
+    }
+    if (this->container.movement_component != NULL){
+         this->container.movement_component->pos = {x, y};
+    }
+    if (this->container.event_component != NULL){
+        this->container.event_component->setHitbox(x, y, width, height);
+    }
+
 }
 
 
