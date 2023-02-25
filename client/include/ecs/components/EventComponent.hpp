@@ -9,30 +9,32 @@
 #define EVENTCOMPONENT_HPP_
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
-#include "IComponent.hpp"
 
 namespace rtype {
      enum Action{
             Click,
-            Shoot
+            shoot,
         };
-class EventComponent {
-        public:
-            EventComponent();
-            ~EventComponent();
-            struct hitbox{
+          struct hitbox{
                 int x;
                 int y;
                 int width;
                 int height;
             };
-            bool ishooting;
-            void eventHandler(sf::RenderWindow& window, sf::Event event, sf::Keyboard::Key key, rtype::Action action, void(*direction)()= NULL);
             typedef struct hitbox hitbox;
+class EventComponent {
+        public:
+            EventComponent();
+            ~EventComponent();
+            bool ishooting;
+            void eventHandler(sf::Event event, sf::Keyboard::Key key, rtype::Action action, sf::RenderWindow &window, void(*direction)()= NULL);
+            void eventHandler(sf::Event event, sf::Mouse::Button key, rtype::Action action, sf::RenderWindow &window, void(*direction)());
+            void setHitbox(int x, int y, int width, int height);
+
         protected:
         private:
-            void shoot(sf::RenderWindow& window) const;
+            rtype::hitbox _hitbox;
+            bool is_hitbox;
     };
 }
 
