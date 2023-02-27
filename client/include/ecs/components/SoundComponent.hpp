@@ -7,7 +7,7 @@
 
 #ifndef SOUNDCOMPONENT_HPP_
 #define SOUNDCOMPONENT_HPP_
-
+#include <SFML/Audio.hpp>
 
 namespace rtype{
     class SoundComponent {

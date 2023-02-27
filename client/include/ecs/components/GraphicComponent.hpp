@@ -9,18 +9,12 @@
 #define GRAPHICCOMPONENT_HPP_
 #include <SFML/Graphics.hpp>
 
-
 namespace rtype{
-
-    enum Sprite_Direction {
-        LEFT,
-        RIGHT
-    };
     class GraphicComponent {
         public:
             GraphicComponent();
             ~GraphicComponent();
-            void createSprite(const std::string &imagePath, int spriteWidth, int spriteHeight, int nb_sprite, rtype::Sprite_Direction direction);
+            void createSprite(const std::string &imagePath, int spriteWidth, int spriteHeight, int nb_sprite);
             void setPosition(int x, int y);
             void setSpritePosition(int x, int y, bool init = false);
             void setSize(int width, int height);
@@ -29,25 +23,24 @@ namespace rtype{
             void setRotation(float angle);
             void setHitbox(sf::IntRect rect);
 
-            struct Position {
+            struct SpritePosition {
                 int x;
                 int y;
                 int sprite_x;
                 int sprite_y;
             };
         
-            Position position;
+            SpritePosition position;
         
-            struct Size {
+            struct SpriteSize {
                 int width;
                 int height;
             };
         
-            Size size;
+            SpriteSize size;
             int nb_sprites;
             int counter_sprites;
             int initial_sprite_x;
-            rtype::Sprite_Direction _direction;
 
         protected:
         private:

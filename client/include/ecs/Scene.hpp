@@ -8,9 +8,6 @@
 #ifndef SCENE_HPP_
 #define SCENE_HPP_
 
-#include <vector>
-#include <SFML/Graphics.hpp>
-#include "IScene.hpp"
 #include "Entity.hpp"
 
 namespace rtype {

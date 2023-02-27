@@ -7,8 +7,8 @@
 
 #ifndef GAMESYSTEM_HPP_
 #define GAMESYSTEM_HPP_
+
 #include "ISystem.hpp"
-#include "GameComponent.hpp"
 
 namespace rtype{
 class GameSystem : public ISystem {

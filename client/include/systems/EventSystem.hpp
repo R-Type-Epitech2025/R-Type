@@ -7,8 +7,8 @@
 
 #ifndef EVENTSYSTEM_HPP_
 #define EVENTSYSTEM_HPP_
+
 #include "ISystem.hpp"
-#include "EventComponent.hpp"
 
 namespace rtype{
     class EventSystem : public ISystem{

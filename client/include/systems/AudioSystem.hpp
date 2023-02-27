@@ -7,7 +7,6 @@
 
 #ifndef AUDIOSYSTEM_HPP_
 #define AUDIOSYSTEM_HPP_
-#include "ISystem.hpp"
 
 namespace rtype{
     class AudioSystem : public ISystem{

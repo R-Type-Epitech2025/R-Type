@@ -8,11 +8,18 @@
 #ifndef SCENEMANAGER_HPP_
 #define SCENEMANAGER_HPP_
 
-#include <iostream>
-#include <map>
 #include "Scene.hpp"
+#include <map>
 
 namespace rtype {
+    enum SceneType{
+        NONE,
+        MAIN_MENU,
+        HELP,
+        ENDGAME,
+        DEATH,
+        PAUSE
+    };
     class SceneManager {
         public:
             /**

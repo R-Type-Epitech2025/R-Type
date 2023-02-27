@@ -8,26 +8,17 @@
 #ifndef ISYSTEM_HPP
 #define ISYSTEM_HPP
 
-#include <memory>
-#include <QtNetwork>
-#include <QDataStream>
 
 namespace rtype {    
     namespace system {
         enum class SystemType {
             MOVEMENT,
-            GRAPHIC
+            GRAPHIC,
+            AUDIO,
+            EVENT,
+            GAME,
+            NETWORK
         };
-
-        enum DIRECTION {
-            UP,
-            DOWN,
-            LEFT,
-            RIGHT
-        };
-        class SceneManager;
-        class IEntity;
-
         class ISystem 
         {
         public:

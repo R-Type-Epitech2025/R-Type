@@ -8,16 +8,19 @@
 #ifndef MESSAGE_HPP_
 #define MESSAGE_HPP_
 
-#include <iostream>
 #include <QDataStream>
 #include <QNetworkDatagram>
 #include <QtNetwork>
-#include <QObject>
-#include "ISystem.hpp"
 #include <SFML/Graphics.hpp>
-#include <list>
+
 
 namespace rtype {
+    enum DIRECTION {
+            RIGHT,
+            LEFT,
+            UP,
+            DOWN
+        };
     namespace system {
         enum EVENT {
             MOVE,

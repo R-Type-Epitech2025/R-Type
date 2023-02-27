@@ -8,20 +8,15 @@
 #ifndef ENTITY_HPP_
 #define ENTITY_HPP_
 
-#include "IEntity.hpp"
-#include <vector>
-#include <iostream>
-#include <SFML/Graphics.hpp>
-#include "./components/IComponent.hpp"
+#include "GraphicComponent.hpp"
+#include "EventComponent.hpp"
+#include "MovementComponent.hpp"
+#include "GameComponent.hpp"
 
 namespace rtype {
-        enum DIRECTION{
-            FORWARD,
-            BACKWARD,
-            TOP,
-            BOTTOM,
-        };
-        enum type {
+        enum EntityType {
+            MOB = 5,
+            BULLET = 4,
             BUTTON = 3,
             PLAYER = 2,
             MAIN_PLAYER = 1,
@@ -38,7 +33,7 @@ namespace rtype {
         /**
          * @brief Construct a new Entity object
          */
-        Entity(rtype::type type);
+        Entity(rtype::EntityType type);
 
         /**
          * @brief Destroy the Entity object
@@ -47,38 +42,24 @@ namespace rtype {
         ~Entity();
 
         /**
-         * @brief Create a Entity object
-         * 
-         * @return std::vector<Entity> 
-         */
-        /**
          * @brief 
          * 
-         * @return std::vector<Entity>
-         * 
-         * 
+         * @param componentype 
          */
-
-        /**
-         * @brief 
-         * 
-         * 
-         * 
-         */
-
         void add_Container(const ComponentType &componentype);
+        
         /**
          * @brief 
          * 
-         * 
+         * @param componentype 
          */
         void remove_Container(const ComponentType &componentype);
+
         /**
          * @brief 
          * 
          * 
          */
-
         void get_containers();
 
         rtype::DIRECTION get_directions();

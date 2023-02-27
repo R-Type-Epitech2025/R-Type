@@ -7,13 +7,8 @@
 
 #ifndef GRAPHICSYSTEM_HPP_
 #define GRAPHICSYSTEM_HPP_
-#include "GraphicComponent.hpp"
-#include "SceneManager.hpp"
-#include "NetworkSystem.hpp"
-#include "Entity.hpp"
 
-#include <SFML/Graphics.hpp>
-#include <iostream>
+#include "ISystem.hpp"
 
 namespace rtype{
     namespace system {

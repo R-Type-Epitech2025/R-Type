@@ -7,10 +7,14 @@
 
 #ifndef MOVEMENTCOMPONENT_HPP_
 #define MOVEMENTCOMPONENT_HPP_
-#include <iostream> //inclure plus bas par la suite !!
-
 
 namespace rtype{
+    enum DIRECTION{
+            RIGHT,
+            LEFT,
+            UP,
+            DOWN
+        };
     class MovementComponent {
         public:
             MovementComponent();

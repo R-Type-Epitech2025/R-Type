@@ -7,14 +7,9 @@
 
 #ifndef EVENTCOMPONENT_HPP_
 #define EVENTCOMPONENT_HPP_
-#include <iostream>
 #include <SFML/Graphics.hpp>
 
 namespace rtype {
-     enum Action{
-            Click,
-            shoot
-        };
 class EventComponent {
         public:
             EventComponent();
@@ -26,7 +21,7 @@ class EventComponent {
                 int height;
             };
             bool ishooting;
-            void eventHandler(sf::Event event, sf::Keyboard::Key key, rtype::Action action, void(*direction)()= NULL);
+            void eventHandler(sf::Event event, sf::Keyboard::Key key, void(*direction)()= NULL);
             typedef struct hitbox hitbox;
         protected:
         private:

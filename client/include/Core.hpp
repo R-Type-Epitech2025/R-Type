@@ -8,9 +8,6 @@
 #ifndef CORE_HPP
 #define CORE_HPP
 
-#include <map>
-
-#include "systems/ISystem.hpp"
 #include "SceneManager.hpp"
 
 namespace rtype
@@ -29,7 +26,6 @@ namespace rtype
         void loadEntity(std::shared_ptr<IEntity> entity);
         void unloadEntity(std::shared_ptr<IEntity> entity);
     private:
-        std::map<SystemType, std::shared_ptr<ISystem>> _systems;
         SceneManager _sceneManager;
         bool _end = false;
     };

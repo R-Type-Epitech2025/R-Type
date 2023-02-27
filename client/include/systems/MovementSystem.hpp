@@ -1,9 +1,4 @@
-#include <iostream>
-#include <memory>
-#include <SFML/Graphics.hpp>
-#include "SceneManager.hpp"
-#include "Entity.hpp"
-#include <QObject>
+#include "ISystem.hpp"
 
 namespace rtype {
     namespace system {

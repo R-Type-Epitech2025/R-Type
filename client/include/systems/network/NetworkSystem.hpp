@@ -9,8 +9,7 @@
 #define CLIENT_HPP_
 
 #include "UDPSocket.hpp"
-#include "MovementSystem.hpp"
-#include "GraphicSystem.hpp"
+#include "ISystem.hpp"
 
 namespace rtype{
     namespace system {
