@@ -13,7 +13,7 @@
 namespace rtype {
      enum Action{
             Click,
-            shoot,
+            Shoot,
         };
           struct hitbox{
                 int x;
