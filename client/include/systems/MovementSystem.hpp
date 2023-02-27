@@ -1,24 +1,25 @@
 #include <iostream>
 #include <memory>
 #include <SFML/Graphics.hpp>
-#include "ecs/SceneManager.hpp"
-#include "ecs/Entity.hpp"
+#include "SceneManager.hpp"
+#include "Entity.hpp"
+#include <QObject>
 
 namespace rtype {
+    namespace system {
 
-    
+        class MovementSystem: public QObject {
+            Q_OBJECT
+        public:
+        MovementSystem();
+        ~MovementSystem();
+            void update(rtype::SceneManager *Manager, sf::Event event);
+        private :
+            bool _link;
 
-    class MouvementSystem: public QObject, public ISystem {
-        Q_OBJECT
-    public:
-       MouvementSystem();
-       ~MouvementSystem();
-        void update(SceneManager *Manager, sf::Event event);
-    private :
-        bool _link;
+        signals:
+            void sendMovePlayer(DIRECTION dir);
 
-    signals:
-        void sendMovePlayer(DIRECTION dir);
-
-    };
+        };
+    }
 }

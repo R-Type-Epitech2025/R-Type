@@ -41,15 +41,15 @@ namespace rtype{
             emit updateSprites(msg.getSprites());
         }
 
-        void NetworkSystem::linkToMovementSystem(MovementSystem *movementSystem)
+        void NetworkSystem::linkToMovementSystem(MovementSystem* movementSystem)
         {
             connect(movementSystem, SIGNAL(sendMovePlayer(DIRECTION dir)), this, SLOT(onSendMovePlayer(DIRECTION dir)));
         }
 
-        void NetworkSystem::linkToGraphicsSystem(GraphicSystem *graphicSystem)
+        void NetworkSystem::linkToGraphicsSystem(GraphicSystem* graphicSystem)
         {
-            connect(this, SIGNAL(updateSprites(std::list<Sprite *> sprites)), graphicSystem, SLOT(onUpdateSprites(std::list<Sprite *> sprites)));
+            // connect(this, SIGNAL(updateSprites(std::list<Sprite *> sprites)), graphicSystem, SLOT(onUpdateSprites(std::list<Sprite *> sprites)));
+            connect(this, SIGNAL(updateSprites(std::list<sf::Sprite *> sprites)), &graphicSystem, SLOT(onUpdateSprites(std::list<sf::Sprite *> sprites)));
         }
     }
 }
-

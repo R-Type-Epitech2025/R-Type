@@ -16,7 +16,7 @@ namespace rtype{
          * 
          * @param window 
          */
-        EventSystem::EventSystem(sf::RenderWindow &window ) : _window( window) , _mouvement()
+        EventSystem::EventSystem(sf::RenderWindow &window ) : _window( window) , _movement()
         {
         }
 
@@ -58,7 +58,7 @@ namespace rtype{
                 }
                 for (int i = 0; i < entities.size(); i++){
                     if (entities.at(i)->Player){   
-                        _mouvement.LinkKeybordPosition(event, entities.at(i));
+                        _movement.LinkKeybordPosition(event, entities.at(i));
                     }
                 }
             }

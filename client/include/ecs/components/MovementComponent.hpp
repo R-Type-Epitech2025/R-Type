@@ -10,7 +10,6 @@
 #include <iostream> //inclure plus bas par la suite !!
 
 
-
 namespace rtype{
     class MovementComponent {
         public:

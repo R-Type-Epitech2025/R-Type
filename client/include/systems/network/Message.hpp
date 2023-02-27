@@ -13,8 +13,9 @@
 #include <QNetworkDatagram>
 #include <QtNetwork>
 #include <QObject>
+#include "ISystem.hpp"
+#include <SFML/Graphics.hpp>
 #include <list>
-#include "Sprite.hpp"
 
 namespace rtype {
     namespace system {
@@ -31,12 +32,12 @@ namespace rtype {
 
             friend QDataStream &operator>>(QDataStream &in, Message &msg);
             
-            std::list<Sprite *> getSprites() const;
+            std::list<sf::Sprite *> getSprites() const;
 
         private:
             friend QDataStream &readMessage(QDataStream &in, Message &msg);
             
-            std::list<Sprite *> _sprites;
+            std::list<sf::Sprite *> _sprites;
         protected:
 
         };

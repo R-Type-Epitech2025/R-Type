@@ -19,11 +19,11 @@ namespace rtype{
 
     void EventComponent::eventHandler(sf::Event event, sf::Keyboard::Key key, rtype::Action action, void(*direction)()){
             if (event.type == sf::Event::KeyPressed){   
-                    if (event.key.code == key) {
-                        if (action == rtype::Action::Click){
-                            direction();
-                        }
-                    }    
+                if (event.key.code == key) {
+                    if (action == rtype::Action::Click){
+                        direction();
+                    }
+                }    
             }   
     }
 }

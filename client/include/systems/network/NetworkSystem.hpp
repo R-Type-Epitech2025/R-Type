@@ -8,13 +8,14 @@
 #ifndef CLIENT_HPP_
 #define CLIENT_HPP_
 
-#include "NetworkSystem.hpp"
 #include "UDPSocket.hpp"
+#include "MovementSystem.hpp"
+#include "GraphicSystem.hpp"
 
 namespace rtype{
     namespace system {
 
-        class NetworkSystem : public QObject, public ISystem {
+        class NetworkSystem : public QObject {
 
             Q_OBJECT
 
@@ -22,16 +23,19 @@ namespace rtype{
                 NetworkSystem(QObject *parent, QString addr, quint32 port);
                 virtual ~NetworkSystem() {};
 
-                void linkToMovementSystem(MovementSystem *movementSystem);
-                void linkToGraphicsSystem(GraphicSystem *graphicSystem);
+                void linkToMovementSystem(rtype::system::MovementSystem* movementSystem);
+                void linkToGraphicsSystem(rtype::system::GraphicSystem* graphicSystem);
+
+                // virtual void init(SceneManager &sceneManager) = 0;
+                // virtual void update(SceneManager &manager, uint64_t time) = 0;
+                // virtual void destroy() = 0;
 
             public slots:
                 void onSendMovePlayer(DIRECTION dir);
                 void onMessageReceived(Message &msg);
 
             signals:
-                void onUpdateSprites(std::list<Sprite *> sprites);
-
+                void updateSprites(std::list<sf::Sprite *> sprites);
 
             protected:
             private:

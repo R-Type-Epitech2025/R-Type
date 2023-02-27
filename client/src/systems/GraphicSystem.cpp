@@ -9,34 +9,18 @@
 #include <string>
 
 namespace rtype {
-        /**
-         * @brief Construct a new Graphic System::Graphic System object
-         * 
-         * @param window 
-         */
-        GraphicSystem::GraphicSystem()
+    namespace system {
+
+        GraphicSystem::GraphicSystem() : QObject(nullptr)
         {
                     std::cout << "Hello World" << std::endl;
-                
-
         }
-
-        /**
-         * @brief Destroy the Graphic System::Graphic System object
-         * 
-         */
-        
 
         GraphicSystem::~GraphicSystem()
         {
         }
 
-        /**
-         * @brief Update the graphic of the window
-         * 
-         * @param entities 
-         */
-        void GraphicSystem::Update(SceneManager* Manager, int deltaTime, sf::RenderWindow &window)
+        void GraphicSystem::Update(rtype::SceneManager* Manager, int deltaTime, sf::RenderWindow &window)
         {
             Scene *scene = Manager->getCurrentScene();
             int i = 0;
@@ -57,9 +41,10 @@ namespace rtype {
             window.clear();
         }
 
-        void GraphicSystem::onUpdateSprites(std::list<Sprite *> sprites)
+        void GraphicSystem::onUpdateSprites(std::list<sf::Sprite *> sprites)
         {
             return;
         }
+    }
 
 } // namespace rType

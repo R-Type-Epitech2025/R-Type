@@ -14,7 +14,7 @@ namespace rtype{
     }
 
     /**
-     * @brief mouvement of the entity
+     * @brief movement of the entity
      * 
      * @param event 
      * @param entity 

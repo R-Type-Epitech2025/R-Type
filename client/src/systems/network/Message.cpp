@@ -25,11 +25,11 @@ namespace rtype {
         QDataStream &readMessage(QDataStream &in, Message &msg)
         {
             while (!in.atEnd()) {
-                msg._sprites.push_back(new Sprite(in));
+                msg._sprites.push_back(nullptr);
             }
         }
 
-        std::list<job_dsl copy *> Message::getSprites() const
+        std::list<sf::Sprite *> Message::getSprites() const
         {
             return _sprites;
         }

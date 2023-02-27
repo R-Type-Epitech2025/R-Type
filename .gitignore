@@ -37,3 +37,4 @@
 *CMakeCache.txt
 *Makefile
 ecs/rtype
+*moc_*.cpp*

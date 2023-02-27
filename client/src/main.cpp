@@ -1,11 +1,11 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <memory>
-#include "ecs/SceneManager.hpp"
-#include "ecs/Entity.hpp"
-#include "ecs/Scene.hpp"
-#include "systems/GraphicSystem.hpp"
-#include "systems/MovementSystem.hpp"
+#include "../include/ecs/SceneManager.hpp"
+#include "Entity.hpp"
+#include "Scene.hpp"
+#include "GraphicSystem.hpp"
+#include "MovementSystem.hpp"
 #include <map>
 
 
@@ -19,8 +19,8 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "My Game");
     window.setFramerateLimit(60);
     window.clear(sf::Color::Black);
-    rtype::GraphicSystem *graphic = new rtype::GraphicSystem();
-    rtype::MouvementSystem *mouvement = new rtype::MouvementSystem();
+    rtype::system::GraphicSystem *graphic = new rtype::system::GraphicSystem();
+    rtype::system::MovementSystem *movement = new rtype::system::MovementSystem();
     rtype::Entity *entity = new rtype::Entity(rtype::type::MAIN_PLAYER);
     entity->add_Container(rtype::ComponentType::GameComponent);
     entity->add_Container(rtype::ComponentType::GraphicComponent);
@@ -55,7 +55,7 @@ int main() {
                 window.close();
         }
         entity2->container.event_component->eventHandler(event, sf::Keyboard::Up, rtype::Action::Click, &print);
-        mouvement->update(sceneManager, event);
+        movement->update(sceneManager, event);
         graphic->Update(sceneManager, 12, window);
         window.clear();
     }

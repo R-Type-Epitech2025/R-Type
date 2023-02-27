@@ -25,7 +25,7 @@ namespace rtype {
             protected:
             private:
                 sf::RenderWindow& _window;
-                rtype::MouvementManager  _mouvement;
+                rtype::MouvementManager  _movement;
 
         };
     }
