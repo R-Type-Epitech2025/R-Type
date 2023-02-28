@@ -13,7 +13,7 @@ COMPILED=false
 cd client
 echo -e "${GREEN}Compilation du ${YELLOW}client${GREEN}...${WHITE}"
 cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=../vcpkg/scripts/buildsystems/vcpkg.cmake &> /dev/null
-cmake --build build -v &> /dev/null
+cmake --build build -v
 echo -e "${GREEN}Compilation terminée.${WHITE}"
 
 # CPack Build for Windows on NSIS
