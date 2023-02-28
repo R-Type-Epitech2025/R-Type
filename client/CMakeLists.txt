@@ -27,6 +27,7 @@ set(SRC_FILES
     src/ecs/SceneManager.cpp
     src/systems/GraphicSystem.cpp
     src/ecs/components/EventComponent.cpp
+    src/Core.cpp
 )
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})

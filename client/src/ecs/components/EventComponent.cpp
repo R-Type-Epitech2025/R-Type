@@ -24,4 +24,12 @@ namespace rtype{
                 }    
             }   
     }
+
+    void EventComponent::setHitbox(int x, int y, int width, int height){
+        this->_hitbox.x = x;
+        this->_hitbox.y = y;
+        this->_hitbox.width = width;
+        this->_hitbox.height = height;
+        this->is_hitbox = true;
+    }
 }

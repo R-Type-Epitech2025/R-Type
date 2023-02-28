@@ -8,7 +8,6 @@
 #ifndef ISYSTEM_HPP
 #define ISYSTEM_HPP
 #include "ecs/SceneManager.hpp"
-
 namespace rtype {    
     namespace system {
         enum class SystemType {

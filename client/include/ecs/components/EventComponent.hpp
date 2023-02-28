@@ -20,11 +20,14 @@ class EventComponent {
                 int width;
                 int height;
             };
-            bool ishooting;
+              bool ishooting;
             void eventHandler(sf::Event event, sf::Keyboard::Key key, void(*direction)()= NULL);
+            void setHitbox(int x, int y, int width, int height);
             typedef struct hitbox hitbox;
         protected:
         private:
+            hitbox _hitbox;
+            bool is_hitbox;
     };
 }
 

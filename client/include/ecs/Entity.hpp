@@ -39,7 +39,7 @@ namespace rtype {
         /**
          * @brief Construct a new Entity object
          */
-        Entity(rtype::EntityType type);
+        Entity(rtype::EntityType type, int x, int y, int width, int height, std::string sprite);
 
         /**
          * @brief Destroy the Entity object

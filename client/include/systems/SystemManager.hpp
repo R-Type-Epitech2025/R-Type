@@ -9,7 +9,8 @@
 #define SYSTEMMANAGER_HPP_
 
 #include "ISystem.hpp"
-
+#include "GraphicSystem.hpp"
+#include "MovementSystem.hpp"
 class SystemManager {
     public:
         SystemManager();
