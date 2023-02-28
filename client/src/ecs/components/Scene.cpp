@@ -6,7 +6,6 @@
 */
 
 #include "ecs/Scene.hpp"
-#include "ecs/Entity.hpp"
 #include <iostream>
 
 rtype::Scene::Scene()

@@ -3,8 +3,8 @@
 namespace rtype {
     namespace system {
 
-        class MovementSystem: public QObject {
-            Q_OBJECT
+        class MovementSystem /* : public QObject*/ {
+            // Q_OBJECT
         public:
         MovementSystem();
         ~MovementSystem();
@@ -12,8 +12,8 @@ namespace rtype {
         private :
             bool _link;
 
-        signals:
-            void sendMovePlayer(DIRECTION dir);
+        // signals:
+        //     void sendMovePlayer(DIRECTION dir);
 
         };
     }

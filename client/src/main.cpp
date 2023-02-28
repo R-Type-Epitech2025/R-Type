@@ -7,7 +7,7 @@
 // #include "GraphicSystem.hpp"
 // #include "MovementSystem.hpp"
 // #include <map>
-#include "Core.hpp"
+// #include "Core.hpp"
 
 // void print(){
 //     std::cout << "hey" << std::endl;
@@ -62,7 +62,7 @@
 // }
 
 int main() {
-    rtype::Core core;
-    core.run();
+    // rtype::Core core;
+    // core.run();
     return 0;
 }

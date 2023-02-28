@@ -13,9 +13,9 @@
 namespace rtype{
     namespace system {
 
-        class GraphicSystem: public QObject {
+        class GraphicSystem /*: public QObject */{
 
-            Q_OBJECT
+            //Q_OBJECT
 
             public:
                 GraphicSystem();
@@ -29,8 +29,8 @@ namespace rtype{
             private:
                 GraphicComponent _graph;
 
-            public slots:
-                void onUpdateSprites(std::list<sf::Sprite *> sprites);
+            // public slots:
+            //     void onUpdateSprites(std::list<sf::Sprite *> sprites);
         };
     }
 }

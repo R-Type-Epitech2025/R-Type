@@ -11,7 +11,7 @@
 namespace rtype {
     namespace system {
 
-        GraphicSystem::GraphicSystem() : QObject(nullptr)
+        GraphicSystem::GraphicSystem() /*: QObject(nullptr)*/
         {
                     std::cout << "Hello World" << std::endl;
         }
@@ -41,10 +41,10 @@ namespace rtype {
             window.clear();
         }
 
-        void GraphicSystem::onUpdateSprites(std::list<sf::Sprite *> sprites)
-        {
-            return;
-        }
+        // void GraphicSystem::onUpdateSprites(std::list<sf::Sprite *> sprites)
+        // {
+        //     return;
+        // }
     }
 
 } // namespace rType

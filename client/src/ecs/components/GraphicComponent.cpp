@@ -17,8 +17,7 @@ namespace rtype {
         
         }
         
-        void GraphicComponent::createSprite(const std::string& imagePath, int spriteWidth, int spriteHeight, int nb_sprite, rtype::Sprite_Direction direction) {
-            _direction = direction;
+        void GraphicComponent::createSprite(const std::string& imagePath, int spriteWidth, int spriteHeight, int nb_sprite) {
             size.height = spriteHeight;
             size.width = spriteWidth;
             nb_sprites = nb_sprite;

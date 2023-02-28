@@ -8,13 +8,13 @@
 #ifndef ENTITY_HPP_
 #define ENTITY_HPP_
 
-#include "GraphicComponent.hpp"
-#include "EventComponent.hpp"
-#include "MovementComponent.hpp"
-#include "GameComponent.hpp"
+#include "ecs/components/GraphicComponent.hpp"
+#include "ecs/components/EventComponent.hpp"
+#include "ecs/components/MovementComponent.hpp"
+#include "ecs/components/GameComponent.hpp"
 
 namespace rtype {
-        enum EntityType {
+         enum EntityType {
             MOB = 5,
             BULLET = 4,
             BUTTON = 3,
@@ -27,6 +27,12 @@ namespace rtype {
             EventComponent *event_component;
             GraphicComponent *graphic_component;
             MovementComponent *movement_component;
+        };
+          enum ComponentType {
+            GAMECOMPONENT = 0,
+            GRAPHICCOMPONENT = 1,
+            MOVEMENTCOMPONENT = 2,
+            EVENTCOMPONENT = 3,
         };
     class Entity {
     public:
@@ -65,7 +71,7 @@ namespace rtype {
         rtype::DIRECTION get_directions();
         void set_direction(rtype::DIRECTION direction);
         struct Containers container;  // c'est le temps de tester !!!pas du tout definitif;
-        rtype::type _type;
+        rtype::EntityType _type;
         // Load the entity
     protected:
         
