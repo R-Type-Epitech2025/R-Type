@@ -9,6 +9,11 @@
 #include "systems/SystemManager.hpp"
 #include "iostream"
 
+void print(){
+    std::cout << "button pressed" << std::endl;
+}
+
+
 rtype::Core::Core()
 {
 }
@@ -20,8 +25,8 @@ int rtype::Core::run(int argc, char **argv, sf::RenderWindow &window)
     system::GraphicSystem *graphicSystem = new system::GraphicSystem();
     system::MovementSystem *movementSystem = new system::MovementSystem();
     SceneManager *sceneManager = new SceneManager();
-    Entity *entity = new Entity(rtype::EntityType::BACKGROUND , 0, 0, 1920, 1080, "./assets/backgournd2.jpg");
-    Entity *entity1 = new Entity(rtype::EntityType::BUTTON , 1000, 500, 100, 100, "./assets/button_play.png");
+    Entity *entity = new Entity(rtype::EntityType::BACKGROUND ,{0, 0},{0 , 0}, {1920, 1080}, {1920, 1080}, "./assets/backgournd2.jpg");
+    Entity *entity1 = new Entity(rtype::EntityType::BUTTON , {965, 500},{0, 0}, {500, 500}, {500, 500}, "./assets/button_play.png");
     Scene *scene = new Scene();
     scene->addEntity(entity);
     scene->addEntity(entity1);
@@ -29,7 +34,7 @@ int rtype::Core::run(int argc, char **argv, sf::RenderWindow &window)
     sceneManager->setScene("first");
 
 
-    QObject::connect(timer, &QTimer::timeout, [&window, sceneManager, graphicSystem, movementSystem]() {
+    QObject::connect(timer, &QTimer::timeout, [&window, sceneManager, graphicSystem, movementSystem, entity1]() {
         sf::Event event;
         while (window.pollEvent(event)){
             if (event.type == sf::Event::Closed) 
@@ -38,6 +43,7 @@ int rtype::Core::run(int argc, char **argv, sf::RenderWindow &window)
         sceneManager->getCurrentScene();
         graphicSystem->Update(sceneManager, 12, window);
         movementSystem->update(sceneManager, event);
+        entity1->container.event_component->eventHandler(event, sf::Mouse::Button::Left, window, print);
     });
     timer->start(30);
     std::cout <<"test the end"<< std::endl;

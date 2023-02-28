@@ -19,12 +19,11 @@ rtype::Scene::~Scene()
 
 void rtype::Scene::addEntity(rtype::Entity *entity){
     _entities.push_back(entity);
+    //std::sort(_entities.begin(), _entities.end());
 }
 
 std::vector<rtype::Entity*> rtype::Scene::get_entity(){
-    return(
-        _entities
-    );
+    return(_entities);
 }
 
 // void update(Entity& entity, sf::RenderWindow& window) {

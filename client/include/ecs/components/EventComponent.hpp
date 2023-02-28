@@ -10,9 +10,17 @@
 #include <SFML/Graphics.hpp>
 
 namespace rtype {
+    enum EntityType {
+            MOB = 5,
+            BULLET = 4,
+            BUTTON = 3,
+            PLAYER = 2,
+            MAIN_PLAYER = 1,
+            BACKGROUND = 0,
+        };
 class EventComponent {
         public:
-            EventComponent();
+            EventComponent(rtype::EntityType entity);
             ~EventComponent();
             struct hitbox{
                 int x;
@@ -21,13 +29,15 @@ class EventComponent {
                 int height;
             };
               bool ishooting;
-            void eventHandler(sf::Event event, sf::Keyboard::Key key, void(*direction)()= NULL);
+            void eventHandler(sf::Event event, sf::Keyboard::Key key, sf::RenderWindow &window, void(*direction)()= NULL);
+            void eventHandler(sf::Event event, sf::Mouse::Button key, sf::RenderWindow &window, void(*direction)());
             void setHitbox(int x, int y, int width, int height);
             typedef struct hitbox hitbox;
         protected:
         private:
             hitbox _hitbox;
             bool is_hitbox;
+            rtype::EntityType entity;
     };
 }
 

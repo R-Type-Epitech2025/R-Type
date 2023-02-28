@@ -49,7 +49,7 @@ class Scene{
     protected:
     private:
         std::vector<Entity*> _entities;
-
+    
 };
 };
 

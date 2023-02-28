@@ -14,14 +14,6 @@
 #include "ecs/components/GameComponent.hpp"
 
 namespace rtype {
-         enum EntityType {
-            MOB = 5,
-            BULLET = 4,
-            BUTTON = 3,
-            PLAYER = 2,
-            MAIN_PLAYER = 1,
-            BACKGROUND = 0,
-        };
        struct Containers {
             GameComponent *game_component;
             EventComponent *event_component;
@@ -39,7 +31,7 @@ namespace rtype {
         /**
          * @brief Construct a new Entity object
          */
-        Entity(rtype::EntityType type, int x, int y, int width, int height, std::string sprite);
+        Entity(rtype::EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, std::vector<int> sizeScreen, std::string sprite);
 
         /**
          * @brief Destroy the Entity object
@@ -80,6 +72,23 @@ namespace rtype {
         sf::Vector2f position;
         sf::Texture texture;
 };      
+
+// bool operator>(Entity& os, const Entity& dt)
+// {
+//     return os._type < os._type;
+// }
+
 };
+
+static bool operator<(rtype::Entity& os, const rtype::Entity& dt)
+{
+    return os._type < os._type;
+}
+
+static bool operator>(rtype::Entity& os, const rtype::Entity& dt)
+{
+    return os._type > os._type;
+}
+
 
 #endif /* !ENTITY_HPP_ */
