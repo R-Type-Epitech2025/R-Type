@@ -8,7 +8,7 @@
 #include "ecs/Entity.hpp"
 
 
-rtype::Entity::Entity(rtype::EntityType type, int x, int y, int width, int height, std::string sprite)
+rtype::Entity::Entity(rtype::EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, std::vector<int> sizeScreen, std::string sprite)
 {
     this->container.event_component = NULL;
     this->container.game_component = NULL;
@@ -16,23 +16,24 @@ rtype::Entity::Entity(rtype::EntityType type, int x, int y, int width, int heigh
     this->container.movement_component = NULL;
 
     if (type == rtype::EntityType::MAIN_PLAYER){
-        this->container.event_component = new EventComponent();
+        this->container.event_component = new EventComponent(type);
         this->container.graphic_component = new GraphicComponent();
         this->container.movement_component = new MovementComponent();
         this->container.game_component = new GameComponent();
         this->container.movement_component->LinktoKeybord(true);
     } else {
-        this->container.event_component = new EventComponent();
+        this->container.event_component = new EventComponent(type);
         this->container.graphic_component = new GraphicComponent();
         this->container.movement_component = new MovementComponent();
         this->container.game_component = new GameComponent();
     }
 
-    this->container.movement_component->pos.x = x;
-    this->container.movement_component->pos.y = y;
-    this->container.graphic_component->createSprite(sprite, width, height, 1);
-    this->container.graphic_component->setPosition(0, 0);
-    this->container.event_component->setHitbox(x, y, width, height);
+    this->container.movement_component->pos.x = positioninscreen.at(0);
+    this->container.movement_component->pos.y = positioninscreen.at(1);
+    this->container.graphic_component->createSprite(sprite, sizespritesheet[0], sizespritesheet[1], 1);
+    this->container.graphic_component->setSize(sizeScreen[0], sizeScreen[1]);
+    this->container.graphic_component->setPosition(positioninscreen.at(0),  positioninscreen.at(1));
+    this->container.event_component->setHitbox(positioninscreen.at(0), positioninscreen.at(1), sizeScreen[0], sizeScreen[1]);
     // this->direction = rtype::DIRECTION::FORWARD;
     this->_type = type;
 }
@@ -52,7 +53,7 @@ void rtype::Entity::add_Container(const ComponentType &componentype){
                 this->container.movement_component->LinktoKeybord(true);
             break;
         case ComponentType::EVENTCOMPONENT:
-            this->container.event_component = new EventComponent();
+            this->container.event_component = new EventComponent(this->_type);
             break;
     }
 }
