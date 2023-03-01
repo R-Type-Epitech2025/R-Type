@@ -9,6 +9,12 @@
 #include "systems/SystemManager.hpp"
 #include "iostream"
 
+rtype::Entity *spawnEnnemy()
+{
+    rtype::Entity *entity = new rtype::Entity(rtype::EntityType::MOB, {0, 0}, {0, 0}, {666, 375}, {1920, 1080}, "./assets/logo-transp.png", "ennemy1");
+    return entity;
+}
+
 void print()
 {
     std::cout << "test" << std::endl;
@@ -36,6 +42,9 @@ int rtype::Core::run(int argc, char **argv, sf::RenderWindow &window)
     Scene *scene2 = new Scene();
     eventSystem->CreateNewEvent("play", event, window, sceneManager, "second", true, rtype::EventSystemType::CHANGESCENE, sf::Keyboard::Key::Space);
     scene2->addEntity(entity2);
+    //test add ennemy
+    scene2->addEntity(spawnEnnemy());
+    //test fin
     sceneManager->addScene("first" ,scene);
     sceneManager->setScene("first");
     sceneManager->addScene("second" ,scene2);
