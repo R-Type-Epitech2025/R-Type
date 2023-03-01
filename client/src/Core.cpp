@@ -18,7 +18,7 @@ rtype::Core::Core()
 {
 }
 
-int rtype::Core::run(int argc, char **argv, sf::RenderWindow &window)
+int rtype::Core::run(int argc, char **argv, SceneManager *sceneManager)
 {
     sf::Event event;
     QCoreApplication game(argc, argv);
@@ -26,30 +26,30 @@ int rtype::Core::run(int argc, char **argv, sf::RenderWindow &window)
     system::GraphicSystem *graphicSystem = new system::GraphicSystem();
     system::MovementSystem *movementSystem = new system::MovementSystem();
     system::EventSystem *eventSystem = new system::EventSystem();
-    SceneManager *sceneManager = new SceneManager();
     Entity *entity = new Entity(rtype::EntityType::BACKGROUND ,{0, 0},{0 , 0}, {1920, 1080}, {1920, 1080}, "./assets/backgournd2.jpg", "background");
     Entity *entity1 = new Entity(rtype::EntityType::BUTTON , {500, 500},{0, 0}, {500, 500}, {500, 500}, "./assets/button_play.png", "play");
-    Entity *entity2 = new Entity(rtype::EntityType::BACKGROUND , {965, 500},{0, 0}, {500, 500}, {500, 500}, "./assets/backgournd2.jpg", "background2");
     Scene *scene = new Scene();
     scene->addEntity(entity);
     scene->addEntity(entity1);
+    eventSystem->CreateNewEvent("play", sceneManager, "second", true, rtype::system::EventSystemType::CHANGESCENE, sf::Keyboard::Key::Escape);
     Scene *scene2 = new Scene();
-    eventSystem->CreateNewEvent("play", sceneManager, "second", true, system::EventSystemType::CHANGESCENE, sf::Keyboard::Key::Space);
-    scene2->addEntity(entity2);
+    scene2->addEntity(entity);
+    scene2->addEntity(entity);
+
     sceneManager->addScene("first" ,scene);
-    sceneManager->setScene("first");
     sceneManager->addScene("second" ,scene2);
+    sceneManager->setScene("first");
 
-
-    QObject::connect(timer, &QTimer::timeout, [&window, sceneManager, graphicSystem, movementSystem, &event, eventSystem]() {
-        while (window.pollEvent(event)){
+    QObject::connect(timer, &QTimer::timeout, [sceneManager, graphicSystem, movementSystem, &event, eventSystem]() {
+        while (sceneManager->_window.pollEvent(event)){
             if (event.type == sf::Event::Closed) 
                 exit(0);
         }
         sceneManager->getCurrentScene();
-        graphicSystem->Update(sceneManager, 12, window);
+        graphicSystem->Update(sceneManager, 12, sceneManager->_window);
         movementSystem->update(sceneManager, event);
-        eventSystem->update(sceneManager, window, event);
+        eventSystem->update(sceneManager, sceneManager->_window, event);
+
         // entity1->container.event_component->eventHandler(event, sf::Mouse::Button::Left, window, print);
     });
     timer->start(30);

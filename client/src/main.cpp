@@ -11,10 +11,8 @@
 
 
 int main(int argc, char* argv[]) {
-    sf::RenderWindow window(sf::VideoMode(1920, 1080), "My Game");
-    window.setFramerateLimit(60);
-    window.clear(sf::Color::Black);
     rtype::Core core;
-    core.run(argc, argv, window);
+    rtype::SceneManager *scenemanager = new rtype::SceneManager();
+    core.run(argc, argv, scenemanager);
     return 0;
 }

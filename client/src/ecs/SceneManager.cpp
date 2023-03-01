@@ -7,8 +7,9 @@
 
 #include "ecs/SceneManager.hpp"
 #include "ecs/Entity.hpp"
+#include <iostream>
 
-rtype::SceneManager::SceneManager()
+rtype::SceneManager::SceneManager() : _window(sf::VideoMode(1920, 1080), "R-Type")
 {
 }
 
@@ -18,6 +19,7 @@ rtype::SceneManager::~SceneManager()
 
 void rtype::SceneManager::setScene(std::string scene)
 {
+    std::cout << this->_scenes.size() << std::endl;
     this->_currentscene = this->_scenes[scene];
 }
 
