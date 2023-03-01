@@ -11,30 +11,53 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 
 # adding include directories
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+include_directories(
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/ecs
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/ecs/components
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/systems
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/systems/network
+    )
+
+find_package(Qt5 COMPONENTS Core Network REQUIRED)
+qt_wrap_cpp(
+    MOC_FILES
+    include/systems/network/NetworkSystem.hpp
+    include/systems/network/UDPSocket.hpp
+    include/systems/MovementSystem.hpp
+    include/systems/GraphicSystem.hpp
+)
 
 set(RESOURCES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/assets)
 
 set(SRC_FILES
     src/main.cpp
-    src/ecs/components/Scene.cpp
+    src/Core.cpp
+    
     src/ecs/Entity.cpp
+    src/ecs/SceneManager.cpp
+    src/ecs/components/Scene.cpp
     src/ecs/components/GraphicComponent.cpp
     src/ecs/components/GameComponent.cpp
     src/ecs/components/MovementComponent.cpp
-    src/systems/MovementSystem.cpp
     src/ecs/components/Scene.cpp
-    src/ecs/SceneManager.cpp
-    src/systems/GraphicSystem.cpp
     src/ecs/components/EventComponent.cpp
-    src/Core.cpp
+    
+    src/systems/SystemManager.cpp
+    src/systems/GraphicSystem.cpp
+    src/systems/MovementSystem.cpp
+    # src/systems/GameSystem.cpp
+    # src/systems/EventSystem.cpp
+    # src/systems/AudioSystem.cpp
+    src/systems/network/NetworkSystem.cpp
+    src/systems/network/UDPSocket.cpp
+    src/systems/network/Message.cpp
 )
 
-add_executable(${PROJECT_NAME} ${SRC_FILES})
+add_executable(${PROJECT_NAME} ${SRC_FILES} ${MOC_FILES})
 
 # Adding QT5 dependencies
-find_package(Qt5 COMPONENTS Core Network REQUIRED)
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core Qt5::Network)
 
 # Adding SFML dependencies
 find_package(SFML COMPONENTS system window graphics REQUIRED)

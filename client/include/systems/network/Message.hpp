@@ -12,39 +12,31 @@
 #include <QNetworkDatagram>
 #include <QtNetwork>
 #include <SFML/Graphics.hpp>
-
+#include "ISystem.hpp"
 
 namespace rtype {
-    enum DIRECTION {
-            RIGHT,
-            LEFT,
-            UP,
-            DOWN
-        };
-    namespace system {
-        enum EVENT {
-            MOVE,
-            SHOOT,
-            QUIT
-        };
+    enum EVENT {
+        MOVE,
+        SHOOT,
+        QUIT
+    };
 
-        class Message {
-        public:
-            Message();
-            ~Message();
+    class Message {
+    public:
+        Message();
+        ~Message();
 
-            friend QDataStream &operator>>(QDataStream &in, Message &msg);
-            
-            std::list<sf::Sprite *> getSprites() const;
+        friend QDataStream &operator>>(QDataStream &in, Message &msg);
+        
+        std::list<Entity *> getSprites() const;
 
-        private:
-            friend QDataStream &readMessage(QDataStream &in, Message &msg);
-            
-            std::list<sf::Sprite *> _sprites;
-        protected:
+    private:
+        friend QDataStream &readMessage(QDataStream &in, Message &msg);
+        
+        std::list<Entity *> _sprites;
+    protected:
 
-        };
-    }
+    };
 }
 
 #endif /* !MESSAGE_HPP_ */

@@ -9,6 +9,9 @@
 #define GAMECOMPONENT_HPP_
 #include <SFML/Graphics.hpp>
 
+#include <memory>
+#include <iostream>
+
 namespace rtype{
     class GameComponent {
         public:

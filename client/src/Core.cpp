@@ -6,7 +6,7 @@
 */
 
 #include "Core.hpp"
-#include "systems/SystemManager.hpp"
+#include "SystemManager.hpp"
 #include "iostream"
 
 rtype::Core::Core()
@@ -17,8 +17,8 @@ int rtype::Core::run(int argc, char **argv, sf::RenderWindow &window)
 {
     QCoreApplication game(argc, argv);
     QTimer *timer = new QTimer(&game);
-    system::GraphicSystem *graphicSystem = new system::GraphicSystem();
-    system::MovementSystem *movementSystem = new system::MovementSystem();
+    GraphicSystem *graphicSystem = new GraphicSystem();
+    MovementSystem *movementSystem = new MovementSystem();
     SceneManager *sceneManager = new SceneManager();
     Entity *entity = new Entity(rtype::EntityType::BACKGROUND , 0, 0, 1920, 1080, "./assets/backgournd2.jpg");
     Entity *entity1 = new Entity(rtype::EntityType::BUTTON , 1000, 500, 100, 100, "./assets/button_play.png");
@@ -36,7 +36,7 @@ int rtype::Core::run(int argc, char **argv, sf::RenderWindow &window)
                 exit(0);
         }
         sceneManager->getCurrentScene();
-        graphicSystem->Update(sceneManager, 12, window);
+        graphicSystem->update(sceneManager, 12);
         movementSystem->update(sceneManager, event);
     });
     timer->start(30);

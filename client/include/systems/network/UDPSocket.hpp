@@ -11,31 +11,29 @@
 #include "Message.hpp"
 
 namespace rtype {
-    namespace system {
-        class UDPSocket : public QObject 
-        {
-            Q_OBJECT
+    class UDPSocket : public QObject 
+    {
+        Q_OBJECT
 
-        public:
-            UDPSocket(QObject *parent, QString serverIp, int port);
-            virtual ~UDPSocket() {};
+    public:
+        UDPSocket(QObject *parent, QString serverIp, int port);
+        virtual ~UDPSocket() {};
 
-            void sendDatagram(QByteArray &data);
+        void sendDatagram(QByteArray &data);
 
-            void askConnection();
+        void askConnection();
 
-        public slots:
-            void onMessageReceived();
+    public slots:
+        void onMessageReceived();
 
-        signals:
-            void messageReceived(Message &msg);
+    signals:
+        void messageReceived(Message &msg);
 
-        private:
-            QUdpSocket *_socket;
-            QHostAddress _serverAddress;
-            quint16 _serverPort;
-        };
-    }
+    private:
+        QUdpSocket *_socket;
+        QHostAddress _serverAddress;
+        quint16 _serverPort;
+    };
 }
 
 

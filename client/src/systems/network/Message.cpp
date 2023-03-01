@@ -8,30 +8,29 @@
 #include "Message.hpp"
 
 namespace rtype {
-    namespace system {
-        Message::Message(): _sprites()
-        {
-        }
+    Message::Message(): _sprites()
+    {
+    }
 
-        Message::~Message()
-        {
-        }
+    Message::~Message()
+    {
+    }
 
-        QDataStream &operator>>(QDataStream &in, Message &msg)
-        {
-            return readMessage(in, msg);
-        }
+    QDataStream &operator>>(QDataStream &in, Message &msg)
+    {
+        return readMessage(in, msg);
+    }
 
-        QDataStream &readMessage(QDataStream &in, Message &msg)
-        {
-            while (!in.atEnd()) {
-                msg._sprites.push_back(nullptr);
-            }
+    QDataStream &readMessage(QDataStream &in, Message &msg)
+    {
+        while (!in.atEnd()) {
+            msg._sprites.push_back(nullptr);
         }
+        return in;
+    }
 
-        std::list<sf::Sprite *> Message::getSprites() const
-        {
-            return _sprites;
-        }
+    std::list<Entity *> Message::getSprites() const
+    {
+        return _sprites;
     }
 }

@@ -4,47 +4,50 @@
 ** File description:
 ** graphicSystem
 */
-#include "systems/GraphicSystem.hpp"
+
+#include "GraphicSystem.hpp"
 #include <iostream>
 #include <string>
 
 namespace rtype {
-    namespace system {
 
-        GraphicSystem::GraphicSystem() /*: QObject(nullptr)*/
+    GraphicSystem::GraphicSystem(QObject *parent) : QObject(parent)
+    {
+        std::cout << "Hello World" << std::endl;
+    }
+
+    // GraphicSystem::~GraphicSystem()
+    // {
+    // }
+
+    void GraphicSystem::update(rtype::SceneManager* Manager, uint64_t time)
+    {
+        Scene *scene = Manager->getCurrentScene();
+        int i = 0;
+        int save = 0;
+        for (const Entity *entity : scene->get_entity())
         {
-                    std::cout << "Hello World" << std::endl;
-        }
+            // if (entity->container.graphic_component->counter_sprites == entity->container.graphic_component->nb_sprites){
+            //     entity->container.graphic_component->setSpritePosition(entity->container.graphic_component->initial_sprite_x, entity->container.graphic_component->position.sprite_y);
+            //     entity->container.graphic_component->counter_sprites = 0;
+            // }
+            // entity->container.graphic_component->counter_sprites += 1;
+            entity->container.graphic_component->setPosition(entity->container.movement_component->pos.x, entity->container.movement_component->pos.y);
+            save = entity->container.graphic_component->position.sprite_x;
+            entity->container.graphic_component->setSpritePosition(entity->container.graphic_component->position.sprite_x, entity->container.graphic_component->position.sprite_y);
+            // Manager->window.draw(entity->container.graphic_component->getSprite());
+        }   
+        // Manager->window.display();
+        // Manager->window.clear();
+    }
 
-        GraphicSystem::~GraphicSystem()
-        {
-        }
+    void GraphicSystem::init(rtype::SceneManager &Manager, sf::RenderWindow &window)
+    {
+    }
 
-        void GraphicSystem::Update(rtype::SceneManager* Manager, int deltaTime, sf::RenderWindow &window)
-        {
-            Scene *scene = Manager->getCurrentScene();
-            int i = 0;
-            int save = 0;
-            for (const Entity *entity : scene->get_entity())
-            {
-                // if (entity->container.graphic_component->counter_sprites == entity->container.graphic_component->nb_sprites){
-                //     entity->container.graphic_component->setSpritePosition(entity->container.graphic_component->initial_sprite_x, entity->container.graphic_component->position.sprite_y);
-                //     entity->container.graphic_component->counter_sprites = 0;
-                // }
-                // entity->container.graphic_component->counter_sprites += 1;
-                entity->container.graphic_component->setPosition(entity->container.movement_component->pos.x, entity->container.movement_component->pos.y);
-                save = entity->container.graphic_component->position.sprite_x;
-                entity->container.graphic_component->setSpritePosition(entity->container.graphic_component->position.sprite_x, entity->container.graphic_component->position.sprite_y);
-                window.draw(entity->container.graphic_component->getSprite());
-            }   
-            window.display();
-            window.clear();
-        }
-
-        // void GraphicSystem::onUpdateSprites(std::list<sf::Sprite *> sprites)
-        // {
-        //     return;
-        // }
+    void GraphicSystem::onUpdateSprites(std::list<sf::Sprite *> sprites)
+    {
+        return;
     }
 
 } // namespace rType

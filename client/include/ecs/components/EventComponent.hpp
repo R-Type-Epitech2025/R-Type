@@ -8,6 +8,8 @@
 #ifndef EVENTCOMPONENT_HPP_
 #define EVENTCOMPONENT_HPP_
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <memory>
 
 namespace rtype {
 class EventComponent {
