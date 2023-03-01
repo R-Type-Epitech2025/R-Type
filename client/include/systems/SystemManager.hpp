@@ -11,6 +11,7 @@
 #include "ISystem.hpp"
 #include "GraphicSystem.hpp"
 #include "MovementSystem.hpp"
+#include "EventSystem.hpp"
 class SystemManager {
     public:
         SystemManager();

@@ -8,22 +8,48 @@
 #ifndef EVENTSYSTEM_HPP_
 #define EVENTSYSTEM_HPP_
 
+
 #include "ISystem.hpp"
+#include <vector>
 
 namespace rtype{
+    namespace system {
+        enum EventSystemType {
+        COLLISION,
+        CHANGESCENE,
+        SHOOT,
+        MOVE
+    };
+
+        typedef struct NewEventComponent{
+                std::string identity;
+                sf::Event event;
+                sf::Keyboard::Key key;
+                sf::RenderWindow *window;
+                SceneManager *scene;
+                std::string newId;
+                bool newScene;
+                EventSystemType type;
+            } NewEventComponent_t;
+
     class EventSystem : public ISystem{
         public:
             EventSystem();
             ~EventSystem();
-            void init(SceneManager&) override;
-            void Update(SceneManager&, int deltaTime) override;
-            void destroy(SceneManager&) override;
-            void loadEntity() override;
-            void unloadEntity() override;
+            void init(SceneManager&);
+            void update(rtype::SceneManager *currentScene);
+            void destroy(SceneManager&);
+            void loadEntity();
+            void unloadEntity();
+            void CreateNewEvent(std::string identity, sf::Event event, sf::RenderWindow *window, SceneManager *scene, std::string newId, bool newScene, EventSystemType type, sf::Keyboard::Key key);
+
         protected:
-        private:   
-            EventComponent _entity;
+        private:
+
+            std::vector<NewEventComponent_t> _newEvent;
+            // EventComponent _entity;
     };
-}
+    };
+};
 
 #endif /* !EVENTSYSTEM_HPP_ */

@@ -45,7 +45,8 @@ class Scene{
         // void draw(sf::RenderWindow& window) final; // Draw the scene
         void addEntity(Entity* entity);
         
-        std::vector<Entity*> get_entity();
+        std::vector<Entity*> get_entities();
+        Entity *getEntity(std::string id);
     protected:
     private:
         std::vector<Entity*> _entities;

@@ -31,7 +31,7 @@ namespace rtype {
         /**
          * @brief Construct a new Entity object
          */
-        Entity(rtype::EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, std::vector<int> sizeScreen, std::string sprite);
+        Entity(rtype::EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, std::vector<int> sizeScreen, std::string sprite, std::string id);
 
         /**
          * @brief Destroy the Entity object
@@ -64,6 +64,7 @@ namespace rtype {
         void set_direction(rtype::DIRECTION direction);
         struct Containers container;  // c'est le temps de tester !!!pas du tout definitif;
         rtype::EntityType _type;
+        std::string _id;
         // Load the entity
     protected:
         
