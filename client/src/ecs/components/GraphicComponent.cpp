@@ -6,6 +6,7 @@
 */
 
 #include "ecs/components/GraphicComponent.hpp"
+#include <iostream>
 #include <SFML/Graphics.hpp>
 
 namespace rtype {
@@ -61,4 +62,20 @@ namespace rtype {
             this->rect = rect;
             sprite.setTextureRect(rect);
         };
+
+        void GraphicComponent::Text(std::string fontpath, std::string str, int Size, sf::Color color)
+        {
+            if (!font.loadFromFile(fontpath))
+                std::cerr << "Error: Font not found" << std::endl;
+            text.setFont(font);
+            text.setString(str);
+            text.setCharacterSize(Size);
+            text.setFillColor(color);
+        }
+
+        void GraphicComponent::drawText(sf::RenderWindow &window, int x, int y)
+        {
+            text.setPosition(x, y);
+            window.draw(text);
+        }
 };

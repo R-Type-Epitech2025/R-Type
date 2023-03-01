@@ -42,10 +42,17 @@ namespace rtype{
             int counter_sprites;
             int initial_sprite_x;
 
+            void Text(std::string fontpath, std::string str, int Size, sf::Color color);
+            void drawText(sf::RenderWindow &window, int x, int y);
+
+
+
         protected:
         private:
             sf::Texture texture;
             sf::Sprite sprite;
+            sf::Text text;
+            sf::Font font;
             bool isPrintable;
             float angle;
             sf::IntRect rect;
