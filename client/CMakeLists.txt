@@ -46,8 +46,8 @@ set(SRC_FILES
     src/systems/SystemManager.cpp
     src/systems/GraphicSystem.cpp
     src/systems/MovementSystem.cpp
+    src/systems/EventSystem.cpp
     # src/systems/GameSystem.cpp
-    # src/systems/EventSystem.cpp
     # src/systems/AudioSystem.cpp
     src/systems/network/NetworkSystem.cpp
     src/systems/network/UDPSocket.cpp

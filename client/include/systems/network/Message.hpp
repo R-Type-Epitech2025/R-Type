@@ -15,7 +15,7 @@
 #include "ISystem.hpp"
 
 namespace rtype {
-    enum EVENT {
+    enum class EVENT {
         MOVE,
         SHOOT,
         QUIT

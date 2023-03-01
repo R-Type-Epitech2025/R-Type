@@ -12,6 +12,7 @@
 #include "GraphicSystem.hpp"
 #include "MovementSystem.hpp"
 #include "NetworkSystem.hpp"
+#include "EventSystem.hpp"
 
 namespace rtype {
 

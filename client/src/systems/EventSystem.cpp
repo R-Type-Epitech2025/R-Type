@@ -7,15 +7,44 @@
 
 #include "./systems/EventSystem.hpp"
 #include <iostream>
-#include "./ecs/Entity.hpp"
 
-namespace rtype{
-    EventSystem::EventSystem(sf::RenderWindow &window ) : _window( window) , _movement()
+namespace rtype {
+    
+    EventSystem::EventSystem()
     {
     }
+
     EventSystem::~EventSystem()
     {
     }
+
+    void EventSystem::update(rtype::SceneManager *currentScene, sf::RenderWindow &window, sf::Event &event)
+    {
+        Scene *scene = currentScene->getCurrentScene();
+        for (auto &NewEvent : _newEvent) {
+            if (scene->getEntity(NewEvent->identity)->container.event_component->eventHandler(event, NewEvent->key, window)) {
+                std::cout << "scene Changed" << std::endl;
+                if (NewEvent->newScene) {
+                    currentScene->setScene(NewEvent->newId);
+                }
+            } 
+        }
+    }
+
+    void EventSystem::createNewEvent(std::string identity, SceneManager *scene, std::string newId, bool newScene, EventSystemType type, sf::Keyboard::Key key) 
+    {
+        NewEventComponent_t *newEvent = new NewEventComponent_t;
+
+        newEvent->key = key;
+        newEvent->identity = identity;
+        newEvent->newId = newId;
+        newEvent->newScene = newScene;
+        newEvent->type = type;
+        newEvent->scene = scene;
+
+        _newEvent.push_back(newEvent);
+    }
+    
     // void EventSystem::update(std::vector<std::shared_ptr<Entity> > &entities)
     // {
     //     sf::Event event;

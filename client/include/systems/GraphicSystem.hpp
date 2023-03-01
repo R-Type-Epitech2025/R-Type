@@ -30,7 +30,7 @@ namespace rtype{
             GraphicComponent _graph;
 
         public slots:
-            void onUpdateSprites(std::list<sf::Sprite *> sprites);
+            void onUpdateSprites(std::vector<Entity *> entities);
     };
 }
 

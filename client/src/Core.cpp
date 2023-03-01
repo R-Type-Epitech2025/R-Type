@@ -18,36 +18,41 @@ rtype::Core::Core()
 {
 }
 
-int rtype::Core::run(int argc, char **argv, sf::RenderWindow &window)
+int rtype::Core::run(int argc, char **argv, SceneManager *sceneManager)
 {
+    sf::Event event;
     QCoreApplication game(argc, argv);
     QTimer *timer = new QTimer(&game);
+    
     GraphicSystem *graphicSystem = new GraphicSystem();
     MovementSystem *movementSystem = new MovementSystem();
-    SceneManager *sceneManager = new SceneManager();
-    Entity *entity = new Entity(rtype::EntityType::BACKGROUND ,{0, 0},{0 , 0}, {1920, 1080}, {1920, 1080}, "./assets/backgournd2.jpg");
-    Entity *entity1 = new Entity(rtype::EntityType::BUTTON , {965, 500},{0, 0}, {500, 500}, {500, 500}, "./assets/button_play.png");
-    Entity *entity2 = new Entity(rtype::EntityType::BACKGROUND , {965, 500},{0, 0}, {500, 500}, {500, 500}, "./assets/backgournd2.jpg");
+    EventSystem *eventSystem = new EventSystem();
+    Entity *entity = new Entity(rtype::EntityType::BACKGROUND ,{0, 0},{0 , 0}, {1920, 1080}, {1920, 1080}, "./assets/backgournd2.jpg", "background");
+    Entity *entity1 = new Entity(rtype::EntityType::BUTTON , {500, 500},{0, 0}, {500, 500}, {500, 500}, "./assets/button_play.png", "play");
+    
     Scene *scene = new Scene();
     scene->addEntity(entity);
     scene->addEntity(entity1);
+    eventSystem->createNewEvent("play", sceneManager, "second", true, rtype::EventSystemType::CHANGESCENE, sf::Keyboard::Key::Escape);
     Scene *scene2 = new Scene();
-    scene2->addEntity(entity2);
+    scene2->addEntity(entity);
+    scene2->addEntity(entity);
+
     sceneManager->addScene("first" ,scene);
-    sceneManager->setScene("first");
     sceneManager->addScene("second" ,scene2);
+    sceneManager->setScene("first");
 
-
-    QObject::connect(timer, &QTimer::timeout, [&window, sceneManager, graphicSystem, movementSystem, entity1]() {
-        sf::Event event;
-        while (window.pollEvent(event)){
+    QObject::connect(timer, &QTimer::timeout, [sceneManager, graphicSystem, movementSystem, &event, eventSystem]() {
+        while (sceneManager->window.pollEvent(event)){
             if (event.type == sf::Event::Closed) 
                 exit(0);
         }
         sceneManager->getCurrentScene();
         graphicSystem->update(sceneManager, 12);
         movementSystem->update(sceneManager, event);
-        entity1->container.event_component->eventHandler(event, sf::Mouse::Button::Left, window, "second", sceneManager);
+        eventSystem->update(sceneManager, sceneManager->window, event);
+
+        // entity1->container.event_component->eventHandler(event, sf::Mouse::Button::Left, window, print);
     });
     timer->start(30);
     std::cout <<"test the end"<< std::endl;

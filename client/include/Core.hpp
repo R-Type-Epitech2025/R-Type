@@ -24,7 +24,7 @@ namespace rtype
             TEST
         }; 
         Core();
-        int run(int argc, char **argv, sf::RenderWindow &window);
+        int run(int argc, char **argv, SceneManager *scenemanager);
         ~Core();
         // void loadEntity(std::shared_ptr<IEntity> entity);
         // void unloadEntity(std::shared_ptr<IEntity> entity);
