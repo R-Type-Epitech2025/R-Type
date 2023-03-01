@@ -27,6 +27,7 @@ set(SRC_FILES
     src/ecs/SceneManager.cpp
     src/systems/GraphicSystem.cpp
     src/ecs/components/EventComponent.cpp
+    src/systems/EventSystem.cpp
     src/Core.cpp
 )
 

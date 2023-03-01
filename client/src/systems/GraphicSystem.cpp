@@ -25,7 +25,7 @@ namespace rtype {
             Scene *scene = Manager->getCurrentScene();
             int i = 0;
             int save = 0;
-            for (const Entity *entity : scene->get_entity())
+            for (const Entity *entity : scene->get_entities())
             {
                 // if (entity->container.graphic_component->counter_sprites == entity->container.graphic_component->nb_sprites){
                 //     entity->container.graphic_component->setSpritePosition(entity->container.graphic_component->initial_sprite_x, entity->container.graphic_component->position.sprite_y);

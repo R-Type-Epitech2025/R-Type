@@ -7,45 +7,42 @@
 
 #include "./systems/EventSystem.hpp"
 #include <iostream>
-#include "./ecs/Entity.hpp"
 
-namespace rtype{
+namespace rtype {
     namespace system {
-        EventSystem::EventSystem(sf::RenderWindow &window ) : _window( window) , _movement()
+
+        system::EventSystem::EventSystem()
         {
         }
-        EventSystem::~EventSystem()
+
+        system::EventSystem::~EventSystem()
         {
         }
-//         void EventSystem::update(std::vector<std::shared_ptr<Entity> > &entities)
-//         {
-//             sf::Event event;
-//             while (_window.pollEvent(event))
-//             {
-//                 if (event.type == sf::Event::Closed)
-//                     _window.close();
-//                 else if (event.type == sf::Event::MouseButtonPressed)
-//                 { 
-                
-//                     entities.push_back(std::shared_ptr<Entity>(new Entity()));
-//                     auto& newEntity = entities.back();
-//                     newEntity->x = event.mouseButton.x;
-//                     newEntity->y = event.mouseButton.y;
-//                     if (entities.size() == 1){
-//                         newEntity->Player = true;
-//                         newEntity->color = "Red";
-//                     }else{
-//                         newEntity->Player = false;
-//                         newEntity->color = "blue";
-//                     }
-//                     std::cout<<"New entity"<<std::endl;
-//                 }
-//                 for (int i = 0; i < entities.size(); i++){
-//                     if (entities.at(i)->Player){   
-//                         _movement.LinkKeybordPosition(event, entities.at(i));
-//                     }
-//                 }
-//             }
-//         }
+
+        void EventSystem::update(rtype::SceneManager *currentScene, sf::RenderWindow &window, sf::Event &event)
+        {
+            Scene *scene = currentScene->getCurrentScene();
+            for (auto &NewEvent : _newEvent) {
+                if (scene->getEntity(NewEvent->identity)->container.event_component->eventHandler(event, NewEvent->key, window)) {
+                    if (NewEvent->newScene) {
+                        currentScene->setScene(NewEvent->newId);
+                    }
+                } 
+            }
+        }
+
+        void EventSystem::CreateNewEvent(std::string identity, SceneManager *scene, std::string newId, bool newScene, EventSystemType type, sf::Keyboard::Key key) 
+        {
+            NewEventComponent_t *newEvent = new NewEventComponent_t;
+
+            newEvent->key = key;
+            newEvent->identity = identity;
+            newEvent->newId = newId;
+            newEvent->newScene = newScene;
+            newEvent->type = type;
+            newEvent->scene = scene;
+
+            _newEvent.push_back(newEvent);
+        }
     }
 }

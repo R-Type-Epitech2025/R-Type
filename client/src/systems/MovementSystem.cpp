@@ -21,7 +21,7 @@ namespace rtype{
 
             Scene *Scene = Manager->getCurrentScene();
 
-            for (Entity *entity : Scene->get_entity()){
+            for (Entity *entity : Scene->get_entities()){
                 if (entity->container.movement_component->is_linked()){
                     if (event.type == sf::Event::KeyPressed){   
                         if (event.key.code == sf::Keyboard::Up) {

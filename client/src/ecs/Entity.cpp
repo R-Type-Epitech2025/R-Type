@@ -8,7 +8,7 @@
 #include "ecs/Entity.hpp"
 
 
-rtype::Entity::Entity(rtype::EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, std::vector<int> sizeScreen, std::string sprite)
+rtype::Entity::Entity(rtype::EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, std::vector<int> sizeScreen, std::string sprite, std::string id)
 {
     this->container.event_component = NULL;
     this->container.game_component = NULL;
@@ -36,6 +36,7 @@ rtype::Entity::Entity(rtype::EntityType type, std::vector<int> positioninscreen,
     this->container.event_component->setHitbox(positioninscreen.at(0), positioninscreen.at(1), sizeScreen[0], sizeScreen[1]);
     // this->direction = rtype::DIRECTION::FORWARD;
     this->_type = type;
+    this->_id = id;
 }
 
 

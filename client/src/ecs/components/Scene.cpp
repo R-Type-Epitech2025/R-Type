@@ -22,8 +22,16 @@ void rtype::Scene::addEntity(rtype::Entity *entity){
     //std::sort(_entities.begin(), _entities.end());
 }
 
-std::vector<rtype::Entity*> rtype::Scene::get_entity(){
+std::vector<rtype::Entity*> rtype::Scene::get_entities(){
     return(_entities);
+}
+
+rtype::Entity *rtype::Scene::getEntity(std::string id) {
+    for (auto &entity : _entities) {
+        if (entity->_id == id)
+            return (entity);
+    }
+    return (nullptr);
 }
 
 // void update(Entity& entity, sf::RenderWindow& window) {
