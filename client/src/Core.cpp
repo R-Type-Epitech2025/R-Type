@@ -24,18 +24,6 @@ rtype::Core::Core()
 {
 }
 
-
-rtype::Scene *initGameScene()
-{
-    rtype::Entity *background = new rtype::Entity(rtype::EntityType::BACKGROUND ,{0, 0},{0 , 0}, {1920, 1080}, {1920, 1080}, "./assets/backgournd2.jpg");
-    rtype::Entity *spaceship = new rtype::Entity(rtype::EntityType::MAIN_PLAYER , {965, 500},{0, 0}, {166, 80}, {33, 17}, "./assets/r-typesheet42.gif");
-    rtype::Scene *gameScene = new rtype::Scene();
-
-    gameScene->addEntity(background);
-    gameScene->addEntity(spaceship);
-    return gameScene;
-}
-
 int rtype::Core::run(int argc, char **argv, sf::RenderWindow &window)
 {
     QCoreApplication game(argc, argv);
@@ -43,14 +31,14 @@ int rtype::Core::run(int argc, char **argv, sf::RenderWindow &window)
     rtype::system::GraphicSystem *graphicSystem = new rtype::system::GraphicSystem();
     rtype::system::MovementSystem *movementSystem = new rtype::system::MovementSystem();
     rtype::SceneManager *sceneManager = new rtype::SceneManager();
-    rtype::Scene *gameScene = initGameScene();
-
-    sceneManager->addScene("first" ,gameScene);
+    rtype::Entity *entity = new rtype::Entity(rtype::EntityType::BACKGROUND ,{0, 0},{0 , 0}, {1920, 1080}, {1920, 1080}, "./assets/backgournd2.jpg");
+    rtype::Entity *spaceship = new rtype::Entity(rtype::EntityType::MAIN_PLAYER , {965, 500},{0, 0}, {166, 80}, {500, 500}, "./assets/r-typesheet42.gif");
+    rtype::Scene *scene = new rtype::Scene();
+    scene->addEntity(entity);
+    scene->addEntity(spaceship);
+    sceneManager->addScene("first" ,scene);
     sceneManager->setScene("first");
-
     QObject::connect(timer, &QTimer::timeout, [&window, sceneManager, graphicSystem, movementSystem, spaceship]() {
-        rtype::Scene *actualScene = sceneManager->getCurrentScene();
-
         sf::Event event;
         while (window.pollEvent(event)){
             if (event.type == sf::Event::Closed) 
@@ -64,6 +52,7 @@ int rtype::Core::run(int argc, char **argv, sf::RenderWindow &window)
             }
         }
         
+        sceneManager->getCurrentScene();
         graphicSystem->Update(sceneManager, 12, window);
         movementSystem->update(sceneManager, event);
         spaceship->container.event_component->eventHandler(event, sf::Mouse::Button::Left, window, print);
