@@ -32,7 +32,6 @@ class EventComponent {
             };
               bool ishooting;
             void eventHandler(sf::Event event, sf::Keyboard::Key key, sf::RenderWindow &window, void(*direction)()= NULL);
-            void eventHandler(sf::Event event, sf::Mouse::Button key, sf::RenderWindow &window, std::string newScene, rtype::SceneManager *sceneManager);
             void setHitbox(int x, int y, int width, int height);
             typedef struct hitbox hitbox;
         protected:
