@@ -47,7 +47,7 @@ int rtype::Core::run(int argc, char **argv, sf::RenderWindow &window)
         sceneManager->getCurrentScene();
         graphicSystem->Update(sceneManager, 12, window);
         movementSystem->update(sceneManager, event);
-        entity1->container.event_component->eventHandler(event, sf::Mouse::Button::Left, window, "second", sceneManager);
+        entity1->container.event_component->eventHandler(event, sf::Mouse::Button::Left, window, print);
     });
     timer->start(30);
     std::cout <<"test the end"<< std::endl;

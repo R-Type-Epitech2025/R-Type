@@ -29,14 +29,14 @@ namespace rtype{
                     }    
    }
 
-    void EventComponent::eventHandler(sf::Event event, sf::Mouse::Button key, sf::RenderWindow &window, std::string newScene, rtype::SceneManager *sceneManager) {
+    void EventComponent::eventHandler(sf::Event event, sf::Mouse::Button key, sf::RenderWindow &window, void(*direction)()) {
         sf::Vector2i position = sf::Mouse::getPosition(window);
       
         if (sf::Mouse::isButtonPressed(key)) {
             if (this->entity == rtype::EntityType::BUTTON){
                 if (sf::Mouse::getPosition(window).x >= _hitbox.x &&  sf::Mouse::getPosition(window).x <= _hitbox.x + _hitbox.width
                 && sf::Mouse::getPosition(window).y >= _hitbox.y && sf::Mouse::getPosition(window).y <= _hitbox.y + _hitbox.height)
-                    sceneManager->changeScene(newScene);
+                    direction();
                 }
         }     
     }
