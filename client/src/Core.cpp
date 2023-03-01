@@ -40,7 +40,7 @@ int rtype::Core::run(int argc, char **argv, sf::RenderWindow &window)
     scene->addEntity(entity);
     scene->addEntity(entity1);
     Scene *scene2 = new Scene();
-    eventSystem->CreateNewEvent("play", event, window, sceneManager, "second", true, rtype::EventSystemType::CHANGESCENE, sf::Keyboard::Key::Space);
+    eventSystem->CreateNewEvent("play", sceneManager, "second", true, system::EventSystemType::CHANGESCENE, sf::Keyboard::Key::Space);
     scene2->addEntity(entity2);
     //test add ennemy
     scene2->addEntity(spawnEnnemy());
@@ -50,7 +50,7 @@ int rtype::Core::run(int argc, char **argv, sf::RenderWindow &window)
     sceneManager->addScene("second" ,scene2);
 
 
-    QObject::connect(timer, &QTimer::timeout, [&window, sceneManager, graphicSystem, movementSystem, event]() {
+    QObject::connect(timer, &QTimer::timeout, [&window, sceneManager, graphicSystem, movementSystem, &event, eventSystem]() {
         while (window.pollEvent(event)){
             if (event.type == sf::Event::Closed) 
                 exit(0);
@@ -58,6 +58,7 @@ int rtype::Core::run(int argc, char **argv, sf::RenderWindow &window)
         sceneManager->getCurrentScene();
         graphicSystem->Update(sceneManager, 12, window);
         movementSystem->update(sceneManager, event);
+        eventSystem->update(sceneManager, window, event);
         // entity1->container.event_component->eventHandler(event, sf::Mouse::Button::Left, window, print);
     });
     timer->start(30);

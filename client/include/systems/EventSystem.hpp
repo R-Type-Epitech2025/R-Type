@@ -25,28 +25,26 @@ namespace rtype{
                 std::string identity;
                 sf::Event event;
                 sf::Keyboard::Key key;
-                sf::RenderWindow *window;
                 SceneManager *scene;
                 std::string newId;
                 bool newScene;
                 EventSystemType type;
             } NewEventComponent_t;
 
-    class EventSystem : public ISystem{
+    class EventSystem{
         public:
             EventSystem();
             ~EventSystem();
             void init(SceneManager&);
-            void update(rtype::SceneManager *currentScene);
+            void update(rtype::SceneManager *currentScene, sf::RenderWindow &window, sf::Event &event);
             void destroy(SceneManager&);
             void loadEntity();
             void unloadEntity();
-            void CreateNewEvent(std::string identity, sf::Event event, sf::RenderWindow *window, SceneManager *scene, std::string newId, bool newScene, EventSystemType type, sf::Keyboard::Key key);
-
+            void CreateNewEvent(std::string identity, SceneManager *scene, std::string newId, bool newScene, EventSystemType type, sf::Keyboard::Key key);
         protected:
         private:
-
-            std::vector<NewEventComponent_t> _newEvent;
+            std::vector<NewEventComponent_t*> _newEvent;
+            sf::RenderWindow _window;
             // EventComponent _entity;
     };
     };
