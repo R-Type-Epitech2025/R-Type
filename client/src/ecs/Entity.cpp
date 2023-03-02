@@ -30,7 +30,7 @@ rtype::Entity::Entity(rtype::EntityType type, std::vector<int> positioninscreen,
 
     this->container.movement_component->pos.x = positioninscreen.at(0);
     this->container.movement_component->pos.y = positioninscreen.at(1);
-    this->container.graphic_component->createSprite(sprite, sizespritesheet[0], sizespritesheet[1], 1);
+    this->container.graphic_component->createSprite(sprite, positioninsprite_sheet[0], positioninsprite_sheet[1], sizespritesheet[0], sizespritesheet[1], 1);
     this->container.graphic_component->setSize(sizeScreen[0], sizeScreen[1]);
     this->container.graphic_component->setPosition(positioninscreen.at(0),  positioninscreen.at(1));
     this->container.event_component->setHitbox(positioninscreen.at(0), positioninscreen.at(1), sizeScreen[0], sizeScreen[1]);

@@ -7,7 +7,7 @@
 
 #include "ecs/components/GraphicComponent.hpp"
 #include <SFML/Graphics.hpp>
-
+#include <iostream>
 namespace rtype {
         GraphicComponent::GraphicComponent() {
             isPrintable = true;
@@ -17,12 +17,14 @@ namespace rtype {
         
         }
         
-        void GraphicComponent::createSprite(const std::string& imagePath, int spriteWidth, int spriteHeight, int nb_sprite) {
+        void GraphicComponent::createSprite(const std::string& imagePath, int spritePosX, int spritePosY, int spriteWidth, int spriteHeight, int nb_sprite) {
             size.height = spriteHeight;
             size.width = spriteWidth;
+            position.sprite_x = spritePosX;
+            position.sprite_y = spritePosY;
             nb_sprites = nb_sprite;
             texture.loadFromFile(imagePath);
-            sprite = sf::Sprite(texture, sf::IntRect(0, 0, spriteWidth, spriteHeight));
+            sprite = sf::Sprite(texture, sf::IntRect(spritePosX, spritePosY, spriteWidth, spriteHeight));
         }
         
         void GraphicComponent::setPosition(int x, int y) {

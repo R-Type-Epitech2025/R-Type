@@ -5,19 +5,28 @@
 ** Core
 */
 
+#include <ctime>
+
 #include "Core.hpp"
 #include "systems/SystemManager.hpp"
 #include "iostream"
 
-rtype::Entity *spawnEnnemy()
-{
-    rtype::Entity *entity = new rtype::Entity(rtype::EntityType::MOB, {0, 0}, {0, 0}, {666, 375}, {1920, 1080}, "./assets/logo-transp.png", "ennemy1");
-    return entity;
-}
-
 void print()
 {
     std::cout << "test" << std::endl;
+}
+
+//à mettre dans le update du game system
+rtype::Entity *spawnEnnemy()
+{
+    std::cout << "test1" << std::endl;
+    int mobType = std::rand()%8 * 32;
+    rtype::Entity *entity = new rtype::Entity(rtype::EntityType::MOB, {1000, std::rand()%1064}, {mobType, 0}, {32, 32}, {100, 100}, "./assets/sprites.png", "ennemy1");
+    // entity->container.graphic_component->setSpritePosition(1000, 100);
+    // entity->container.movement_component->velocity = 10;
+    // entity->container.graphic_component->setPosition(entity->container.graphic_component->position.x -= entity->container.movement_component->velocity, entity->container.graphic_component->position.y);
+    std::cout << "test2" << std::endl;
+    return entity;
 }
 
 rtype::Core::Core()
@@ -28,6 +37,7 @@ int rtype::Core::run(int argc, char **argv, sf::RenderWindow &window)
 {
     sf::Event event;
     QCoreApplication game(argc, argv);
+    std::srand(std::time(nullptr));
     QTimer *timer = new QTimer(&game);
     system::GraphicSystem *graphicSystem = new system::GraphicSystem();
     system::MovementSystem *movementSystem = new system::MovementSystem();
@@ -43,7 +53,7 @@ int rtype::Core::run(int argc, char **argv, sf::RenderWindow &window)
     eventSystem->CreateNewEvent("play", sceneManager, "second", true, system::EventSystemType::CHANGESCENE, sf::Keyboard::Key::Space);
     scene2->addEntity(entity2);
     //test add ennemy
-    scene2->addEntity(spawnEnnemy());
+    scene->addEntity(spawnEnnemy());
     //test fin
     sceneManager->addScene("first" ,scene);
     sceneManager->setScene("first");

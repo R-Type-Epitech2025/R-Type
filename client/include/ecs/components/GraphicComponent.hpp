@@ -14,7 +14,7 @@ namespace rtype{
         public:
             GraphicComponent();
             ~GraphicComponent();
-            void createSprite(const std::string &imagePath, int spriteWidth, int spriteHeight, int nb_sprite);
+            void createSprite(const std::string &imagePath, int spritePosX, int spritePosY,int spriteWidth, int spriteHeight, int nb_sprite);
             void setPosition(int x, int y);
             void setSpritePosition(int x, int y, bool init = false);
             void setSize(int width, int height);
