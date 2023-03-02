@@ -14,28 +14,28 @@ rtype::Entity::Entity(rtype::EntityType type, std::vector<int> positioninscreen,
     this->container.game_component = NULL;
     this->container.graphic_component = new GraphicComponent(sprite, positioninsprite_sheet, sizespritesheet, sizeScreen, positioninscreen);
     this->container.movement_component = NULL;
-
-
-    switch (type)
-    {
+    std::vector<int> velociity = {0, 0};
+    std::vector<int> bulletVelociity = {3, 0};
+    
+    switch (type) {
         case MOB:
             this->container.event_component = new EventComponent(type, positioninscreen, sizeScreen);
-            this->container.movement_component = new MovementComponent(positioninscreen, false);
+            this->container.movement_component = new MovementComponent(positioninscreen, false, velociity);
             this->container.game_component = new GameComponent();
             break;
         case MAIN_PLAYER:
             this->container.event_component = new EventComponent(type, positioninscreen, sizeScreen);
-            this->container.movement_component = new MovementComponent(positioninscreen, false);
+            this->container.movement_component = new MovementComponent(positioninscreen, true, velociity);
             this->container.game_component = new GameComponent();
             break;
         case PLAYER:
             this->container.event_component = new EventComponent(type, positioninscreen, sizeScreen);
-            this->container.movement_component = new MovementComponent(positioninscreen, false);
+            this->container.movement_component = new MovementComponent(positioninscreen, false, velociity);
             this->container.game_component = new GameComponent();
             break;
         case BULLET:
             this->container.event_component = new EventComponent(type, positioninscreen, sizeScreen);
-            this->container.movement_component = new MovementComponent(positioninscreen, false);
+            this->container.movement_component = new MovementComponent(positioninscreen, false, bulletVelociity);
             this->container.game_component = new GameComponent();
             break;
         case BUTTON:
@@ -43,27 +43,10 @@ rtype::Entity::Entity(rtype::EntityType type, std::vector<int> positioninscreen,
             this->container.game_component = new GameComponent();
             break;
         case BACKGROUND:
-            this->container.movement_component = new MovementComponent(positioninscreen, false);
+            this->container.movement_component = new MovementComponent(positioninscreen, false, velociity);
             this->container.game_component = new GameComponent();
             break;
     }
-    //if (type == rtype::EntityType::MAIN_PLAYER){
-    //    this->container.event_component = new EventComponent(type, positioninscreen, sizeScreen);
-    //    this->container.movement_component = new MovementComponent(positioninscreen, true);
-    //    this->container.game_component = new GameComponent();
-    //} else {
-    //    this->container.event_component = new EventComponent(type, positioninscreen, sizeScreen);
-    //    this->container.movement_component = new MovementComponent(positioninscreen, false);
-    //    this->container.game_component = new GameComponent();
-    //}
-
-    //this->container.movement_component->pos.x = positioninscreen.at(0);
-    //this->container.movement_component->pos.y = positioninscreen.at(1);
-    //this->container.graphic_component->createSprite(sprite, sizespritesheet[0], sizespritesheet[1], 1);
-    //this->container.graphic_component->setSize(sizeScreen[0], sizeScreen[1]);
-    //this->container.graphic_component->setPosition(positioninscreen.at(0),  positioninscreen.at(1));
-    //this->container.event_component->setHitbox(positioninscreen.at(0), positioninscreen.at(1), sizeScreen[0], sizeScreen[1]);
-    // this->direction = rtype::DIRECTION::FORWARD;
     this->_type = type;
     this->_id = id;
 }

@@ -21,7 +21,7 @@ namespace rtype{
         };
     class MovementComponent {
         public:
-            MovementComponent(std::vector<int> positioninscreen, bool keyboardLink);
+            MovementComponent(std::vector<int> positioninscreen, bool keyboardLink, std::vector<int> setVelocity);
             ~MovementComponent();
             struct position {
                 int x;
@@ -30,7 +30,7 @@ namespace rtype{
             typedef struct position position;
             position pos;
             float rotation;
-            float velocity;
+            position velocity;
         void LinktoKeybord(bool link);
         bool is_linked() const;
         protected:

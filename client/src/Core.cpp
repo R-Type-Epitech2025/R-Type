@@ -61,18 +61,28 @@ int rtype::Core::run(int argc, char **argv, rtype::SceneManager *sceneManager)
     sceneManager->addScene("first" ,scene);
     sceneManager->addScene("second" ,scene2);
     sceneManager->setScene("first");
+    //sceneManager, graphicSystem, movementSystem, &event, eventSystem
+    QObject::connect(timer, &QTimer::timeout, [&]() {
+        //std::vector<rtype::Entity*> entities = sceneManager->getCurrentScene()->get_entities();
+        //rtype::Entity *player = NULL;
+        //for (Entity *test_entity : entities){
+        //    if (test_entity->_type == rtype::EntityType::MAIN_PLAYER)
+        //        player = test_entity;
+        //}
 
-    QObject::connect(timer, &QTimer::timeout, [sceneManager, graphicSystem, movementSystem, &event, eventSystem]() {
         while (sceneManager->window.pollEvent(event)){
             if (event.type == sf::Event::Closed) 
                 exit(0);
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
                 exit(0);
-            //if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
-            //    rtype::Entity *test = new rtype::Entity(rtype::EntityType::BULLET , {spaceship->container.movement_component->pos.x, spaceship->container.movement_component->pos.y},{0, 0}, {500, 500}, {500, 500}, "./assets/test_image.jpg");
-            //    sceneManager->getCurrentScene()->addEntity(test);
-            //    
-            //}
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
+                rtype::Entity *test = new rtype::Entity(rtype::EntityType::BULLET , {spaceShipe->container.movement_component->pos.y, spaceShipe->container.movement_component->pos.y},{0, 0}, {500, 500}, {500, 500}, "./assets/test_image.jpg", "bullet");
+
+//                rtype::Entity *test = new rtype::Entity(rtype::EntityType::BULLET , {spaceShipe->container.movement_component->pos.y, spaceShipe->container.movement_component->pos.y},{0, 0}, {500, 500}, {500, 500}, "./assets/test_image.jpg");
+                sceneManager->getCurrentScene()->addEntity(test);
+                
+            }
+            
         }
         
         //sceneManager->getCurrentScene();
