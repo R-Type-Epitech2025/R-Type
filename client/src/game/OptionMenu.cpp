@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2023
 ** client
 ** File description:
-** MainMenu
+** OptionMenu
 */
 
 #include "SceneManager.hpp"
@@ -14,6 +14,10 @@ namespace rtype {
         return playButton;
     }
 
+    Entity *InitRestartButton() {
+        Entity *restartButton = new Entity(rtype::EntityType::BUTTON, {900, 600}, {0, 0}, {300, 300}, {0, 0}, "assets/button_restart.png");
+        return restartButton;
+    }
     Entity *InitExitButton() {
         Entity *exitButton = new Entity(rtype::EntityType::BUTTON, {100, 900}, {0, 0}, {100, 100}, {0, 0}, "assets/button_close.png");
         return exitButton;
@@ -29,12 +33,13 @@ namespace rtype {
         return background;
     }
 
-    Scene *MAIN_MENU() {
-        Scene *mainMenu = new Scene();
-        mainMenu->addEntity(InitPlayButton());
-        mainMenu->addEntity(InitExitButton());
-        mainMenu->addEntity(InitOptionButton());
-        mainMenu->addEntity(InitBackground());
-        return mainMenu;
+    Scene *OPTION_MENU() {
+        Scene *optionMenu = new Scene();
+        optionMenu->addEntity(InitPlayButton());
+        optionMenu->addEntity(InitExitButton());
+        optionMenu->addEntity(InitOptionButton());
+        optionMenu->addEntity(InitRestartButton());
+        optionMenu->addEntity(InitBackground());
+        return optionMenu;
     }
 };
