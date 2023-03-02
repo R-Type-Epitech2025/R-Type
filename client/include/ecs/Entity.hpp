@@ -14,13 +14,13 @@
 #include "ecs/components/GameComponent.hpp"
 
 namespace rtype {
-       struct Containers {
+        struct Containers {
             GameComponent *game_component;
             EventComponent *event_component;
             GraphicComponent *graphic_component;
             MovementComponent *movement_component;
         };
-          enum ComponentType {
+        enum ComponentType {
             GAMECOMPONENT = 0,
             GRAPHICCOMPONENT = 1,
             MOVEMENTCOMPONENT = 2,
@@ -44,7 +44,7 @@ namespace rtype {
          * 
          * @param componentype 
          */
-        void add_Container(const ComponentType &componentype);
+        //void add_Container(const ComponentType &componentype);
         
         /**
          * @brief 

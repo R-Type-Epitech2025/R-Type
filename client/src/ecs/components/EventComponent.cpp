@@ -9,9 +9,14 @@
 // #include <functional>
 
 namespace rtype{
-    EventComponent::EventComponent(rtype::EntityType entity)
+    EventComponent::EventComponent(rtype::EntityType entity, std::vector<int> positioninscreen, std::vector<int> sizeScreen)
     {
         this->entity = entity;
+        this->_hitbox.x = positioninscreen[0];
+        this->_hitbox.y = positioninscreen[1];
+        this->_hitbox.width = sizeScreen[0];
+        this->_hitbox.height = sizeScreen[1];
+        this->is_hitbox = true;
     }
 
     EventComponent::~EventComponent()

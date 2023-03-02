@@ -22,7 +22,7 @@ namespace rtype {
         };
 class EventComponent {
         public:
-            EventComponent(rtype::EntityType entity);
+            EventComponent(rtype::EntityType entity, std::vector<int> positioninscreen, std::vector<int> sizeScreen);
             ~EventComponent();
             struct hitbox{
                 int x;

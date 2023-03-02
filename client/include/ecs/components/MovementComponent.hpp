@@ -10,6 +10,7 @@
 
 #include <memory>
 #include <iostream>
+#include <vector>
 
 namespace rtype{
     enum DIRECTION{
@@ -20,7 +21,7 @@ namespace rtype{
         };
     class MovementComponent {
         public:
-            MovementComponent();
+            MovementComponent(std::vector<int> positioninscreen, bool keyboardLink);
             ~MovementComponent();
             struct position {
                 int x;

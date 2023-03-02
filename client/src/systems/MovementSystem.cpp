@@ -5,7 +5,7 @@
 ** MovementSystem
 */
 
-#include "MovementSystem.hpp"
+#include "systems/MovementSystem.hpp"
 #include <iostream>
 
 namespace rtype{
@@ -22,7 +22,7 @@ namespace rtype{
         Scene *Scene = Manager->getCurrentScene();
 
         for (Entity *entity : Scene->get_entities()){
-            if (entity->container.movement_component->is_linked()){
+            if (entity->container.movement_component != NULL && entity->container.movement_component->is_linked()){
                 if (event.type == sf::Event::KeyPressed){   
                     if (event.key.code == sf::Keyboard::Up) {
                         // entity->set_direction(rtype::DIRECTION::TOP);

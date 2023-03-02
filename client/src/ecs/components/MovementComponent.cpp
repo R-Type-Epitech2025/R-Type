@@ -10,8 +10,11 @@
 
 //IL n'y a pas forcement d'implementation de celui la a faire 
 namespace rtype{
-    MovementComponent::MovementComponent()
+    MovementComponent::MovementComponent(std::vector<int> positioninscreen, bool keyboardLink)
     {
+        pos.x = positioninscreen[0];
+        pos.y = positioninscreen[1];
+        _link = keyboardLink;
     }
 
     MovementComponent::~MovementComponent()
