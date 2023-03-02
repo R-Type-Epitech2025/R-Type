@@ -7,22 +7,27 @@
 
 #include "ecs/components/GraphicComponent.hpp"
 #include <SFML/Graphics.hpp>
-
+#include <iostream>
 namespace rtype {
-        GraphicComponent::GraphicComponent() {
+        GraphicComponent::GraphicComponent(std::string sprite, std::vector<int> positioninsprite_sheet,std::vector<int> sizespritesheet, std::vector<int> sizeScreen, std::vector<int> positioninscreen) {
             isPrintable = true;
+            createSprite(sprite, positioninsprite_sheet.at(0), positioninsprite_sheet.at(1), sizespritesheet.at(0), sizespritesheet.at(1), 1);
+            setPosition(positioninscreen.at(0), positioninscreen.at(1));
+            setSize(sizeScreen.at(0), sizeScreen.at(1));
         }
         
         GraphicComponent::~GraphicComponent() {
         
         }
         
-        void GraphicComponent::createSprite(const std::string& imagePath, int spriteWidth, int spriteHeight, int nb_sprite) {
+        void GraphicComponent::createSprite(const std::string& imagePath, int spritePosX, int spritePosY, int spriteWidth, int spriteHeight, int nb_sprite) {
             size.height = spriteHeight;
             size.width = spriteWidth;
+            position.sprite_x = spritePosX;
+            position.sprite_y = spritePosY;
             nb_sprites = nb_sprite;
             texture.loadFromFile(imagePath);
-            sprite = sf::Sprite(texture, sf::IntRect(0, 0, spriteWidth, spriteHeight));
+            sprite = sf::Sprite(texture, sf::IntRect(spritePosX, spritePosY, spriteWidth, spriteHeight));
         }
         
         void GraphicComponent::setPosition(int x, int y) {
