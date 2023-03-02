@@ -17,43 +17,43 @@ cmake --build build -v
 echo -e "${GREEN}Compilation terminée.${WHITE}"
 
 # CPack Build for Windows on NSIS
-if [ $OS == "MINGW64_NT-10.0" ] && [ $COMPILED == false ]; then
-    echo -e "${GREEN}Build du ${YELLOW}client${GREEN}...${WHITE}"
-    cd build
-    cpack -G NSIS &> /dev/null
-    echo -e "${GREEN}Build terminée.${WHITE}"
-    COMPILED=true
-fi
+#if [ $OS == "MINGW64_NT-10.0" ] && [ $COMPILED == false ]; then
+#    echo -e "${GREEN}Build du ${YELLOW}client${GREEN}...${WHITE}"
+#    cd build
+#    cpack -G NSIS &> /dev/null
+#    echo -e "${GREEN}Build terminée.${WHITE}"
+#    COMPILED=true
+#fi
 
 # CPack Build for Linux on DEB
-if [ $OS == "Linux" ] && [ $COMPILED == false ]; then
-    echo -e "${GREEN}Build du ${YELLOW}client${GREEN}...${WHITE}"
-    cd build
-    cpack -G DEB &> /dev/null
-    echo -e "${GREEN}Build terminée.${WHITE}"
-fi
+#if [ $OS == "Linux" ] && [ $COMPILED == false ]; then
+#    echo -e "${GREEN}Build du ${YELLOW}client${GREEN}...${WHITE}"
+#    cd build
+#    cpack -G DEB &> /dev/null
+#    echo -e "${GREEN}Build terminée.${WHITE}"
+#fi
 
 # CPack Build for MacOS on DMG
-if [ $OS == "Darwin" ] && [ $COMPILED == false ]; then
-    echo -e "${GREEN}Build du ${YELLOW}client${GREEN}...${WHITE} pour ${YELLOW}MacOS${WHITE}"
-    cd build
-    cpack -G DragNDrop
-    hdiutil create -volname R-Type -srcfolder ${APP_NAME}.app -srcfolder assets -ov -format UDZO ${APP_NAME}.dmg
-    echo -e "${GREEN}Build terminée.${WHITE}"
-fi
+#if [ $OS == "Darwin" ] && [ $COMPILED == false ]; then
+#    echo -e "${GREEN}Build du ${YELLOW}client${GREEN}...${WHITE} pour ${YELLOW}MacOS${WHITE}"
+#    cd build
+#    cpack -G DragNDrop
+#    hdiutil create -volname R-Type -srcfolder ${APP_NAME}.app -srcfolder assets -ov -format UDZO ${APP_NAME}.dmg
+#    echo -e "${GREEN}Build terminée.${WHITE}"
+#fi
 
 # CPack Build for Linux on RPM
-if [ $OS == "Linux" ] && [ $COMPILED == false ]; then
-    echo -e "${GREEN}Build du ${YELLOW}client${GREEN}...${WHITE}"
-    cd build
-    cpack -G RPM &> /dev/null
-    echo -e "${GREEN}Build terminée.${WHITE}"
-fi
+#if [ $OS == "Linux" ] && [ $COMPILED == false ]; then
+#    echo -e "${GREEN}Build du ${YELLOW}client${GREEN}...${WHITE}"
+#    cd build
+#    cpack -G RPM &> /dev/null
+#    echo -e "${GREEN}Build terminée.${WHITE}"
+#fi
 
 # CPack Build universal for Linux and MacOS on ZIP
-if [ COMPILED == false ]; then
-    echo -e "${GREEN}Build du ${YELLOW}client${GREEN}...${WHITE}"
-    cd build
-    cpack -G ZIP &> /dev/null
-    echo -e "${GREEN}Build terminée.${WHITE}"
-fi
+#if [ COMPILED == false ]; then
+#    echo -e "${GREEN}Build du ${YELLOW}client${GREEN}...${WHITE}"
+#    cd build
+#    cpack -G ZIP &> /dev/null
+#    echo -e "${GREEN}Build terminée.${WHITE}"
+#fi
