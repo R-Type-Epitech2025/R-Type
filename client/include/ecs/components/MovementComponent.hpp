@@ -8,6 +8,9 @@
 #ifndef MOVEMENTCOMPONENT_HPP_
 #define MOVEMENTCOMPONENT_HPP_
 
+#include <memory>
+#include <iostream>
+
 namespace rtype{
     enum DIRECTION{
             RIGHT,

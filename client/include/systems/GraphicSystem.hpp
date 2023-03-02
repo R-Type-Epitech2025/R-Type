@@ -11,28 +11,27 @@
 #include "ISystem.hpp"
 
 namespace rtype{
-    namespace system {
 
-        class GraphicSystem /*: public QObject */{
+    class GraphicSystem : public QObject {
 
-            //Q_OBJECT
+        Q_OBJECT
 
-            public:
-                GraphicSystem();
-                ~GraphicSystem();
-                void init(SceneManager&) {};
-                void Update(rtype::SceneManager* Manager, int deltaTime, sf::RenderWindow &window);
-                void destroy(SceneManager&) {};
-                void loadEntity() {};
-                void unloadEntity() {};
-            protected:
-            private:
-                GraphicComponent _graph;
+        public:
+            GraphicSystem(QObject *parent = nullptr);
+            ~GraphicSystem() {};
+            SystemType getType() const { return SystemType::GRAPHIC; };
+            void init(SceneManager&, sf::RenderWindow &);
+            void update(rtype::SceneManager* Manager, uint64_t time);
+            // void destroy() {};
+            // void loadEntity(std::shared_ptr<Entity> entity, Scene &scene) {};
+            // void unloadEntity(std::shared_ptr<Entity> entity, Scene &scene) {};
+        protected:
+        private:
+            GraphicComponent _graph;
 
-            // public slots:
-            //     void onUpdateSprites(std::list<sf::Sprite *> sprites);
-        };
-    }
+        public slots:
+            void onUpdateSprites(std::vector<Entity *> entities);
+    };
 }
 
 #endif /* !GRAPHICSYSTEM_HPP_ */

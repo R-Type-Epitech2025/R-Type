@@ -49,12 +49,11 @@ namespace rtype {
             void setScene(std::string scene);
             void addScene(std::string scene_name, rtype::Scene *scene);
             rtype::Scene* getCurrentScene();
-
+            sf::RenderWindow window;
         protected:
             std::map<std::string, rtype::Scene*> _scenes;
             rtype::Scene* _currentscene;
             bool _shouldClose;
-
         private:
     };
 };

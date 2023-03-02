@@ -9,38 +9,35 @@
 #define CLIENT_HPP_
 
 #include "UDPSocket.hpp"
-#include "ISystem.hpp"
 
 namespace rtype{
-    namespace system {
+    
+    class NetworkSystem : public QObject {
 
-        class NetworkSystem : public QObject {
+        Q_OBJECT
 
-            Q_OBJECT
+        public:
+            NetworkSystem(QObject *parent, QString addr, quint32 port);
+            ~NetworkSystem() {};
 
-            public:
-                NetworkSystem(QObject *parent, QString addr, quint32 port);
-                virtual ~NetworkSystem() {};
+            SystemType getType();
+            // void init(SceneManager &sceneManager) {};
+            // void update(SceneManager &manager, uint64_t time) {};
+            // void destroy() {};
+            // void loadEntity(std::shared_ptr<Entity> entity, Scene &scene) {};
+            // void unloadEntity(std::shared_ptr<Entity> entity, Scene &scene) {};
 
-                void linkToMovementSystem(rtype::system::MovementSystem* movementSystem);
-                void linkToGraphicsSystem(rtype::system::GraphicSystem* graphicSystem);
+        public slots:
+            void onSendMovePlayer(rtype::DIRECTION dir);
+            void onMessageReceived(Message &msg);
 
-                // virtual void init(SceneManager &sceneManager) = 0;
-                // virtual void update(SceneManager &manager, uint64_t time) = 0;
-                // virtual void destroy() = 0;
+        signals:
+            void updateSprites(std::list<Entity *> sprites);
 
-            public slots:
-                void onSendMovePlayer(DIRECTION dir);
-                void onMessageReceived(Message &msg);
-
-            signals:
-                void updateSprites(std::list<sf::Sprite *> sprites);
-
-            protected:
-            private:
-                UDPSocket *_udpSocket;
-        };
-    }
+        protected:
+        private:
+            UDPSocket *_udpSocket;
+    };
 }
 
 #endif /* !CLIENT_HPP_ */

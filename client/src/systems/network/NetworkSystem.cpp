@@ -8,7 +8,6 @@
 #include "NetworkSystem.hpp"
 
 namespace rtype{
-    namespace system {
         NetworkSystem::NetworkSystem(QObject *parent, QString ip, quint32 port): QObject(parent)
         {
             try {
@@ -41,15 +40,8 @@ namespace rtype{
             emit updateSprites(msg.getSprites());
         }
 
-        void NetworkSystem::linkToMovementSystem(MovementSystem* movementSystem)
+        SystemType NetworkSystem::getType()
         {
-            connect(movementSystem, SIGNAL(sendMovePlayer(DIRECTION dir)), this, SLOT(onSendMovePlayer(DIRECTION dir)));
+            return SystemType::NETWORK;
         }
-
-        void NetworkSystem::linkToGraphicsSystem(GraphicSystem* graphicSystem)
-        {
-            // connect(this, SIGNAL(updateSprites(std::list<Sprite *> sprites)), graphicSystem, SLOT(onUpdateSprites(std::list<Sprite *> sprites)));
-            connect(this, SIGNAL(updateSprites(std::list<sf::Sprite *> sprites)), &graphicSystem, SLOT(onUpdateSprites(std::list<sf::Sprite *> sprites)));
-        }
-    }
 }

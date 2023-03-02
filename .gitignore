@@ -38,3 +38,9 @@
 *Makefile
 ecs/rtype
 *moc_*.cpp*
+*mocs_*.cpp*
+*moc_*.h*
+*CPackConfig.cmake
+*CPackSourceConfig.cmake
+*/bin/*
+*/build/*

@@ -10,7 +10,7 @@
 
 //IL n'y a pas forcement d'implementation de celui la a faire 
 namespace rtype{
-MovementComponent::MovementComponent()
+    MovementComponent::MovementComponent()
     {
     }
 

@@ -1,20 +1,24 @@
 #include "ISystem.hpp"
 
 namespace rtype {
-    namespace system {
+    class MovementSystem : public QObject {
 
-        class MovementSystem /* : public QObject*/ {
-            // Q_OBJECT
-        public:
-        MovementSystem();
-        ~MovementSystem();
-            void update(rtype::SceneManager *Manager, sf::Event event);
-        private :
-            bool _link;
+        Q_OBJECT
 
-        // signals:
-        //     void sendMovePlayer(DIRECTION dir);
+    public:
+        MovementSystem(QObject *parent = nullptr);
+        ~MovementSystem() {};
+        SystemType getType() const { return SystemType::MOVEMENT; }; 
+        // void init(SceneManager &, sf::RenderWindow &) {};
+        void update(rtype::SceneManager *Manager, sf::Event &event);
+        // void destroy() {};
+        // void loadEntity(std::shared_ptr<Entity> entity, Scene &scene) {};
+        // void unloadEntity(std::shared_ptr<Entity> entity, Scene &scene) {};
+    private :
+        bool _link;
 
-        };
-    }
+    signals:
+        void sendMovePlayer(DIRECTION dir);
+
+    };
 }
