@@ -32,7 +32,8 @@ namespace rtype {
             //     entity->container.graphic_component->counter_sprites = 0;
             // }
             // entity->container.graphic_component->counter_sprites += 1;
-            entity->container.graphic_component->setPosition(entity->container.movement_component->pos.x, entity->container.movement_component->pos.y);
+            if (entity->container.movement_component != NULL)
+                entity->container.graphic_component->setPosition(entity->container.movement_component->pos.x, entity->container.movement_component->pos.y);
             save = entity->container.graphic_component->position.sprite_x;
             entity->container.graphic_component->setSpritePosition(entity->container.graphic_component->position.sprite_x, entity->container.graphic_component->position.sprite_y);
             manager->window.draw(entity->container.graphic_component->getSprite());

@@ -42,7 +42,6 @@ namespace rtype{
                         // entity->container.movement_component->pos.x += 5;
                         emit sendMovePlayer(rtype::DIRECTION::RIGHT);
                     }
-
                 }       
             }   
         }

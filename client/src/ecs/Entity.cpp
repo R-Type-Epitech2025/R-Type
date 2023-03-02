@@ -47,15 +47,15 @@ rtype::Entity::Entity(rtype::EntityType type, std::vector<int> positioninscreen,
             this->container.game_component = new GameComponent();
             break;
     }
-    if (type == rtype::EntityType::MAIN_PLAYER){
-        this->container.event_component = new EventComponent(type, positioninscreen, sizeScreen);
-        this->container.movement_component = new MovementComponent(positioninscreen, true);
-        this->container.game_component = new GameComponent();
-    } else {
-        this->container.event_component = new EventComponent(type, positioninscreen, sizeScreen);
-        this->container.movement_component = new MovementComponent(positioninscreen, false);
-        this->container.game_component = new GameComponent();
-    }
+    //if (type == rtype::EntityType::MAIN_PLAYER){
+    //    this->container.event_component = new EventComponent(type, positioninscreen, sizeScreen);
+    //    this->container.movement_component = new MovementComponent(positioninscreen, true);
+    //    this->container.game_component = new GameComponent();
+    //} else {
+    //    this->container.event_component = new EventComponent(type, positioninscreen, sizeScreen);
+    //    this->container.movement_component = new MovementComponent(positioninscreen, false);
+    //    this->container.game_component = new GameComponent();
+    //}
 
     //this->container.movement_component->pos.x = positioninscreen.at(0);
     //this->container.movement_component->pos.y = positioninscreen.at(1);

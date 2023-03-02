@@ -63,7 +63,7 @@ int rtype::Core::run(int argc, char **argv, rtype::SceneManager *sceneManager)
             //}
         }
         
-        sceneManager->getCurrentScene();
+        //sceneManager->getCurrentScene();
         graphicSystem->update(sceneManager, 12);
         movementSystem->update(sceneManager, event);
         eventSystem->update(sceneManager, sceneManager->window, event);
