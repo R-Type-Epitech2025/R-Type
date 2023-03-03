@@ -10,7 +10,7 @@
 
 namespace rtype {
     
-    EventSystem::EventSystem()
+    EventSystem::EventSystem(QObject *parent) : QObject(parent)
     {
     }
 
@@ -18,12 +18,12 @@ namespace rtype {
     {
     }
 
-    void EventSystem::update(rtype::SceneManager *currentScene, sf::RenderWindow &window, sf::Event &event)
+    void EventSystem::update(rtype::SceneManager *currentScene, sf::Event &event)
     {
         Scene *scene = currentScene->getCurrentScene();
         for (auto &NewEvent : _newEvent) {
             rtype::Entity *tmp_entity = scene->getEntity(NewEvent->identity);
-            if (tmp_entity->container.event_component != NULL && tmp_entity->container.event_component->eventHandler(event, NewEvent->key, window)) {
+            if (tmp_entity->container.event_component != NULL && tmp_entity->container.event_component->eventHandler(event, NewEvent->key, currentScene->window)) {
                 std::cout << "scene Changed" << std::endl;
                 if (NewEvent->newScene) {
                     currentScene->setScene(NewEvent->newId);
