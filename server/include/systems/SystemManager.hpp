@@ -18,11 +18,37 @@ namespace rtype {
 
     class SystemManager {
         public:
+            /**
+             ** @brief Construct a new System Manager object
+             ** 
+             */
             SystemManager();
+
+            /**
+             ** @brief Destroy the System Manager object
+             ** 
+             */
             ~SystemManager();
 
+            /**
+             ** @brief Set the Graphic System object
+             ** 
+             ** @param graphicSystem 
+             */
             void setGraphicSystem(GraphicSystem *graphicSystem);
+
+            /**
+             ** @brief Set the Movement System object
+             ** 
+             ** @param movementSystem 
+             */
             void setMovementSystem(MovementSystem *movementSystem);
+
+            /**
+             ** @brief Set the Network System object
+             ** 
+             ** @param networkSystem 
+             */
             void setNetworkSystem(NetworkSystem *networkSystem);
 
         protected:

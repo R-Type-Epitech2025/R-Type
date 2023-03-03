@@ -41,7 +41,7 @@ set(SRC_FILES
     src/ecs/components/Scene.cpp
     src/ecs/components/GraphicComponent.cpp
     src/ecs/components/MovementComponent.cpp
-    src/ecs/components/Scene.cpp
+    src/ecs/Scene.cpp
     src/ecs/components/EventComponent.cpp
     
     src/systems/SystemManager.cpp

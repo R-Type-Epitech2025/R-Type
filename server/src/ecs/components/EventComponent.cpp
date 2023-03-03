@@ -6,7 +6,6 @@
 */
 
 #include "ecs/components/EventComponent.hpp"
-// #include <functional>
 
 namespace rtype{
     EventComponent::EventComponent(rtype::EntityType entity, std::vector<int> positioninscreen, std::vector<int> sizeScreen)

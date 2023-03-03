@@ -13,11 +13,19 @@
 #include "ecs/components/MovementComponent.hpp"
 
 namespace rtype {
+        /**
+         ** @brief struct that contains all the components of an entity
+         ** 
+         */
         struct Containers {
             EventComponent *event_component;
             GraphicComponent *graphic_component;
             MovementComponent *movement_component;
         };
+        /**
+         ** @brief enum that contains all the types of entities
+         *
+         */
         enum ComponentType {
             GAMECOMPONENT = 0,
             GRAPHICCOMPONENT = 1,
@@ -27,33 +35,37 @@ namespace rtype {
     class Entity {
     public:
         /**
-         * @brief Construct a new Entity object
+         ** @brief Construct a new Entity object
          */
         Entity(rtype::EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, std::string id);
 
         /**
-         * @brief Destroy the Entity object
-         * 
+         ** @brief Destroy the Entity object
+         ** 
          */
         ~Entity();
         
         /**
-         * @brief 
-         * 
-         * @param componentype 
+         ** @brief get the direction of the entity
+         ** 
+         ** @return rtype::EntityType 
          */
-//        void remove_Container(const ComponentType &componentype);
+        rtype::DIRECTION get_directions();
 
         /**
-         * @brief 
-         * 
-         * 
+         ** @brief set the direction of the entity
+         ** 
+         ** @return sf::Vector2f 
          */
-//        void get_containers();
-
-        rtype::DIRECTION get_directions();
         void set_direction(rtype::DIRECTION direction);
+
+        /**
+         ** @brief declaration of container struct
+         ** 
+         ** @return sf::Vector2f 
+         */
         struct Containers container;  // c'est le temps de tester !!!pas du tout definitif;
+
         rtype::EntityType _type;
         std::string _id;
         // Load the entity
