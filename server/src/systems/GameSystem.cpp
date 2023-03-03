@@ -7,11 +7,15 @@
 
 #include "GameSystem.hpp"
 
-GameSystem::GameSystem(SceneManager& scene)
+GameSystem::GameSystem(QObject *parent) : QObject(parent)
 {
-    if(scene.)
 }
 
 GameSystem::~GameSystem()
 {
+}
+
+void GameSystem::onNewPlayerConnected(quint16 id)
+{
+    std::cout << "New player connected with id: " << id << std::endl;
 }

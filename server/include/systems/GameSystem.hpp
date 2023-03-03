@@ -11,15 +11,16 @@
 #include "ISystem.hpp"
 
 namespace rtype{
-class GameSystem : public ISystem {
+class GameSystem : public QObject {
+
+    Q_OBJECT
+
     public:
-        GameSystem();
+        GameSystem(QObject *parent = nullptr);
         ~GameSystem();
-        void init(SceneManager&) override;
-        void Update(SceneManager&, int deltaTime) override;
-        void destroy(SceneManager&) override;
-        void loadEntity() override;
-        void unloadEntity() override;
+
+    public slots:
+        void onNewPlayerConnected(quint16 id);
     protected:
     private:
         GameComponent _game;

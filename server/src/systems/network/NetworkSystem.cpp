@@ -17,7 +17,8 @@ namespace rtype{
             std::cerr << "Exiting..." << std::endl;
             exit(84);
         }
-        connect(_udpSocket, SIGNAL(messageReceived(Message &)), this, SLOT(onMessageReceived(Message &)));
+        connect(_udpSocket, SIGNAL(messageReceived(Message &, quint16)), this, SLOT(onMessageReceived(Message &, quint16)));
+        connect(_udpSocket, SIGNAL(newPlayerConnected(quint16)), this, SLOT(onNewPlayerConnected(quint16)));
     }
 
     // NetworkSystem::~NetworkSystem()
@@ -46,20 +47,27 @@ namespace rtype{
         _udpSocket->sendDatagram(data);
     }
 
-    void NetworkSystem::onMessageReceived(Message &msg)
+    void NetworkSystem::onMessageReceived(Message &msg, quint16 id)
     {
+
         if (msg.getEvent() == PLAYER_EVENT::MOVE)
             std::cout << "MOVE" << std::endl;
-            // emit playerMoveEvent(msg.getId(), msg.getDirection());
+            emit playerMoveEvent(msg.getid, msg.getDirection());
         else if (msg.getEvent() == PLAYER_EVENT::SHOOT)
             std::cout << "SHOOT" << std::endl;
-            // emit playerShootEvent(msg.getId());
+            emit playerShootEvent(id);
         else if (msg.getEvent() == PLAYER_EVENT::QUIT)
             std::cout << "QUIT" << std::endl;
-            // emit playerQuitEvent(msg.getId());
+            emit playerQuitEvent(id);
         else if (msg.getEvent() == PLAYER_EVENT::CONNECT)
             std::cout << "CONNECT" << std::endl;
-            // emit playerConnectEvent(msg.getId());
+            emit playerConnectEvent(id);
+    }
+
+    void NetworkSystem::onNewPlayerConnected(quint16 id)
+    {
+        std::cout << "New player connected" << std::endl;
+        emit newPlayerConnected(id);
     }
 }
 

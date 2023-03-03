@@ -34,15 +34,24 @@ namespace rtype {
                 continue;
             else {
                 std::cout << "\t\tNew client connected" << std::endl;
-                if (_clients.size() == 4)
+                if (_clients.size() >= 4)
                     return;
                 else {
+                    QDataStream ds(data.data());
+                    Message msg;
+
+                    ds >> msg;
+                    if (msg->getEvent() != PLAYER_EVENT::CONNECT) {
+                        std::cout << "\t\t\tWrong message received" << std::endl;
+                        return;
+                    }
                     std::cout << "\t\t\tAdding client to known clients" << std::endl;
                     Client client;
                     client.address = data.senderAddress();
                     client.port = data.senderPort();
-                    client.id = _clients.size();
+                    client.id = createId(client.address, client.port);
                     _clients.push_back(client);
+                    emit newPlayerConnected(client.id);
                 }
                 return;
             }
@@ -50,7 +59,12 @@ namespace rtype {
             Message msg;
 
             ds >> msg;
-            emit messageReceived(msg);
+            for (auto &client : _clients) {
+                if (client.address == data.senderAddress() && client.port == data.senderPort()) {
+                    emit messageReceived(msg, client.id);
+                    break;
+                }
+            }
         }
     }
 
@@ -67,5 +81,16 @@ namespace rtype {
                 return true;
         }
         return false;
+    }
+
+    quint16 UDPSocket::createId(const QHostAddress &addr, quint16 port)
+    {
+        quint32 combined = (addr.toIPv4Address() << 16) | port;
+    
+        // Use a hash function to map the combined value to a 16-bit ID
+        std::hash<quint32> hash_func;
+        quint16 id = hash_func(combined);
+        
+        return id;
     }
 }

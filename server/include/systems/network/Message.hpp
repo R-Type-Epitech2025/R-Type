@@ -20,15 +20,7 @@ namespace rtype {
         MOVE,
         SHOOT,
         QUIT,
-        CONNECT,
-        DISCONNECT
-    };
-
-    enum DIRECTION {
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT
+        CONNECT
     };
 
     class Message {

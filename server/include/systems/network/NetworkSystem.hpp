@@ -37,7 +37,7 @@ namespace rtype{
             ** 
             ** @param msg the message received already deserialized
             */
-            void onMessageReceived(Message &msg);
+            void onMessageReceived(Message &msg, quint16 id);
 
             /*
             ** @brief Called when the GameSystem has updated entities to send to the clients
@@ -46,24 +46,38 @@ namespace rtype{
             */
             void onSendUpdatedEntities(std::vector<Entity *> &entities);
 
+            /*
+            ** @brief Called when a new player connects to the server
+            ** 
+            ** @param id the id of the new player
+            */
+            void onNewPlayerConnected(quint16 id);
+
         signals:
             /*
             ** @brief Emitted when a player moves - Received by the GameSystem
             ** 
             */
-            // void playerMoveEvent(quint16 id, DIRECTION dir);
+            void playerMoveEvent(quint16 id, DIRECTION dir);
 
             /*
             ** @brief Emitted when a player shoots - Received by the GameSystem
             ** 
             */
-            // void playerShootEvent(quint16 id);
+            void playerShootEvent(quint16 id);
 
             /*
             ** @brief Emitted when a player quits - Received by the GameSystem
             ** 
             */
-            // void playerQuitEvent(quint16 id);
+            void playerQuitEvent(quint16 id);
+
+            /*
+            ** @brief Emitted when a player connects - Received by the GameSystem
+            ** 
+            ** @param id the id of the new player
+            */
+            void newPlayerConnected(quint16 id);
 
         protected:
         private:
@@ -71,8 +85,4 @@ namespace rtype{
     };
 }
 
-<<<<<<< HEAD
-#endif /* !CLIENT_HPP_ */
-=======
 #endif /* !NETWORKSYSTEM_HPP_ */
->>>>>>> ecs_network_v2.0
