@@ -7,6 +7,7 @@ Epitech Promo 2025 Project
 Requirements for the software and other tools to build, test and push 
 - Visual Studio (Windows)
 - GCC (Linux)
+- git (Windows)
 
 ### Installing
 
@@ -14,7 +15,7 @@ Requirements for the software and other tools to build, test and push
 Just run install.sh file in sudo mode
 
 ## Windows
-Just run install.bat file
+Just run install.bat file as admin
 
 ### Usage
 
