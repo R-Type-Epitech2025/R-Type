@@ -44,8 +44,8 @@ namespace rtype {
             sprite.setTextureRect(sf::IntRect(x, y, size.width, size.height));
         }
         
-        void GraphicComponent::setSize(int width, int height) {
-            sprite.setScale((float)width / sprite.getTextureRect().width, (float)height / sprite.getTextureRect().height);
+        void GraphicComponent::setSize(float scale) {
+            sprite.setScale(scale, scale);
         }
         
         bool GraphicComponent::getIsPrintable() {
