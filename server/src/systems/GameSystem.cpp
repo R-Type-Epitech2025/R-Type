@@ -1,17 +1,17 @@
-/*
-** EPITECH PROJECT, 2023
-** client
-** File description:
-** GameSystem
-*/
+// /*
+// ** EPITECH PROJECT, 2023
+// ** client
+// ** File description:
+// ** GameSystem
+// */
 
-#include "GameSystem.hpp"
+// #include "GameSystem.hpp"
 
-GameSystem::GameSystem(SceneManager& scene)
-{
-    if(scene.)
-}
+// GameSystem::GameSystem(SceneManager& scene)
+// {
+//     if(scene.)
+// }
 
-GameSystem::~GameSystem()
-{
-}
+// GameSystem::~GameSystem()
+// {
+// }

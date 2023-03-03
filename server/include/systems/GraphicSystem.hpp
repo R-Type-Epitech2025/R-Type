@@ -22,13 +22,8 @@ namespace rtype{
             SystemType getType() const { return SystemType::GRAPHIC; };
             void init(SceneManager&, sf::RenderWindow &);
             void update(rtype::SceneManager* Manager, uint64_t time);
-            // void destroy() {};
-            // void loadEntity(std::shared_ptr<Entity> entity, Scene &scene) {};
-            // void unloadEntity(std::shared_ptr<Entity> entity, Scene &scene) {};
         protected:
         private:
-//            GraphicComponent _graph;
-
         public slots:
             void onUpdateSprites(std::vector<Entity *> entities);
     };

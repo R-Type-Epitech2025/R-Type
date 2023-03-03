@@ -1,25 +1,25 @@
-/*
-** EPITECH PROJECT, 2023
-** client
-** File description:
-** AudioSystem
-*/
+// /*
+// ** EPITECH PROJECT, 2023
+// ** client
+// ** File description:
+// ** AudioSystem
+// */
 
-#ifndef AUDIOSYSTEM_HPP_
-#define AUDIOSYSTEM_HPP_
+// #ifndef AUDIOSYSTEM_HPP_
+// #define AUDIOSYSTEM_HPP_
 
-namespace rtype{
-    class AudioSystem : public ISystem{
-        public:
-            AudioSystem();
-            ~AudioSystem();
-            void initAudio();
-            void setVolume();
-            bool isReady();
-            int getMainVolume();
-        protected:
-        private:
-    };
-}
+// namespace rtype{
+//     class AudioSystem : public ISystem{
+//         public:
+//             AudioSystem();
+//             ~AudioSystem();
+//             void initAudio();
+//             void setVolume();
+//             bool isReady();
+//             int getMainVolume();
+//         protected:
+//         private:
+//     };
+// }
 
-#endif /* !AUDIOSYSTEM_HPP_ */
+// #endif /* !AUDIOSYSTEM_HPP_ */

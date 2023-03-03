@@ -1,16 +1,16 @@
-/*
-** EPITECH PROJECT, 2023
-** client
-** File description:
-** AudioSystem
-*/
+// /*
+// ** EPITECH PROJECT, 2023
+// ** client
+// ** File description:
+// ** AudioSystem
+// */
 
-#include "AudioSystem.hpp"
+// #include "AudioSystem.hpp"
 
-AudioSystem::AudioSystem()
-{
-}
+// AudioSystem::AudioSystem()
+// {
+// }
 
-AudioSystem::~AudioSystem()
-{
-}
+// AudioSystem::~AudioSystem()
+// {
+// }
