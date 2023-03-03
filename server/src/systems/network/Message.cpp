@@ -8,42 +8,39 @@
 #include "Message.hpp"
 
 namespace rtype {
-    namespace server {
-        Message::Message(): _id(0), _event(0), _direction(0)
-        {
-        }
+    Message::Message() : _event(PLAYER_EVENT::QUIT), _direction(DIRECTION::UP)
+    {
+    }
 
-        Message::~Message()
-        {
-        }
+    Message::~Message()
+    {
+    }
 
-        QDataStream &operator>>(QDataStream &in, Message &msg)
-        {
-            return readMessage(in, msg);
-        }
+    QDataStream &operator>>(QDataStream &in, Message &msg)
+    {
+        return readMessage(in, msg);
+    }
 
-        QDataStream &readMessage(QDataStream &in, Message &msg)
-        {
-            in >> msg._id;
-            in >> msg._event;
-            if (msg._event == EVENT::MOVE)
-                in >> msg._direction;
-            return in;
+    QDataStream &readMessage(QDataStream &in, Message &msg)
+    {
+        quint32 event;
+        quint32 direction;
+        in >> event;
+        msg._event = static_cast<PLAYER_EVENT>(event);
+        if (msg._event == PLAYER_EVENT::MOVE) {
+            in >> direction;
+            msg._direction = static_cast<DIRECTION>(direction);
         }
+        return in;
+    }
 
-        quint16 Message::getId() const
-        {
-            return _id;
-        }
+    PLAYER_EVENT Message::getEvent() const
+    {
+        return _event;
+    }
 
-        EVENT Message::getEvent() const
-        {
-            return static_cast<EVENT>(_event);
-        }
-
-        DIRECTION Message::getDirection() const
-        {
-            return static_cast<DIRECTION>(_direction);
-        }
+    DIRECTION Message::getDirection() const
+    {
+        return static_cast<DIRECTION>(_direction);
     }
 }

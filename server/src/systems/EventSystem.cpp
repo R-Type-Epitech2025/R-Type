@@ -5,63 +5,75 @@
 ** EventSystem
 */
 
-#include "../../include/systems/EventSystem.hpp"
+#include "./systems/EventSystem.hpp"
 #include <iostream>
-#include "../../include/ecs/Entity.hpp"
 
-namespace rtype{
-    namespace system {
-        /**
-         * @brief Construct a new Event System::Event System object
-         * 
-         * @param window 
-         */
-        EventSystem::EventSystem(sf::RenderWindow &window ) : _window( window) , _movement()
-        {
-        }
+namespace rtype {
+    
+    EventSystem::EventSystem()
+    {
+    }
 
-        /**
-         * @brief Destroy the Event System::Event System object
-         * 
-         */
-        EventSystem::~EventSystem()
-        {
-        }
+    EventSystem::~EventSystem()
+    {
+    }
 
-        /**
-         * @brief Handle the event of the window
-         * 
-         * @param entities 
-         */
-        void EventSystem::update(std::vector<std::shared_ptr<Entity> > &entities)
-        {
-            sf::Event event;
-            while (_window.pollEvent(event))
-            {
-                if (event.type == sf::Event::Closed)
-                    _window.close();
-                else if (event.type == sf::Event::MouseButtonPressed)
-                { 
-                
-                    entities.push_back(std::shared_ptr<Entity>(new Entity()));
-                    auto& newEntity = entities.back();
-                    newEntity->x = event.mouseButton.x;
-                    newEntity->y = event.mouseButton.y;
-                    if (entities.size() == 1){
-                        newEntity->Player = true;
-                        newEntity->color = "Red";
-                    }else{
-                        newEntity->Player = false;
-                        newEntity->color = "blue";
-                    }
-                    std::cout<<"New entity"<<std::endl;
+    void EventSystem::update(rtype::SceneManager *currentScene, sf::RenderWindow &window, sf::Event &event)
+    {
+        Scene *scene = currentScene->getCurrentScene();
+        for (auto &NewEvent : _newEvent) {
+            rtype::Entity *tmp_entity = scene->getEntity(NewEvent->identity);
+            if (tmp_entity->container.event_component != NULL && tmp_entity->container.event_component->eventHandler(event, NewEvent->key, window)) {
+                std::cout << "scene Changed" << std::endl;
+                if (NewEvent->newScene) {
+                    currentScene->setScene(NewEvent->newId);
                 }
-                for (int i = 0; i < entities.size(); i++){
-                    if (entities.at(i)->Player){   
-                        _movement.LinkKeybordPosition(event, entities.at(i));
-                    }
-                }
-            }
+            } 
         }
     }
+
+    void EventSystem::createNewEvent(std::string identity, SceneManager *scene, std::string newId, bool newScene, EventSystemType type, sf::Keyboard::Key key) 
+    {
+        NewEventComponent_t *newEvent = new NewEventComponent_t;
+
+        newEvent->key = key;
+        newEvent->identity = identity;
+        newEvent->newId = newId;
+        newEvent->newScene = newScene;
+        newEvent->type = type;
+        newEvent->scene = scene;
+
+        _newEvent.push_back(newEvent);
+    }
+    
+    // void EventSystem::update(std::vector<std::shared_ptr<Entity> > &entities)
+    // {
+    //     sf::Event event;
+    //     while (_window.pollEvent(event))
+    //     {
+    //         if (event.type == sf::Event::Closed)
+    //             _window.close();
+    //         else if (event.type == sf::Event::MouseButtonPressed)
+    //         { 
+        
+    //             entities.push_back(std::shared_ptr<Entity>(new Entity()));
+    //             auto& newEntity = entities.back();
+    //             newEntity->x = event.mouseButton.x;
+    //             newEntity->y = event.mouseButton.y;
+    //             if (entities.size() == 1){
+    //                 newEntity->Player = true;
+    //                 newEntity->color = "Red";
+    //             }else{
+    //                 newEntity->Player = false;
+    //                 newEntity->color = "blue";
+    //             }
+    //             std::cout<<"New entity"<<std::endl;
+    //         }
+    //         for (int i = 0; i < entities.size(); i++){
+    //             if (entities.at(i)->Player){   
+    //                 _movement.LinkKeybordPosition(event, entities.at(i));
+    //             }
+    //         }
+    //     }
+    // }
 }

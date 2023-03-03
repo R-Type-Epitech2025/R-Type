@@ -7,33 +7,59 @@
 
 #include "NetworkSystem.hpp"
 
-// NETWORK SYSTEM
-namespace rtype {
-    namespace server {
-        NetworkSystem::NetworkSystem()
-        {
+namespace rtype{
+    NetworkSystem::NetworkSystem(QObject *parent): QObject(parent)
+    {
+        try {
+            _udpSocket = new UDPSocket(this);
+        } catch (std::invalid_argument &e) {
+            std::cerr << e.what() << std::endl;
+            std::cerr << "Exiting..." << std::endl;
+            exit(84);
         }
+        connect(_udpSocket, SIGNAL(messageReceived(Message &)), this, SLOT(onMessageReceived(Message &)));
+    }
 
-        NetworkSystem::~NetworkSystem()
-        {
+    // NetworkSystem::~NetworkSystem()
+    // {
+    // }
+
+    void NetworkSystem::onSendUpdatedEntities(std::vector<Entity *> &entities)
+    {
+        QByteArray data;
+        QDataStream ds(&data, QIODevice::WriteOnly);
+
+        quint32 nb = 0;
+
+        for (auto &entity : entities) {
+            ds << entity->getId();
+            ds << entity->getEntityType();
+            ds << entity->getSpritesheetIndex();
+            ds << entity->getSheetPosition()[0];
+            ds << entity->getSheetPosition()[1];
+            ds << entity->getSheetSize()[0];
+            ds << entity->getSheetSize()[1];
+            ds << entity->getScale();
+            ds << entity->getPosition()[0];
+            ds << entity->getPosition()[1];
         }
+        _udpSocket->sendDatagram(data);
+    }
 
-        // QCOREAPP : FUTURE GAME LOOP
-
-        // MyApp::MyApp(int &argc, char **argv): QCoreApplication(argc, argv)
-        // {
-        //     connect(this, &MyApp::readInput, this, &MyApp::onReadInput, Qt::QueuedConnection);
-        // }
-
-        // void MyApp::onReadInput()
-        // {
-        //     std::string input;
-        //     std::getline(std::cin, input);
-        //     if (input == "exit")
-        //         quit();
-        //     else {
-        //         emit readInput();
-        //     }
-        // }
+    void NetworkSystem::onMessageReceived(Message &msg)
+    {
+        if (msg.getEvent() == PLAYER_EVENT::MOVE)
+            std::cout << "MOVE" << std::endl;
+            // emit playerMoveEvent(msg.getId(), msg.getDirection());
+        else if (msg.getEvent() == PLAYER_EVENT::SHOOT)
+            std::cout << "SHOOT" << std::endl;
+            // emit playerShootEvent(msg.getId());
+        else if (msg.getEvent() == PLAYER_EVENT::QUIT)
+            std::cout << "QUIT" << std::endl;
+            // emit playerQuitEvent(msg.getId());
+        else if (msg.getEvent() == PLAYER_EVENT::CONNECT)
+            std::cout << "CONNECT" << std::endl;
+            // emit playerConnectEvent(msg.getId());
     }
 }
+

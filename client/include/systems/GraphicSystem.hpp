@@ -27,10 +27,10 @@ namespace rtype{
             // void unloadEntity(std::shared_ptr<Entity> entity, Scene &scene) {};
         protected:
         private:
-            GraphicComponent _graph;
+//            GraphicComponent _graph;
 
         public slots:
-            void onUpdateSprites(std::vector<Entity *> entities);
+            void onUpdateEntities(std::vector<Entity *> entities);
     };
 }
 

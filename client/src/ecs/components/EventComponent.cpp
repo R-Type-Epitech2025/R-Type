@@ -9,9 +9,14 @@
 // #include <functional>
 
 namespace rtype{
-    EventComponent::EventComponent(rtype::EntityType entity)
+    EventComponent::EventComponent(rtype::EntityType entity, std::vector<int> positioninscreen, std::vector<int> sizeScreen)
     {
         this->entity = entity;
+        this->_hitbox.x = positioninscreen[0];
+        this->_hitbox.y = positioninscreen[1];
+        this->_hitbox.width = sizeScreen[0];
+        this->_hitbox.height = sizeScreen[1];
+        this->is_hitbox = true;
     }
 
     EventComponent::~EventComponent()
@@ -36,5 +41,25 @@ namespace rtype{
         this->_hitbox.width = width;
         this->_hitbox.height = height;
         this->is_hitbox = true;
+    }
+
+    EntityType convertUint32ToEntityType(uint32_t type)
+    {
+        switch (type) {
+            case 0:
+                return EntityType::BACKGROUND;
+            case 1:
+                return EntityType::MAIN_PLAYER;
+            case 2:
+                return EntityType::PLAYER;
+            case 3:
+                return EntityType::BUTTON;
+            case 4:
+                return EntityType::BULLET;
+            case 5:
+                return EntityType::MOB;
+            default:
+                return EntityType::BACKGROUND;
+        }
     }
 }

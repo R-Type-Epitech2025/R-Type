@@ -5,40 +5,74 @@
 ** NetworkSystem
 */
 
-#ifndef NETWORKSYSTEM_HPP_
-#define NETWORKSYSTEM_HPP_
+#ifndef CLIENT_HPP_
+#define CLIENT_HPP_
 
-#include "../ISystem.hpp"
-#include "Message.hpp"
+#include "UDPSocket.hpp"
 
-namespace rtype {
-    namespace server {
-        // class MyApp : public QCoreApplication {
 
-        //     Q_OBJECT
-            
-        //     public:
-        //         MyApp(int &argc, char **argv);
-        //         ~MyApp() = default;
+namespace rtype{
 
-        //     public slots:
-        //         void onReadInput();
+    class NetworkSystem : public QObject {
 
-        //     signals:
-        //         void readInput();
-        // };
+        Q_OBJECT
 
-        class NetworkSystem : public ISystem {
-            public:
-                NetworkSystem();
-                ~NetworkSystem();
+        public:
+            /*
+            ** @brief Construct a new NetworkSystem object
+            ** 
+            ** @param parent the parent of the object - Normally the QCoreApplication
+            */
+            NetworkSystem(QObject *parent);
 
-            protected:
-                QByteArray _message;
-            private:
-        };
-    }
+            /*
+            ** @brief Destroy the NetworkSystem object
+            ** 
+            */
+            virtual ~NetworkSystem() {};
+
+        public slots:
+            /*
+            ** @brief Called when a datagram is received on the UDP socket
+            ** 
+            ** @param msg the message received already deserialized
+            */
+            void onMessageReceived(Message &msg);
+
+            /*
+            ** @brief Called when the GameSystem has updated entities to send to the clients
+            ** 
+            ** @param entities a vector of shared_ptr to IEntity
+            */
+            void onSendUpdatedEntities(std::vector<Entity *> &entities);
+
+        signals:
+            /*
+            ** @brief Emitted when a player moves - Received by the GameSystem
+            ** 
+            */
+            // void playerMoveEvent(quint16 id, DIRECTION dir);
+
+            /*
+            ** @brief Emitted when a player shoots - Received by the GameSystem
+            ** 
+            */
+            // void playerShootEvent(quint16 id);
+
+            /*
+            ** @brief Emitted when a player quits - Received by the GameSystem
+            ** 
+            */
+            // void playerQuitEvent(quint16 id);
+
+        protected:
+        private:
+            UDPSocket *_udpSocket;
+    };
 }
 
-
+<<<<<<< HEAD
+#endif /* !CLIENT_HPP_ */
+=======
 #endif /* !NETWORKSYSTEM_HPP_ */
+>>>>>>> ecs_network_v2.0

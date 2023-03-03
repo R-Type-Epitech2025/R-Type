@@ -16,20 +16,31 @@
 
 namespace rtype {
 
-    class SystemManager {
+    class SystemManager : public QObject {
+
+        Q_OBJECT
+    
         public:
-            SystemManager();
+            SystemManager(QObject *parent = nullptr);
             ~SystemManager();
 
-            void setGraphicSystem(GraphicSystem *graphicSystem);
-            void setMovementSystem(MovementSystem *movementSystem);
-            void setNetworkSystem(NetworkSystem *networkSystem);
+            void createGraphicSystem();
+            void createMovementSystem();
+            void createNetworkSystem(QString addr, quint32 port);
+            void createEventSystem();
 
+            void updateEvents(SceneManager *currentScene, sf::Event &event);
+            void updateGraphic(SceneManager *Manager, uint64_t time);
+            void updateMovement(SceneManager *Manager, sf::Event &event);
+
+            void gameQuit();
+
+            GraphicSystem *graphicSystem;
+            MovementSystem *movementSystem;
+            NetworkSystem *networkSystem;
+            EventSystem *eventSystem;
         protected:
         private:
-            GraphicSystem *_graphicSystem;
-            MovementSystem *_movementSystem;
-            NetworkSystem *_networkSystem;
     };
 }
 

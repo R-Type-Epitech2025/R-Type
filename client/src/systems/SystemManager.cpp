@@ -8,8 +8,8 @@
 #include "systems/SystemManager.hpp"
 
 namespace rtype {
-    SystemManager::SystemManager()
-    : _graphicSystem(nullptr), _movementSystem(nullptr), _networkSystem(nullptr)
+
+    SystemManager::SystemManager(QObject *parent) : QObject(parent), graphicSystem(nullptr), movementSystem(nullptr), networkSystem(nullptr)
     {
     }
 
@@ -17,26 +17,52 @@ namespace rtype {
     {
     }
 
-    void SystemManager::setGraphicSystem(GraphicSystem *graphicSystem)
+    void SystemManager::createGraphicSystem()
     {
-        _graphicSystem = graphicSystem;
-        if (_networkSystem != nullptr)
-            QObject::connect(_networkSystem, SIGNAL(updateSprites(std::list<Entity *>)), _graphicSystem, SLOT(onUpdateSprites(std::vector<Entity *>)));
+        graphicSystem = new GraphicSystem(this);
+        if (networkSystem != nullptr)
+            QObject::connect(networkSystem, SIGNAL(updateEntities(std::vector<Entity *>)), graphicSystem, SLOT(onUpdateEntities(std::vector<Entity *>)));
     }
 
-    void SystemManager::setMovementSystem(MovementSystem *movementSystem)
+    void SystemManager::createMovementSystem()
     {
-        _movementSystem = movementSystem;
-        if (_networkSystem != nullptr)
-            QObject::connect(_movementSystem, SIGNAL(sendMovePlayer(DIRECTION)), _networkSystem, SLOT(onSendMovePlayer(DIRECTION)));
+        movementSystem = new MovementSystem(this);
+        if (networkSystem != nullptr)
+            QObject::connect(movementSystem, SIGNAL(sendMovePlayer(DIRECTION)), networkSystem, SLOT(onSendMovePlayer(DIRECTION)));
     }
 
-    void SystemManager::setNetworkSystem(NetworkSystem *networkSystem)
+    void SystemManager::createNetworkSystem(QString addr, quint32 port)
     {
-        _networkSystem = networkSystem;
-        if (_graphicSystem != nullptr)
-            QObject::connect(_networkSystem, SIGNAL(updateSprites(std::list<Entity *>)), _graphicSystem, SLOT(onUpdateSprites(std::list<Entity *>)));
-        if (_movementSystem != nullptr)
-            QObject::connect(_movementSystem, SIGNAL(sendMovePlayer(DIRECTION)), _networkSystem, SLOT(onSendMovePlayer(DIRECTION)));
+        networkSystem = new NetworkSystem(this, addr, port);
+        if (graphicSystem != nullptr)
+            QObject::connect(networkSystem, SIGNAL(updateEntities(std::vector<Entity *>)), graphicSystem, SLOT(onUpdateEntities(std::vector<Entity *>)));
+        if (movementSystem != nullptr)
+            QObject::connect(movementSystem, SIGNAL(sendMovePlayer(DIRECTION)), networkSystem, SLOT(onSendMovePlayer(DIRECTION)));
+    }
+
+    void SystemManager::createEventSystem()
+    {
+        eventSystem = new EventSystem(this);
+    }
+
+    void SystemManager::updateEvents(SceneManager *currentScene, sf::Event &event)
+    {
+        eventSystem->update(currentScene, event);
+    }
+
+
+    void SystemManager::updateGraphic(SceneManager *Manager, uint64_t time)
+    {
+        graphicSystem->update(Manager, time);
+    }
+
+    void SystemManager::updateMovement(SceneManager *Manager, sf::Event &event)
+    {
+        movementSystem->update(Manager, event);
+    }
+
+    void SystemManager::gameQuit()
+    {
+        delete networkSystem;
     }
 }

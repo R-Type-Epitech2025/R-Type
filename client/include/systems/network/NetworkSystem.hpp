@@ -32,7 +32,7 @@ namespace rtype{
             void onMessageReceived(Message &msg);
 
         signals:
-            void updateSprites(std::list<Entity *> sprites);
+            void updateSprites(std::vector<Entity *> entities);
 
         protected:
         private:
