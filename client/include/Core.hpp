@@ -24,12 +24,13 @@ namespace rtype
             TEST
         }; 
         Core();
-        int run(int argc, char **argv, SceneManager *scenemanager);
+        //, SceneManager *scenemanager
+        int run(int argc, char **argv);
         ~Core();
         // void loadEntity(std::shared_ptr<IEntity> entity);
         // void unloadEntity(std::shared_ptr<IEntity> entity);
     private:
-        SceneManager _sceneManager;
+        SceneManager *_sceneManager;
         bool _end = false;
     };
 } // namespace rType

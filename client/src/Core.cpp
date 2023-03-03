@@ -29,11 +29,12 @@ rtype::Entity *spawnEnnemy()
     return entity;
 }
 
-rtype::Core::Core()
+rtype::Core::Core() : _sceneManager(new rtype::SceneManager())
 {
 }
 
-int rtype::Core::run(int argc, char **argv, rtype::SceneManager *sceneManager)
+//, rtype::SceneManager *sceneManager
+int rtype::Core::run(int argc, char **argv)
 {
     sf::Event event;
     QCoreApplication game(argc, argv);
@@ -53,14 +54,14 @@ int rtype::Core::run(int argc, char **argv, rtype::SceneManager *sceneManager)
     scene->addEntity(entity1);
     scene->addEntity(spaceShipe);
     scene->addEntity(ennemy);
-    eventSystem->createNewEvent("play", sceneManager, "second", true, rtype::EventSystemType::CHANGESCENE, sf::Keyboard::Key::Escape);
-    rtype::Scene *scene2 = new rtype::Scene();
-    scene2->addEntity(entity);
-    scene2->addEntity(entity);
+    eventSystem->createNewEvent("play", _sceneManager, "second", true, rtype::EventSystemType::CHANGESCENE, sf::Keyboard::Key::Escape);
+    //rtype::Scene *scene2 = new rtype::Scene();
+    //scene2->addEntity(entity);
+    //scene2->addEntity(entity);
 
-    sceneManager->addScene("first" ,scene);
-    sceneManager->addScene("second" ,scene2);
-    sceneManager->setScene("first");
+    _sceneManager->addScene("first" ,scene);
+    //sceneManager->addScene("second" ,scene2);
+    _sceneManager->setScene("first");
     //sceneManager, graphicSystem, movementSystem, &event, eventSystem
     QObject::connect(timer, &QTimer::timeout, [&]() {
         //std::vector<rtype::Entity*> entities = sceneManager->getCurrentScene()->get_entities();
@@ -70,25 +71,25 @@ int rtype::Core::run(int argc, char **argv, rtype::SceneManager *sceneManager)
         //        player = test_entity;
         //}
 
-        while (sceneManager->window.pollEvent(event)){
+        while (_sceneManager->window.pollEvent(event)){
             if (event.type == sf::Event::Closed) 
                 exit(0);
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
                 exit(0);
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
-                rtype::Entity *test = new rtype::Entity(rtype::EntityType::BULLET , {spaceShipe->container.movement_component->pos.y, spaceShipe->container.movement_component->pos.y},{0, 0}, {500, 500}, {500, 500}, "./assets/test_image.jpg", "bullet");
+                rtype::Entity *test = new rtype::Entity(rtype::EntityType::BULLET , {spaceShipe->container.movement_component->pos.y, spaceShipe->container.movement_component->pos.y},{0, 0}, {500, 500}, {500, 500}, "./assets/r-typesheet42.gif", "bullet");
 
 //                rtype::Entity *test = new rtype::Entity(rtype::EntityType::BULLET , {spaceShipe->container.movement_component->pos.y, spaceShipe->container.movement_component->pos.y},{0, 0}, {500, 500}, {500, 500}, "./assets/test_image.jpg");
-                sceneManager->getCurrentScene()->addEntity(test);
+                _sceneManager->getCurrentScene()->addEntity(test);
                 
             }
             
         }
         
         //sceneManager->getCurrentScene();
-        graphicSystem->update(sceneManager, 12);
-        movementSystem->update(sceneManager, event);
-        eventSystem->update(sceneManager, sceneManager->window, event);
+        graphicSystem->update(_sceneManager, 12);
+        movementSystem->update(_sceneManager, event);
+        eventSystem->update(_sceneManager, _sceneManager->window, event);
 
         // entity1->container.event_component->eventHandler(event, sf::Mouse::Button::Left, window, print);
     });

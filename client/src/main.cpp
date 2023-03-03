@@ -27,12 +27,13 @@ std::string get_current_dir() {
 
 
 int main(int argc, char* argv[]) {
-    std::cout << get_current_dir() << std::endl;
-    sf::RenderWindow window(sf::VideoMode(1920, 1080), "My Game");
-    window.setFramerateLimit(60);
-    window.clear(sf::Color::Black);
+    //std::cout << get_current_dir() << std::endl;
+    //sf::RenderWindow window(sf::VideoMode(1920, 1080), "My Game");
+    //window.setFramerateLimit(60);
+    //window.clear(sf::Color::Black);
     rtype::Core core;
-    rtype::SceneManager *scenemanager = new rtype::SceneManager();
-    core.run(argc, argv, scenemanager);
+    //rtype::SceneManager *scenemanager = new rtype::SceneManager();
+// , scenemanager
+    core.run(argc, argv);
     return 0;
 }
