@@ -8,11 +8,10 @@
 #ifndef CORE_HPP
 #define CORE_HPP
 
-#include <map>
-
-#include "systems/ISystem.hpp"
-#include "SceneManager.hpp"
-
+#include "ecs/SceneManager.hpp"
+#include <QCoreApplication>
+#include <QTimer>
+#include <QObject>
 namespace rtype
 {
     class Core
@@ -25,12 +24,13 @@ namespace rtype
             TEST
         }; 
         Core();
-        void mainLoop();
-        void loadEntity(std::shared_ptr<IEntity> entity);
-        void unloadEntity(std::shared_ptr<IEntity> entity);
+        //, SceneManager *scenemanager
+        int run(int argc, char **argv);
+        ~Core();
+        // void loadEntity(std::shared_ptr<IEntity> entity);
+        // void unloadEntity(std::shared_ptr<IEntity> entity);
     private:
-        std::map<SystemType, std::shared_ptr<ISystem>> _systems;
-        SceneManager _sceneManager;
+        SceneManager *_sceneManager;
         bool _end = false;
     };
 } // namespace rType

@@ -7,36 +7,32 @@
 
 #ifndef ISYSTEM_HPP
 #define ISYSTEM_HPP
+#include "ecs/SceneManager.hpp"
+#include <QObject>
 
-#include <memory>
-#include <QtNetwork>
-#include <QDataStream>
-
-namespace rtype {    
-    namespace system {
-        enum class SystemType {
-            MOVEMENT,
-            GRAPHIC
-        };
-        class SceneManager;
-        class IEntity;
-
-        class ISystem 
-        {
-        public:
-            virtual ~ISystem() = default;
-            virtual SystemType getType() const = 0;
-
-            
-            virtual void init(SceneManager &sceneManager) = 0;
-            virtual void update(SceneManager &manager, uint64_t time) = 0;
-            virtual void destroy() = 0;
-            virtual void loadEntity(std::shared_ptr<IEntity> entity) = 0;
-            virtual void unloadEntity(std::shared_ptr<IEntity> entity) = 0;
-        protected:
-        private:
+namespace rtype {
+    
+    enum SystemType {
+        MOVEMENT,
+        GRAPHIC,
+        AUDIO,
+        EVENT,
+        GAME,
+        NETWORK
     };
-    } // namespace system
+
+    class ISystem 
+    {
+    public:
+        virtual SystemType getType() const = 0;            
+        virtual void init(SceneManager &sceneManager) = 0;
+        virtual void update(SceneManager &manager, uint64_t time) = 0;
+        virtual void destroy() = 0;
+        virtual void loadEntity(std::shared_ptr<Entity> entity, Scene &scene) = 0;
+        virtual void unloadEntity(std::shared_ptr<Entity> entity, Scene &scene) = 0;
+    protected:
+    private:
+    };
 } // namespace rType
 
 #endif /* !ISYSTEM_HPP */

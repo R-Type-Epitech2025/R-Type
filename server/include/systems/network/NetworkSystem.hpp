@@ -5,40 +5,39 @@
 ** NetworkSystem
 */
 
-#ifndef NETWORKSYSTEM_HPP_
-#define NETWORKSYSTEM_HPP_
+#ifndef CLIENT_HPP_
+#define CLIENT_HPP_
 
-#include "../ISystem.hpp"
-#include "Message.hpp"
+#include "UDPSocket.hpp"
 
-namespace rtype {
-    namespace server {
-        // class MyApp : public QCoreApplication {
+namespace rtype{
+    
+    class NetworkSystem : public QObject {
 
-        //     Q_OBJECT
-            
-        //     public:
-        //         MyApp(int &argc, char **argv);
-        //         ~MyApp() = default;
+        Q_OBJECT
 
-        //     public slots:
-        //         void onReadInput();
+        public:
+            NetworkSystem(QObject *parent, QString addr, quint32 port);
+            ~NetworkSystem() {};
 
-        //     signals:
-        //         void readInput();
-        // };
+            SystemType getType();
+            // void init(SceneManager &sceneManager) {};
+            // void update(SceneManager &manager, uint64_t time) {};
+            // void destroy() {};
+            // void loadEntity(std::shared_ptr<Entity> entity, Scene &scene) {};
+            // void unloadEntity(std::shared_ptr<Entity> entity, Scene &scene) {};
 
-        class NetworkSystem : public ISystem {
-            public:
-                NetworkSystem();
-                ~NetworkSystem();
+        public slots:
+            void onSendMovePlayer(rtype::DIRECTION dir);
+            void onMessageReceived(Message &msg);
 
-            protected:
-                QByteArray _message;
-            private:
-        };
-    }
+        signals:
+            void updateSprites(std::list<Entity *> sprites);
+
+        protected:
+        private:
+            UDPSocket *_udpSocket;
+    };
 }
 
-
-#endif /* !NETWORKSYSTEM_HPP_ */
+#endif /* !CLIENT_HPP_ */
