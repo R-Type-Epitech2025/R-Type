@@ -17,6 +17,48 @@ void print()
 
 namespace rtype {
     //à mettre dans le update du game system
+    Entity *BulletSpawner(Entity *mob)
+    {
+        Entity *entity = new Entity(EntityType::BULLET, {mob->container.graphic_component->position.x, mob->container.graphic_component->position.y + 32}, {16, 240}, {16, 16}, 2.0, "./assets/sprites.png", "bullet");
+        entity->container.movement_component->velocity.x = -30;
+        return entity;
+    }
+
+    void EnnemyShoot(Scene *scene)
+    {
+        for (auto &entity : scene->get_entities()) {
+            if (entity->_id == "ennemy1") {
+                scene->addEntity(BulletSpawner(entity));
+            }
+        }
+    }
+
+    std::vector<Entity *> ennemy1()
+    {
+        std::cout << ennemy1 << std::endl;
+        std::vector<Entity *> entities;
+        for (int i = 0; i < 9; i++) {
+            Entity *entity;
+            if (i < 4) {
+                entity = new Entity(EntityType::MOB, {2200 - i * 70, 50 + i * 100}, {0, 0}, {36, 36}, 3.0, "./assets/ennemy1.gif", "ennemy1");
+            } else {
+                entity = new Entity(EntityType::MOB, {1920 + (i - 4) * 70, 50 + i * 100}, {0, 0}, {36, 36}, 3.0, "./assets/ennemy1.gif", "ennemy1");
+            };
+            entity->container.movement_component->velocity.x = -10;
+            entities.push_back(entity);
+        }
+        return entities;
+    }
+
+    std::vector<Entity *> ennemy2()
+    {
+        std::vector<Entity *> entities;
+        Entity *entity = new Entity(EntityType::MOB, {1920, 800}, {50, 0}, {50, 50}, 1.5, "./assets/ennemy2.gif", "ennemy2");
+        entity->container.movement_component->velocity.x = -10;
+        entities.push_back(entity);
+        return entities;
+    }
+
     Entity *spawnEnnemy()
     {
         std::cout << "test1" << std::endl;
@@ -40,20 +82,23 @@ namespace rtype {
         QCoreApplication game(argc, argv);
         std::srand(std::time(nullptr));
         QTimer *timer = new QTimer(&game);
-        
+        sf::Clock clock;
+
         _systemManager->createGraphicSystem();
         _systemManager->createMovementSystem();
         _systemManager->createEventSystem();
         Entity *entity = new Entity(EntityType::BACKGROUND ,{0, 0},{0 , 0}, {1920, 1080}, 1.0, "./assets/backgournd2.jpg", "background");
         Entity *entity1 = new Entity(EntityType::BUTTON , {500, 500},{0, 0}, {500, 500}, 1.0, "./assets/button_play.png", "play");
         Entity *spaceShip = new Entity(EntityType::MAIN_PLAYER , {500, 500},{0, 0}, {500, 500}, 1.0, "./assets/r-typesheet42.gif", "spaceship");
-        Entity *ennemy = spawnEnnemy();
+        std::vector<Entity *> ennemy = ennemy1();
         
         Scene *scene = new Scene();
         scene->addEntity(entity);
         scene->addEntity(entity1);
         scene->addEntity(spaceShip);
-        scene->addEntity(ennemy);
+        for (Entity *test_entity : ennemy) {
+            scene->addEntity(test_entity);
+        }
         _systemManager->eventSystem->createNewEvent("play", _sceneManager, "second", true, EventSystemType::CHANGESCENE, sf::Keyboard::Key::Escape);
         //Scene *scene2 = new Scene();
         //scene2->addEntity(entity);
@@ -70,7 +115,6 @@ namespace rtype {
             //    if (test_entity->_type == EntityType::MAIN_PLAYER)
             //        player = test_entity;
             //}
-
             while (_sceneManager->window.pollEvent(event)){
                 if (event.type == sf::Event::Closed) 
                     exit(0);
@@ -82,7 +126,10 @@ namespace rtype {
                     _sceneManager->getCurrentScene()->addEntity(test);
                     
                 }
-                
+            }
+            if (clock.getElapsedTime().asSeconds() > 1) {
+                EnnemyShoot(_sceneManager->getCurrentScene());
+                clock.restart();
             }
             
             //sceneManager->getCurrentScene();
