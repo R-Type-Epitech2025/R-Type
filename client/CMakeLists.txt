@@ -38,7 +38,6 @@ set(SRC_FILES
     
     src/ecs/Entity.cpp
     src/ecs/SceneManager.cpp
-    src/ecs/components/Scene.cpp
     src/ecs/components/GraphicComponent.cpp
     src/ecs/components/MovementComponent.cpp
     src/ecs/Scene.cpp

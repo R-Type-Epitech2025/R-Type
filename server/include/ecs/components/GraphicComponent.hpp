@@ -104,11 +104,10 @@ namespace rtype{
             struct SpritePosition {
                 int x;
                 int y;
-                int sprite_x;
-                int sprite_y;
+                u_int32_t sprite_x;
+                u_int32_t sprite_y;
             };
         
-            SpritePosition position;
         
             /**
              ** @brief set the sprite size
@@ -118,7 +117,42 @@ namespace rtype{
                 int width;
                 int height;
             };
-        
+
+            /**
+             ** @brief Get the Sprite Sheet Index object
+             ** 
+             ** @return u_int32_t 
+             */
+            u_int32_t getSpritesheetIndex() const;
+
+            /**
+             ** @brief Get the Sheet Position object
+             ** 
+             ** @return std::vector<int> 
+             */
+            std::vector<u_int32_t> getSheetPosition() const;
+
+            /**
+             ** @brief Get the Sheet Size object
+             ** 
+             ** @return std::vector<u_int32_t> 
+             */
+            std::vector<u_int32_t> getSheetSize() const;
+
+
+            /**
+             ** @brief Get the Scale object
+             ** 
+             ** @return u_int32_t 
+             */
+            u_int32_t getScale() const;
+
+            /**
+             ** @brief Get the Position object
+             ** 
+             ** @return u_int32_t 
+             */
+            std::vector<u_int32_t> getPosition() const;
 
             SpriteSize size;
             int nb_sprites;
@@ -127,12 +161,16 @@ namespace rtype{
 
         protected:
         private:
+            SpritePosition position;
+            u_int32_t _spritesheetIndex;
             sf::Texture texture;
             sf::Sprite sprite;
             bool isPrintable;
             float angle;
             sf::IntRect rect;
+            u_int32_t _scale;
     };
+
 }
 
 #endif /* !GRAPHICCOMPONENT_HPP_ */

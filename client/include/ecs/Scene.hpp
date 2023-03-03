@@ -70,7 +70,7 @@ namespace rtype {
          ** 
          ** @param entity 
          */
-        void Scene::removeEntity(rtype::Entity *entity);
+        void removeEntity(rtype::Entity *entity);
 
         /**
          ** @brief get an entity from the scene

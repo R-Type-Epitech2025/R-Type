@@ -16,10 +16,24 @@ namespace rtype{
         Q_OBJECT
 
         public:
+            /**
+             ** @brief Construct a new Game System object
+             ** 
+             ** @param parent 
+             */
             GameSystem(QObject *parent = nullptr);
+            /**
+             ** @brief Destroy the Game System object
+             ** 
+             */
             ~GameSystem();
 
         public slots:
+            /**
+             ** @brief Called when a new player connects to the server
+             ** 
+             ** @param id the id of the new player
+             */
             void onNewPlayerConnected(quint16 id);
         protected:
         private:

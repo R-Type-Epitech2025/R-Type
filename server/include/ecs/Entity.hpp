@@ -39,7 +39,7 @@ namespace rtype {
         /**
          ** @brief Construct a new Entity object
          */
-        Entity(rtype::EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, std::string id);
+        Entity(rtype::EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, uint32_t id = 0);
 
         /**
          ** @brief Destroy the Entity object
@@ -74,9 +74,62 @@ namespace rtype {
          ** @param direction 
          */
         void set_direction(rtype::DIRECTION direction);
+
+        /**
+         ** @brief Get the position object
+         ** 
+         ** @return sf::Vector2f 
+         */
+        u_int32_t getId() const;
+
+        /**
+         ** @brief Get the Entity Type object
+         ** 
+         ** @return u_int32_t 
+         */
+        u_int32_t getEntityType() const;
+
+
+        /**
+         ** @brief Get the Spritesheet Index object
+         ** 
+         ** @return u_int32_t 
+         */
+        u_int32_t getSpritesheetIndex() const;
+
+        /**
+         ** @brief Get the Sheet Position object
+         ** 
+         ** @return std::vector<u_int32_t> 
+         */
+        std::vector<u_int32_t> getSheetPosition() const;
+
+        /**
+         ** @brief Get the Sheet Size object
+         ** 
+         ** @return std::vector<u_int32_t> 
+         */
+        std::vector<u_int32_t> getSheetSize() const;
+
+
+        /**
+         ** @brief Get the Scale object
+         ** 
+         ** @return u_int32_t 
+         */
+        u_int32_t getScale() const;
+
+        /**
+         ** @brief Get the Position object
+         ** 
+         ** @return std::vector<u_int32_t> 
+         */
+        std::vector<u_int32_t> getPosition() const; 
+
+
         struct Containers container;  // c'est le temps de tester !!!pas du tout definitif;
         rtype::EntityType _type;
-        std::string _id;
+        u_int32_t _id;
         // Load the entity
     protected:
         
