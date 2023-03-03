@@ -13,6 +13,7 @@ namespace rtype {
         this->container.event_component = nullptr;
         this->container.graphic_component = new GraphicComponent(sprite, positioninsprite_sheet, sizespritesheet, scale, positioninscreen);
         this->container.movement_component = nullptr;
+        
         std::vector<int> velociity = {0, 0};
         std::vector<int> bulletVelociity = {3, 0};
         std::vector<int> hitboxSize = {(int) (sizespritesheet[0] * scale), (int) (sizespritesheet[1] * scale)};

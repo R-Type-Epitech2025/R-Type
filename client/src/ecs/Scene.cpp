@@ -29,7 +29,7 @@ namespace rtype {
         return(_entities);
     }
 
-    rtype::Entity *Scene::getEntity(std::string id) {
+    Entity *Scene::getEntity(std::string id) {
         for (auto &entity : _entities) {
             if (entity->_id == id)
                 return (entity);

@@ -14,17 +14,10 @@ namespace rtype {
     class Scene{
         public:
             /**
-             * @brief Construct a new Scene object
-             * 
+             ** @brief Construct a new Scene object
+             ** 
              */
             Scene();
-class Scene{
- public:
-        /**
-         ** @brief Construct a new Scene object
-         ** 
-         */
-        Scene();
 
         /**
          ** @brief Destroy the Scene object
@@ -57,6 +50,7 @@ class Scene{
 
         // void draw(sf::RenderWindow& window) final; // Draw the scene
 
+
         /**
          ** @brief Add an entity to the scene
          ** 
@@ -70,6 +64,13 @@ class Scene{
          ** @param entity 
          */
         std::vector<Entity*> get_entities();
+
+        /**
+         ** @brief remove an entity from the scene
+         ** 
+         ** @param entity 
+         */
+        void Scene::removeEntity(rtype::Entity *entity);
 
         /**
          ** @brief get an entity from the scene
