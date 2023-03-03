@@ -24,19 +24,7 @@ namespace rtype {
         MOVE,
         SHOOT,
         QUIT,
-        CONNECT,
-        DISCONNECT
-    };
-
-    /**
-     ** @brief The direction of the move event
-     ** 
-     */
-    enum DIRECTION {
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT
+        CONNECT
     };
 
     class Message {

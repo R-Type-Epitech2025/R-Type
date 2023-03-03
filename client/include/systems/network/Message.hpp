@@ -22,7 +22,8 @@ namespace rtype {
     enum class EVENT {
         MOVE,
         SHOOT,
-        QUIT
+        QUIT,
+        CONNECT
     };
 
     class Message {

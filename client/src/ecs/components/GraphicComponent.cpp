@@ -45,7 +45,7 @@ namespace rtype {
         }
         
         void GraphicComponent::setSize(float scale) {
-            sprite.setScale(scale * sprite.getTextureRect().width, scale * sprite.getTextureRect().height);
+            sprite.setScale(scale, scale);
         }
         
         bool GraphicComponent::getIsPrintable() {
