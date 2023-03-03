@@ -15,8 +15,8 @@
 
 namespace rtype {
         /**
-         * @brief struct that contains all the components of an entity
-         * 
+         ** @brief struct that contains all the components of an entity
+         ** 
          */
         struct Containers {
             GameComponent *game_component;
@@ -25,7 +25,7 @@ namespace rtype {
             MovementComponent *movement_component;
         };
         /**
-         * @brief enum that contains all the types of entities
+         ** @brief enum that contains all the types of entities
          *
          */
         enum ComponentType {
@@ -37,55 +37,55 @@ namespace rtype {
     class Entity {
     public:
         /**
-         * @brief Construct a new Entity object
+         ** @brief Construct a new Entity object
          */
         Entity(rtype::EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, std::string id);
 
         /**
-         * @brief Destroy the Entity object
-         * 
+         ** @brief Destroy the Entity object
+         ** 
          */
         ~Entity();
 
         /**
-         * @brief add a container
-         * 
-         * @param componentype 
+         ** @brief add a container
+         ** 
+         ** @param componentype 
          */
         //void add_Container(const ComponentType &componentype);
         
         /**
-         * @brief remove a container
-         * 
-         * @param componentype 
+         ** @brief remove a container
+         ** 
+         ** @param componentype 
          */
         void remove_Container(const ComponentType &componentype);
 
         /**
-         * @brief get the containers
-         * 
-         * 
+         ** @brief get the containers
+         ** 
+         ** 
          */
         void get_containers();
 
         /**
-         * @brief get the direction of the entity
-         * 
-         * @return rtype::EntityType 
+         ** @brief get the direction of the entity
+         ** 
+         ** @return rtype::EntityType 
          */
         rtype::DIRECTION get_directions();
 
         /**
-         * @brief set the direction of the entity
-         * 
-         * @return sf::Vector2f 
+         ** @brief set the direction of the entity
+         ** 
+         ** @return sf::Vector2f 
          */
         void set_direction(rtype::DIRECTION direction);
 
         /**
-         * @brief declaration of container struct
-         * 
-         * @return sf::Vector2f 
+         ** @brief declaration of container struct
+         ** 
+         ** @return sf::Vector2f 
          */
         struct Containers container;  // c'est le temps de tester !!!pas du tout definitif;
 

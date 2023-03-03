@@ -14,38 +14,55 @@ namespace rtype {
 class Scene{
  public:
         /**
-         * @brief Construct a new Scene object
-         * 
+         ** @brief Construct a new Scene object
+         ** 
          */
         Scene();
 
         /**
-         * @brief Destroy the Scene object
-         * 
+         ** @brief Destroy the Scene object
+         ** 
          */
         ~Scene();
 
         /**
-         * @brief Get the Scene object
-         * 
-         * @param entities 
-         * @return std::vector 
+         ** @brief Get the Scene object
+         ** 
+         ** @param entities 
+         ** @return std::vector 
          */
         // std::vector getScene(std::vector<IEntity> entities); // Get the scene
 
-        // /**
-        //  * @brief Get the Entities object
-        //  * 
-        //  * @return std::vector<IEntity> 
-        //  */
-        // std::vector<IScene> entityList();
-
+        /**
+         ** @brief Update the Scene object
+         ** 
+         ** @param entity 
+         ** @param window 
+         */
         void update(Entity& entity, sf::RenderWindow& window);
 
         // void draw(sf::RenderWindow& window) final; // Draw the scene
+
+        /**
+         ** @brief Add the Entity object
+         ** 
+         ** @param entity 
+         */
         void addEntity(Entity* entity);
         
+        /**
+         ** @brief Get the Entities object
+         ** 
+         ** @return std::vector<Entity*> 
+         */
         std::vector<Entity*> get_entities();
+
+        /**
+         ** @brief Get the Entity object
+         ** 
+         ** @param id 
+         ** @return Entity* 
+         */
         Entity *getEntity(std::string id);
     protected:
     private:

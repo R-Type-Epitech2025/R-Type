@@ -14,8 +14,8 @@
 
 namespace rtype{
     /**
-     * @brief Enum for the direction of the movement
-     * 
+     ** @brief Enum for the direction of the movement
+     ** 
      */
     enum DIRECTION{
             RIGHT,
@@ -26,23 +26,23 @@ namespace rtype{
     class MovementComponent {
         public:
             /**
-             * @brief Construct a new Movement Component object
-             * 
-             * @param positioninscreen 
-             * @param keyboardLink 
-             * @param setVelocity 
+             ** @brief Construct a new Movement Component object
+             ** 
+             ** @param positioninscreen 
+             ** @param keyboardLink 
+             ** @param setVelocity 
              */
             MovementComponent(std::vector<int> positioninscreen, bool keyboardLink, std::vector<int> setVelocity);
 
             /**
-             * @brief Destroy the Movement Component object
-             * 
+             ** @brief Destroy the Movement Component object
+             ** 
              */
             ~MovementComponent();
 
             /**
-             * @brief Set the position strutc
-             * 
+             ** @brief Set the position strutc
+             ** 
              */
             struct position {
                 int x;

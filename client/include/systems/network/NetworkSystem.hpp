@@ -18,46 +18,46 @@ namespace rtype{
 
         public:
             /**
-             * @brief Construct a new Network System object
-             * 
-             * @param parent 
-             * @param addr 
-             * @param port 
+             ** @brief Construct a new Network System object
+             ** 
+             ** @param parent 
+             ** @param addr 
+             ** @param port 
              */
             NetworkSystem(QObject *parent, QString addr, quint32 port);
 
             /**
-             * @brief Destroy the Network System object
-             * 
+             ** @brief Destroy the Network System object
+             ** 
              */
             ~NetworkSystem() {};
 
             /**
-             * @brief Get the Type object
-             * 
-             * @return SystemType 
+             ** @brief Get the Type object
+             ** 
+             ** @return SystemType 
              */
             SystemType getType();
 
         public slots:
             /**
-             * @brief slot activated when a player movement is send by the movement system
-             * 
-             * @param dir 
+             ** @brief slot activated when a player movement is send by the movement system
+             ** 
+             ** @param dir 
              */
             void onSendMovePlayer(rtype::DIRECTION dir);
 
             /**
-             * @brief slot activated when a message is received in the UDP socket
-             * 
+             ** @brief slot activated when a message is received in the UDP socket
+             ** 
              */
             void onMessageReceived(Message &msg);
 
         signals:
             /**
-             * @brief signal emitted when the sprites need to be updated
-             * 
-             * @param entities 
+             ** @brief signal emitted when the sprites need to be updated
+             ** 
+             ** @param entities 
              */
             void updateSprites(std::vector<Entity *> entities);
 

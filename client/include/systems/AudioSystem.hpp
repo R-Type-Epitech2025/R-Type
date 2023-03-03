@@ -12,41 +12,41 @@ namespace rtype{
     class AudioSystem : public ISystem{
         public:
             /**
-             * @brief Construct a new Audio System object
-             * 
+             ** @brief Construct a new Audio System object
+             ** 
              */
             AudioSystem();
 
             /**
-             * @brief Destroy the Audio System object
-             * 
+             ** @brief Destroy the Audio System object
+             ** 
              */
             ~AudioSystem();
 
             /**
-             * @brief init audio
-             * 
+             ** @brief init audio
+             ** 
              */
             void initAudio();
 
             /**
-             * @brief Set the Volume object
-             * 
+             ** @brief Set the Volume object
+             ** 
              */
             void setVolume();
 
             /**
-             * @brief check if audio is ready
-             * 
-             * @return true 
-             * @return false 
+             ** @brief check if audio is ready
+             ** 
+             ** @return true 
+             ** @return false 
              */
             bool isReady();
 
             /**
-             * @brief get main volume
-             * 
-             * @return int 
+             ** @brief get main volume
+             ** 
+             ** @return int 
              */
             int getMainVolume();
         protected:

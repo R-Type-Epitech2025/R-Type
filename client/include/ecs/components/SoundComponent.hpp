@@ -14,14 +14,14 @@ namespace rtype{
         public:
 
             /**
-             * @brief Construct a new Sound Component object
-             * 
+             ** @brief Construct a new Sound Component object
+             ** 
              */
             SoundComponent();
 
             /**
-             * @brief Destroy the Sound Component object
-             * 
+             ** @brief Destroy the Sound Component object
+             ** 
              */
             ~SoundComponent();
             int volume;

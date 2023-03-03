@@ -1,8 +1,8 @@
 // /*
-// ** EPITECH PROJECT, 2023
-// ** client
-// ** File description:
-// ** GameSystem
+// **  EPITECH PROJECT, 2023
+// **  client
+// **  File description:
+// **  GameSystem
 // */
 
 // #ifndef GAMESYSTEM_HPP_

@@ -1,8 +1,8 @@
 // /*
-// ** EPITECH PROJECT, 2023
-// ** client
-// ** File description:
-// ** AudioSystem
+// **  EPITECH PROJECT, 2023
+// **  client
+// **  File description:
+// **  AudioSystem
 // */
 
 // #ifndef AUDIOSYSTEM_HPP_

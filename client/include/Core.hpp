@@ -18,8 +18,8 @@ namespace rtype
     {
     public:
         /**
-         * @brief enum class SystemType
-         * 
+         ** @brief enum class SystemType
+         ** 
          */
         enum class SystemType {
             GAME,
@@ -29,23 +29,23 @@ namespace rtype
         }; 
 
         /**
-         * @brief Construct a new Core object
-         * 
+         ** @brief Construct a new Core object
+         ** 
          */
         Core();
 
         /**
-         * @brief run the core
-         * 
-         * @param argc 
-         * @param argv 
-         * @return int 
+         ** @brief run the core
+         ** 
+         ** @param argc 
+         ** @param argv 
+         ** @return int 
          */
-        int run(int argc, char **argv);
+        int run(int argc, char ** argv);
 
         /**
-         * @brief Destroy the Core object
-         * 
+         ** @brief Destroy the Core object
+         ** 
          */
         ~Core();
     private:

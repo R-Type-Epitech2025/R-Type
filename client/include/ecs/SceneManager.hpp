@@ -23,43 +23,43 @@ namespace rtype {
     class SceneManager {
         public:
             /**
-             * @brief Construct a new Scene Manager object
-             * 
+             ** @brief Construct a new Scene Manager object
+             ** 
              */
             SceneManager();
 
             /**
-             * @brief Destroy the Scene Manager object
-             * 
+             ** @brief Destroy the Scene Manager object
+             ** 
              */
             ~SceneManager();
 
             /**
-             * @brief get the current scene
-             * 
-             * @param scene 
+             ** @brief get the current scene
+             ** 
+             ** @param scene 
              */
             const std::string &getScene() const;
 
             /**
-             * @brief set the current scene
-             * 
-             * @param scene 
+             ** @brief set the current scene
+             ** 
+             ** @param scene 
              */
             void setScene(std::string scene);
 
             /**
-             * @brief add a scene to the scene manager
-             * 
-             * @param scene_name 
-             * @param scene 
+             ** @brief add a scene to the scene manager
+             ** 
+             ** @param scene_name 
+             ** @param scene 
              */
             void addScene(std::string scene_name, rtype::Scene *scene);
 
             /**
-             * @brief Get the Current Scene object
-             * 
-             * @return rtype::Scene* 
+             ** @brief Get the Current Scene object
+             ** 
+             ** @return rtype::Scene* 
              */
             rtype::Scene* getCurrentScene();
 

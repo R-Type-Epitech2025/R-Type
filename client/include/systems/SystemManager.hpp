@@ -22,72 +22,72 @@ namespace rtype {
     
         public:
             /**
-             * @brief Construct a new System Manager object
-             * 
-             * @param parent 
+             ** @brief Construct a new System Manager object
+             ** 
+             ** @param parent 
              */
             SystemManager(QObject *parent = nullptr);
 
             /**
-             * @brief Destroy the System Manager object
-             * 
+             ** @brief Destroy the System Manager object
+             ** 
              */
             ~SystemManager();
 
             /**
-             * @brief create the graphic system
-             *  
+             ** @brief create the graphic system
+             **  
              */
             void createGraphicSystem();
 
             /**
-             * @brief create the movement system
-             *  
+             ** @brief create the movement system
+             **  
              */
             void createMovementSystem();
 
             /**
-             * @brief create the network system
-             *  
+             ** @brief create the network system
+             **  
              */
             void createNetworkSystem(QString addr, quint32 port);
 
             /**
-             * @brief create the event system
-             *  
+             ** @brief create the event system
+             **  
              */
             void createEventSystem();
 
             /**
-             * @brief update events
-             * 
-             * @param SceneManager
-             * @param sf::Event
-             *  
+             ** @brief update events
+             ** 
+             ** @param SceneManager
+             ** @param sf::Event
+             **  
              */
             void updateEvents(SceneManager *currentScene, sf::Event &event);
 
             /**
-             * @brief update graphic
-             * 
-             * @param SceneManager
-             * @param time
-             *  
+             ** @brief update graphic
+             ** 
+             ** @param SceneManager
+             ** @param time
+             **  
              */
             void updateGraphic(SceneManager *Manager, uint64_t time);
 
             /**
-             * @brief update movement
-             * 
-             * @param SceneManager
-             * @param sf::Event
-             *  
+             ** @brief update movement
+             ** 
+             ** @param SceneManager
+             ** @param sf::Event
+             **  
              */
             void updateMovement(SceneManager *Manager, sf::Event &event);
 
             /**
-             * @brief quit the game
-             * 
+             ** @brief quit the game
+             ** 
              */
             void gameQuit();
 

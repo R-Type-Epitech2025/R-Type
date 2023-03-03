@@ -1,8 +1,8 @@
 // /*
-// ** EPITECH PROJECT, 2023
-// ** Archi
-// ** File description:
-// ** SoundComponent
+// **  EPITECH PROJECT, 2023
+// **  Archi
+// **  File description:
+// **  SoundComponent
 // */
 
 // #ifndef SOUNDCOMPONENT_HPP_

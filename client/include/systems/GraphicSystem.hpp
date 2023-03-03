@@ -18,37 +18,37 @@ namespace rtype{
 
         public:
             /**
-             * @brief Construct a new Graphic System object
-             * 
-             * @param parent 
+             ** @brief Construct a new Graphic System object
+             ** 
+             ** @param parent 
              */
             GraphicSystem(QObject *parent = nullptr);
 
             /**
-             * @brief Destroy the Graphic System object
-             * 
+             ** @brief Destroy the Graphic System object
+             ** 
              */
             ~GraphicSystem() {};
 
             /**
-             * @brief init the graphic system
-             * 
-             * @param SceneManager 
-             * @param sf::RenderWindow 
+             ** @brief init the graphic system
+             ** 
+             ** @param SceneManager 
+             ** @param sf::RenderWindow 
              */
             SystemType getType() const { return SystemType::GRAPHIC; };
 
             /**
-             * @brief init the graphic system
-             * 
+             ** @brief init the graphic system
+             ** 
              */
             void init(SceneManager&, sf::RenderWindow &);
 
             /**
-             * @brief update the graphic system
-             * 
-             * @param SceneManager 
-             * @param deltaTime 
+             ** @brief update the graphic system
+             ** 
+             ** @param SceneManager 
+             ** @param deltaTime 
              */
             void update(rtype::SceneManager* Manager, uint64_t time);
         protected:
@@ -56,9 +56,9 @@ namespace rtype{
 
         public slots:
             /**
-             * @brief slot activated when the entities need to be updated
-             * 
-             * @param entities 
+             ** @brief slot activated when the entities need to be updated
+             ** 
+             ** @param entities 
              */
             void onUpdateEntities(std::vector<Entity *> entities);
     };

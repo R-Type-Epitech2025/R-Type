@@ -14,12 +14,20 @@
 #include "ecs/components/GameComponent.hpp"
 
 namespace rtype {
+        /**
+         ** @brief struct for the containers
+         ** 
+         */
         struct Containers {
             GameComponent *game_component;
             EventComponent *event_component;
             GraphicComponent *graphic_component;
             MovementComponent *movement_component;
         };
+        /**
+         ** @brief enum of different component type
+         ** 
+         */
         enum ComponentType {
             GAMECOMPONENT = 0,
             GRAPHICCOMPONENT = 1,
@@ -29,38 +37,42 @@ namespace rtype {
     class Entity {
     public:
         /**
-         * @brief Construct a new Entity object
+         ** @brief Construct a new Entity object
          */
         Entity(rtype::EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, std::string id);
 
         /**
-         * @brief Destroy the Entity object
-         * 
+         ** @brief Destroy the Entity object
+         ** 
          */
         ~Entity();
 
         /**
-         * @brief 
-         * 
-         * @param componentype 
-         */
-        //void add_Container(const ComponentType &componentype);
-        
-        /**
-         * @brief 
-         * 
-         * @param componentype 
+         ** @brief remove a container
+         ** 
+         ** @param componentype 
          */
         void remove_Container(const ComponentType &componentype);
 
         /**
-         * @brief 
-         * 
-         * 
+         ** @brief get the container
+         ** 
+         ** 
          */
         void get_containers();
 
+        /**
+         ** @brief Get the directions object
+         ** 
+         ** @return rtype::DIRECTION 
+         */
         rtype::DIRECTION get_directions();
+
+        /**
+         ** @brief Set the direction object
+         ** 
+         ** @param direction 
+         */
         void set_direction(rtype::DIRECTION direction);
         struct Containers container;  // c'est le temps de tester !!!pas du tout definitif;
         rtype::EntityType _type;

@@ -15,48 +15,48 @@ class GameSystem : public ISystem {
     public:
 
         /**
-         * @brief Construct a new Game System object
-         * 
+         ** @brief Construct a new Game System object
+         ** 
          */
         GameSystem();
 
         /**
-         * @brief Destroy the Game System object
-         * 
+         ** @brief Destroy the Game System object
+         ** 
          */
         ~GameSystem();
 
         /**
-         * @brief init game
-         * 
-         * @param SceneManager 
+         ** @brief init game
+         ** 
+         ** @param SceneManager 
          */
         void init(SceneManager&) override;
 
         /**
-         * @brief update game
-         * 
-         * @param SceneManager 
-         * @param deltaTime 
+         ** @brief update game
+         ** 
+         ** @param SceneManager 
+         ** @param deltaTime 
          */
         void Update(SceneManager&, int deltaTime) override;
 
         /**
-         * @brief destroy game
-         * 
-         * @param SceneManager 
+         ** @brief destroy game
+         ** 
+         ** @param SceneManager 
          */
         void destroy(SceneManager&) override;
 
         /**
-         * @brief load game
-         * 
+         ** @brief load game
+         ** 
          */
         void loadEntity() override;
 
         /**
-         * @brief unload game
-         * 
+         ** @brief unload game
+         ** 
          */
         void unloadEntity() override;
     protected:

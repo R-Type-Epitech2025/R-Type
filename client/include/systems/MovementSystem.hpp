@@ -7,32 +7,32 @@ namespace rtype {
 
     public:
         /**
-         * @brief Construct a new Movement System object
-         * 
-         * @param parent 
+         ** @brief Construct a new Movement System object
+         ** 
+         ** @param parent 
          */
         MovementSystem(QObject *parent = nullptr);
 
         /**
-         * @brief Destroy the Movement System object
-         * 
+         ** @brief Destroy the Movement System object
+         ** 
          */
         ~MovementSystem() {};
 
         /**
-         * @brief init the movement system
-         * 
-         * @param scene 
+         ** @brief init the movement system
+         ** 
+         ** @param scene 
          */
         SystemType getType() const { return SystemType::MOVEMENT; }; 
 
         // void init(SceneManager &, sf::RenderWindow &) {};
 
         /**
-         * @brief update the movement system
-         * 
-         * @param scene 
-         * @param deltaTime 
+         ** @brief update the movement system
+         ** 
+         ** @param scene 
+         ** @param deltaTime 
          */
         void update(rtype::SceneManager *Manager, sf::Event &event);
 
@@ -44,9 +44,9 @@ namespace rtype {
 
     signals:
         /**
-         * @brief send the move player to the network system
-         * 
-         * @param dir 
+         ** @brief send the move player to the network system
+         ** 
+         ** @param dir 
          */
         void sendMovePlayer(DIRECTION dir);
 

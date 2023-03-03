@@ -16,14 +16,14 @@ namespace rtype{
     class GameComponent {
         public:
             /**
-             * @brief Construct a new Game Component object
-             * 
+             ** @brief Construct a new Game Component object
+             ** 
              */
             GameComponent();
 
             /**
-             * @brief Destroy the Game Component object
-             * 
+             ** @brief Destroy the Game Component object
+             ** 
              */
             ~GameComponent();
             

@@ -23,31 +23,44 @@ namespace rtype {
     class SceneManager {
         public:
             /**
-             * @brief Construct a new Scene Manager object
-             * 
+             ** @brief Construct a new Scene Manager object
+             ** 
              */
             SceneManager();
 
             /**
-             * @brief Destroy the Scene Manager object
-             * 
+             ** @brief Destroy the Scene Manager object
+             ** 
              */
             ~SceneManager();
 
             /**
-             * @brief 
-             * 
-             * @param scene 
+             ** @brief get scene
+             ** 
+             ** @param scene 
              */
             const std::string &getScene() const;
 
             /**
-             * @brief 
-             * 
-             * @param scene 
+             ** @brief 
+             ** 
+             ** @param scene 
              */
             void setScene(std::string scene);
+
+            /**
+             ** @brief add scene
+             ** 
+             ** @param scene_name 
+             ** @param scene 
+             */
             void addScene(std::string scene_name, rtype::Scene *scene);
+
+            /**
+             ** @brief Get the Current Scene object
+             ** 
+             ** @return rtype::Scene* 
+             */
             rtype::Scene* getCurrentScene();
             sf::RenderWindow window;
         protected:
