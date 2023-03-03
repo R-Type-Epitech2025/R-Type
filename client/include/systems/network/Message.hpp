@@ -28,12 +28,12 @@ namespace rtype {
 
         friend QDataStream &operator>>(QDataStream &in, Message &msg);
         
-        std::list<Entity *> getSprites() const;
+        std::vector<Entity *> getEntities() const;
 
     private:
         friend QDataStream &readMessage(QDataStream &in, Message &msg);
         
-        std::list<Entity *> _sprites;
+        std::vector<Entity *> _entities;
     protected:
 
     };

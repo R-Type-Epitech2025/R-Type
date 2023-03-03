@@ -22,7 +22,6 @@ find_package(Qt5 COMPONENTS Widgets REQUIRED)
 add_executable(R-Type_server
     src/ISystem/ISystem.cpp
     src/ISystem/NetworkSystem.cpp
-    src/ISystem/Server.cpp
     src/ISystem/main_server.cpp
 )
 

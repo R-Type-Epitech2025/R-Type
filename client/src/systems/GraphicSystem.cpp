@@ -45,7 +45,7 @@ namespace rtype {
     {
     }
 
-    void GraphicSystem::onUpdateSprites(std::vector<Entity *> entities)
+    void GraphicSystem::onUpdateEntities(std::vector<Entity *> entities)
     {
         return;
     }

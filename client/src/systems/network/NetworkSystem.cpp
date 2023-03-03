@@ -37,7 +37,7 @@ namespace rtype{
 
         void NetworkSystem::onMessageReceived(Message &msg)
         {
-            emit updateSprites(msg.getSprites());
+            emit updateSprites(msg.getEntities());
         }
 
         SystemType NetworkSystem::getType()

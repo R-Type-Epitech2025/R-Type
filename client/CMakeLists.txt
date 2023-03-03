@@ -26,6 +26,7 @@ qt_wrap_cpp(
     include/systems/network/UDPSocket.hpp
     include/systems/MovementSystem.hpp
     include/systems/GraphicSystem.hpp
+    include/systems/SystemManager.hpp
 )
 
 set(RESOURCES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/assets)
@@ -54,7 +55,15 @@ set(SRC_FILES
     src/systems/network/Message.cpp
 )
 
+add_custom_target(RFC
+    COMMAND pdflatex -output-directory=${CMAKE_CURRENT_SOURCE_DIR}/doc ${CMAKE_CURRENT_SOURCE_DIR}/doc/src/RFC.tex
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/doc
+    COMMENT "Building RFC.pdf"
+    SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/doc/src/RFC.tex
+)
+
 add_executable(${PROJECT_NAME} ${SRC_FILES} ${MOC_FILES})
+add_dependencies(${PROJECT_NAME} RFC)
 
 # Adding QT5 dependencies
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core Qt5::Network)

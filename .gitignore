@@ -44,3 +44,6 @@ ecs/rtype
 *CPackSourceConfig.cmake
 */bin/*
 */build/*
+client/doc/RFC.aux
+client/doc/RFC.log
+client/doc/RFC.pdf

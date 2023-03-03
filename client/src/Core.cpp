@@ -27,8 +27,8 @@ int rtype::Core::run(int argc, char **argv, SceneManager *sceneManager)
     GraphicSystem *graphicSystem = new GraphicSystem();
     MovementSystem *movementSystem = new MovementSystem();
     EventSystem *eventSystem = new EventSystem();
-    Entity *entity = new Entity(rtype::EntityType::BACKGROUND ,{0, 0},{0 , 0}, {1920, 1080}, {1920, 1080}, "./assets/backgournd2.jpg", "background");
-    Entity *entity1 = new Entity(rtype::EntityType::BUTTON , {500, 500},{0, 0}, {500, 500}, {500, 500}, "./assets/button_play.png", "play");
+    Entity *entity = new Entity(rtype::EntityType::BACKGROUND ,{0, 0},{0 , 0}, {1920, 1080}, 1.0, "./assets/backgournd2.jpg", "background");
+    Entity *entity1 = new Entity(rtype::EntityType::BUTTON , {500, 500},{0, 0}, {500, 500}, 1.0, "./assets/button_play.png", "play");
     
     Scene *scene = new Scene();
     scene->addEntity(entity);

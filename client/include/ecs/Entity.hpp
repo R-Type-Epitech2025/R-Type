@@ -31,7 +31,7 @@ namespace rtype {
         /**
          * @brief Construct a new Entity object
          */
-        Entity(rtype::EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, std::vector<int> sizeScreen, std::string sprite, std::string id);
+        Entity(rtype::EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, std::string id);
 
         /**
          * @brief Destroy the Entity object
