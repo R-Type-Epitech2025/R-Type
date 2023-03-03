@@ -11,11 +11,9 @@
 #include "ecs/components/GraphicComponent.hpp"
 #include "ecs/components/EventComponent.hpp"
 #include "ecs/components/MovementComponent.hpp"
-#include "ecs/components/GameComponent.hpp"
 
 namespace rtype {
         struct Containers {
-            GameComponent *game_component;
             EventComponent *event_component;
             GraphicComponent *graphic_component;
             MovementComponent *movement_component;
@@ -38,27 +36,20 @@ namespace rtype {
          * 
          */
         ~Entity();
-
-        /**
-         * @brief 
-         * 
-         * @param componentype 
-         */
-        //void add_Container(const ComponentType &componentype);
         
         /**
          * @brief 
          * 
          * @param componentype 
          */
-        void remove_Container(const ComponentType &componentype);
+//        void remove_Container(const ComponentType &componentype);
 
         /**
          * @brief 
          * 
          * 
          */
-        void get_containers();
+//        void get_containers();
 
         rtype::DIRECTION get_directions();
         void set_direction(rtype::DIRECTION direction);
