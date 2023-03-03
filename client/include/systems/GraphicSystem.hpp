@@ -17,19 +17,49 @@ namespace rtype{
         Q_OBJECT
 
         public:
+            /**
+             * @brief Construct a new Graphic System object
+             * 
+             * @param parent 
+             */
             GraphicSystem(QObject *parent = nullptr);
+
+            /**
+             * @brief Destroy the Graphic System object
+             * 
+             */
             ~GraphicSystem() {};
+
+            /**
+             * @brief init the graphic system
+             * 
+             * @param SceneManager 
+             * @param sf::RenderWindow 
+             */
             SystemType getType() const { return SystemType::GRAPHIC; };
+
+            /**
+             * @brief init the graphic system
+             * 
+             */
             void init(SceneManager&, sf::RenderWindow &);
+
+            /**
+             * @brief update the graphic system
+             * 
+             * @param SceneManager 
+             * @param deltaTime 
+             */
             void update(rtype::SceneManager* Manager, uint64_t time);
-            // void destroy() {};
-            // void loadEntity(std::shared_ptr<Entity> entity, Scene &scene) {};
-            // void unloadEntity(std::shared_ptr<Entity> entity, Scene &scene) {};
         protected:
         private:
-//            GraphicComponent _graph;
 
         public slots:
+            /**
+             * @brief slot activated when the entities need to be updated
+             * 
+             * @param entities 
+             */
             void onUpdateEntities(std::vector<Entity *> entities);
     };
 }

@@ -14,12 +14,20 @@
 #include "ecs/components/GameComponent.hpp"
 
 namespace rtype {
+        /**
+         * @brief struct that contains all the components of an entity
+         * 
+         */
         struct Containers {
             GameComponent *game_component;
             EventComponent *event_component;
             GraphicComponent *graphic_component;
             MovementComponent *movement_component;
         };
+        /**
+         * @brief enum that contains all the types of entities
+         *
+         */
         enum ComponentType {
             GAMECOMPONENT = 0,
             GRAPHICCOMPONENT = 1,
@@ -40,29 +48,47 @@ namespace rtype {
         ~Entity();
 
         /**
-         * @brief 
+         * @brief add a container
          * 
          * @param componentype 
          */
         //void add_Container(const ComponentType &componentype);
         
         /**
-         * @brief 
+         * @brief remove a container
          * 
          * @param componentype 
          */
         void remove_Container(const ComponentType &componentype);
 
         /**
-         * @brief 
+         * @brief get the containers
          * 
          * 
          */
         void get_containers();
 
+        /**
+         * @brief get the direction of the entity
+         * 
+         * @return rtype::EntityType 
+         */
         rtype::DIRECTION get_directions();
+
+        /**
+         * @brief set the direction of the entity
+         * 
+         * @return sf::Vector2f 
+         */
         void set_direction(rtype::DIRECTION direction);
+
+        /**
+         * @brief declaration of container struct
+         * 
+         * @return sf::Vector2f 
+         */
         struct Containers container;  // c'est le temps de tester !!!pas du tout definitif;
+
         rtype::EntityType _type;
         std::string _id;
         // Load the entity
