@@ -8,40 +8,58 @@
 #include "NetworkSystem.hpp"
 
 namespace rtype{
-        NetworkSystem::NetworkSystem(QObject *parent, QString ip, quint32 port): QObject(parent)
-        {
-            try {
-                _udpSocket = new UDPSocket(this, ip, port);
-            } catch (std::invalid_argument &e) {
-                std::cerr << e.what() << std::endl;
-                std::cerr << "Please check if the server is running and you have entered the correct IP Address and port" << std::endl;
-                std::cerr << "Exiting..." << std::endl;
-            }
-            connect(_udpSocket, SIGNAL(messageReceived(Message &)), this, SLOT(onMessageReceived(Message &)));
+    NetworkSystem::NetworkSystem(QObject *parent): QObject(parent)
+    {
+        try {
+            _udpSocket = new UDPSocket(this);
+        } catch (std::invalid_argument &e) {
+            std::cerr << e.what() << std::endl;
+            std::cerr << "Exiting..." << std::endl;
+            exit(84);
         }
+        connect(_udpSocket, SIGNAL(messageReceived(Message &)), this, SLOT(onMessageReceived(Message &)));
+    }
 
-        // NetworkSystem::~NetworkSystem()
-        // {
-        // }
+    // NetworkSystem::~NetworkSystem()
+    // {
+    // }
 
-        void NetworkSystem::onSendMovePlayer(DIRECTION dir)
-        {
-            QByteArray datagram;
-            QDataStream out(&datagram, QIODevice::WriteOnly);
+    void NetworkSystem::onSendUpdatedEntities(std::vector<Entity *> &entities)
+    {
+        QByteArray data;
+        QDataStream ds(&data, QIODevice::WriteOnly);
 
-            out << "MOVE";
-            out << dir;
+        quint32 nb = 0;
 
-            _udpSocket->sendDatagram(datagram);
+        for (auto &entity : entities) {
+            ds << entity->getId();
+            ds << entity->getEntityType();
+            ds << entity->getSpritesheetIndex();
+            ds << entity->getSheetPosition()[0];
+            ds << entity->getSheetPosition()[1];
+            ds << entity->getSheetSize()[0];
+            ds << entity->getSheetSize()[1];
+            ds << entity->getScale();
+            ds << entity->getPosition()[0];
+            ds << entity->getPosition()[1];
         }
+        _udpSocket->sendDatagram(data);
+    }
 
-        void NetworkSystem::onMessageReceived(Message &msg)
-        {
-            emit updateSprites(msg.getSprites());
-        }
-
-        SystemType NetworkSystem::getType()
-        {
-            return SystemType::NETWORK;
-        }
+    void NetworkSystem::onMessageReceived(Message &msg)
+    {
+        if (msg.getEvent() == PLAYER_EVENT::MOVE)
+            std::cout << "MOVE" << std::endl;
+            // emit playerMoveEvent(msg.getId(), msg.getDirection());
+        else if (msg.getEvent() == PLAYER_EVENT::SHOOT)
+            std::cout << "SHOOT" << std::endl;
+            // emit playerShootEvent(msg.getId());
+        else if (msg.getEvent() == PLAYER_EVENT::QUIT)
+            std::cout << "QUIT" << std::endl;
+            // emit playerQuitEvent(msg.getId());
+        else if (msg.getEvent() == PLAYER_EVENT::CONNECT)
+            std::cout << "CONNECT" << std::endl;
+            // emit playerConnectEvent(msg.getId());
+    }
 }
+

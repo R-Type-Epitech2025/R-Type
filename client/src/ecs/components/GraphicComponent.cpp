@@ -9,11 +9,11 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 namespace rtype {
-        GraphicComponent::GraphicComponent(std::string sprite, std::vector<int> positioninsprite_sheet,std::vector<int> sizespritesheet, std::vector<int> sizeScreen, std::vector<int> positioninscreen) {
+        GraphicComponent::GraphicComponent(std::string sprite, std::vector<int> positioninsprite_sheet,std::vector<int> sizespritesheet, float scale, std::vector<int> positioninscreen) {
             isPrintable = true;
             createSprite(sprite, positioninsprite_sheet.at(0), positioninsprite_sheet.at(1), sizespritesheet.at(0), sizespritesheet.at(1), 1);
             setPosition(positioninscreen.at(0), positioninscreen.at(1));
-            setSize(sizeScreen.at(0), sizeScreen.at(1));
+            setSize(scale);
         }
         
         GraphicComponent::~GraphicComponent() {
@@ -44,8 +44,8 @@ namespace rtype {
             sprite.setTextureRect(sf::IntRect(x, y, size.width, size.height));
         }
         
-        void GraphicComponent::setSize(int width, int height) {
-            sprite.setScale((float)width / sprite.getTextureRect().width, (float)height / sprite.getTextureRect().height);
+        void GraphicComponent::setSize(float scale) {
+            sprite.setScale(scale * sprite.getTextureRect().width, scale * sprite.getTextureRect().height);
         }
         
         bool GraphicComponent::getIsPrintable() {

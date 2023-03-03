@@ -41,6 +41,9 @@ class EventComponent {
             bool is_hitbox;
             rtype::EntityType entity;
     };
+
+    EntityType convertUint32ToEntityType(uint32_t type);
+
 }
 
 #endif /* !EVENTCOMPONENT_HPP_ */

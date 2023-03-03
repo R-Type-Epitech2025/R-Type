@@ -10,29 +10,60 @@
 
 #include "UDPSocket.hpp"
 
+
 namespace rtype{
-    
+
     class NetworkSystem : public QObject {
 
         Q_OBJECT
 
         public:
-            NetworkSystem(QObject *parent, QString addr, quint32 port);
-            ~NetworkSystem() {};
+            /*
+            ** @brief Construct a new NetworkSystem object
+            ** 
+            ** @param parent the parent of the object - Normally the QCoreApplication
+            */
+            NetworkSystem(QObject *parent);
 
-            SystemType getType();
-            // void init(SceneManager &sceneManager) {};
-            // void update(SceneManager &manager, uint64_t time) {};
-            // void destroy() {};
-            // void loadEntity(std::shared_ptr<Entity> entity, Scene &scene) {};
-            // void unloadEntity(std::shared_ptr<Entity> entity, Scene &scene) {};
+            /*
+            ** @brief Destroy the NetworkSystem object
+            ** 
+            */
+            virtual ~NetworkSystem() {};
 
         public slots:
-            void onSendMovePlayer(rtype::DIRECTION dir);
+            /*
+            ** @brief Called when a datagram is received on the UDP socket
+            ** 
+            ** @param msg the message received already deserialized
+            */
             void onMessageReceived(Message &msg);
 
+            /*
+            ** @brief Called when the GameSystem has updated entities to send to the clients
+            ** 
+            ** @param entities a vector of shared_ptr to IEntity
+            */
+            void onSendUpdatedEntities(std::vector<Entity *> &entities);
+
         signals:
-            void updateSprites(std::list<Entity *> sprites);
+            /*
+            ** @brief Emitted when a player moves - Received by the GameSystem
+            ** 
+            */
+            // void playerMoveEvent(quint16 id, DIRECTION dir);
+
+            /*
+            ** @brief Emitted when a player shoots - Received by the GameSystem
+            ** 
+            */
+            // void playerShootEvent(quint16 id);
+
+            /*
+            ** @brief Emitted when a player quits - Received by the GameSystem
+            ** 
+            */
+            // void playerQuitEvent(quint16 id);
 
         protected:
         private:
@@ -40,4 +71,8 @@ namespace rtype{
     };
 }
 
+<<<<<<< HEAD
 #endif /* !CLIENT_HPP_ */
+=======
+#endif /* !NETWORKSYSTEM_HPP_ */
+>>>>>>> ecs_network_v2.0

@@ -42,4 +42,24 @@ namespace rtype{
         this->_hitbox.height = height;
         this->is_hitbox = true;
     }
+
+    EntityType convertUint32ToEntityType(uint32_t type)
+    {
+        switch (type) {
+            case 0:
+                return EntityType::BACKGROUND;
+            case 1:
+                return EntityType::MAIN_PLAYER;
+            case 2:
+                return EntityType::PLAYER;
+            case 3:
+                return EntityType::BUTTON;
+            case 4:
+                return EntityType::BULLET;
+            case 5:
+                return EntityType::MOB;
+            default:
+                return EntityType::BACKGROUND;
+        }
+    }
 }

@@ -14,12 +14,12 @@
 namespace rtype{
     class GraphicComponent {
         public:
-            GraphicComponent(std::string sprite, std::vector<int> positioninsprite_sheet, std::vector<int> sizespritesheet, std::vector<int> sizeScreen, std::vector<int> positioninscreen);
+            GraphicComponent(std::string sprite, std::vector<int> positioninsprite_sheet, std::vector<int> sizespritesheet, float scale, std::vector<int> positioninscreen);
             ~GraphicComponent();
             void createSprite(const std::string &imagePath, int spritePosX, int spritePosY,int spriteWidth, int spriteHeight, int nb_sprite);
             void setPosition(int x, int y);
             void setSpritePosition(int x, int y, bool init = false);
-            void setSize(int width, int height);
+            void setSize(float scale);
             bool getIsPrintable();
             sf::Sprite getSprite();
             void setRotation(float angle);

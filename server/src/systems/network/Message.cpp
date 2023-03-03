@@ -8,7 +8,7 @@
 #include "Message.hpp"
 
 namespace rtype {
-    Message::Message(): _sprites()
+    Message::Message() : _event(PLAYER_EVENT::QUIT), _direction(DIRECTION::UP)
     {
     }
 
@@ -23,14 +23,24 @@ namespace rtype {
 
     QDataStream &readMessage(QDataStream &in, Message &msg)
     {
-        while (!in.atEnd()) {
-            msg._sprites.push_back(nullptr);
+        quint32 event;
+        quint32 direction;
+        in >> event;
+        msg._event = static_cast<PLAYER_EVENT>(event);
+        if (msg._event == PLAYER_EVENT::MOVE) {
+            in >> direction;
+            msg._direction = static_cast<DIRECTION>(direction);
         }
         return in;
     }
 
-    std::list<Entity *> Message::getSprites() const
+    PLAYER_EVENT Message::getEvent() const
     {
-        return _sprites;
+        return _event;
+    }
+
+    DIRECTION Message::getDirection() const
+    {
+        return static_cast<DIRECTION>(_direction);
     }
 }

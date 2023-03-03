@@ -16,14 +16,19 @@
 
 namespace rtype {
 
-    class SystemManager {
+    class SystemManager : public QObject {
+
+        Q_OBJECT
+    
         public:
-            SystemManager();
+            SystemManager(QObject *parent = nullptr);
             ~SystemManager();
 
-            void setGraphicSystem(GraphicSystem *graphicSystem);
-            void setMovementSystem(MovementSystem *movementSystem);
-            void setNetworkSystem(NetworkSystem *networkSystem);
+            void createGraphicSystem();
+            void createMovementSystem();
+            void createNetworkSystem(QString addr, quint32 port);
+
+            void gameQuit();
 
         protected:
         private:

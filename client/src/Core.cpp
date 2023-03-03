@@ -21,7 +21,7 @@ rtype::Entity *spawnEnnemy()
 {
     std::cout << "test1" << std::endl;
     int mobType = std::rand()%8 * 32;
-    rtype::Entity *entity = new rtype::Entity(rtype::EntityType::MOB, {1000, std::rand()%1064}, {mobType, 0}, {32, 32}, {100, 100}, "./assets/sprites.png", "ennemy1");
+    rtype::Entity *entity = new rtype::Entity(rtype::EntityType::MOB, {1000, std::rand()%1064}, {mobType, 0}, {32, 32}, 3.0, "./assets/sprites.png", "ennemy1");
     // entity->container.graphic_component->setSpritePosition(1000, 100);
     // entity->container.movement_component->velocity = 10;
     // entity->container.graphic_component->setPosition(entity->container.graphic_component->position.x -= entity->container.movement_component->velocity, entity->container.graphic_component->position.y);
@@ -41,18 +41,18 @@ int rtype::Core::run(int argc, char **argv)
     std::srand(std::time(nullptr));
     QTimer *timer = new QTimer(&game);
     
-    rtype::GraphicSystem *graphicSystem = new rtype::GraphicSystem();
-    rtype::MovementSystem *movementSystem = new rtype::MovementSystem();
-    rtype::EventSystem *eventSystem = new rtype::EventSystem();
-    rtype::Entity *entity = new rtype::Entity(rtype::EntityType::BACKGROUND ,{0, 0},{0 , 0}, {1920, 1080}, {1920, 1080}, "./assets/backgournd2.jpg", "background");
-    rtype::Entity *entity1 = new rtype::Entity(rtype::EntityType::BUTTON , {500, 500},{0, 0}, {500, 500}, {500, 500}, "./assets/button_play.png", "play");
-    std::cout << "test3" << std::endl;
-    rtype::Entity *spaceShipe = new rtype::Entity(rtype::EntityType::MAIN_PLAYER , {500, 500},{0, 0}, {500, 500}, {500, 500}, "./assets/r-typesheet42.gif", "spaceship");
-    rtype::Entity *ennemy = spawnEnnemy();
-    rtype::Scene *scene = new rtype::Scene();
+    GraphicSystem *graphicSystem = new GraphicSystem();
+    MovementSystem *movementSystem = new MovementSystem();
+    EventSystem *eventSystem = new EventSystem();
+    Entity *entity = new Entity(rtype::EntityType::BACKGROUND ,{0, 0},{0 , 0}, {1920, 1080}, 1.0, "./assets/backgournd2.jpg", "background");
+    Entity *entity1 = new Entity(rtype::EntityType::BUTTON , {500, 500},{0, 0}, {500, 500}, 1.0, "./assets/button_play.png", "play");
+    Entity *spaceShip = new Entity(rtype::EntityType::MAIN_PLAYER , {500, 500},{0, 0}, {500, 500}, 1.0, "./assets/r-typesheet42.gif", "spaceship");
+    Entity *ennemy = spawnEnnemy();
+    
+    Scene *scene = new Scene();
     scene->addEntity(entity);
     scene->addEntity(entity1);
-    scene->addEntity(spaceShipe);
+    scene->addEntity(spaceShip);
     scene->addEntity(ennemy);
     eventSystem->createNewEvent("play", _sceneManager, "second", true, rtype::EventSystemType::CHANGESCENE, sf::Keyboard::Key::Escape);
     //rtype::Scene *scene2 = new rtype::Scene();
@@ -77,8 +77,7 @@ int rtype::Core::run(int argc, char **argv)
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
                 exit(0);
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
-                rtype::Entity *test = new rtype::Entity(rtype::EntityType::BULLET , {spaceShipe->container.movement_component->pos.y, spaceShipe->container.movement_component->pos.y},{0, 0}, {500, 500}, {500, 500}, "./assets/r-typesheet42.gif", "bullet");
-
+                rtype::Entity *test = new rtype::Entity(rtype::EntityType::BULLET , {spaceShip->container.movement_component->pos.y, spaceShip->container.movement_component->pos.y},{0, 0}, {500, 500}, 1.0, "./assets/r-typesheet42.gif", "bullet");
 //                rtype::Entity *test = new rtype::Entity(rtype::EntityType::BULLET , {spaceShipe->container.movement_component->pos.y, spaceShipe->container.movement_component->pos.y},{0, 0}, {500, 500}, {500, 500}, "./assets/test_image.jpg");
                 _sceneManager->getCurrentScene()->addEntity(test);
                 
