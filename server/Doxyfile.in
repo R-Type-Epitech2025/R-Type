@@ -2,6 +2,8 @@ INPUT                  = ../include ../include/ecs ../include/ecs/components ../
 
 FILE_PATTERNS          = *.hpp *.cpp
 
+EXCLUDE                = moc_*
+
 OUTPUT_DIRECTORY       = doc
 
 PROJECT_NAME           = "R-Type"
