@@ -5,36 +5,36 @@
 ** MainMenu
 */
 
-#include "SceneManager.hpp"
+#include "MainMenu.hpp"
 
 namespace rtype {
 
-    Entity *InitPlayButton() {
-        Entity *playButton = new Entity(rtype::EntityType::BUTTON, {300, 600}, {0, 0}, {300, 300}, {0, 0}, "assets/button_play.png");
-        return playButton;
+    Entity *MainMenu::InitPlayButton() {
+        Entity *button = new Entity(EntityType::BUTTON , {500, 500},{0, 0}, {500, 500}, 1.0, "./assets/button_play.png", "play");
+        return button;
     }
 
-    Entity *InitExitButton() {
-        Entity *exitButton = new Entity(rtype::EntityType::BUTTON, {100, 900}, {0, 0}, {100, 100}, {0, 0}, "assets/button_close.png");
+    Entity *MainMenu::InitExitButton() {
+        Entity *exitButton = new Entity(EntityType::BUTTON, {100, 900}, {0, 0}, {100, 100}, 1.0, "assets/button_close.png", "close");
         return exitButton;
     }
 
-    Entity *InitOptionButton() {
-        Entity *optionButton = new Entity(rtype::EntityType::BUTTON, {600, 600}, {0, 0}, {300, 300}, {0, 0}, "assets/button_settings.png");
+    Entity *MainMenu::InitOptionButton() {
+        Entity *optionButton = new Entity(EntityType::BUTTON, {600, 600}, {0, 0}, {300, 300}, 1.0, "assets/button_settings.png", "settings");
         return optionButton;
     }
 
-    Entity *InitBackground() {
-        Entity *background = new Entity(rtype::EntityType::BACKGROUND, {0, 0}, {0, 0}, {1920, 1080}, {1920, 1080}, "assets/background.png");
+    Entity *MainMenu::InitBackground() {
+        Entity *background = new Entity(EntityType::BACKGROUND, {0, 0}, {0, 0}, {1920, 1080}, 2.0, "assets/background.png", "background");
         return background;
     }
 
-    Scene *MAIN_MENU() {
+    Scene *MainMenu::MAIN_MENU() {
         Scene *mainMenu = new Scene();
+        mainMenu->addEntity(InitBackground());
         mainMenu->addEntity(InitPlayButton());
         mainMenu->addEntity(InitExitButton());
         mainMenu->addEntity(InitOptionButton());
-        mainMenu->addEntity(InitBackground());
         return mainMenu;
     }
 };
