@@ -33,13 +33,11 @@ namespace rtype {
          */
         Entity(rtype::EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, std::string id);
 
-        Entity(const Entity& other) {
-            this->_type = other._type;
-            this->_id = other._id;
-            this->container = other.container;
-            this->direction = other.direction;
-            this->position = other.position;
-            this->texture = other.texture;
+        Entity(Entity& other) : _type(other._type), _id(other._id), direction(other.direction), position(other.position), texture(other.texture) {
+            container.game_component = new GameComponent(*other.container.game_component);
+            container.event_component = new EventComponent(*other.container.event_component);
+            container.graphic_component = new GraphicComponent(*other.container.graphic_component);
+            container.movement_component = new MovementComponent(*other.container.movement_component);
         }
 
         /**

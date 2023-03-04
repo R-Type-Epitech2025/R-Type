@@ -19,8 +19,8 @@ namespace rtype {
     //à mettre dans le update du game system
     Entity *BulletSpawner(Entity *mob, Entity *bullet)
     {
-        Entity *tmp(bullet);
-        tmp->container.movement_component->pos = {mob->container.graphic_component->position.x, mob->container.graphic_component->position.y};
+        Entity *tmp(new Entity(*bullet));
+        tmp->container.movement_component->pos = {mob->container.graphic_component->position.x, mob->container.graphic_component->position.y + 50};
         tmp->container.movement_component->velocity.x = -20;
         return tmp;
     }
@@ -29,7 +29,7 @@ namespace rtype {
     {
         Entity *bullet = new Entity(EntityType::BULLET, {1920, 0}, {16, 240}, {16, 16}, 2.0, "./assets/sprites.png", "bulletTEST");
         for (auto &entity : scene->get_entities()) {
-            if (entity->_id == "ennemy1") {
+            if (entity->_id == "ennemy2") {
                 scene->addEntity(BulletSpawner(entity, bullet));
             }
         }
@@ -92,7 +92,7 @@ namespace rtype {
         Entity *entity = new Entity(EntityType::BACKGROUND ,{0, 0},{0 , 0}, {1920, 1080}, 1.0, "./assets/backgournd2.jpg", "background");
         Entity *entity1 = new Entity(EntityType::BUTTON , {500, 500},{0, 0}, {500, 500}, 1.0, "./assets/button_play.png", "play");
         Entity *spaceShip = new Entity(EntityType::MAIN_PLAYER , {500, 500},{0, 0}, {500, 500}, 1.0, "./assets/r-typesheet42.gif", "spaceship");
-        std::vector<Entity *> ennemy = ennemy1();
+        std::vector<Entity *> ennemy = ennemy2();
         
         Scene *scene = new Scene();
         scene->addEntity(entity);
