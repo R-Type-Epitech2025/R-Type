@@ -62,7 +62,6 @@ namespace rtype {
              ** @return rtype::Scene* 
              */
             rtype::Scene* getCurrentScene();
-            sf::RenderWindow window;
         protected:
             std::map<std::string, rtype::Scene*> _scenes;
             rtype::Scene* _currentscene;

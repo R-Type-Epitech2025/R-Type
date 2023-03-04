@@ -25,7 +25,7 @@ qt_wrap_cpp(
     include/systems/network/NetworkSystem.hpp
     include/systems/network/UDPSocket.hpp
     include/systems/MovementSystem.hpp
-    include/systems/GraphicSystem.hpp
+    include/systems/GameSystem.hpp
     include/systems/SystemManager.hpp
     include/systems/EventSystem.hpp
 )
@@ -40,11 +40,12 @@ set(SRC_FILES
     src/ecs/SceneManager.cpp
     src/ecs/components/GraphicComponent.cpp
     src/ecs/components/MovementComponent.cpp
+    src/ecs/components/GameComponent.cpp
     src/ecs/Scene.cpp
     src/ecs/components/EventComponent.cpp
     
     src/systems/SystemManager.cpp
-    src/systems/GraphicSystem.cpp
+    src/systems/GameSystem.cpp
     src/systems/MovementSystem.cpp
     src/systems/EventSystem.cpp
     # src/systems/AudioSystem.cpp

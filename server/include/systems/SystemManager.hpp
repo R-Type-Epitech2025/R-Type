@@ -12,17 +12,22 @@
 #include "GraphicSystem.hpp"
 #include "MovementSystem.hpp"
 #include "NetworkSystem.hpp"
+#include "GameSystem.hpp"
 #include "EventSystem.hpp"
 
 namespace rtype {
 
-    class SystemManager {
+    class SystemManager : public QObject {
+
+        Q_OBJECT
+    
         public:
             /**
              ** @brief Construct a new System Manager object
              ** 
+             ** @param parent 
              */
-            SystemManager();
+            SystemManager(QObject *parent = nullptr);
 
             /**
              ** @brief Destroy the System Manager object
@@ -31,31 +36,68 @@ namespace rtype {
             ~SystemManager();
 
             /**
-             ** @brief Set the Graphic System object
-             ** 
-             ** @param graphicSystem 
+             ** @brief create the game system
+             **  
              */
-            void setGraphicSystem(GraphicSystem *graphicSystem);
+            void createGameSystem();
 
             /**
-             ** @brief Set the Movement System object
-             ** 
-             ** @param movementSystem 
+             ** @brief create the movement system
+             **  
              */
-            void setMovementSystem(MovementSystem *movementSystem);
+            void createMovementSystem();
 
             /**
-             ** @brief Set the Network System object
-             ** 
-             ** @param networkSystem 
+             ** @brief create the network system
+             **  
              */
-            void setNetworkSystem(NetworkSystem *networkSystem);
+            void createNetworkSystem();
 
+            // /**
+            //  ** @brief create the event system
+            //  **  
+            //  */
+            // void createEventSystem();
+
+            // /**
+            //  ** @brief update events
+            //  ** 
+            //  ** @param SceneManager
+            //  ** @param sf::Event
+            //  **  
+            //  */
+            // void updateEvents(SceneManager *currentScene, sf::Event &event);
+
+            // /**
+            //  ** @brief update graphic
+            //  ** 
+            //  ** @param SceneManager
+            //  ** @param time
+            //  **  
+            //  */
+            // void updateGraphic(SceneManager *Manager, uint64_t time);
+
+            // /**
+            //  ** @brief update movement
+            //  ** 
+            //  ** @param SceneManager
+            //  ** @param sf::Event
+            //  **  
+            //  */
+            // void updateMovement(SceneManager *Manager, sf::Event &event);
+
+            // /**
+            //  ** @brief quit the game
+            //  ** 
+            //  */
+            // void gameQuit();
+
+            GameSystem *gameSystem;
+            MovementSystem *movementSystem;
+            NetworkSystem *networkSystem;
+            EventSystem *eventSystem;
         protected:
         private:
-            GraphicSystem *_graphicSystem;
-            MovementSystem *_movementSystem;
-            NetworkSystem *_networkSystem;
     };
 }
 

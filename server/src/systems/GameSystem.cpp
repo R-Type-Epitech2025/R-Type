@@ -16,8 +16,18 @@ namespace rtype{
     {
     }
 
-    void GameSystem::onNewPlayerConnected(quint16 id)
+    void GameSystem::onNewPlayerConnected(quint32 id)
     {
         std::cout << "New player connected with id: " << id << std::endl;
+    }
+
+    void GameSystem::onPlayerDisconnected(quint32 id)
+    {
+        std::cout << "Player disconnected with id: " << id << std::endl;
+    }
+
+    void GameSystem::onPlayerShoot(quint32 id)
+    {
+        std::cout << "Player " << id << " shoot" << std::endl;
     }
 }

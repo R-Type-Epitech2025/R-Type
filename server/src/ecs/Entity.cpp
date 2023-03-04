@@ -9,7 +9,7 @@
 
 
 namespace rtype {
-    Entity::Entity(EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, uint32_t id)
+    Entity::Entity(EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, quint32 id)
     {
         this->container.event_component = NULL;
         this->container.game_component = NULL;
@@ -69,11 +69,11 @@ namespace rtype {
         this->direction = direction;
     }
 
-    u_int32_t Entity::getId() const {
+    quint32 Entity::getId() const {
         return _id;
     }
 
-    u_int32_t Entity::getEntityType() const {
+    quint32 Entity::getEntityType() const {
         switch (_type)
         {
         case MAIN_PLAYER:
@@ -94,23 +94,23 @@ namespace rtype {
         }
     }
 
-    u_int32_t Entity::getSpritesheetIndex() const {
+    quint32 Entity::getSpritesheetIndex() const {
         return container.graphic_component->getSpritesheetIndex();
     }
 
-    std::vector<u_int32_t> Entity::getSheetPosition() const {
+    std::vector<quint32> Entity::getSheetPosition() const {
         return container.graphic_component->getSheetPosition();
     }
 
-    std::vector<u_int32_t> Entity::getSheetSize() const {
+    std::vector<quint32> Entity::getSheetSize() const {
         return container.graphic_component->getSheetSize();
     }
 
-    u_int32_t Entity::getScale() const {
+    quint32 Entity::getScale() const {
         return container.graphic_component->getScale();
     }
 
-    std::vector<u_int32_t> Entity::getPosition() const {
+    std::vector<quint32> Entity::getPosition() const {
         return container.graphic_component->getPosition();
     }
 }

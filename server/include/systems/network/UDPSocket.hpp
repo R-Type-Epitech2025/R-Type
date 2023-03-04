@@ -17,7 +17,7 @@ namespace rtype {
     {
         QHostAddress address;
         quint16 port;
-        quint16 id;
+        quint32 id;
     };
     
     class UDPSocket : public QObject 
@@ -59,9 +59,14 @@ namespace rtype {
         **  
         **  @param msg the message received, and tranformed into a Message object
         */
-        void messageReceived(Message &msg, quint16 id);
+        void messageReceived(Message &msg, quint32 id);
 
-        void newPlayerConnected(quint16 id);
+        /*
+        ** @brief Emitted when a new player connects to the server
+        ** 
+        ** @param id the id of the new player
+        */
+        void newPlayerConnected(quint32 id);
 
     private:
 
@@ -73,9 +78,9 @@ namespace rtype {
         **  @return true if the client is already connected
         **  @return false if the client is not connected
         */
-        bool alreadyConnected(const QHostAddress &addr, quint16 port);
+        bool alreadyConnected(const QHostAddress &addr, quint32 port);
 
-        quint16 createId(const QHostAddress &addr, quint16 port);
+        quint32 createId(const QHostAddress &addr, quint32 port);
 
         QUdpSocket *_socket;
     };

@@ -38,12 +38,6 @@ namespace rtype{
             SystemType getType() const { return SystemType::GRAPHIC; };
 
             /**
-             ** @brief init the graphic system
-             ** 
-             */
-            void init(SceneManager&, sf::RenderWindow &);
-
-            /**
              ** @brief update the graphic system
              ** 
              ** @param Manager 

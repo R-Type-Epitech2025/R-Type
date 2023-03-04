@@ -39,12 +39,12 @@ namespace rtype {
             sprite.setPosition(x, y);
         }
         
-        void GraphicComponent::setSpritePosition(int x, int y, bool init) {
+        void GraphicComponent::setSpritePosition(quint32 x, quint32 y, bool init) {
             if (init)
                 initial_sprite_x = x;
             position.sprite_x = x;
             position.sprite_y = y;
-            sprite.setTextureRect(sf::IntRect(x, y, size.width, size.height));
+            sprite.setTextureRect(sf::IntRect((int) x, (int) y, size.width, size.height));
         }
         
         void GraphicComponent::setSize(float scale) {
@@ -70,23 +70,23 @@ namespace rtype {
             sprite.setTextureRect(rect);
         };
 
-        u_int32_t GraphicComponent::getSpritesheetIndex() const {
+        quint32 GraphicComponent::getSpritesheetIndex() const {
             return _spritesheetIndex;
         }
 
-        std::vector<u_int32_t> GraphicComponent::getSheetPosition() const {
+        std::vector<quint32> GraphicComponent::getSheetPosition() const {
             return {position.sprite_x, position.sprite_y};
         }
 
-        std::vector<u_int32_t> GraphicComponent::getSheetSize() const {
+        std::vector<quint32> GraphicComponent::getSheetSize() const {
             return {size.width / _scale, size.height / _scale};
         }
 
-        u_int32_t GraphicComponent::getScale() const {
+        quint32 GraphicComponent::getScale() const {
             return _scale;
         }
 
-        std::vector<u_int32_t> GraphicComponent::getPosition() const {
-            return {(u_int32_t)( position.x + size.width), (u_int32_t)(position.y + size.height)};
+        std::vector<quint32> GraphicComponent::getPosition() const {
+            return {(quint32)( position.x + size.width), (quint32)(position.y + size.height)};
         }
 };

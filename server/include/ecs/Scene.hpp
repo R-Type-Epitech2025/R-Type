@@ -34,16 +34,6 @@ class Scene{
         // std::vector getScene(std::vector<IEntity> entities); // Get the scene
 
         /**
-         ** @brief Update the Scene object
-         ** 
-         ** @param entity 
-         ** @param window 
-         */
-        void update(Entity& entity, sf::RenderWindow& window);
-
-        // void draw(sf::RenderWindow& window) final; // Draw the scene
-
-        /**
          ** @brief Add the Entity object
          ** 
          ** @param entity 
@@ -63,7 +53,7 @@ class Scene{
          ** @param id 
          ** @return Entity* 
          */
-        Entity *getEntity(std::string id);
+        Entity *getEntity(quint32 id);
     protected:
     private:
         std::vector<Entity*> _entities;

@@ -7,7 +7,9 @@
 
 #ifndef GRAPHICCOMPONENT_HPP_
 #define GRAPHICCOMPONENT_HPP_
+
 #include <SFML/Graphics.hpp>
+#include <QtNetwork>
 #include <memory>
 #include <iostream>
 
@@ -59,7 +61,7 @@ namespace rtype{
              ** @param y 
              ** @param init 
              */
-            void setSpritePosition(int x, int y, bool init = false);
+            void setSpritePosition(quint32 x, quint32 y, bool init = false);
 
             /**
              ** @brief Set the Size object
@@ -104,8 +106,8 @@ namespace rtype{
             struct SpritePosition {
                 int x;
                 int y;
-                u_int32_t sprite_x;
-                u_int32_t sprite_y;
+                quint32 sprite_x;
+                quint32 sprite_y;
             };
         
         
@@ -121,54 +123,54 @@ namespace rtype{
             /**
              ** @brief Get the Sprite Sheet Index object
              ** 
-             ** @return u_int32_t 
+             ** @return quint32 
              */
-            u_int32_t getSpritesheetIndex() const;
+            quint32 getSpritesheetIndex() const;
 
             /**
              ** @brief Get the Sheet Position object
              ** 
              ** @return std::vector<int> 
              */
-            std::vector<u_int32_t> getSheetPosition() const;
+            std::vector<quint32> getSheetPosition() const;
 
             /**
              ** @brief Get the Sheet Size object
              ** 
-             ** @return std::vector<u_int32_t> 
+             ** @return std::vector<quint32> 
              */
-            std::vector<u_int32_t> getSheetSize() const;
+            std::vector<quint32> getSheetSize() const;
 
 
             /**
              ** @brief Get the Scale object
              ** 
-             ** @return u_int32_t 
+             ** @return quint32 
              */
-            u_int32_t getScale() const;
+            quint32 getScale() const;
 
             /**
              ** @brief Get the Position object
              ** 
-             ** @return u_int32_t 
+             ** @return quint32 
              */
-            std::vector<u_int32_t> getPosition() const;
+            std::vector<quint32> getPosition() const;
 
             SpriteSize size;
             int nb_sprites;
             int counter_sprites;
-            int initial_sprite_x;
+            quint32 initial_sprite_x;
 
         protected:
         private:
             SpritePosition position;
-            u_int32_t _spritesheetIndex;
+            quint32 _spritesheetIndex;
             sf::Texture texture;
             sf::Sprite sprite;
             bool isPrintable;
             float angle;
             sf::IntRect rect;
-            u_int32_t _scale;
+            quint32 _scale;
     };
 
 }
