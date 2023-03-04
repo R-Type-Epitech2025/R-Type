@@ -11,6 +11,7 @@
 namespace rtype {
         GraphicComponent::GraphicComponent(std::string sprite, std::vector<int> positioninsprite_sheet,std::vector<int> sizespritesheet, float scale, std::vector<int> positioninscreen) {
             isPrintable = true;
+            counter_sprites = 0;
             createSprite(sprite, positioninsprite_sheet.at(0), positioninsprite_sheet.at(1), sizespritesheet.at(0), sizespritesheet.at(1), 1);
             setPosition(positioninscreen.at(0), positioninscreen.at(1));
             setSize(scale);
@@ -36,9 +37,7 @@ namespace rtype {
             sprite.setPosition(x, y);
         }
         
-        void GraphicComponent::setSpritePosition(int x, int y, bool init) {
-            if (init)
-                initial_sprite_x = x;
+        void GraphicComponent::setSpritePosition(int x, int y) {
             position.sprite_x = x;
             position.sprite_y = y;
             sprite.setTextureRect(sf::IntRect(x, y, size.width, size.height));

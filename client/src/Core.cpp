@@ -9,6 +9,7 @@
 
 #include "Core.hpp"
 #include "iostream"
+#include <QElapsedTimer>
 
 void print()
 {
@@ -29,6 +30,9 @@ namespace rtype {
     {
         Entity *bullet = new Entity(EntityType::BULLET, {1920, 0}, {16, 240}, {16, 16}, 2.0, "./assets/sprites.png", "bulletTEST");
         for (auto &entity : scene->get_entities()) {
+            if (entity->_id == "ennemy1") {
+                scene->addEntity(BulletSpawner(entity, bullet));
+            }
             if (entity->_id == "ennemy2") {
                 scene->addEntity(BulletSpawner(entity, bullet));
             }
@@ -56,7 +60,8 @@ namespace rtype {
     {
         std::vector<Entity *> entities;
         Entity *entity = new Entity(EntityType::MOB, {1920, 800}, {50, 0}, {50, 50}, 1.5, "./assets/ennemy2.gif", "ennemy2");
-        entity->container.movement_component->velocity.x = -10;
+        entity->container.movement_component->velocity.x = -5;
+        entity->container.graphic_component->counter_sprites = 4;
         entities.push_back(entity);
         return entities;
     }
@@ -84,8 +89,9 @@ namespace rtype {
         QCoreApplication game(argc, argv);
         std::srand(std::time(nullptr));
         QTimer *timer = new QTimer(&game);
-        sf::Clock clock;
-
+        QElapsedTimer *clock = new QElapsedTimer();
+        int last_shoot = 1;
+        clock->start();
         _systemManager->createGraphicSystem();
         _systemManager->createMovementSystem();
         _systemManager->createEventSystem();
@@ -129,13 +135,12 @@ namespace rtype {
                     
                 }
             }
-            if (clock.getElapsedTime().asSeconds() > 1) {
+            if (clock->elapsed()/1000 >= last_shoot) {
                 EnnemyShoot(_sceneManager->getCurrentScene());
-                clock.restart();
+                last_shoot++;
             }
-            
             //sceneManager->getCurrentScene();
-            _systemManager->updateGraphic(_sceneManager, 12);
+            _systemManager->updateGraphic(_sceneManager, clock->elapsed());
             _systemManager->updateMovement(_sceneManager, event);
             _systemManager->updateEvents(_sceneManager, event);
 
