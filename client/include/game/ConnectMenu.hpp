@@ -8,8 +8,7 @@
 #ifndef CONNECTMENU_HPP_
 #define CONNECTMENU_HPP_
 
-#include "SceneManager.hpp"
-#include "Entity.hpp"
+#include "Scene.hpp"
 
 namespace rtype {
 class ConnectMenu {
