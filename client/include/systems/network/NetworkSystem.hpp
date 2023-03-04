@@ -53,6 +53,18 @@ namespace rtype{
              */
             void onMessageReceived(Message &msg);
 
+            /**
+             ** @brief slot activated when a player shoot is send by the movement system
+             ** 
+             */
+            void onSendShootPlayer();
+
+            /**
+             ** @brief slot activated when a player quit is send by the movement system
+             ** 
+             */
+            void onQuitPlayer();
+
         signals:
             /**
              ** @brief signal emitted when the sprites need to be updated
