@@ -43,15 +43,16 @@ namespace rtype {
     {
         std::cout << ennemy1 << std::endl;
         std::vector<Entity *> entities;
+        Entity *entity = new Entity(EntityType::MOB, {0, 0}, {0, 0}, {36, 36}, 3.0, "./assets/ennemy1.gif", "ennemy1");
         for (int i = 0; i < 9; i++) {
-            Entity *entity;
+            Entity *tmp(new Entity(*entity));
             if (i < 4) {
-                entity = new Entity(EntityType::MOB, {2200 - i * 70, 50 + i * 100}, {0, 0}, {36, 36}, 3.0, "./assets/ennemy1.gif", "ennemy1");
+                tmp->container.movement_component->pos = {2200 - i * 70, 50 + i * 100};
             } else {
-                entity = new Entity(EntityType::MOB, {1920 + (i - 4) * 70, 50 + i * 100}, {0, 0}, {36, 36}, 3.0, "./assets/ennemy1.gif", "ennemy1");
+                tmp->container.movement_component->pos = {1920 + (i - 4) * 70, 50 + i * 100};
             };
-            entity->container.movement_component->velocity.x = -10;
-            entities.push_back(entity);
+            tmp->container.movement_component->velocity.x = -10;
+            entities.push_back(tmp);
         }
         return entities;
     }
@@ -98,13 +99,16 @@ namespace rtype {
         Entity *entity = new Entity(EntityType::BACKGROUND ,{0, 0},{0 , 0}, {1920, 1080}, 1.0, "./assets/backgournd2.jpg", "background");
         Entity *entity1 = new Entity(EntityType::BUTTON , {500, 500},{0, 0}, {500, 500}, 1.0, "./assets/button_play.png", "play");
         Entity *spaceShip = new Entity(EntityType::MAIN_PLAYER , {500, 500},{0, 0}, {500, 500}, 1.0, "./assets/r-typesheet42.gif", "spaceship");
-        std::vector<Entity *> ennemy = ennemy2();
-        
+        std::vector<Entity *> ennemy_type1 = ennemy1();
+        std::vector<Entity *> ennemy_type2 = ennemy2();
         Scene *scene = new Scene();
         scene->addEntity(entity);
         scene->addEntity(entity1);
         scene->addEntity(spaceShip);
-        for (Entity *test_entity : ennemy) {
+        for (Entity *test_entity : ennemy_type1) {
+            scene->addEntity(test_entity);
+        }
+        for (Entity *test_entity : ennemy_type2) {
             scene->addEntity(test_entity);
         }
         _systemManager->eventSystem->createNewEvent("play", _sceneManager, "second", true, EventSystemType::CHANGESCENE, sf::Keyboard::Key::Escape);
