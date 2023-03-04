@@ -43,8 +43,8 @@ namespace rtype {
                 break;
             case TEXT:
             this->container.event_component = new EventComponent(type, positioninscreen, hitboxSize);
-            this->container.game_component = new GameComponent();
-    }
+            break;
+            }
         this->_type = type;
         this->_id = id;
     }

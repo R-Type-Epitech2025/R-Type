@@ -29,7 +29,7 @@ namespace rtype {
         return background;
     }
 
-    Scene *MainMenu::MAIN_MENU() {
+    Scene *MainMenu::Main_Menu() {
         Scene *mainMenu = new Scene();
         mainMenu->addEntity(InitBackground());
         mainMenu->addEntity(InitPlayButton());

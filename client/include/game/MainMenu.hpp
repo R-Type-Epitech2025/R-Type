@@ -16,7 +16,7 @@ class MainMenu {
     public:
         MainMenu();
         ~MainMenu();
-        Scene *MAIN_MENU();
+        Scene *Main_Menu();
 
     protected:
     private:
