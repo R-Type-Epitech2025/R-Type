@@ -30,8 +30,10 @@ namespace rtype {
         while (_socket->hasPendingDatagrams()) {
             std::cout << "\tDatagram received" << std::endl;
             QNetworkDatagram data = _socket->receiveDatagram();
-            if (alreadyConnected(data.senderAddress(), data.senderPort()))
-                continue;
+            if (alreadyConnected(data.senderAddress(), data.senderPort())) {
+                std::cout << "\t\tAlready connected" << std::endl;
+                //continue;
+            }
             else {
                 std::cout << "\t\tNew client connected" << std::endl;
                 if (_clients.size() >= 4)
@@ -41,7 +43,7 @@ namespace rtype {
                     Message msg;
 
                     ds >> msg;
-                    if (msg->getEvent() != PLAYER_EVENT::CONNECT) {
+                    if (msg.getEvent() != PLAYER_EVENT::CONNECT) {
                         std::cout << "\t\t\tWrong message received" << std::endl;
                         return;
                     }
@@ -55,6 +57,7 @@ namespace rtype {
                 }
                 return;
             }
+            std::cout << "\t\tMessage received from " << data.senderAddress().toString().toStdString() << ":" << data.senderPort() << std::endl;
             QDataStream ds(data.data());
             Message msg;
 
@@ -74,7 +77,7 @@ namespace rtype {
             _socket->writeDatagram(data, client.address, client.port);
     }
 
-    bool UDPSocket::alreadyConnected(const QHostAddress &addr, quint16 port)
+    bool UDPSocket::alreadyConnected(const QHostAddress &addr, quint32 port)
     {
         for (auto &client : _clients) {
             if (client.address == addr && client.port == port)
@@ -83,13 +86,13 @@ namespace rtype {
         return false;
     }
 
-    quint16 UDPSocket::createId(const QHostAddress &addr, quint16 port)
+    quint32 UDPSocket::createId(const QHostAddress &addr, quint32 port)
     {
         quint32 combined = (addr.toIPv4Address() << 16) | port;
     
         // Use a hash function to map the combined value to a 16-bit ID
         std::hash<quint32> hash_func;
-        quint16 id = hash_func(combined);
+        quint32 id = hash_func(combined);
         
         return id;
     }

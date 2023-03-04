@@ -21,7 +21,7 @@ namespace rtype{
     };
 
     typedef struct NewEventComponent{
-        std::string identity;
+        quint32 identity;
         sf::Event event;
         sf::Keyboard::Key key;
         SceneManager *scene;
@@ -35,15 +35,14 @@ namespace rtype{
             EventSystem();
             ~EventSystem();
             void init(SceneManager&);
-            void update(rtype::SceneManager *currentScene, sf::RenderWindow &window, sf::Event &event);
+            void update(rtype::SceneManager *currentScene);
             void destroy(SceneManager&);
             void loadEntity();
             void unloadEntity();
-            void createNewEvent(std::string identity, SceneManager *scene, std::string newId, bool newScene, EventSystemType type, sf::Keyboard::Key key);
+            void createNewEvent(quint32 identity, SceneManager *scene, std::string newId, bool newScene, EventSystemType type, sf::Keyboard::Key key);
         protected:
         private:
             std::vector<NewEventComponent_t*> _newEvent;
-            sf::RenderWindow _window;
     };
 };
 

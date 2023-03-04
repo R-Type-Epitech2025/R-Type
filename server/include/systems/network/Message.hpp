@@ -10,7 +10,6 @@
 
 #include <QDataStream>
 #include <QNetworkDatagram>
-#include <QtNetwork>
 #include <SFML/Graphics.hpp>
 #include "ISystem.hpp"
 

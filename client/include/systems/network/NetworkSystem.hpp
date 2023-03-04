@@ -45,13 +45,25 @@ namespace rtype{
              ** 
              ** @param dir 
              */
-            void onSendMovePlayer(rtype::DIRECTION dir);
+            void onSendMovePlayer(DIRECTION dir);
 
             /**
              ** @brief slot activated when a message is received in the UDP socket
              ** 
              */
             void onMessageReceived(Message &msg);
+
+            /**
+             ** @brief slot activated when a player shoot is send by the movement system
+             ** 
+             */
+            void onSendShootPlayer();
+
+            /**
+             ** @brief slot activated when a player quit is send by the movement system
+             ** 
+             */
+            void onQuitPlayer();
 
         signals:
             /**

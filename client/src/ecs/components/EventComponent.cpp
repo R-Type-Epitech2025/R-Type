@@ -62,6 +62,8 @@ namespace rtype{
                 return EntityType::BULLET;
             case 5:
                 return EntityType::MOB;
+            case 6:
+                return EntityType::TEXT;
             default:
                 return EntityType::BACKGROUND;
         }

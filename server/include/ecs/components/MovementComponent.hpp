@@ -8,6 +8,7 @@
 #ifndef MOVEMENTCOMPONENT_HPP_
 #define MOVEMENTCOMPONENT_HPP_
 
+#include <QtNetwork>
 #include <memory>
 #include <iostream>
 #include <vector>

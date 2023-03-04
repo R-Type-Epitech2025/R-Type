@@ -95,6 +95,7 @@ namespace rtype{
              ** @param rect 
              */
             void setHitbox(sf::IntRect rect);
+            int setfont(std::string fonts);
 
             /**
              ** @brief strcut SpritePosition that helps to place the sprite in the window
@@ -127,6 +128,7 @@ namespace rtype{
         private:
             sf::Texture texture;
             sf::Sprite sprite;
+            sf::Font font;
             bool isPrintable;
             float angle;
             sf::IntRect rect;

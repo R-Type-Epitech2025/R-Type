@@ -37,7 +37,7 @@ namespace rtype{
             ** 
             ** @param msg the message received already deserialized
             */
-            void onMessageReceived(Message &msg, quint16 id);
+            void onMessageReceived(Message &msg, quint32 id);
 
             /**
              ** @brief Called when the GameSystem has received a message from the client
@@ -51,33 +51,33 @@ namespace rtype{
             ** 
             ** @param id the id of the new player
             */
-            void onNewPlayerConnected(quint16 id);
+            void onNewPlayerConnected(quint32 id);
 
         signals:
             /**
             ** @brief Emitted when a player moves - Received by the GameSystem
             *
             */
-            void playerMoveEvent(quint16 id, DIRECTION dir);
+            void playerMoveEvent(quint32 id, DIRECTION dir);
 
             /*
             **  @brief Emitted when a player shoots - Received by the GameSystem
             **  
             */
-            void playerShootEvent(quint16 id);
+            void playerShootEvent(quint32 id);
 
             /*
             **  @brief Emitted when a player quits - Received by the GameSystem
             **  
             */
-            void playerQuitEvent(quint16 id);
+            void playerQuitEvent(quint32 id);
 
             /*
             ** @brief Emitted when a player connects - Received by the GameSystem
             ** 
             ** @param id the id of the new player
             */
-            void newPlayerConnected(quint16 id);
+            void playerConnectEvent(quint32 id);
 
         protected:
         private:

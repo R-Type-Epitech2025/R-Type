@@ -30,10 +30,31 @@ namespace rtype{
         {
             QByteArray datagram;
             QDataStream out(&datagram, QIODevice::WriteOnly);
+            quint32 move = static_cast<quint32>(EVENT::MOVE);
+            quint32 direction = static_cast<quint32>(dir);
+            out << move;
+            out << direction;
+            std::cout << "Sending move to server" << std::endl;
+            _udpSocket->sendDatagram(datagram);
+        }
 
-            out << "MOVE";
-            out << dir;
+        void NetworkSystem::onSendShootPlayer()
+        {
+            QByteArray datagram;
+            QDataStream out(&datagram, QIODevice::WriteOnly);
+            quint32 shoot = static_cast<quint32>(EVENT::SHOOT);
 
+            out << shoot;
+            _udpSocket->sendDatagram(datagram);
+        }
+
+        void NetworkSystem::onQuitPlayer()
+        {
+            QByteArray datagram;
+            QDataStream out(&datagram, QIODevice::WriteOnly);
+            quint32 quit = static_cast<quint32>(EVENT::QUIT);
+
+            out << quit;
             _udpSocket->sendDatagram(datagram);
         }
 

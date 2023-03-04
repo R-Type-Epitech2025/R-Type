@@ -25,7 +25,6 @@ namespace rtype {
          ** @return SystemType 
          */
         SystemType getType() const { return SystemType::MOVEMENT; }; 
-        // void init(SceneManager &, sf::RenderWindow &) {};
 
         /**
          ** @brief update the movement system
@@ -48,5 +47,13 @@ namespace rtype {
          */
         void sendMovePlayer(DIRECTION dir);
 
+    public slots:
+        /**
+         ** @brief receive the move player from the event system
+         ** 
+         ** @param id
+         ** @param dir 
+         */
+        void onSendMovePlayer(quint32 id, DIRECTION dir);
     };
 }

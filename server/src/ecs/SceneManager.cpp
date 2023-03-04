@@ -9,7 +9,7 @@
 #include "ecs/Entity.hpp"
 #include <iostream>
 
-rtype::SceneManager::SceneManager() : window(sf::VideoMode(0, 0), "R-Type")
+rtype::SceneManager::SceneManager()
 {
 }
 

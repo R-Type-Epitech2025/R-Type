@@ -66,4 +66,12 @@ namespace rtype {
             this->rect = rect;
             sprite.setTextureRect(rect);
         };
+
+        int GraphicComponent::setfont(std::string fonts) {
+            if (!font.loadFromFile(fonts))
+            {
+                std::cerr << "Impossible de charger la police de caractères !" << std::endl;
+                return EXIT_FAILURE;
+            }
+        }
 };
