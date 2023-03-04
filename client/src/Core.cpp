@@ -17,18 +17,20 @@ void print()
 
 namespace rtype {
     //à mettre dans le update du game system
-    Entity *BulletSpawner(Entity *mob)
+    Entity *BulletSpawner(Entity *mob, Entity *bullet)
     {
-        Entity *entity = new Entity(EntityType::BULLET, {mob->container.graphic_component->position.x, mob->container.graphic_component->position.y + 32}, {16, 240}, {16, 16}, 2.0, "./assets/sprites.png", "bullet");
-        entity->container.movement_component->velocity.x = -30;
-        return entity;
+        Entity *tmp(bullet);
+        tmp->container.movement_component->pos = {mob->container.graphic_component->position.x, mob->container.graphic_component->position.y};
+        tmp->container.movement_component->velocity.x = -20;
+        return tmp;
     }
 
     void EnnemyShoot(Scene *scene)
     {
+        Entity *bullet = new Entity(EntityType::BULLET, {1920, 0}, {16, 240}, {16, 16}, 2.0, "./assets/sprites.png", "bulletTEST");
         for (auto &entity : scene->get_entities()) {
             if (entity->_id == "ennemy1") {
-                scene->addEntity(BulletSpawner(entity));
+                scene->addEntity(BulletSpawner(entity, bullet));
             }
         }
     }
