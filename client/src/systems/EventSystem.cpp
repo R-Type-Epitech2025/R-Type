@@ -21,28 +21,42 @@ namespace rtype {
     void EventSystem::update(rtype::SceneManager *currentScene, sf::Event &event)
     {
         Scene *scene = currentScene->getCurrentScene();
-        for (auto &NewEvent : _newEvent) {
-            rtype::Entity *tmp_entity = scene->getEntity(NewEvent->identity);
-            if (tmp_entity->container.event_component != NULL && tmp_entity->container.event_component->eventHandler(event, NewEvent->key, currentScene->window)) {
-                if (NewEvent->newScene) {
-                    currentScene->setScene(NewEvent->newId);
+    
+        for (auto &NewEvent : _eventsList) {
+            if (NewEvent->currentSceneName != scene->getSceneName())
+                continue;
+            else {
+                Entity *tmp_entity = scene->getEntity(NewEvent->entityId);
+                if (tmp_entity->container.event_component != NULL && tmp_entity->container.event_component->eventHandler(event, currentScene->window) == true) {
+                    currentScene->setScene(NewEvent->futureSceneName);
+                    break;
                 }
-            } 
+            }
         }
+        scene = currentScene->getCurrentScene();
+    } 
+
+    void EventSystem::createNewEvent(u_int32_t entityId, std::string newSceneName, std::string sceneName) 
+    {
+        NewEvent_t *newEvent = new NewEvent_t;
+        newEvent->entityId = entityId;
+        newEvent->futureSceneName = newSceneName;
+        newEvent->currentSceneName = sceneName;
+        _eventsList.push_back(newEvent);
     }
 
-    void EventSystem::createNewEvent(std::string identity, SceneManager *scene, std::string newId, bool newScene, EventSystemType type, sf::Keyboard::Key key) 
+    bool EventSystem::getCollision(Entity *entity, Entity *collideEntity) const
     {
-        NewEventComponent_t *newEvent = new NewEventComponent_t;
+        hitbox_t hitbox = entity->container.event_component->getHitbox();
+        hitbox_t collideHitbox = collideEntity->container.event_component->getHitbox();
 
-        newEvent->key = key;
-        newEvent->identity = identity;
-        newEvent->newId = newId;
-        newEvent->newScene = newScene;
-        newEvent->type = type;
-        newEvent->scene = scene;
-
-        _newEvent.push_back(newEvent);
+        if (hitbox.x < collideHitbox.x + collideHitbox.width &&
+            hitbox.x + hitbox.width > collideHitbox.x &&
+            hitbox.y < collideHitbox.y + collideHitbox.height &&
+            hitbox.y + hitbox.height > collideHitbox.y) {
+            return true;
+        }
+        return false;
     }
     
     // void EventSystem::update(std::vector<std::shared_ptr<Entity> > &entities)
@@ -66,7 +80,6 @@ namespace rtype {
     //                 newEntity->Player = false;
     //                 newEntity->color = "blue";
     //             }
-    //             std::cout<<"New entity"<<std::endl;
     //         }
     //         for (int i = 0; i < entities.size(); i++){
     //             if (entities.at(i)->Player){   

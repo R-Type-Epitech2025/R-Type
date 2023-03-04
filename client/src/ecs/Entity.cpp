@@ -8,7 +8,7 @@
 #include "ecs/Entity.hpp"
 
 namespace rtype {
-    Entity::Entity(rtype::EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, std::string id)
+    Entity::Entity(rtype::EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, uint32_t id)
     {
         this->container.event_component = nullptr;
         this->container.graphic_component = new GraphicComponent(sprite, positioninsprite_sheet, sizespritesheet, scale, positioninscreen);
@@ -43,7 +43,10 @@ namespace rtype {
                 break;
         }
         this->_type = type;
-        this->_id = id;
+        if (id == 0)
+            this->_id = std::hash<std::string>{}(sprite);
+        else
+            this->_id = id;
     }
 
 
