@@ -49,6 +49,7 @@ namespace rtype {
         _systemManager->createGraphicSystem();
         _systemManager->createMovementSystem();
         _systemManager->createEventSystem();
+        _systemManager->createNetworkSystem(QString(argv[1]), QString(argv[2]).toUInt());
         
         Scene *gameScene = creategameScene();
 

@@ -50,7 +50,6 @@ namespace rtype {
         eventSystem->update(currentScene, event);
     }
 
-
     void SystemManager::updateGraphic(SceneManager *Manager, uint64_t time)
     {
         graphicSystem->update(Manager, time);
