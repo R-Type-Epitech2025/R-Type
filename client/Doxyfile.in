@@ -1,4 +1,4 @@
-INPUT                  = ../include ../include/ecs ../include/ecs/components ../include/systems ../include/systems/network
+INPUT                  = ../include ../include/ecs ../include/ecs/components ../include/systems ../include/systems/network ../src ../src/ecs ../src/ecs/components ../src/systems ../src/systems/network
 
 FILE_PATTERNS          = *.hpp *.cpp
 
