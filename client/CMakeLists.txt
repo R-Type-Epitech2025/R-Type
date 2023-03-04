@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(rtype)
 
-set(PROJECT_NAME R-Type)
+set(PROJECT_NAME R-Type_Client)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
@@ -75,11 +75,25 @@ target_include_directories(${PROJECT_NAME}
     PRIVATE
     ${SFML_INCLUDE_DIRS})
 
+# add doxygen with Doxyfile.in
+find_package(Doxygen)
+if(DOXYGEN_FOUND)
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
+    add_custom_target(doc
+        ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+        COMMENT "Generating API documentation with Doxygen" VERBATIM
+    )
+    add_dependencies(doc HelloWorld)
+endif(DOXYGEN_FOUND)
+
+# Setting up CPack
+set(CPACK_PACKAGE_NAME "r-type")
+set(CPACK_PACKAGE_FILE_NAME "rtype_install")
+
 # Setting up the CPack generator for Windows
 if(WIN32)
     set(CPACK_GENERATOR NSIS)
-    set(CPACK_PACKAGE_NAME "r-type")
-    set(CPACK_PACKAGE_FILE_NAME "rtype_install")
     set(CPACK_NSIS_INSTALLED_ICON_NAME "bin\\\\rtype.exe")
     set(CPACK_NSIS_HELP_LINK "https://github.com/r-type")
     set(CPACK_NSIS_URL_INFO_ABOUT "https://github.com/r-type")
@@ -89,19 +103,15 @@ if(WIN32)
 elseif(APPLE)
     # Setting up the CPack generator for MacOS
     set(CPACK_GENERATOR DragNDrop)
-    set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
     set(CPACK_PROJECT_NAME "R-Type")
-    set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}")
     set(CPACK_PACKAGE_ICON ${CMAKE_CURRENT_SOURCE_DIR}/icon.icns)
 elseif(UNIX AND NOT APPLE)
     # Setting up the CPack generator for Debian
     set(CPACK_GENERATOR DEB)
-    set(CPACK_PACKAGE_NAME "r-type")
     set(CPACK_DEBIAN_PACKAGE_MAINTAINER "RType Team")
 elseif(UNIX)
     # Setting up the CPack generator for RPM
     set(CPACK_GENERATOR RPM)
-    set(CPACK_PACKAGE_NAME "r-type")
     set(CPACK_RPM_PACKAGE_MAINTAINER "RType Team")
 endif()
 
@@ -113,13 +123,6 @@ include(CPack)
 # Setting up the install targets
 install(TARGETS ${PROJECT_NAME}
         RUNTIME DESTINATION bin)
-install(FILES README.md
-        DESTINATION .)
-install(PROGRAMS ${CMAKE_CURRENT_SOURCE_DIR}/build.sh
-        DESTINATION .)
-# Adding assets to the install target
-install(DIRECTORY ${RESOURCES_DIR}
-        DESTINATION .)
 
 # Adding -g3 if in debug mode
 if(CMAKE_BUILD_TYPE MATCHES Debug)
