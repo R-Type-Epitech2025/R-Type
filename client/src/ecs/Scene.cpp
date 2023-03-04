@@ -10,9 +10,9 @@
 
 
 namespace rtype {
-    Scene::Scene()
+    Scene::Scene(std::string sceneName)
     {
-        std::cout << "Scene created" << std::endl;
+        _sceneName = sceneName;
     }
 
     Scene::~Scene()
@@ -29,13 +29,14 @@ namespace rtype {
         return(_entities);
     }
 
-    Entity *Scene::getEntity(std::string id) {
+    Entity *Scene::getEntity(u_int32_t id) {
         for (auto &entity : _entities) {
             if (entity->_id == id)
                 return (entity);
         }
         return (nullptr);
     }
+
 
     void Scene::removeEntity(rtype::Entity *entity)
     {
@@ -45,6 +46,11 @@ namespace rtype {
                 break;
             }
         }
+    }
+
+    std::string Scene::getSceneName() const
+    {
+        return (_sceneName);
     }
 }
 

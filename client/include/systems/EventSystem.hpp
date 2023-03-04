@@ -13,31 +13,6 @@
 #include <vector>
 
 namespace rtype{
-    /**
-     ** @brief enum that contains all the type of event
-     ** 
-     */
-    enum class EventSystemType {
-        COLLISION,
-        CHANGESCENE,
-        SHOOT,
-        MOVE
-    };
-
-    /**
-     ** @brief struct that contains all the information about the event
-     ** 
-     */
-    typedef struct NewEventComponent{
-        std::string identity;
-        sf::Event event;
-        sf::Keyboard::Key key;
-        SceneManager *scene;
-        std::string newId;
-        bool newScene;
-        EventSystemType type;
-    } NewEventComponent_t;
-
     class EventSystem : public QObject {
 
         Q_OBJECT
@@ -100,10 +75,12 @@ namespace rtype{
              ** @param type 
              ** @param key 
              */
-            void createNewEvent(std::string identity, SceneManager *scene, std::string newId, bool newScene, EventSystemType type, sf::Keyboard::Key key);
+            void createNewEvent(u_int32_t entityId, std::string newSceneName, std::string sceneName);
+
+            bool getCollision(Entity *entity, Entity *collideEntity) const;
         protected:
         private:
-            std::vector<NewEventComponent_t*> _newEvent;
+            std::vector<NewEvent_t*> _eventsList;
             sf::RenderWindow _window;
             // EventComponent _entity;
         signals:

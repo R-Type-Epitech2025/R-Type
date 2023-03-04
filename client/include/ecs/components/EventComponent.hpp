@@ -18,14 +18,35 @@ namespace rtype {
      ** 
      */
     enum EntityType {
-            MOB = 5,
-            BULLET = 4,
-            BUTTON = 3,
-            PLAYER = 2,
-            MAIN_PLAYER = 1,
-            BACKGROUND = 0,
-        };
-class EventComponent {
+        MOB = 5,
+        BULLET = 4,
+        BUTTON = 3,
+        PLAYER = 2,
+        MAIN_PLAYER = 1,
+        BACKGROUND = 0,
+    };
+
+    /**
+    ** @brief struct of the hitbox
+    ** 
+    */
+    typedef struct hitbox{
+        int x;
+        int y;
+        int width;
+        int height;
+    }hitbox_t;
+
+    /**
+    ** @brief struct that contains all the information about the event
+    ** 
+    */
+    typedef struct NewEvent{
+        u_int32_t entityId;
+        std::string futureSceneName;
+        std::string currentSceneName;
+    } NewEvent_t;
+    class EventComponent {
         public:
 
             /**
@@ -42,28 +63,16 @@ class EventComponent {
              ** 
              */
             ~EventComponent();
-
-            /**
-             ** @brief struct of the hitbox
-             ** 
-             */
-            struct hitbox{
-                int x;
-                int y;
-                int width;
-                int height;
-            };
             
             /**
              ** @brief event handler / help to change the scene and return true if the event is triggered
              ** 
              ** @param event 
-             ** @param key 
              ** @param window 
              ** @return true 
              ** @return false 
              */
-            bool eventHandler(sf::Event event, sf::Keyboard::Key key, sf::RenderWindow &window);
+            bool eventHandler(sf::Event event, sf::RenderWindow &window);
 
             // void eventHandler(sf::Event event, sf::Mouse::Button key, sf::RenderWindow &window, void(*direction)() = NULL);
 
@@ -77,7 +86,13 @@ class EventComponent {
              */
             void setHitbox(int x, int y, int width, int height);
 
-            typedef struct hitbox hitbox;
+
+            /**
+             ** @brief Get the Hitbox object
+             ** 
+             ** @return hitbox 
+             */
+            hitbox getHitbox() const;
 
             bool ishooting;
         protected:
