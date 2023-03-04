@@ -22,18 +22,6 @@ namespace rtype{
     {
     }
 
-    bool EventComponent::eventHandler(sf::Event event, sf::Keyboard::Key key, sf::RenderWindow &window){
-        sf::Vector2i position = sf::Mouse::getPosition(window);
-        if (event.type == sf::Event::KeyPressed){   
-            if (event.key.code == key) {
-                if (sf::Mouse::getPosition(window).x >= _hitbox.x &&  sf::Mouse::getPosition(window).x <= _hitbox.x + _hitbox.width
-                && sf::Mouse::getPosition(window).y >= _hitbox.y && sf::Mouse::getPosition(window).y <= _hitbox.y + _hitbox.height)
-                    return true;
-            }
-        }
-        return false;
-    }
-
     void EventComponent::setHitbox(int x, int y, int width, int height){
         this->_hitbox.x = x;
         this->_hitbox.y = y;

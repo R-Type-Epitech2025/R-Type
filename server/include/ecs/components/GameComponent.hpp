@@ -7,7 +7,9 @@
 
 #ifndef GAMECOMPONENT_HPP_
 #define GAMECOMPONENT_HPP_
+
 #include <SFML/Graphics.hpp>
+#include <QtNetwork>
 
 #include <memory>
 #include <iostream>

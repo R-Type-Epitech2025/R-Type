@@ -25,7 +25,7 @@ qt_wrap_cpp(
     include/systems/network/NetworkSystem.hpp
     include/systems/network/UDPSocket.hpp
     include/systems/MovementSystem.hpp
-    include/systems/GraphicSystem.hpp
+    include/systems/GameSystem.hpp
     include/systems/SystemManager.hpp
     include/systems/EventSystem.hpp
 )
@@ -40,11 +40,12 @@ set(SRC_FILES
     src/ecs/SceneManager.cpp
     src/ecs/components/GraphicComponent.cpp
     src/ecs/components/MovementComponent.cpp
+    src/ecs/components/GameComponent.cpp
     src/ecs/Scene.cpp
     src/ecs/components/EventComponent.cpp
     
     src/systems/SystemManager.cpp
-    src/systems/GraphicSystem.cpp
+    src/systems/GameSystem.cpp
     src/systems/MovementSystem.cpp
     src/systems/EventSystem.cpp
     # src/systems/AudioSystem.cpp
@@ -75,39 +76,51 @@ target_include_directories(${PROJECT_NAME}
     PRIVATE
     ${SFML_INCLUDE_DIRS})
 
-# Setting up the CPack generator for Windows
-if(WIN32)
-    set(CPACK_GENERATOR NSIS)
-    set(CPACK_PACKAGE_NAME "r-type")
-    set(CPACK_PACKAGE_FILE_NAME "rtype_install")
-    set(CPACK_NSIS_INSTALLED_ICON_NAME "bin\\\\rtype.exe")
-    set(CPACK_NSIS_HELP_LINK "https://github.com/r-type")
-    set(CPACK_NSIS_URL_INFO_ABOUT "https://github.com/r-type")
-    set(CPACK_NSIS_CONTACT "r-type@github.com")
-    set(CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
-    set(CPACK_NSIS_MENU_LINKS "bin\\\\rtype.exe" "RType 0.1.1")
-elseif(APPLE)
-    # Setting up the CPack generator for MacOS
-    set(CPACK_GENERATOR DragNDrop)
-    set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
-    set(CPACK_PROJECT_NAME "R-Type")
-    set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}")
-    set(CPACK_PACKAGE_ICON ${CMAKE_CURRENT_SOURCE_DIR}/icon.icns)
-elseif(UNIX AND NOT APPLE)
-    # Setting up the CPack generator for Debian
-    set(CPACK_GENERATOR DEB)
-    set(CPACK_PACKAGE_NAME "r-type")
-    set(CPACK_DEBIAN_PACKAGE_MAINTAINER "RType Team")
-elseif(UNIX)
-    # Setting up the CPack generator for RPM
-    set(CPACK_GENERATOR RPM)
-    set(CPACK_PACKAGE_NAME "r-type")
-    set(CPACK_RPM_PACKAGE_MAINTAINER "RType Team")
-endif()
+# add doxygen with Doxyfile.in
+find_package(Doxygen)
+if(DOXYGEN_FOUND)
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
+    add_custom_target(doc
+        ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+        COMMENT "Generating API documentation with Doxygen" VERBATIM
+    )
+    add_dependencies(doc HelloWorld)
+endif(DOXYGEN_FOUND)
 
-set(CPACK_PACKAGE_VERSION_MAJOR ${VERSION_MAJOR})
-set(CPACK_PACKAGE_VERSION_MINOR ${VERSION_MINOR})
-set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "RType installer")
+# # Setting up the CPack generator for Windows
+# if(WIN32)
+#     set(CPACK_GENERATOR NSIS)
+#     set(CPACK_PACKAGE_NAME "r-type")
+#     set(CPACK_PACKAGE_FILE_NAME "rtype_install")
+#     set(CPACK_NSIS_INSTALLED_ICON_NAME "bin\\\\rtype.exe")
+#     set(CPACK_NSIS_HELP_LINK "https://github.com/r-type")
+#     set(CPACK_NSIS_URL_INFO_ABOUT "https://github.com/r-type")
+#     set(CPACK_NSIS_CONTACT "r-type@github.com")
+#     set(CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
+#     set(CPACK_NSIS_MENU_LINKS "bin\\\\rtype.exe" "RType 0.1.1")
+# elseif(APPLE)
+#     # Setting up the CPack generator for MacOS
+#     set(CPACK_GENERATOR DragNDrop)
+#     set(CPACK_PACKAGE_NAME ${PROJECT_NAME})
+#     set(CPACK_PROJECT_NAME "R-Type")
+#     set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}")
+#     set(CPACK_PACKAGE_ICON ${CMAKE_CURRENT_SOURCE_DIR}/icon.icns)
+# elseif(UNIX AND NOT APPLE)
+#     # Setting up the CPack generator for Debian
+#     set(CPACK_GENERATOR DEB)
+#     set(CPACK_PACKAGE_NAME "r-type")
+#     set(CPACK_DEBIAN_PACKAGE_MAINTAINER "RType Team")
+# elseif(UNIX)
+#     # Setting up the CPack generator for RPM
+#     set(CPACK_GENERATOR RPM)
+#     set(CPACK_PACKAGE_NAME "r-type")
+#     set(CPACK_RPM_PACKAGE_MAINTAINER "RType Team")
+# endif()
+
+# set(CPACK_PACKAGE_VERSION_MAJOR ${VERSION_MAJOR})
+# set(CPACK_PACKAGE_VERSION_MINOR ${VERSION_MINOR})
+# set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "RType installer")
 include(CPack)
 
 # Setting up the install targets

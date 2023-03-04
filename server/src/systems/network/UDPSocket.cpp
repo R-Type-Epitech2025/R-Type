@@ -41,7 +41,7 @@ namespace rtype {
                     Message msg;
 
                     ds >> msg;
-                    if (msg->getEvent() != PLAYER_EVENT::CONNECT) {
+                    if (msg.getEvent() != PLAYER_EVENT::CONNECT) {
                         std::cout << "\t\t\tWrong message received" << std::endl;
                         return;
                     }
@@ -74,7 +74,7 @@ namespace rtype {
             _socket->writeDatagram(data, client.address, client.port);
     }
 
-    bool UDPSocket::alreadyConnected(const QHostAddress &addr, quint16 port)
+    bool UDPSocket::alreadyConnected(const QHostAddress &addr, quint32 port)
     {
         for (auto &client : _clients) {
             if (client.address == addr && client.port == port)
@@ -83,13 +83,13 @@ namespace rtype {
         return false;
     }
 
-    quint16 UDPSocket::createId(const QHostAddress &addr, quint16 port)
+    quint32 UDPSocket::createId(const QHostAddress &addr, quint32 port)
     {
         quint32 combined = (addr.toIPv4Address() << 16) | port;
     
         // Use a hash function to map the combined value to a 16-bit ID
         std::hash<quint32> hash_func;
-        quint16 id = hash_func(combined);
+        quint32 id = hash_func(combined);
         
         return id;
     }

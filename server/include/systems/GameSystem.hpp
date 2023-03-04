@@ -34,7 +34,21 @@ namespace rtype{
              ** 
              ** @param id the id of the new player
              */
-            void onNewPlayerConnected(quint16 id);
+            void onNewPlayerConnected(quint32 id);
+
+            /**
+             ** @brief Called when a player disconnects from the server
+             ** 
+             ** @param id the id of the player
+             */
+            void onPlayerDisconnected(quint32 id);
+
+            /**
+             ** @brief Called when a player shoots
+             ** 
+             ** @param id the id of the player
+             */
+            void onPlayerShoot(quint32 id);
         protected:
         private:
             GameComponent _game;

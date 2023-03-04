@@ -7,7 +7,9 @@
 
 #ifndef EVENTCOMPONENT_HPP_
 #define EVENTCOMPONENT_HPP_
+
 #include <SFML/Graphics.hpp>
+#include <QtNetwork>
 #include <iostream>
 #include <memory>
 
@@ -53,18 +55,6 @@ class EventComponent {
                 int height;
             };
             bool ishooting;
-
-            /**
-             ** @brief event handler / help to change the scene and return true if the event is triggered
-             ** 
-             ** @param event 
-             ** @param key 
-             ** @param window 
-             ** @return true 
-             ** @return false 
-             */
-            bool eventHandler(sf::Event event, sf::Keyboard::Key key, sf::RenderWindow &window);
-            // void eventHandler(sf::Event event, sf::Mouse::Button key, sf::RenderWindow &window, void(*direction)() = NULL);
 
             /**
              ** @brief set the hitbox

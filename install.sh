@@ -34,6 +34,10 @@ elif [ "$INSTALLED" = false ]; then
     echo -e "${GREEN}Installing curl by ${YELLOW}apt-get${GREEN}...${WHITE}"
     sudo apt-get install curl &> /dev/null
     echo -e "${GREEN}curl installed.${WHITE}"
+    # install doxygen
+    echo -e "${GREEN}Installing doxygen by ${YELLOW}apt-get${GREEN}...${WHITE}"
+    sudo apt-get install doxygen &> /dev/null
+    echo -e "${GREEN}doxygen installed.${WHITE}"
     INSTALLED=true
 fi
 
@@ -49,6 +53,9 @@ elif [ "$INSTALLED" = false ]; then
     echo -e "${GREEN}Installing curl by ${YELLOW}brew${GREEN}...${WHITE}"
     brew install curl &> /dev/null
     echo -e "${GREEN}curl installed.${WHITE}"
+    # install doxygen
+    echo -e "${GREEN}Installing doxygen by ${YELLOW}brew${GREEN}...${WHITE}"
+    brew install doxygen &> /dev/null
     INSTALLED=true
 fi
 
@@ -64,6 +71,9 @@ elif [ "$INSTALLED" = false ]; then
     echo -e "${GREEN}Installing curl by ${YELLOW}pacman${GREEN}...${WHITE}"
     sudo pacman -S curl &> /dev/null
     echo -e "${GREEN}curl installed.${WHITE}"
+    # install doxygen
+    echo -e "${GREEN}Installing doxygen by ${YELLOW}pacman${GREEN}...${WHITE}"
+    sudo pacman -S doxygen &> /dev/null
     INSTALLED=true
 fi
 
@@ -79,6 +89,10 @@ elif [ "$INSTALLED" = false ]; then
     echo -e "${GREEN}Installing curl by ${YELLOW}yum${GREEN}...${WHITE}"
     sudo yum install curl &> /dev/null
     echo -e "${GREEN}curl installed.${WHITE}"
+    # install doxygen
+    echo -e "${GREEN}Installing doxygen by ${YELLOW}yum${GREEN}...${WHITE}"
+    sudo yum install doxygen &> /dev/null
+    echo -e "${GREEN}doxygen installed.${WHITE}"
     INSTALLED=true
 fi
 
@@ -109,6 +123,9 @@ elif [ "$INSTALLED" = false ]; then
     echo -e "${GREEN}Installing curl by ${YELLOW}zypper${GREEN}...${WHITE}"
     sudo zypper install curl &> /dev/null
     echo -e "${GREEN}curl installed.${WHITE}"
+    # install doxygen
+    echo -e "${GREEN}Installing doxygen by ${YELLOW}zypper${GREEN}...${WHITE}"
+    sudo zypper install doxygen &> /dev/null
     INSTALLED=true
 fi
 

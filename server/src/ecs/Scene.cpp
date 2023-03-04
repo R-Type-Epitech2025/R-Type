@@ -26,35 +26,10 @@ std::vector<rtype::Entity*> rtype::Scene::get_entities(){
     return(_entities);
 }
 
-rtype::Entity *rtype::Scene::getEntity(std::string id) {
+rtype::Entity *rtype::Scene::getEntity(quint32 id) {
     for (auto &entity : _entities) {
         if (entity->_id == id)
             return (entity);
     }
     return (nullptr);
 }
-
-// void update(Entity& entity, sf::RenderWindow& window) {
-//         sf::Sprite sprite(entity.texture);
-//         sprite.setPosition(entity.position);
-//         window.draw(sprite);
-// }
-
-// void rtype::Scene::draw(sf::RenderWindow& window)
-// {
-// //    for (auto& entity : entities) {
-// //         sf::Sprite sprite(entity.texture);
-// //         sprite.setPosition(entity.position);
-// //         window.draw(sprite);
-// //     }
-// }
-
-// void rtype::Scene::getScene(std::vector<IScene> scene)
-// {
-//     // for (auto& entity : entities) {
-//     //     sf::Sprite sprite(entity.texture);
-//     //     sprite.setPosition(entity.position);
-//     //     window.draw(sprite);
-//     // }
-// }
-

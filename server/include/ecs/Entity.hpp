@@ -39,7 +39,7 @@ namespace rtype {
         /**
          ** @brief Construct a new Entity object
          */
-        Entity(rtype::EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, uint32_t id = 0);
+        Entity(rtype::EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, quint32 id = 0);
 
         /**
          ** @brief Destroy the Entity object
@@ -80,56 +80,56 @@ namespace rtype {
          ** 
          ** @return sf::Vector2f 
          */
-        u_int32_t getId() const;
+        quint32 getId() const;
 
         /**
          ** @brief Get the Entity Type object
          ** 
-         ** @return u_int32_t 
+         ** @return quint32 
          */
-        u_int32_t getEntityType() const;
+        quint32 getEntityType() const;
 
 
         /**
          ** @brief Get the Spritesheet Index object
          ** 
-         ** @return u_int32_t 
+         ** @return quint32 
          */
-        u_int32_t getSpritesheetIndex() const;
+        quint32 getSpritesheetIndex() const;
 
         /**
          ** @brief Get the Sheet Position object
          ** 
-         ** @return std::vector<u_int32_t> 
+         ** @return std::vector<quint32> 
          */
-        std::vector<u_int32_t> getSheetPosition() const;
+        std::vector<quint32> getSheetPosition() const;
 
         /**
          ** @brief Get the Sheet Size object
          ** 
-         ** @return std::vector<u_int32_t> 
+         ** @return std::vector<quint32> 
          */
-        std::vector<u_int32_t> getSheetSize() const;
+        std::vector<quint32> getSheetSize() const;
 
 
         /**
          ** @brief Get the Scale object
          ** 
-         ** @return u_int32_t 
+         ** @return quint32 
          */
-        u_int32_t getScale() const;
+        quint32 getScale() const;
 
         /**
          ** @brief Get the Position object
          ** 
-         ** @return std::vector<u_int32_t> 
+         ** @return std::vector<quint32> 
          */
-        std::vector<u_int32_t> getPosition() const; 
+        std::vector<quint32> getPosition() const; 
 
 
         struct Containers container;  // c'est le temps de tester !!!pas du tout definitif;
         rtype::EntityType _type;
-        u_int32_t _id;
+        quint32 _id;
         // Load the entity
     protected:
         
