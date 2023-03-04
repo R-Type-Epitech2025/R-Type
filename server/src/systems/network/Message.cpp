@@ -7,32 +7,40 @@
 
 #include "Message.hpp"
 
-Message::Message()
-{
-}
+namespace rtype {
+    Message::Message() : _event(PLAYER_EVENT::QUIT), _direction(DIRECTION::UP)
+    {
+    }
 
-Message::~Message()
-{
-}
+    Message::~Message()
+    {
+    }
 
-QDataStream &operator>>(QDataStream &in, Message &msg)
-{
-    return readMessage(in, msg);
-}
+    QDataStream &operator>>(QDataStream &in, Message &msg)
+    {
+        return readMessage(in, msg);
+    }
 
-QDataStream &readMessage(QDataStream &in, Message &msg)
-{
-    in >> msg._event;
-    in >> msg._direction;
-    return in;
-}
+    QDataStream &readMessage(QDataStream &in, Message &msg)
+    {
+        quint32 event;
+        quint32 direction;
+        in >> event;
+        msg._event = static_cast<PLAYER_EVENT>(event);
+        if (msg._event == PLAYER_EVENT::MOVE) {
+            in >> direction;
+            msg._direction = static_cast<DIRECTION>(direction);
+        }
+        return in;
+    }
 
-quint8 Message::getEvent() const
-{
-    return _event;
-}
+    PLAYER_EVENT Message::getEvent() const
+    {
+        return _event;
+    }
 
-quint8 Message::getDirection() const
-{
-    return _direction;
+    DIRECTION Message::getDirection() const
+    {
+        return static_cast<DIRECTION>(_direction);
+    }
 }

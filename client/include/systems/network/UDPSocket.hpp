@@ -8,32 +8,62 @@
 #ifndef UDPSOCKET_HPP_
 #define UDPSOCKET_HPP_
 
-#include <iostream>
-#include <QObject>
-#include <QtNetwork>
 #include "Message.hpp"
 
 namespace rtype {
-    namespace system {
-        class UDPSocket : public QObject 
-        {
-            Q_OBJECT
+    class UDPSocket : public QObject 
+    {
+        Q_OBJECT
 
-        public:
-            UDPSocket(QObject *parent = nullptr, QHostAddress addr = QHostAddress::AnyIPv4,
-                int port = 0, QAbstractSocket::BindMode mode = QAbstractSocket::DefaultForPlatform);
-            ~UDPSocket();
+    public:
+        /**
+         ** @brief Construct a new UDPSocket object
+         ** 
+         ** @param parent 
+         ** @param serverIp 
+         ** @param port 
+         */
+        UDPSocket(QObject *parent, QString serverIp, int port);
 
-        public slots:
-            void onMessageReceived();
+        /**
+         ** @brief Destroy the UDPSocket object
+         ** 
+         */
+        virtual ~UDPSocket() {};
 
-        signals:
-            void messageReceived(Message &msg);
+        /**
+         ** @brief Send a datagram to the server
+         ** 
+         ** @param data 
+         */
+        void sendDatagram(QByteArray &data);
 
-        private:
-            QUdpSocket *_socket;
-        };
-    }
+        /**
+         ** @brief asks connection to the server
+         ** 
+         */
+        void askConnection();
+
+    public slots:
+        /**
+         ** @brief slot activated when a message is received in the UDP socket
+         ** 
+         */
+        void onMessageReceived();
+
+    signals:
+        /**
+         ** @brief signal emitted when a message is received, it is then processed by the network system
+         ** 
+         ** @param msg 
+         */
+        void messageReceived(Message &msg);
+
+    private:
+        QUdpSocket *_socket;
+        QHostAddress _serverAddress;
+        quint16 _serverPort;
+    };
 }
 
 

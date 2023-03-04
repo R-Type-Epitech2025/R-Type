@@ -10,43 +10,66 @@
 
 #include <QDataStream>
 #include <QNetworkDatagram>
+#include <QtNetwork>
+#include <SFML/Graphics.hpp>
+#include "ISystem.hpp"
 
 namespace rtype {
-    namespace system {
-        enum EVENT {
-            MOVE,
-            SHOOT,
-            QUIT
-        };
+    /**
+     ** @brief enum of events connard 
+     ** 
+     */
+    enum class EVENT {
+        MOVE,
+        SHOOT,
+        QUIT,
+        CONNECT
+    };
 
-        enum DIRECTION {
-            UP,
-            DOWN,
-            LEFT,
-            RIGHT
-        };
+    class Message {
+    public:
+        /**
+         ** @brief Construct a new Message object
+         ** 
+         */
+        Message();
 
-        class Message {
-        public:
-            Message();
-            ~Message();
+        /**
+         ** @brief Destroy the Message object
+         ** 
+         */
+        ~Message();
 
-            friend QDataStream &operator>>(QDataStream &in, Message &msg);
-            
-            quint8 getEvent() const;
-            quint8 getDirection() const;
+        /**
+         ** @brief gives acces to the private members 
+         ** 
+         ** @param in 
+         ** @param msg 
+         ** @return QDataStream& 
+         */
+        friend QDataStream &operator>>(QDataStream &in, Message &msg);
+        
+        /**
+         ** @brief Get the Entities object
+         ** 
+         ** @return std::vector<Entity *> 
+         */
+        std::vector<Entity *> getEntities() const;
 
-            void print() const;
+    private:
+        /**
+         ** @brief get the message in the datastream and writes it in the message
+         ** 
+         ** @param in 
+         ** @param msg 
+         ** @return QDataStream& the rest of the datastream voila, pfiou... c'est tout
+         */
+        friend QDataStream &readMessage(QDataStream &in, Message &msg);
+        
+        std::vector<Entity *> _entities;
+    protected:
 
-        private:
-            friend QDataStream &readMessage(QDataStream &in, Message &msg);
-
-            quint8 _event;
-            quint8 _direction;
-        protected:
-
-        };
-    }
+    };
 }
 
 #endif /* !MESSAGE_HPP_ */

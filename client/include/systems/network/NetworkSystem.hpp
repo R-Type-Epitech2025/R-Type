@@ -5,40 +5,78 @@
 ** NetworkSystem
 */
 
-#ifndef NETWORKSYSTEM_HPP_
-#define NETWORKSYSTEM_HPP_
+#ifndef CLIENT_HPP_
+#define CLIENT_HPP_
 
-#include "ISystem.hpp"
-#include "Message.hpp"
+#include "UDPSocket.hpp"
 
-namespace rtype {
-    namespace system {
-        class MyApp : public QCoreApplication {
+namespace rtype{
+    
+    class NetworkSystem : public QObject {
 
-            Q_OBJECT
-            
-            public:
-                MyApp(int &argc, char **argv);
-                ~MyApp() = default;
+        Q_OBJECT
 
-            public slots:
-                void onReadInput();
+        public:
+            /**
+             ** @brief Construct a new Network System object
+             ** 
+             ** @param parent 
+             ** @param addr 
+             ** @param port 
+             */
+            NetworkSystem(QObject *parent, QString addr, quint32 port);
 
-            signals:
-                void readInput();
-        };
+            /**
+             ** @brief Destroy the Network System object
+             ** 
+             */
+            ~NetworkSystem() {};
 
-        class NetworkSystem : public ISystem {
-            public:
-                NetworkSystem();
-                ~NetworkSystem();
+            /**
+             ** @brief Get the Type object
+             ** 
+             ** @return SystemType 
+             */
+            SystemType getType();
 
-            protected:
-                QByteArray _message;
-            private:
-        };
-    }
+        public slots:
+            /**
+             ** @brief slot activated when a player movement is send by the movement system
+             ** 
+             ** @param dir 
+             */
+            void onSendMovePlayer(rtype::DIRECTION dir);
+
+            /**
+             ** @brief slot activated when a message is received in the UDP socket
+             ** 
+             */
+            void onMessageReceived(Message &msg);
+
+            /**
+             ** @brief slot activated when a player shoot is send by the movement system
+             ** 
+             */
+            void onSendShootPlayer();
+
+            /**
+             ** @brief slot activated when a player quit is send by the movement system
+             ** 
+             */
+            void onQuitPlayer();
+
+        signals:
+            /**
+             ** @brief signal emitted when the sprites need to be updated
+             ** 
+             ** @param entities 
+             */
+            void updateSprites(std::vector<Entity *> entities);
+
+        protected:
+        private:
+            UDPSocket *_udpSocket;
+    };
 }
 
-
-#endif /* !NETWORKSYSTEM_HPP_ */
+#endif /* !CLIENT_HPP_ */

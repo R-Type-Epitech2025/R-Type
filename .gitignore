@@ -36,3 +36,14 @@
 *cmake_install.cmake
 *CMakeCache.txt
 *Makefile
+ecs/rtype
+*moc_*.cpp*
+*mocs_*.cpp*
+*moc_*.h*
+*CPackConfig.cmake
+*CPackSourceConfig.cmake
+*/bin/*
+*/build/*
+*RFC.aux
+*RFC.log
+*RFC.pdf
