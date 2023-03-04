@@ -54,7 +54,7 @@ namespace rtype {
              ** @param scene_name 
              ** @param scene 
              */
-            void addScene(std::string scene_name, rtype::Scene *scene);
+            void addScene(rtype::Scene *scene);
 
             /**
              ** @brief Get the Current Scene object
