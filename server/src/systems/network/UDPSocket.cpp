@@ -30,8 +30,10 @@ namespace rtype {
         while (_socket->hasPendingDatagrams()) {
             std::cout << "\tDatagram received" << std::endl;
             QNetworkDatagram data = _socket->receiveDatagram();
-            if (alreadyConnected(data.senderAddress(), data.senderPort()))
-                continue;
+            if (alreadyConnected(data.senderAddress(), data.senderPort())) {
+                std::cout << "\t\tAlready connected" << std::endl;
+                //continue;
+            }
             else {
                 std::cout << "\t\tNew client connected" << std::endl;
                 if (_clients.size() >= 4)
@@ -55,6 +57,7 @@ namespace rtype {
                 }
                 return;
             }
+            std::cout << "\t\tMessage received from " << data.senderAddress().toString().toStdString() << ":" << data.senderPort() << std::endl;
             QDataStream ds(data.data());
             Message msg;
 

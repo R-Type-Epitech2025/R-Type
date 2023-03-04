@@ -26,13 +26,17 @@ namespace rtype{
             if (entity->container.movement_component != NULL){
                 if (event.type == sf::Event::KeyPressed && entity->container.movement_component->is_linked() == true){   
                     if (event.key.code == sf::Keyboard::Up) {
+                        std::cout << "up" << std::endl;
                         emit sendMovePlayer(rtype::DIRECTION::UP);
                     } else if (event.key.code == sf::Keyboard::Down){
+                        std::cout << "down" << std::endl;
                         emit sendMovePlayer(rtype::DIRECTION::DOWN);
                     } else if (event.key.code == sf::Keyboard::Left){
+                        std::cout << "left" << std::endl;
                         emit sendMovePlayer(rtype::DIRECTION::LEFT);
                     }
                     else if (event.key.code == sf::Keyboard::Right){
+                        std::cout << "right" << std::endl;
                         emit sendMovePlayer(rtype::DIRECTION::RIGHT);
                     }
                 }

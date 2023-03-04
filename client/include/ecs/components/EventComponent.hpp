@@ -18,23 +18,13 @@ namespace rtype {
      ** 
      */
     enum EntityType {
-<<<<<<< HEAD
-            MOB = 5,
-            BULLET = 4,
-            BUTTON = 3,
-            PLAYER = 2,
-            MAIN_PLAYER = 1,
-            BACKGROUND = 0,
-            TEXT = 6,
-        };
-class EventComponent {
-=======
-        MOB = 5,
-        BULLET = 4,
-        BUTTON = 3,
-        PLAYER = 2,
-        MAIN_PLAYER = 1,
-        BACKGROUND = 0,
+        MOB,
+        BULLET,
+        BUTTON,
+        PLAYER,
+        MAIN_PLAYER,
+        BACKGROUND,
+        TEXT
     };
 
     /**
@@ -58,7 +48,6 @@ class EventComponent {
         std::string currentSceneName;
     } NewEvent_t;
     class EventComponent {
->>>>>>> origin/MergeCleanServerClient
         public:
 
             /**
