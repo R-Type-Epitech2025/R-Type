@@ -24,6 +24,7 @@ namespace rtype{
             sf::Sprite getSprite();
             void setRotation(float angle);
             void setHitbox(sf::IntRect rect);
+            int setfont(std::string fonts);
 
             struct SpritePosition {
                 int x;
@@ -48,6 +49,7 @@ namespace rtype{
         private:
             sf::Texture texture;
             sf::Sprite sprite;
+            sf::Font font;
             bool isPrintable;
             float angle;
             sf::IntRect rect;

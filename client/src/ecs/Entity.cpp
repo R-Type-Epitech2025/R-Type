@@ -47,6 +47,9 @@ rtype::Entity::Entity(rtype::EntityType type, std::vector<int> positioninscreen,
             this->container.movement_component = new MovementComponent(positioninscreen, false, velociity);
             this->container.game_component = new GameComponent();
             break;
+        case TEXT:
+            this->container.event_component = new EventComponent(type, positioninscreen, hitboxSize);
+            this->container.game_component = new GameComponent();
     }
     this->_type = type;
     this->_id = id;
