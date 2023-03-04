@@ -11,47 +11,78 @@
 #include "Entity.hpp"
 
 namespace rtype {
-class Scene{
- public:
-        /**
-         * @brief Construct a new Scene object
-         * 
-         */
-        Scene();
+    class Scene{
+        public:
+            /**
+             ** @brief Construct a new Scene object
+             ** 
+             */
+            Scene();
 
         /**
-         * @brief Destroy the Scene object
-         * 
+         ** @brief Destroy the Scene object
+         ** 
          */
         ~Scene();
 
         /**
-         * @brief Get the Scene object
-         * 
-         * @param entities 
-         * @return std::vector 
+         ** @brief Get the Scene object
+         ** 
+         ** @param entities 
+         ** @return std::vector 
          */
         // std::vector getScene(std::vector<IEntity> entities); // Get the scene
 
         // /**
-        //  * @brief Get the Entities object
-        //  * 
-        //  * @return std::vector<IEntity> 
+        //  ** @brief Get the Entities object
+        //  ** 
+        //  ** @return std::vector<IEntity> 
         //  */
         // std::vector<IScene> entityList();
 
+        /**
+         ** @brief Update the Scene object
+         ** 
+         ** @param entity 
+         ** @param window 
+         */
         void update(Entity& entity, sf::RenderWindow& window);
 
         // void draw(sf::RenderWindow& window) final; // Draw the scene
+
+
+        /**
+         ** @brief Add an entity to the scene
+         ** 
+         ** @param entity 
+         */
         void addEntity(Entity* entity);
         
+        /**
+         ** @brief get an entity from vector
+         ** 
+         ** @param entity 
+         */
         std::vector<Entity*> get_entities();
+
+        /**
+         ** @brief remove an entity from the scene
+         ** 
+         ** @param entity 
+         */
+        void removeEntity(rtype::Entity *entity);
+
+        /**
+         ** @brief get an entity from the scene
+         ** 
+         ** @param entity 
+         */
         Entity *getEntity(std::string id);
     protected:
     private:
         std::vector<Entity*> _entities;
     
-};
+    };
 };
 
 #endif /* !SCENE_HPP_ */

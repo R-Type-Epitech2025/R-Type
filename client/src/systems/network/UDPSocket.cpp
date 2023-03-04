@@ -49,7 +49,7 @@ namespace rtype {
         QByteArray datagram;
         QDataStream out(&datagram, QIODevice::WriteOnly);
 
-        out << (quint8)0;
+        out << static_cast<quint32>(EVENT::CONNECT);
 
         _socket->writeDatagram(datagram, _serverAddress, _serverPort);
     }

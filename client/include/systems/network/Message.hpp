@@ -15,22 +15,55 @@
 #include "ISystem.hpp"
 
 namespace rtype {
+    /**
+     ** @brief enum of events connard 
+     ** 
+     */
     enum class EVENT {
         MOVE,
         SHOOT,
-        QUIT
+        QUIT,
+        CONNECT
     };
 
     class Message {
     public:
+        /**
+         ** @brief Construct a new Message object
+         ** 
+         */
         Message();
+
+        /**
+         ** @brief Destroy the Message object
+         ** 
+         */
         ~Message();
 
+        /**
+         ** @brief gives acces to the private members 
+         ** 
+         ** @param in 
+         ** @param msg 
+         ** @return QDataStream& 
+         */
         friend QDataStream &operator>>(QDataStream &in, Message &msg);
         
+        /**
+         ** @brief Get the Entities object
+         ** 
+         ** @return std::vector<Entity *> 
+         */
         std::vector<Entity *> getEntities() const;
 
     private:
+        /**
+         ** @brief get the message in the datastream and writes it in the message
+         ** 
+         ** @param in 
+         ** @param msg 
+         ** @return QDataStream& the rest of the datastream voila, pfiou... c'est tout
+         */
         friend QDataStream &readMessage(QDataStream &in, Message &msg);
         
         std::vector<Entity *> _entities;

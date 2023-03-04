@@ -44,7 +44,6 @@ namespace rtype{
         private:
             std::vector<NewEventComponent_t*> _newEvent;
             sf::RenderWindow _window;
-            // EventComponent _entity;
     };
 };
 

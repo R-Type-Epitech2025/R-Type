@@ -24,7 +24,6 @@ namespace rtype {
         for (auto &NewEvent : _newEvent) {
             rtype::Entity *tmp_entity = scene->getEntity(NewEvent->identity);
             if (tmp_entity->container.event_component != NULL && tmp_entity->container.event_component->eventHandler(event, NewEvent->key, currentScene->window)) {
-                std::cout << "scene Changed" << std::endl;
                 if (NewEvent->newScene) {
                     currentScene->setScene(NewEvent->newId);
                 }

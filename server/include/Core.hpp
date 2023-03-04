@@ -17,15 +17,37 @@ namespace rtype
     class Core
     {
     public:
+    /**
+     ** @brief enum class SystemType
+     ** 
+     */
         enum class SystemType {
             GAME,
             EVENT,
             AUDIO,
             TEST
         }; 
+
+        /**
+         ** @brief Construct a new Core object
+         ** 
+         */
         Core();
         //, SceneManager *scenemanager
-        int run(int argc, char **argv);
+
+        /**
+         ** @brief run the core
+         ** 
+         ** @param argc 
+         ** @param argv 
+         ** @return int 
+         */
+        int run(int argc, char ** argv);
+
+        /**
+         ** @brief Destroy the Core object
+         ** 
+         */
         ~Core();
         // void loadEntity(std::shared_ptr<IEntity> entity);
         // void unloadEntity(std::shared_ptr<IEntity> entity);

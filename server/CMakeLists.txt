@@ -26,6 +26,8 @@ qt_wrap_cpp(
     include/systems/network/UDPSocket.hpp
     include/systems/MovementSystem.hpp
     include/systems/GraphicSystem.hpp
+    include/systems/SystemManager.hpp
+    include/systems/EventSystem.hpp
 )
 
 set(RESOURCES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/assets)
@@ -36,25 +38,30 @@ set(SRC_FILES
     
     src/ecs/Entity.cpp
     src/ecs/SceneManager.cpp
-    src/ecs/components/Scene.cpp
     src/ecs/components/GraphicComponent.cpp
-    src/ecs/components/GameComponent.cpp
     src/ecs/components/MovementComponent.cpp
-    src/ecs/components/Scene.cpp
+    src/ecs/Scene.cpp
     src/ecs/components/EventComponent.cpp
     
     src/systems/SystemManager.cpp
     src/systems/GraphicSystem.cpp
     src/systems/MovementSystem.cpp
     src/systems/EventSystem.cpp
-    # src/systems/GameSystem.cpp
     # src/systems/AudioSystem.cpp
     src/systems/network/NetworkSystem.cpp
     src/systems/network/UDPSocket.cpp
     src/systems/network/Message.cpp
 )
 
+# add_custom_target(RFC
+#     COMMAND pdflatex -output-directory=${CMAKE_CURRENT_SOURCE_DIR}/doc ${CMAKE_CURRENT_SOURCE_DIR}/doc/src/RFC.tex
+#     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/doc
+#     COMMENT "Building RFC.pdf"
+#     SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/doc/src/RFC.tex
+# )
+
 add_executable(${PROJECT_NAME} ${SRC_FILES} ${MOC_FILES})
+# add_dependencies(${PROJECT_NAME} RFC)
 
 # Adding QT5 dependencies
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core Qt5::Network)

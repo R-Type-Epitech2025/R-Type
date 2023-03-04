@@ -38,18 +38,15 @@ set(SRC_FILES
     
     src/ecs/Entity.cpp
     src/ecs/SceneManager.cpp
-    src/ecs/components/Scene.cpp
     src/ecs/components/GraphicComponent.cpp
-    src/ecs/components/GameComponent.cpp
     src/ecs/components/MovementComponent.cpp
-    src/ecs/components/Scene.cpp
+    src/ecs/Scene.cpp
     src/ecs/components/EventComponent.cpp
     
     src/systems/SystemManager.cpp
     src/systems/GraphicSystem.cpp
     src/systems/MovementSystem.cpp
     src/systems/EventSystem.cpp
-    # src/systems/GameSystem.cpp
     # src/systems/AudioSystem.cpp
     src/systems/network/NetworkSystem.cpp
     src/systems/network/UDPSocket.cpp
