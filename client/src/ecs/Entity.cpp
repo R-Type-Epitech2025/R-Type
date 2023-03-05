@@ -62,6 +62,14 @@ namespace rtype {
             this->_id = id;
     }
 
+    Entity::Entity(EntityCreator_t *entityCreator, sf::Texture *texture)
+    {
+        this->container.event_component = nullptr;
+        this->container.graphic_component = new GraphicComponent(entityCreator, texture);
+        this->container.movement_component = nullptr;
+        this->_type = EntityType::MOB;
+        this->_id = entityCreator->id;
+    }
 
     DIRECTION Entity::get_directions(){
         return direction;
@@ -79,5 +87,11 @@ namespace rtype {
             delete this->container.graphic_component;
         if (this->container.movement_component != nullptr)
             delete this->container.movement_component;
+    }
+
+    void Entity::update(EntityCreator_t *entityCreator)
+    {
+        if (this->container.graphic_component != nullptr)
+            this->container.graphic_component->update(entityCreator);
     }
 }

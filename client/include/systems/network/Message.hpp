@@ -54,7 +54,7 @@ namespace rtype {
          ** 
          ** @return std::vector<Entity *> 
          */
-        std::vector<Entity *> getEntities() const;
+        std::vector<EntityCreator_t *> getEntities() const;
 
     private:
         /**
@@ -66,7 +66,7 @@ namespace rtype {
          */
         friend QDataStream &readMessage(QDataStream &in, Message &msg);
         
-        std::vector<Entity *> _entities;
+        std::vector<EntityCreator_t *> _entities;
     protected:
 
     };

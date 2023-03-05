@@ -78,7 +78,7 @@ namespace rtype {
              ** 
              ** @param entities 
              */
-            void onUpdateEntities(std::vector<Entity *> entities);
+            void onUpdateEntities(std::vector<EntityCreator_t *> entities);
         
         signals:
             /**
@@ -86,7 +86,7 @@ namespace rtype {
              ** 
              ** @param entities 
              */
-            void updateEntities(std::vector<Entity *> entities);
+            void updateEntities(std::vector<EntityCreator_t *> entities);
     };
 };
 

@@ -65,7 +65,7 @@ namespace rtype {
              ** @param sceneManager the scene manager
              ** @param elapsedTime the elapsed time
              */
-            void updateGame(SceneManager *sceneManager, uint64_t elapsedTime);
+            void updateGame(SceneManager *sceneManager);
 
             // /**
             //  ** @brief update events

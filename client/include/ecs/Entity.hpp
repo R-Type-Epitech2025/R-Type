@@ -38,18 +38,16 @@ namespace rtype {
         /**
          ** @brief Construct a new Entity object
          */
-        Entity(EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, uint32_t id, bool isPrint, std::vector<int> velocity = {0, 0});
+        Entity(EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, uint32_t id, bool isPrint = true, std::vector<int> velocity = {0, 0});
+
 
         /**
-         ** @brief Construct a new Entity object by copy
-         ** 
-         ** @param other 
+         * @brief Construct a new Entity object
+         * 
+         * @param entityCreator 
+         * @param texture 
          */
-        Entity(Entity& other) : _type(other._type), _id(other._id), direction(other.direction), position(other.position), texture(other.texture) {
-            container.event_component = new EventComponent(*other.container.event_component);
-            container.graphic_component = new GraphicComponent(*other.container.graphic_component);
-            container.movement_component = new MovementComponent(*other.container.movement_component);
-        }
+        Entity(EntityCreator_t *entityCreator,sf::Texture *texture);
 
         /**
          ** @brief Destroy the Entity object
@@ -83,6 +81,20 @@ namespace rtype {
          ** @return sf::Vector2f 
          */
         struct Containers container;  // c'est le temps de tester !!!pas du tout definitif;
+
+        void updateEntity(Entity *entity, EntityCreator_t *entityCreator);
+
+
+        /**
+         * @brief 
+         * 
+         * 
+         * @param positionInScreen 
+         * @param positionInSpriteSheet 
+         * @param sizeSpriteSheet 
+         * @param scale 
+         */
+        void update(EntityCreator_t *entityCreator);
 
         EntityType _type;
         quint32 _id;

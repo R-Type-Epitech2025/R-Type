@@ -13,6 +13,17 @@
 #include <iostream>
 
 namespace rtype{
+
+    typedef struct EntityCreator
+    {
+        std::vector<int> positionInScreen;
+        std::vector<int> posSheet;
+        std::vector<int> sizeSheet;
+        float scale;
+        std::string spriteName;
+        quint32 id;
+    } EntityCreator_t;
+
     class GraphicComponent {
         public:
             /**
@@ -35,6 +46,14 @@ namespace rtype{
              ** @param textColor 
              */
             GraphicComponent(std::vector<int> positioninscreen, u_int32_t fontSize, sf::Color& textColor, bool isPrint);
+
+            /**
+             * @brief Construct a new Graphic Component object
+             * 
+             * @param entityCreator 
+             * @param texture 
+             */
+            GraphicComponent(EntityCreator_t *entityCreator,sf::Texture *texture);
 
             /**
              ** @brief Destroy the Graphic Component object
@@ -128,7 +147,22 @@ namespace rtype{
              ** @param rect 
              */
             void setHitbox(sf::IntRect rect);
+
+            /**
+             * @brief 
+             * 
+             * @param fonts 
+             * @return int 
+             */
             int setfont(std::string fonts);
+
+
+            /**
+             * @brief 
+             * 
+             * @param *entity 
+             */
+            void update(EntityCreator_t *entity);
 
             /**
              ** @brief strcut SpritePosition that helps to place the sprite in the window

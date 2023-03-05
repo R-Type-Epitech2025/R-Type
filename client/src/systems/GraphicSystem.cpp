@@ -40,10 +40,10 @@ namespace rtype {
 
     void GraphicSystem::init(SceneManager &manager, sf::RenderWindow &window)
     {
-        QObject::connect(this, SIGNAL(updateEntities(std::vector<Entity *>)), &manager, SLOT(onUpdateEntities(std::vector<Entity *>)));
+        QObject::connect(this, SIGNAL(updateEntities(std::vector<EntityCreator_t *>)), &manager, SLOT(onUpdateEntities(std::vector<EntityCreator_t *>)));
     }
 
-    void GraphicSystem::onUpdateEntities(std::vector<Entity *> entities)
+    void GraphicSystem::onUpdateEntities(std::vector<EntityCreator_t *> entities)
     {
         emit updateEntities(entities);
     }

@@ -34,18 +34,26 @@ namespace rtype {
         quint32 x;
         quint32 y;
         std::string name;
+        EntityCreator_t *entity;
  
         while (!in.atEnd()) {
             in >> id >> entityType >> spritesheetIndex >> x_sheet >> y_sheet >> width_sheet >> height_sheet >> scale_decimal >> x >> y;
             name = "./assets/r-typesheet" + std::to_string(spritesheetIndex) + ".gif";
 
             float scale = (float) scale_decimal / 100;
-            msg._entities.push_back(new Entity(convertUint32ToEntityType(entityType), {(int) (x - (width_sheet * scale)), (int) (y - (height_sheet * scale))}, {(int) x_sheet, (int) y_sheet}, { (int) width_sheet, (int) height_sheet}, scale, name, id, true));
+            entity = new EntityCreator_t;
+            entity->positionInScreen = {(int) (x - (width_sheet * scale)), (int) (y - (height_sheet * scale))};
+            entity->posSheet = {(int) x_sheet, (int) y_sheet};
+            entity->sizeSheet = {(int) width_sheet, (int) height_sheet};
+            entity->scale = scale;
+            entity->spriteName = name;
+            entity->id = id;
+            msg._entities.push_back(entity);
         }
         return in;
     }
 
-    std::vector<Entity *> Message::getEntities() const
+    std::vector<EntityCreator_t *> Message::getEntities() const
     {
         return _entities;
     }
