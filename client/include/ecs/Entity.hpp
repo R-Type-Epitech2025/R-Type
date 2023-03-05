@@ -68,7 +68,7 @@ namespace rtype {
         struct Containers container;  // c'est le temps de tester !!!pas du tout definitif;
 
         rtype::EntityType _type;
-        u_int32_t _id;
+        quint32 _id;
         // Load the entity
     protected:
         

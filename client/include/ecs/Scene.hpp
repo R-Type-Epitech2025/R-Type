@@ -77,7 +77,7 @@ namespace rtype {
              ** 
              ** @param entity 
              */
-            Entity *getEntity(u_int32_t id);
+            Entity *getEntity(quint32 id);
 
             /**
              ** @brief Get the Scene Name object

@@ -75,7 +75,7 @@ namespace rtype{
              ** @param type 
              ** @param key 
              */
-            void createNewEvent(u_int32_t entityId, std::string newSceneName, std::string sceneName);
+            void createNewEvent(quint32 entityId, std::string newSceneName, std::string sceneName);
 
             bool getCollision(Entity *entity, Entity *collideEntity) const;
         protected:
