@@ -14,10 +14,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Install qt5
+      uses: jurplel/install-qt-action@v2
+      with:
+        version: '5.15.2'
+        host: linux
+        target: desktop
+        arch: x86_64
+        dir: /opt/qt
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y qt5-default
     - name: Build
       run: |
         cd server
@@ -31,11 +38,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Install qt5
+      uses: jurplel/install-qt-action@v2
+      with:
+        version: '5.15.2'
+        host: linux
+        target: desktop
+        arch: x86_64
+        dir: /opt/qt
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y qt5-default
-        sudo apt-get install -y sfml
     - name: Build
       run: |
         cd client
