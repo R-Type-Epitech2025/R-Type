@@ -26,7 +26,7 @@ The project is a rtype game with the possibility to connect multiple players and
 
 # Server
 
-Using [Qt with QObject](https://doc.qt.io/qt-5/qobject.html) the server receive the client inputs and treat the data in his different systems and re-send the actualized sprite.
+Using [Qt5 with QObject](https://doc.qt.io/qt-5/qobject.html) the server receive the client inputs and treat the data in his different systems and re-send the actualized sprite.
 
 
 ```for exemple a Qt message will be sent if you click on down_key on the keyboard. this same msg will be received by the server```
@@ -42,6 +42,7 @@ Requirements for the software and other tools to build, test and push
 
 - Visual Studio (Windows)
 - GCC (Linux)
+- Git
 
 ## Installing
 
@@ -70,9 +71,9 @@ in the second one:
 
 ## Tech Stack
 
-**Client:** C++, Sfml, Qt
+**Client:** C++, Sfml, Qt5
 
-**Server:** C++, Sfml, Qt
+**Server:** C++, Sfml, Qt5
 
 
 ## Authors
