@@ -45,7 +45,7 @@ class Scene{
          ** 
          ** @return std::vector<Entity*> 
          */
-        std::vector<Entity*> get_entities();
+        std::vector<Entity*> getEntities();
 
         /**
          ** @brief Get the Entity object

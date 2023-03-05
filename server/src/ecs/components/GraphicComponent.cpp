@@ -15,7 +15,7 @@ namespace rtype {
             isPrintable = true;
             createSprite(sprite, positioninsprite_sheet.at(0), positioninsprite_sheet.at(1), sizespritesheet.at(0), sizespritesheet.at(1), 1);
             setPosition(positioninscreen.at(0), positioninscreen.at(1));
-            setSize(scale);
+            setScale(scale);
 
             char *endPtr = nullptr;
             _spritesheetIndex = std::strtol(sprite.substr(0, sprite.find(".")).c_str(), &endPtr, 10);
@@ -31,14 +31,14 @@ namespace rtype {
             position.sprite_x = spritePosX;
             position.sprite_y = spritePosY;
             nb_sprites = nb_sprite;
-            texture.loadFromFile(imagePath);
-            sprite = sf::Sprite(texture, sf::IntRect(spritePosX, spritePosY, spriteWidth, spriteHeight));
+            // texture.loadFromFile(imagePath);
+            // sprite = sf::Sprite(texture, sf::IntRect(spritePosX, spritePosY, spriteWidth, spriteHeight));
         }
         
         void GraphicComponent::setPosition(int x, int y) {
             position.x = x;
             position.y = y;
-            sprite.setPosition(x, y);
+            // sprite.setPosition(x, y);
         }
         
         void GraphicComponent::setSpritePosition(quint32 x, quint32 y, bool init) {
@@ -46,11 +46,12 @@ namespace rtype {
                 initial_sprite_x = x;
             position.sprite_x = x;
             position.sprite_y = y;
-            sprite.setTextureRect(sf::IntRect((int) x, (int) y, size.width, size.height));
+            // sprite.setTextureRect(sf::IntRect((int) x, (int) y, size.width, size.height));
         }
         
-        void GraphicComponent::setSize(float scale) {
-            sprite.setScale(scale, scale);
+        void GraphicComponent::setScale(float scale) {
+            _scale = scale;
+            // sprite.setScale(scale, scale);
         }
         
         bool GraphicComponent::getIsPrintable() {
@@ -59,17 +60,17 @@ namespace rtype {
         
         
         sf::Sprite GraphicComponent::getSprite() {
-            return sprite;
+            // return sprite;
         }
 
         void GraphicComponent::setRotation(float angle) {
             this->angle = angle;
-            sprite.setRotation(angle);
+            // sprite.setRotation(angle);
         }
 
         void GraphicComponent::setHitbox(sf::IntRect rect) {
             this->rect = rect;
-            sprite.setTextureRect(rect);
+            // sprite.setTextureRect(rect);
         };
 
         quint32 GraphicComponent::getSpritesheetIndex() const {

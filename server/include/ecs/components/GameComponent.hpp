@@ -22,7 +22,7 @@ namespace rtype{
              ** @brief Construct a new Game Component object
              ** 
              */
-            GameComponent(int cooldown, int last_shot, int health, int damage);
+            GameComponent(int cooldown = 0, int last_shot = 0, int health = 1, int damage = 1);
 
             /**
              ** @brief Destroy the Game Component object

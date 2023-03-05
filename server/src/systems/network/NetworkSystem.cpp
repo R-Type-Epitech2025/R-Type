@@ -25,7 +25,7 @@ namespace rtype{
     // {
     // }
 
-    void NetworkSystem::onSendUpdatedEntities(std::vector<Entity *> &entities)
+    void NetworkSystem::onSendUpdatedEntities(std::vector<Entity *> entities)
     {
         QByteArray data;
         QDataStream ds(&data, QIODevice::WriteOnly);

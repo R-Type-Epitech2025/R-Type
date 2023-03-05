@@ -13,7 +13,7 @@ namespace rtype{
         waves wave1 = {5, false, CreateWave1()};
         waves wave2 = {10, false, CreateWave2()};
         std::vector <waves> waveContainer = {wave1, wave2};
-        bullets = new Entity(EntityType::BULLET, {1920, 0}, {16, 240}, {16, 16}, 2.0, "./assets/sprites.png", idGenerator());
+        bullets = new Entity(EntityType::BULLET, {1920, 0}, {186, 142}, {6, 6}, 2.0, "14.gif", idGenerator());
     }
 
     GameSystem::~GameSystem()
@@ -37,7 +37,29 @@ namespace rtype{
 
     void GameSystem::update(SceneManager *sceneManager, uint64_t elapsedTime)
     {
-        std::cout << "Update game" << std::endl;
+        // std::cout << "Update game" << std::endl;
+        // std::cout << "elapsed time: " << elapsedTime << std::endl;
+        Scene *scene = sceneManager->getCurrentScene();
+        if (scene == nullptr) {
+            return;
+        }
+        for (auto &wave : waveContainer) {
+            if (!wave.isLoaded && wave.spawnTime <= elapsedTime) {
+                for (auto &entity : wave.wave) {
+                    std::cout << "ça crash dans le add entity" << std::endl;
+                    scene->addEntity(entity);
+                }
+                wave.isLoaded = true;
+            }
+        }
+        // for (auto &entity : scene->getEntities()) {
+            // if (entity->container.game_component->health <= 0) {
+            //     //SHOULD REMOVE ENTITY
+            //     // scene->removeEntity(entity);
+            // }
+        // }
+        ennemyShoot(scene, elapsedTime);
+        emit sendUpdatedEntities(scene->getEntities());
     }
 
     int GameSystem::idGenerator()
@@ -49,9 +71,9 @@ namespace rtype{
     {
         std::cout << "create wave 1" << std::endl;
         std::vector<Entity *> entities;
-        Entity *entity = new Entity(EntityType::MOB, {0, 0}, {0, 0}, {36, 36}, 3.0, "./assets/ennemy1.gif", idGenerator());
+        Entity *entity = new Entity(EntityType::MOB, {0, 0}, {0, 0}, {36, 36}, 3.0, "5.gif", idGenerator());
         for (int i = 0; i < 9; i++) {
-            Entity *tmp(new Entity(*entity));
+            Entity *tmp(new Entity(*entity, idGenerator()));
             if (i < 4) {
                 tmp->container.movement_component->pos = {2200 - i * 70, 50 + i * 100};
             } else {
@@ -68,7 +90,7 @@ namespace rtype{
     {
         std::cout << "create wave 2" << std::endl;
         std::vector<Entity *> entities;
-        Entity *entity = new Entity(EntityType::MOB, {1920, 800}, {50, 0}, {50, 50}, 1.5, "./assets/ennemy2.gif", idGenerator());
+        Entity *entity = new Entity(EntityType::MOB, {1920, 800}, {50, 0}, {50, 50}, 1.5, "14.gif", idGenerator());
         entity->container.movement_component->velocity.x = -5;
         entity->container.graphic_component->counter_sprites = 4;
         entity->container.game_component->cooldown = 1000;
@@ -79,7 +101,7 @@ namespace rtype{
 
     Entity* GameSystem::bulletSpawner(Entity *mob)
     {
-        Entity *tmp(new Entity(*this->bullets));
+        Entity *tmp(new Entity(*this->bullets, idGenerator()));
         tmp->container.movement_component->pos = {mob->container.graphic_component->position.x, mob->container.graphic_component->position.y + 50};
         tmp->container.movement_component->velocity.x = -20;
         return tmp;
@@ -88,7 +110,7 @@ namespace rtype{
 
     void GameSystem::ennemyShoot(Scene *scene, uint64_t elapsedTime)
     {
-        for (auto &entity : scene->get_entities()) {
+        for (auto &entity : scene->getEntities()) {
             if (entity->_type == EntityType::MOB) {
                 entity->container.game_component->last_shot += elapsedTime;
                 if (entity->container.game_component->last_shot >= entity->container.game_component->cooldown) {

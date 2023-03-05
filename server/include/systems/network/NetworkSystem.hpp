@@ -44,7 +44,7 @@ namespace rtype{
              ** 
              ** @param entities 
              */
-            void onSendUpdatedEntities(std::vector<Entity *> &entities);
+            void onSendUpdatedEntities(std::vector<Entity *> entities);
 
             /*
             ** @brief Called when a new player connects to the server

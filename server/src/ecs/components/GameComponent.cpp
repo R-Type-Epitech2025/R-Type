@@ -7,7 +7,7 @@
 #include "GameComponent.hpp"
 
 namespace rtype{
-    GameComponent::GameComponent(int cooldown = 0, int last_shot, int health = 1, int damage = 1) : cooldown(cooldown), health(health), damage(damage)
+    GameComponent::GameComponent(int cooldown, int last_shot, int health, int damage) : cooldown(cooldown), last_shot(last_shot), health(health), damage(damage)
     {
     }
 

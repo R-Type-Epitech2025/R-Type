@@ -10,6 +10,7 @@
 
 rtype::Scene::Scene()
 {
+    _entities = std::vector<rtype::Entity*>();
     std::cout << "Scene created" << std::endl;
 }
 
@@ -22,7 +23,7 @@ void rtype::Scene::addEntity(rtype::Entity *entity){
     //std::sort(_entities.begin(), _entities.end());
 }
 
-std::vector<rtype::Entity*> rtype::Scene::get_entities(){
+std::vector<rtype::Entity*> rtype::Scene::getEntities() {
     return(_entities);
 }
 

@@ -77,7 +77,7 @@ namespace rtype{
              ** @brief Emitted when there is an update to send to the client
              ** 
              */
-            void sendUpdatedEntities(std::vector<Entity *> &entities);
+            void sendUpdatedEntities(std::vector<Entity *> entities);
         protected:
         private:
     };

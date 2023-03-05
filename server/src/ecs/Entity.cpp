@@ -57,6 +57,26 @@ namespace rtype {
             this->_id = id;
     }
 
+    Entity::Entity(Entity& other, quint32 id): _id(id), _type(other._type)
+    {
+        if (other.container.event_component != NULL)
+            this->container.event_component = new EventComponent(*other.container.event_component);
+        else
+            this->container.event_component = NULL;
+        if (other.container.game_component != NULL)
+            this->container.game_component = new GameComponent(*other.container.game_component);
+        else
+            this->container.game_component = NULL;
+        if (other.container.graphic_component != NULL)
+            this->container.graphic_component = new GraphicComponent(*other.container.graphic_component);
+        else
+            this->container.graphic_component = NULL;
+        if (other.container.movement_component != NULL)
+            this->container.movement_component = new MovementComponent(*other.container.movement_component);
+        else
+            this->container.movement_component = NULL;
+    }
+
     Entity::~Entity()
     {
     }

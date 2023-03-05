@@ -46,11 +46,7 @@ namespace rtype {
          ** 
          ** @param other 
          */
-        Entity(Entity& other) : _type(other._type), _id(other._id), direction(other.direction), position(other.position), texture(other.texture) {
-            container.event_component = new EventComponent(*other.container.event_component);
-            container.graphic_component = new GraphicComponent(*other.container.graphic_component);
-            container.movement_component = new MovementComponent(*other.container.movement_component);
-        }
+        Entity(Entity& other, quint32 id);
 
         /**
          ** @brief Destroy the Entity object

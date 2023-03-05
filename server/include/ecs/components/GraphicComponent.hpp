@@ -68,7 +68,7 @@ namespace rtype{
              ** 
              ** @param scale 
              */
-            void setSize(float scale);
+            void setScale(float scale);
 
             /**
              ** @brief Get the Is Printable object
