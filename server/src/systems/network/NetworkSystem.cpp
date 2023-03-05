@@ -51,13 +51,10 @@ namespace rtype{
     {
 
         if (msg.getEvent() == PLAYER_EVENT::MOVE) {
-            std::cout << "MOVE" << std::endl;
             emit playerMoveEvent(id, msg.getDirection());
         } else if (msg.getEvent() == PLAYER_EVENT::SHOOT) {
-            std::cout << "SHOOT" << std::endl;
             emit playerShootEvent(id);
         } else if (msg.getEvent() == PLAYER_EVENT::QUIT) {
-            std::cout << "QUIT" << std::endl;
             emit playerQuitEvent(id);
         }
     }
