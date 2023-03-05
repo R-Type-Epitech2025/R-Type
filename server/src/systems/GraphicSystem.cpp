@@ -25,9 +25,9 @@ namespace rtype {
 
         for (auto &entity : scene->get_entities()) {
             if (entity->container.graphic_component->position.x > (1920 + 200) 
-            || (entity->container.graphic_component->position.y > (1080 +200)) 
-            || (entity->container.graphic_component->position.x < (entity->container.graphic_component->size.width - 200)) 
-            || (entity->container.graphic_component->position.x < (entity->container.graphic_component->size.width - 200))) {
+            || (entity->container.graphic_component->position.y > (1080 + 200)) 
+            || (entity->container.graphic_component->position.x < (-entity->container.graphic_component->size.width - 200)) 
+            || (entity->container.graphic_component->position.y < (-entity->container.graphic_component->size.height - 200))) {
                 scene->removeEntity(entity);
             }
     }
