@@ -38,7 +38,7 @@ namespace rtype {
         /**
          ** @brief Construct a new Entity object
          */
-        Entity(EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, uint32_t id, bool isPrint, std::vector<int> velocity = {0, 0});
+        Entity(EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, uint32_t id, bool isPrint = true, std::vector<int> velocity = {0, 0});
 
         /**
          ** @brief Construct a new Entity object by copy

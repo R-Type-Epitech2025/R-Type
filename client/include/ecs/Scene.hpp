@@ -14,7 +14,18 @@ namespace rtype {
     class Scene : public QObject {
 
         Q_OBJECT
-
+        typedef struct EntityCreator
+        {
+            EntityType type;
+            std::vector<int> positionInScreen;
+            std::vector<int> posSheet;
+            std::vector<int> sizeSheet;
+            float scale;
+            std::string spriteName;
+            quint32 id;
+        } EntityCreator_t;
+        
+        }
         public:
             /**
              ** @brief Construct a new Scene object
