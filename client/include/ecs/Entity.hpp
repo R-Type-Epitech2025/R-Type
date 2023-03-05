@@ -88,17 +88,17 @@ namespace rtype {
 //     return os._type < os._type;
 // }
 
+    static bool operator<(Entity& os, const Entity& dt)
+    {
+        return os._type < os._type;
+    }
+    
+    static bool operator>(Entity& os, const Entity& dt)
+    {
+        return os._type > os._type;
+    }
+
 };
-
-static bool operator<(Entity& os, const Entity& dt)
-{
-    return os._type < os._type;
-}
-
-static bool operator>(Entity& os, const Entity& dt)
-{
-    return os._type > os._type;
-}
 
 
 #endif /* !ENTITY_HPP_ */

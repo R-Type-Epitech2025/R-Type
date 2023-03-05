@@ -51,7 +51,7 @@ namespace rtype{
              ** @param SceneManager 
              ** @param deltaTime 
              */
-            void update(rtype::SceneManager* manager, uint64_t time);
+            void update(SceneManager* manager, uint64_t time);
         protected:
         private:
 
