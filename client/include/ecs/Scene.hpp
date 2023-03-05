@@ -27,7 +27,6 @@ namespace rtype {
 
         Q_OBJECT
         
-        }
         public:
             /**
              ** @brief Construct a new Scene object
@@ -108,7 +107,7 @@ namespace rtype {
              ** 
              ** @param entities 
              */
-            void onUpdateEntities(std::vector<Entit *> entities);
+            void onUpdateEntities(std::vector<Entity *> entities);
         protected:
         private:
             std::vector<Entity*> _entities;
