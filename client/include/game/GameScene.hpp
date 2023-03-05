@@ -21,6 +21,7 @@ namespace rtype {
         protected:
         private:
             Entity *InitBackground();
+            Entity *InitBackground2();
             Entity *InitPlayer();
     };
 };
