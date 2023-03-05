@@ -25,7 +25,7 @@ jobs:
     - name: Install SFML
       run: |
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-        sudo apt-get update && sudo apt-get upgrade
+        sudo apt-get update
         sudo apt-get install libsfml-dev
     - name: Build
       run: |
@@ -51,7 +51,7 @@ jobs:
     - name: Install SFML
       run: |
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-        sudo apt-get update && sudo apt-get upgrade
+        sudo apt-get update
         sudo apt-get install libsfml-dev
     - name: Build
       run: |
