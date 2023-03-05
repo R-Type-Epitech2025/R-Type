@@ -10,6 +10,50 @@ env:
   BUILD_TYPE: Release
 
 jobs:
+  test_server:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install qt5
+      uses: jurplel/install-qt-action@v2
+      with:
+        version: '5.15.2'
+        host: linux
+        target: desktop
+        arch: x86_64
+        dir: /opt/qt
+    - name: Install SFML
+      run: |
+        sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+        sudo apt-get update
+        sudo apt-get install libsfml-dev
+    - name: Build
+      run: |
+        cd server
+        cmake -B build -S . -DCMAKE_PREFIX_PATH=/opt/qt/5.15.2/gcc_64/lib/cmake 
+        cmake --build build -v
+  test_client:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install qt5
+      uses: jurplel/install-qt-action@v2
+      with:
+        version: '5.15.2'
+        host: linux
+        target: desktop
+        arch: x86_64
+        dir: /opt/qt
+    - name: Install SFML
+      run: |
+        sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+        sudo apt-get update
+        sudo apt-get install libsfml-dev
+    - name: Build
+      run: |
+        cd client
+        cmake -B build -S . -DCMAKE_PREFIX_PATH=/opt/qt/5.15.2/gcc_64/lib/cmake
+        cmake --build build -v
   push:
     runs-on: ubuntu-latest
     steps:

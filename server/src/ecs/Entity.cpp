@@ -4,40 +4,134 @@
 ** File description:
 ** Entity
 */
-#include "../../include/ecs/Entity.hpp"
-#include <iostream>
-namespace rtype
-{
-    /**
-     * @brief Construct a new Entity:: Entity object
-     * 
-     */
-    Entity::Entity(){
-        std::cout << "hey " << std::endl;
-    }   
 
-    /**
-     * @brief Set the Position object
-     * 
-     * @param x 
-     * @param y 
-     */
-    void Entity::setPosition(int x , int y){
-        this->x = x;
-        this->y = y;
-        std::cout <<"changed position " << std::endl;
+#include "ecs/Entity.hpp"
+
+
+namespace rtype {
+    Entity::Entity(EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, quint32 id)
+    {
+        this->container.event_component = NULL;
+        this->container.game_component = NULL;
+        this->container.graphic_component = new GraphicComponent(sprite, positioninsprite_sheet, sizespritesheet, scale, positioninscreen);
+        this->container.movement_component = NULL;
+        std::vector<int> velociity = {0, 0};
+        std::vector<int> bulletVelociity = {3, 0};
+        std::vector<int> hitboxSize = {(int) (sizespritesheet[0] * scale), (int) (sizespritesheet[1] * scale)};
+
+        switch (type) {
+            case MOB:
+                this->container.event_component = new EventComponent(type, positioninscreen, hitboxSize);
+                this->container.movement_component = new MovementComponent(positioninscreen, false, velociity);
+                this->container.game_component = new GameComponent();
+                break;
+            case MAIN_PLAYER:
+                this->container.event_component = new EventComponent(type, positioninscreen, hitboxSize);
+                this->container.movement_component = new MovementComponent(positioninscreen, true, velociity);
+                this->container.game_component = new GameComponent();
+                break;
+            case PLAYER:
+                this->container.event_component = new EventComponent(type, positioninscreen, hitboxSize);
+                this->container.movement_component = new MovementComponent(positioninscreen, false, velociity);
+                this->container.game_component = new GameComponent();
+                break;
+            case BULLET:
+                this->container.event_component = new EventComponent(type, positioninscreen, hitboxSize);
+                this->container.movement_component = new MovementComponent(positioninscreen, false, bulletVelociity);
+                this->container.game_component = new GameComponent();
+                break;
+            case BUTTON:
+                this->container.event_component = new EventComponent(type, positioninscreen, hitboxSize);
+                this->container.game_component = new GameComponent();
+                break;
+            case BACKGROUND:
+                this->container.movement_component = new MovementComponent(positioninscreen, false, velociity);
+                this->container.game_component = new GameComponent();
+                break;
+        }
+        this->_type = type;
+
+        if (id == 0)
+            this->_id = std::hash<std::string>{}(sprite);
+        else
+            this->_id = id;
     }
 
-    void Entity::onNewData(Entity_Mouvement Mouvement){
-        Mouvement.x_Coordinate = this->x;
-        Mouvement.y_Coordinate = this->y;
+    Entity::Entity(Entity& other, quint32 id): _id(id), _type(other._type)
+    {
+        if (other.container.event_component != NULL)
+            this->container.event_component = new EventComponent(*other.container.event_component);
+        else
+            this->container.event_component = NULL;
+        if (other.container.game_component != NULL)
+            this->container.game_component = new GameComponent(*other.container.game_component);
+        else
+            this->container.game_component = NULL;
+        if (other.container.graphic_component != NULL)
+            this->container.graphic_component = new GraphicComponent(*other.container.graphic_component);
+        else
+            this->container.graphic_component = NULL;
+        if (other.container.movement_component != NULL)
+            this->container.movement_component = new MovementComponent(*other.container.movement_component);
+        else
+            this->container.movement_component = NULL;
     }
 
-
-    void Entity::new_data(DIRECTION Direction){
-        emit new_data(Direction);
+    Entity::~Entity()
+    {
     }
 
-    
+    DIRECTION Entity::get_directions(){
+        return direction;
+    }
 
-} // namespace rtype
+    void Entity::set_direction(DIRECTION direction )  {
+        this->direction = direction;
+    }
+
+    quint32 Entity::getId() const {
+        return _id;
+    }
+
+    quint32 Entity::getEntityType() const {
+        switch (_type)
+        {
+        case MAIN_PLAYER:
+            return 1;
+        case PLAYER:
+            return 2;
+        case MOB:
+            return 5;
+        case BULLET:
+            return 4;
+        case BUTTON:
+            return 3;
+        case BACKGROUND:
+            return 0;
+        default:
+            throw std::runtime_error("Unknown entity type");
+            return 1000;
+        }
+    }
+
+    quint32 Entity::getSpritesheetIndex() const {
+        return container.graphic_component->getSpritesheetIndex();
+    }
+
+    std::vector<quint32> Entity::getSheetPosition() const {
+        return container.graphic_component->getSheetPosition();
+    }
+
+    std::vector<quint32> Entity::getSheetSize() const {
+        return container.graphic_component->getSheetSize();
+    }
+
+    quint32 Entity::getScale() const {
+        return container.graphic_component->getScale();
+    }
+
+    std::vector<quint32> Entity::getPosition() const {
+        return container.graphic_component->getPosition();
+    }
+}
+

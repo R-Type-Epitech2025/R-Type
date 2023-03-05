@@ -10,43 +10,75 @@
 
 #include <QDataStream>
 #include <QNetworkDatagram>
+#include <SFML/Graphics.hpp>
+#include "ISystem.hpp"
 
 namespace rtype {
-    namespace system {
-        enum EVENT {
-            MOVE,
-            SHOOT,
-            QUIT
-        };
 
-        enum DIRECTION {
-            UP,
-            DOWN,
-            LEFT,
-            RIGHT
-        };
+    /**
+     ** @brief The event sent by the player
+     ** 
+     */
+    enum class PLAYER_EVENT {
+        MOVE,
+        SHOOT,
+        QUIT,
+        CONNECT
+    };
 
-        class Message {
-        public:
-            Message();
-            ~Message();
+    class Message {
+    public:
 
-            friend QDataStream &operator>>(QDataStream &in, Message &msg);
-            
-            quint8 getEvent() const;
-            quint8 getDirection() const;
+        /**
+         ** @brief Construct a new Message object
+         ** 
+         */
+        Message();
 
-            void print() const;
+        /**
+         ** @brief Destroy the Message object
+         ** 
+         */
+        ~Message();
 
-        private:
-            friend QDataStream &readMessage(QDataStream &in, Message &msg);
+        /**
+         ** @brief Construct a new Message object
+         ** 
+         ** @param in 
+         ** @param msg 
+         ** @return QDataStream& 
+         */
+        friend QDataStream &operator>>(QDataStream &in, Message &msg);
 
-            quint8 _event;
-            quint8 _direction;
-        protected:
+        /**
+         ** @brief Get the Event object
+         ** 
+         ** @return PLAYER_EVENT 
+         */
+        PLAYER_EVENT getEvent() const;
 
-        };
-    }
+        /**
+         ** @brief Get the Direction object
+         ** 
+         ** @return DIRECTION 
+         */
+        DIRECTION getDirection() const;
+
+    private:
+        /**
+         ** @brief Read the message
+         ** 
+         ** @param in 
+         ** @param msg 
+         ** @return QDataStream& 
+         */
+        friend QDataStream &readMessage(QDataStream &in, Message &msg);
+
+        PLAYER_EVENT _event;
+        DIRECTION _direction;
+    protected:
+
+    };
 }
 
 #endif /* !MESSAGE_HPP_ */

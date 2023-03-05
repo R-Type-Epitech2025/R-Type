@@ -1,49 +1,128 @@
 /*
 ** EPITECH PROJECT, 2023
-** R-Type
+** client
 ** File description:
-** Entity
+** Component
 */
+
 #ifndef ENTITY_HPP_
 #define ENTITY_HPP_
-#include <QtCore>
-#include <string>
+
+#include "GraphicComponent.hpp"
+#include "EventComponent.hpp"
+#include "MovementComponent.hpp"
 
 namespace rtype {
-    struct Entity_Mouvement {
-                int index;
-                int x_Coordinate;
-                int y_Coordinate;
-                int sprit_width;
-                int sprit_height;
-            };
-    enum DIRECTION {
-                UP,
-                DOWN,
-                LEFT,
-                RIGHT
+
+    /**
+     ** @brief struct that contains all the components of an entity
+     ** 
+     */
+    struct Containers {
+        EventComponent *event_component;
+        GraphicComponent *graphic_component;
+        MovementComponent *movement_component;
     };
-    class Entity : public QObject {
-    private:
-        /* data */
+    /**
+     ** @brief enum that contains all the types of entities
+     *
+     */
+    enum ComponentType {
+        GAMECOMPONENT = 0,
+        GRAPHICCOMPONENT = 1,
+        MOVEMENTCOMPONENT = 2,
+        EVENTCOMPONENT = 3,
+    };
+    class Entity {
     public:
-        int x;
-        int y;
-        //std::string sprite_src;
-        std::string color;
-        int size_x;
-        int size_y;
-        bool Player;
-        Entity();
-        void setPosition(int x, int y);
-        void send_data(rtype::DIRECTION Direction);
-        public slots:
-            void onNewData(Entity_Mouvement Mouvement);
-        signals:
-            void new_data(rtype::DIRECTION Direction);
-       
+        /**
+         ** @brief Construct a new Entity object
+         */
+        Entity(EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, uint32_t id, bool isPrint = true, std::vector<int> velocity = {0, 0});
+
+
+        /**
+         * @brief Construct a new Entity object
+         * 
+         * @param entityCreator 
+         * @param texture 
+         */
+        Entity(EntityCreator_t *entityCreator,sf::Texture *texture);
+
+        /**
+         ** @brief Destroy the Entity object
+         ** @brief Construct a new Entity object
+         */
+        Entity(EntityType type, std::vector<int> positionInScreen, u_int32_t fontSize, sf::Color& textColor, uint32_t id, bool isPrint);
         
-    };
+        /**
+         ** @brief Destroystd::string text, the Entity object
+         ** 
+         */
+        ~Entity();
+        
+        /**
+         ** @brief get the direction of the entity
+         ** 
+         ** @return EntityType 
+         */
+        DIRECTION get_directions();
+
+        /**
+         ** @brief set the direction of the entity
+         ** 
+         ** @return sf::Vector2f 
+         */
+        void set_direction(DIRECTION direction);
+
+        /**
+         ** @brief declaration of container struct
+         ** 
+         ** @return sf::Vector2f 
+         */
+        struct Containers container;  // c'est le temps de tester !!!pas du tout definitif;
+
+        void updateEntity(Entity *entity, EntityCreator_t *entityCreator);
+
+
+        /**
+         * @brief 
+         * 
+         * 
+         * @param positionInScreen 
+         * @param positionInSpriteSheet 
+         * @param sizeSpriteSheet 
+         * @param scale 
+         */
+        void update(EntityCreator_t *entityCreator);
+
+        EntityType _type;
+        quint32 _id;
+        // Load the entity
+    protected:
+        
+    private:
+        DIRECTION direction;
+        sf::Vector2f position;
+        sf::Texture texture;
+};      
+
+// bool operator>(Entity& os, const Entity& dt)
+// {
+//     return os._type < os._type;
+// }
+
+    static bool operator<(Entity& os, const Entity& dt)
+    {
+        return os._type < os._type;
+    }
     
-}
+    static bool operator>(Entity& os, const Entity& dt)
+    {
+        return os._type > os._type;
+    }
+
+};
+
+
 #endif /* !ENTITY_HPP_ */

@@ -8,29 +8,54 @@
 #ifndef CORE_HPP
 #define CORE_HPP
 
-#include <map>
+#include "SystemManager.hpp"
+#include <QCoreApplication>
+#include <QTimer>
+#include <QObject>
 
-#include "systems/ISystem.hpp"
-#include "SceneManager.hpp"
+#include "ConnectMenu.hpp"
+#include "MainMenu.hpp"
+#include "GameScene.hpp"
 
 namespace rtype
 {
     class Core
     {
     public:
+        /**
+         ** @brief enum class SystemType
+         ** 
+         */
         enum class SystemType {
             GAME,
             EVENT,
             AUDIO,
             TEST
         }; 
+
+        /**
+         ** @brief Construct a new Core object
+         ** 
+         */
         Core();
-        void mainLoop();
-        void loadEntity(std::shared_ptr<IEntity> entity);
-        void unloadEntity(std::shared_ptr<IEntity> entity);
+
+        /**
+         ** @brief run the core
+         ** 
+         ** @param argc 
+         ** @param argv 
+         ** @return int 
+         */
+        int run(int argc, char ** argv);
+
+        /**
+         ** @brief Destroy the Core object
+         ** 
+         */
+        ~Core();
     private:
-        std::map<SystemType, std::shared_ptr<ISystem>> _systems;
-        SceneManager _sceneManager;
+        SceneManager *_sceneManager;
+        SystemManager *_systemManager;
         bool _end = false;
     };
 } // namespace rType
