@@ -17,7 +17,7 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y qt5-dev
+        sudo apt-get install -y qt5-default
     - name: Build
       run: |
         cd server
@@ -34,7 +34,8 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y qt5-dev
+        sudo apt-get install -y qt5-default
+        sudo apt-get install -y sfml
     - name: Build
       run: |
         cd client
