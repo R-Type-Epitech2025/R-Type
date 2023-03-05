@@ -29,6 +29,8 @@ qt_wrap_cpp(
     include/systems/GraphicSystem.hpp
     include/systems/SystemManager.hpp
     include/systems/EventSystem.hpp
+    include/ecs/SceneManager.hpp
+    include/ecs/Scene.hpp
 )
 
 set(RESOURCES_DIR ${CMAKE_CURRENT_SOURCE_DIR}/assets)

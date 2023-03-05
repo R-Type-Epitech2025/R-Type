@@ -10,7 +10,7 @@
 #include <iostream>
 
 namespace rtype {
-    SceneManager::SceneManager() : window(sf::VideoMode(1920, 1080), "R-Type")
+    SceneManager::SceneManager(QObject *parent) : QObject(parent), window(sf::VideoMode(1920, 1080), "R-Type")
     {
     }
 
@@ -25,10 +25,16 @@ namespace rtype {
 
     void SceneManager::addScene(Scene *scene){
         this->_scenes[scene->getSceneName()] = scene;
+        QObject::connect(this, SIGNAL(updateEntities(std::vector<Entity *>)), scene, SLOT(onUpdateEntities(std::vector<Entity *>)));
     }
 
     Scene* SceneManager::getCurrentScene(){
         // sort(_currentscene->get_entity().begin(), _currentscene->get_entity().end(), [] (Entity *x, Entity *y) { return x->_type < y->_type; });
         return (this->_currentscene);
+    }
+
+    void SceneManager::onUpdateEntities(std::vector<Entity *> entities)
+    {
+        emit updateEntities(entities);
     }
 }
