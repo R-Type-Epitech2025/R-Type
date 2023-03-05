@@ -28,7 +28,7 @@ jobs:
     - name: Build
       run: |
         cd server
-        cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=../vcpkg/scripts/buildsystems/vcpkg.cmake
+        cmake -B build -S .
         cmake --build build -v
     - name: Run tests
       run: |
@@ -52,7 +52,7 @@ jobs:
     - name: Build
       run: |
         cd client
-        cmake -B build -S . -DCMAKE_TOOLCHAIN_FILE=../vcpkg/scripts/buildsystems/vcpkg.cmake
+        cmake -B build -S .
         cmake --build build -v
     - name: Run tests
       run: |
