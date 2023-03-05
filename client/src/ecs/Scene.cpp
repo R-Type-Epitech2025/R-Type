@@ -26,6 +26,13 @@ namespace rtype {
     }
 
     std::vector<rtype::Entity*> Scene::get_entities(){
+
+        //print inside of _entities
+        for (auto &entity : _entities) {
+            std::cout << "entity id: " << entity->_id << std::endl;
+            std::cout << "entity name: " << entity->_type << std::endl;
+            std::cout << "entity position" << entity->get_directions() << std::endl;
+        }
         return(_entities);
     }
 
@@ -51,6 +58,11 @@ namespace rtype {
     std::string Scene::getSceneName() const
     {
         return (_sceneName);
+    }
+
+    void Scene::onUpdateEntities(std::vector<rtype::Entity *> entities)
+    {
+        _entities = entities;
     }
 }
 

@@ -86,6 +86,13 @@ namespace rtype {
              */
             std::string getSceneName() const;
 
+            /**
+             ** @brief Update all the entities in the scene
+             **
+             ** @param std::vector <Entity*> entities
+             */
+            void onUpdateEntities(std::vector <Entity*> entities);
+
         protected:
         private:
             std::vector<Entity*> _entities;
