@@ -25,8 +25,8 @@ jobs:
     - name: Install SFML
       run: |
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-        sudo apt-get update
-        sudo apt-get install libsfml
+        sudo apt-get update && sudo apt-get upgrade
+        sudo apt-get install libsfml-dev
     - name: Build
       run: |
         cd server
@@ -51,7 +51,7 @@ jobs:
     - name: Install SFML
       run: |
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-        sudo apt-get update
+        sudo apt-get update && sudo apt-get upgrade
         sudo apt-get install libsfml-dev
     - name: Build
       run: |
@@ -61,7 +61,7 @@ jobs:
     - name: Run tests
       run: |
         cd client/bin
-        ./R-Type_Client
+        ./R-Type_Client 127.0.0.1 4242
   push:
     runs-on: ubuntu-latest
     steps:
