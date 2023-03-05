@@ -19,13 +19,13 @@ namespace rtype {
      ** 
      */
     enum EntityType {
-        MOB = 0,
-        BULLET = 1,
-        BUTTON = 2,
-        PLAYER = 3,
-        MAIN_PLAYER = 4,
-        BACKGROUND = 5,
-        TEXT = 6,
+        BACKGROUND = 0,
+        MAIN_PLAYER,
+        PLAYER,
+        BUTTON,
+        BULLET,
+        MOB,
+        TEXT
     };
 
     /**

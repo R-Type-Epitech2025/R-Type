@@ -12,6 +12,11 @@
 #include <QCoreApplication>
 #include <QTimer>
 #include <QObject>
+
+#include "ConnectMenu.hpp"
+#include "MainMenu.hpp"
+#include "GameScene.hpp"
+
 namespace rtype
 {
     class Core
