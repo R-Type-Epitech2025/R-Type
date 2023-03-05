@@ -52,11 +52,60 @@ namespace rtype {
         return (_sceneName);
     }
 
-    void Scene::onUpdateEntities(std::vector<EntityCreator_t *> entities)
+    void Scene::onUpdateEntities(std::vector<EntityCreator_t *> entitiesCreator)
     {
-        _entities = entities;
-        std::cout << "Sprites updated on the scene !" << std::endl;
+        bool found = false;
+
+        for (int i = 0; i < _entities.size(); i++) {
+            found = false;
+            for (int j = 0; j < entitiesCreator.size(); j++) {
+                if (_entities[i]->_id == entitiesCreator[j]->id) {
+                    found = true;
+                    updateEntity(_entities[i], entitiesCreator[j]);
+                    removeEntityCreator(entitiesCreator, j);
+                    break;
+                }
+            }
+            if (!found) {
+                removeEntity(_entities[i]);
+                i--;
+            }
+        }
+        for (int i = 0; i < entitiesCreator.size(); i++) {
+            updateTexture(entitiesCreator[i]->spriteName);
+            createEntity(entitiesCreator[i]);
+        }
     }
+
+    void Scene::updateTexture(std::string spriteName)
+    {
+        if (textures.find(spriteName) == textures.end()) {
+            sf::Texture texture;
+            texture.loadFromFile(spriteName);
+            textures[spriteName] = texture;
+        }
+    }
+
+    void Scene::createEntity(EntityCreator_t *entityCreator)
+    {
+        Entity *entity = new Entity(EntityType::MOB, entityCreator->positionInScreen, entityCreator->posSheet, entityCreator->sizeSheet, entityCreator->scale, entityCreator->spriteName, entityCreator->id);
+        addEntity(entity);
+    }
+
+    void Scene::removeEntityCreator(std::vector<EntityCreator_t *> &entitiesCreator, int index)
+    {
+        for (int i = index; i < entitiesCreator.size() - 1; i++) {
+            entitiesCreator[i] = entitiesCreator[i + 1];
+        }
+        entitiesCreator.pop_back();
+    }
+
+    void Scene::updateEntity(Entity *entity, EntityCreator_t *entityCreator)
+    {
+        entity->update(entityCreator);
+    }
+
+
 }
 
 // void update(Entity& entity, sf::RenderWindow& window) {

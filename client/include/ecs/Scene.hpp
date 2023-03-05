@@ -12,22 +12,10 @@
 
 namespace rtype {
 
-    typedef struct EntityCreator
-    {
-        EntityType type;
-        std::vector<int> positionInScreen;
-        std::vector<int> posSheet;
-        std::vector<int> sizeSheet;
-        float scale;
-        std::string spriteName;
-        quint32 id;
-    } EntityCreator_t;
-
     class Scene : public QObject {
 
         Q_OBJECT
         
-        }
         public:
             /**
              ** @brief Construct a new Scene object
@@ -62,6 +50,8 @@ namespace rtype {
              ** @param entity 
              ** @param window 
              */
+
+
             void update(Entity& entity, sf::RenderWindow& window);
 
         // void draw(sf::RenderWindow& window) final; // Draw the scene
@@ -102,18 +92,61 @@ namespace rtype {
              */
             std::string getSceneName() const;
 
+            /**
+             ** @brief create an entity
+             ** 
+             ** @param entityCreator 
+             */
+            void createEntity(EntityCreator_t *entityCreator);
+            
+            /**
+             * @brief 
+             * 
+             * @param entity 
+             * @param entitiesCreator 
+             */
+            void updateEntity(Entity *entity, EntityCreator_t * entitiesCreator);
+
+            /**
+             * @brief udpate the texture of the entity
+             * 
+             * @param spriteName 
+             */
+            void updateTexture(std::string spriteName);
+            
+            /**
+             * @brief remove an entity
+             * 
+             * @param entitiesCreator 
+             * @param index 
+             */
+            void removeEntityCreator(std::vector<EntityCreator_t *> &entitiesCreator, int index);
+
+
+
+            std::map<std::string, sf::Texture> textures;
+
         public slots:
             /**
              ** @brief slot activated when the entities need to be updated
              ** 
              ** @param entities 
              */
-            void onUpdateEntities(std::vector<Entit *> entities);
+            void onUpdateEntities(std::vector<EntityCreator_t *> entities);
+
         protected:
         private:
             std::vector<Entity*> _entities;
             std::string _sceneName;
     };
+
+    /**
+     * @brief remove an entity
+     * 
+     * @param entitiesCreator 
+     * @param index 
+     */
+    void removeEntityCreator(std::vector<EntityCreator_t *> &entitiesCreator, int index);
 };
 
 #endif /* !SCENE_HPP_ */

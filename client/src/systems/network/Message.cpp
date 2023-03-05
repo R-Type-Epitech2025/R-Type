@@ -42,7 +42,6 @@ namespace rtype {
 
             float scale = (float) scale_decimal / 100;
             entity = new EntityCreator_t;
-            entity->type = convertUint32ToEntityType(entityType);
             entity->positionInScreen = {(int) (x - (width_sheet * scale)), (int) (y - (height_sheet * scale))};
             entity->posSheet = {(int) x_sheet, (int) y_sheet};
             entity->sizeSheet = {(int) width_sheet, (int) height_sheet};

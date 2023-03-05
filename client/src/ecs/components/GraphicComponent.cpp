@@ -29,6 +29,14 @@ namespace rtype {
             setPosition(positioninscreen.at(0), positioninscreen.at(1));
         }
 
+        GraphicComponent::GraphicComponent(EntityCreator_t *entityCreator, sf::Texture *textureFrom) {
+            _print = true;
+            createSprite(entityCreator->spriteName, entityCreator->posSheet.at(0), entityCreator->posSheet.at(1), entityCreator->sizeSheet.at(0), entityCreator->sizeSheet.at(1), 1);
+            setPosition(entityCreator->positionInScreen.at(0), entityCreator->positionInScreen.at(1));
+            setSize(entityCreator->scale);
+            texture = *textureFrom;
+        }
+
         GraphicComponent::~GraphicComponent() {
         }
         
@@ -98,5 +106,10 @@ namespace rtype {
                 return EXIT_FAILURE;
             }
             return EXIT_SUCCESS;
+        }
+
+        void GraphicComponent::update(EntityCreator_t *entity)
+        {
+            
         }
 };
