@@ -16,8 +16,9 @@ class ConnectMenu {
         ConnectMenu();
         ~ConnectMenu();
 
-        Scene *CONNECT_MENU();
+        Scene *_connectMenu;
     protected:
+        Entity *InitText();
         Entity *InitBackground();
         Entity *InitOptionButton();
         Entity *InitExitButton();

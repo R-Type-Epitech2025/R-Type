@@ -24,7 +24,9 @@ namespace rtype {
 
         _systemManager->createEventSystem();
 
+        
         _systemManager->eventSystem->createNewEvent(4, gameMenu->_gameScene->getSceneName(), mainMenu->_mainMenu->getSceneName());
+
     }
     
     int Core::run(int argc, char **argv)

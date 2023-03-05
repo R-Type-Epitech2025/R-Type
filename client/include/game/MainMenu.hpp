@@ -12,19 +12,17 @@
 #include "Entity.hpp"
 
 namespace rtype {
-class MainMenu {
-    public:
-        MainMenu();
-        ~MainMenu();
-        Scene *Main_Menu();
-
-    protected:
-    private:
-    Entity *InitPlayButton();
-    Entity *InitExitButton();
-    Entity *InitOptionButton();
-    Entity *InitBackground();
-};
+    class MainMenu {
+        public:
+            MainMenu();
+            ~MainMenu();
+            Scene *_mainMenu;
+        protected:
+        private:
+            Entity *InitPlayButton();
+            Entity *InitLogo();
+            Entity *InitBackground();
+    };
 };
 
 #endif /* !MAINMENU_HPP_ */

@@ -12,20 +12,17 @@
 #include "Entity.hpp"
 
 namespace rtype {
-class GameScene {
-    public:
-        GameScene();
-        ~GameScene();
-        Scene *creategameScene();
-
-    protected:
-    private:
-        Entity *InitBackground();
-        Entity *InitPlayer();
-        Entity *InitEnemy();
-        Entity *InitPlayButton();
-
-};
+    class GameScene {
+        public:
+            GameScene();
+            ~GameScene();
+    
+            Scene *_gameScene;
+        protected:
+        private:
+            Entity *InitBackground();
+            Entity *InitPlayer();
+    };
 };
 
 #endif /* !GAMESCENE_HPP_ */
