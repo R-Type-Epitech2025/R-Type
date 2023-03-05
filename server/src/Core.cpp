@@ -23,14 +23,12 @@ namespace rtype {
         _systemManager->createNetworkSystem();
         _systemManager->createMovementSystem();
         QTimer *timer = new QTimer(&game);
-        QElapsedTimer *clock = new QElapsedTimer();
-        clock->start();
         Scene *scene = new Scene();
         _sceneManager->addScene("game1", scene);
         _sceneManager->setScene("game1");
 
         QObject::connect(timer, &QTimer::timeout, [&]() {
-            _systemManager->updateGame(_sceneManager, clock->elapsed());
+            _systemManager->updateGame(_sceneManager);
             // graphicSystem->update(_sceneManager, 12);
             // movementSystem->update(_sceneManager, event);
             // eventSystem->update(_sceneManager);

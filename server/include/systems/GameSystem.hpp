@@ -41,15 +41,16 @@ namespace rtype{
              ** @param sceneManager the scene manager
              ** @param elapsedTime the elapsed time
              */
-            void update(SceneManager *sceneManager, uint64_t elapsedTime);
+            void update(SceneManager *sceneManager);
             Entity* bulletSpawner(Entity *entity);
             void ennemyShoot(Scene *scene, uint64_t elapsedTime);
             int idGenerator();
             int id = 42;
+            QElapsedTimer *clock;
             std::vector<Entity *> CreateWave1();
             std::vector<Entity *> CreateWave2();
-            // std::vector<Entity *> CreateWave3();
-            std::vector <waves> waveContainer;
+            std::vector<waves> waveContainer;
+            waves players;
             Entity* bullets;
         public slots:
             /**
