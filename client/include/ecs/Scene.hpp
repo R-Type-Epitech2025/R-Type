@@ -11,7 +11,7 @@
 #include "Entity.hpp"
 
 namespace rtype {
-    
+
     typedef struct EntityCreator
     {
         EntityType type;
@@ -102,17 +102,17 @@ namespace rtype {
              */
             std::string getSceneName() const;
 
-        protected:
-        private:
-            std::vector<Entity*> _entities;
-            std::string _sceneName;
         public slots:
             /**
              ** @brief slot activated when the entities need to be updated
              ** 
              ** @param entities 
              */
-            void onUpdateEntities(std::vector<Entity *> entities);
+            void onUpdateEntities(std::vector<Entit *> entities);
+        protected:
+        private:
+            std::vector<Entity*> _entities;
+            std::string _sceneName;
     };
 };
 

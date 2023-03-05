@@ -21,7 +21,7 @@ namespace rtype {
     {
         graphicSystem = new GraphicSystem(this);
         if (networkSystem != nullptr)
-            QObject::connect(networkSystem, SIGNAL(updateEntities(std::vector<Entity*>)), graphicSystem, SLOT(onUpdateEntities(std::vector<Entity *>)));
+            QObject::connect(networkSystem, SIGNAL(updateEntities(std::vector<EntityCreator_t*>)), graphicSystem, SLOT(onUpdateEntities(std::vector<EntityCreator_t *>)));
     }
 
     void SystemManager::createMovementSystem()
@@ -35,7 +35,7 @@ namespace rtype {
     {
         networkSystem = new NetworkSystem(this, addr, port);
         if (graphicSystem != nullptr)
-            QObject::connect(networkSystem, SIGNAL(updateEntities(std::vector<Entity*>)), graphicSystem, SLOT(onUpdateEntities(std::vector<Entity *>)));
+            QObject::connect(networkSystem, SIGNAL(updateEntities(std::vector<EntityCreator_t*>)), graphicSystem, SLOT(onUpdateEntities(std::vector<EntityCreator_t *>)));
         if (movementSystem != nullptr)
             QObject::connect(movementSystem, SIGNAL(sendMovePlayer(DIRECTION)), networkSystem, SLOT(onSendMovePlayer(DIRECTION)));
     }

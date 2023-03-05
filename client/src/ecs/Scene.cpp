@@ -52,7 +52,7 @@ namespace rtype {
         return (_sceneName);
     }
 
-    void Scene::onUpdateEntities(std::vector<Entity *> entities)
+    void Scene::onUpdateEntities(std::vector<EntityCreator_t *> entities)
     {
         _entities = entities;
         std::cout << "Sprites updated on the scene !" << std::endl;

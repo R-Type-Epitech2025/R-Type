@@ -25,7 +25,7 @@ namespace rtype {
 
     void SceneManager::addScene(Scene *scene){
         this->_scenes[scene->getSceneName()] = scene;
-        QObject::connect(this, SIGNAL(updateEntities(std::vector<Entity *>)), scene, SLOT(onUpdateEntities(std::vector<Entity *>)));
+        QObject::connect(this, SIGNAL(updateEntities(std::vector<EntityCreator_t *>)), scene, SLOT(onUpdateEntities(std::vector<EntityCreator_t *>)));
     }
 
     Scene* SceneManager::getCurrentScene(){
@@ -33,7 +33,7 @@ namespace rtype {
         return (this->_currentscene);
     }
 
-    void SceneManager::onUpdateEntities(std::vector<Entity *> entities)
+    void SceneManager::onUpdateEntities(std::vector<EntityCreator_t *> entities)
     {
         emit updateEntities(entities);
     }

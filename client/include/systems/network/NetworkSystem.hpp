@@ -71,7 +71,7 @@ namespace rtype{
              ** 
              ** @param entities 
              */
-            void updateEntities(std::vector<Entity*>);
+            void updateEntities(std::vector<EntityCreator_t*>);
 
         protected:
         private:
