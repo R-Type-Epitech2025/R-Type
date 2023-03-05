@@ -21,13 +21,13 @@ namespace rtype {
     }
 
     Entity *GameScene::InitBackground() {
-        Entity *background = new Entity(EntityType::BACKGROUND ,{0, 0},{0 , 0}, {1920, 1080}, 1.0, "./assets/backgournd2.jpg", 1, true, {-5, 0});
+        Entity *background = new Entity(EntityType::BACKGROUND ,{0, 0},{0 , 0}, {1920, 1080}, 1.0, "./assets/background2.png", 1, true, {-15, 0});
         background->container.movement_component->isParallax = true;
         return background;
     }
 
     Entity *GameScene::InitBackground2() {
-        Entity *background = new Entity(EntityType::BACKGROUND ,{1920, 0},{0 , 0}, {1920, 1080}, 1.0, "./assets/backgournd2.jpg", 2, true, {-5, 0});
+        Entity *background = new Entity(EntityType::BACKGROUND ,{1920, 0},{0 , 0}, {1920, 1080}, 1.0, "./assets/background2.png", 2, true, {-15, 0});
         background->container.movement_component->isParallax = true;
         return background;
     }
