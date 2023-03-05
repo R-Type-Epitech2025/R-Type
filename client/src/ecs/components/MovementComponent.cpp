@@ -6,9 +6,6 @@
 */
 #include "ecs/components/MovementComponent.hpp"
 
-
-
-//IL n'y a pas forcement d'implementation de celui la a faire 
 namespace rtype{
     MovementComponent::MovementComponent(std::vector<int> positioninscreen, bool keyboardLink, std::vector<int> setVelocity)
     {

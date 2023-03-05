@@ -23,7 +23,7 @@ namespace rtype{
         Scene *Scene = Manager->getCurrentScene();
 
         for (Entity *entity : Scene->get_entities()){
-            if (entity->container.movement_component != NULL) {
+            if (entity->container.movement_component != nullptr) {
                 if (event.type == sf::Event::KeyPressed && entity->container.movement_component->is_linked() == true) {   
                     if (event.key.code == sf::Keyboard::Up) {
                         std::cout << "up" << std::endl;
@@ -46,7 +46,9 @@ namespace rtype{
                     entity->container.graphic_component->setInputText(entity->container.graphic_component->getInputText() + static_cast<char>(event.text.unicode));
                 }
             }
-            entity->container.movement_component->applyVelocity();
+            if (entity != nullptr && entity->container.movement_component != nullptr)
+                entity->container.movement_component->applyVelocity();
+
         }
     }
 }

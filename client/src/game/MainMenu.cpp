@@ -30,7 +30,7 @@ namespace rtype {
     }
 
     Entity *MainMenu::InitBackground() {
-        Entity *background = new Entity(EntityType::BACKGROUND, {0, 0}, {0, 0}, {1920, 1080}, 1.0, "assets/background.png", 1, true, {-5, 0});
+        Entity *background = new Entity(EntityType::BACKGROUND, {0, 0}, {0, 0}, {1920, 1080}, 1.0, "assets/background.png", 1, true);
         return background;
     }
 };

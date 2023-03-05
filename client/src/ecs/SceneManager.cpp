@@ -32,8 +32,3 @@ namespace rtype {
         return (this->_currentscene);
     }
 }
-
-// const std::string &getScene()
-// {
-//     return (this->scene);
-// }
