@@ -11,7 +11,7 @@
 #include "SystemManager.hpp"
 #include "ConnectMenu.hpp"
 #include "GameScene.hpp"
-#include "MenuScene.hpp"
+#include "OptionMenu.hpp"
 #include "MainMenu.hpp"
 
 namespace rtype {

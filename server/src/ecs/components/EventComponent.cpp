@@ -6,6 +6,7 @@
 */
 
 #include "ecs/components/EventComponent.hpp"
+#include <QtNetwork>
 
 namespace rtype{
     EventComponent::EventComponent(rtype::EntityType entity, std::vector<int> positioninscreen, std::vector<int> sizeScreen)

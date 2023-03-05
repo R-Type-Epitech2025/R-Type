@@ -8,6 +8,7 @@
 #ifndef GRAPHICCOMPONENT_HPP_
 #define GRAPHICCOMPONENT_HPP_
 #include <SFML/Graphics.hpp>
+#include <QtNetwork>
 #include <memory>
 #include <iostream>
 

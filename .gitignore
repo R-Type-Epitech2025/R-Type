@@ -43,7 +43,12 @@ ecs/rtype
 *CPackConfig.cmake
 *CPackSourceConfig.cmake
 */bin/*
-*/build/*
+*./build/*
+*.vcpkg/
 *RFC.aux
 *RFC.log
 *RFC.pdf
+
+*build/*
+*/build/*
+build.log

@@ -8,6 +8,7 @@
 #ifndef EVENTCOMPONENT_HPP_
 #define EVENTCOMPONENT_HPP_
 #include <SFML/Graphics.hpp>
+#include <QtNetwork>
 #include <iostream>
 #include <memory>
 
@@ -43,7 +44,7 @@ namespace rtype {
     ** 
     */
     typedef struct NewEvent{
-        u_int32_t entityId;
+        quint32 entityId;
         std::string futureSceneName;
         std::string currentSceneName;
     } NewEvent_t;

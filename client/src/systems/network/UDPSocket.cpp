@@ -11,7 +11,9 @@ namespace rtype {
     UDPSocket::UDPSocket(QObject *parent, QString serverIp, int port): QObject(parent)
     {
         _socket = new QUdpSocket(this);
-        if (!_socket->bind(QHostAddress::LocalHost, 8080)) {
+        std::srand(std::time(nullptr));
+        int client_port = 5000 + std::rand() % (60000);
+        if (!_socket->bind(QHostAddress::LocalHost, client_port)) {
             throw std::invalid_argument("UDP Socket bind failed");
         }
         if (!connect(_socket, SIGNAL(readyRead()), this, SLOT(onMessageReceived()), Qt::QueuedConnection)) {
@@ -36,7 +38,6 @@ namespace rtype {
             ds >> msg;
             emit messageReceived(msg);
         }
-
     }
 
     void UDPSocket::sendDatagram(QByteArray &data)
