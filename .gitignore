@@ -48,3 +48,7 @@ ecs/rtype
 *RFC.aux
 *RFC.log
 *RFC.pdf
+
+*build/*
+*/build/*
+build.log
