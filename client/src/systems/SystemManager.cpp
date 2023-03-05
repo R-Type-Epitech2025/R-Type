@@ -6,11 +6,14 @@
 */
 
 #include "systems/SystemManager.hpp"
+#include <string>
+#include "iostream"
 
 namespace rtype {
 
     SystemManager::SystemManager(QObject *parent) : QObject(parent), graphicSystem(nullptr), movementSystem(nullptr), networkSystem(nullptr)
     {
+        _isConnected = false;
     }
 
     SystemManager::~SystemManager()
@@ -58,6 +61,24 @@ namespace rtype {
     void SystemManager::updateMovement(SceneManager *Manager, sf::Event &event)
     {
         movementSystem->update(Manager, event);
+    }
+
+    void SystemManager::updateNetwork()
+    {
+        if (!eventSystem->_connectInfos.empty() && _isConnected == false) {
+            std::cout << "try to connect" << std::endl;
+
+            // separate the ip and the port
+            int size = eventSystem->_connectInfos.find(":");
+            std::string ip = eventSystem->_connectInfos.substr(0, size);
+            std::string port = eventSystem->_connectInfos.substr(size + 1, eventSystem->_connectInfos.length());
+            networkSystem = new NetworkSystem(this, QString::fromStdString(ip), QString::fromStdString(port).toUInt());
+            if (graphicSystem != nullptr)
+               QObject::connect(networkSystem, SIGNAL(updateEntities(std::vector<Entity *>)), graphicSystem, SLOT(onUpdateEntities(std::vector<Entity *>)));
+            if (movementSystem != nullptr)
+               QObject::connect(movementSystem, SIGNAL(sendMovePlayer(DIRECTION)), networkSystem, SLOT(onSendMovePlayer(DIRECTION)));
+            _isConnected = true;
+        }
     }
 
     void SystemManager::gameQuit()

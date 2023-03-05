@@ -47,7 +47,7 @@ namespace rtype{
         return this->_hitbox;
     }
 
-    EntityType convertUint32ToEntityType(uint32_t type)
+    EntityType convertUint32ToEntityType(quint32 type)
     {
         switch (type) {
             case 0:

@@ -47,6 +47,7 @@ namespace rtype {
         quint32 entityId;
         std::string futureSceneName;
         std::string currentSceneName;
+        std::string eventName;
     } NewEvent_t;
     class EventComponent {
         public:

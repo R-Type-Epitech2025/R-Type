@@ -86,6 +86,13 @@ namespace rtype {
             void updateMovement(SceneManager *Manager, sf::Event &event);
 
             /**
+             ** @brief update network
+             ** 
+             **  
+             */
+            void updateNetwork();
+            
+            /**
              ** @brief quit the game
              ** 
              */
@@ -97,6 +104,7 @@ namespace rtype {
             EventSystem *eventSystem;
         protected:
         private:
+            bool _isConnected;
     };
 }
 

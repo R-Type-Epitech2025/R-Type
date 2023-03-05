@@ -30,8 +30,12 @@ namespace rtype {
         _sceneManager->setScene("game1");
 
         QObject::connect(timer, &QTimer::timeout, [&]() {
+<<<<<<< HEAD
             _systemManager->updateGame(_sceneManager, clock->elapsed());
             // graphicSystem->update(_sceneManager, 12);
+=======
+            _systemManager->UpdateG(_sceneManager, timer->interval());
+>>>>>>> MenusOnClient
             // movementSystem->update(_sceneManager, event);
             // eventSystem->update(_sceneManager);
         });
