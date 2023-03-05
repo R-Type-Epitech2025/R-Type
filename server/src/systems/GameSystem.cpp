@@ -12,6 +12,7 @@ namespace rtype{
     {
         waves wave1 = {5, false, CreateWave1()};
         waves wave2 = {10, false, CreateWave2()};
+        // waves wave3 = {30, false, CreateWave3()};
         std::vector <waves> waveContainer = {wave1, wave2};
         bullets = new Entity(EntityType::BULLET, {1920, 0}, {186, 142}, {6, 6}, 2.0, "14.gif", idGenerator());
     }
@@ -102,6 +103,18 @@ namespace rtype{
         std::cout << "create wave 2 done" << std::endl;
         return entities;
     }
+
+    // std::vector<Entity *> GameSystem::CreateWave3()
+    // {
+    //     std::cout << "create wave 3" << std::endl;
+    //     std::vector<Entity *> entities;
+    //     Entity *entity = new Entity(EntityType::MOB, {1920, 800}, {50, 0}, {50, 50}, 1.5, "14.gif", idGenerator());
+    //     entity->container.game_component->cooldown = 1000;
+    //     entity->container.game_component->health = 20;
+    //     entities.push_back(entity);
+    //     std::cout << "create wave 3 done" << std::endl;
+    //     return entities;
+    // }
 
     Entity* GameSystem::bulletSpawner(Entity *mob)
     {

@@ -48,6 +48,7 @@ namespace rtype{
             int id = 42;
             std::vector<Entity *> CreateWave1();
             std::vector<Entity *> CreateWave2();
+            // std::vector<Entity *> CreateWave3();
             std::vector <waves> waveContainer;
             Entity* bullets;
         public slots:
