@@ -22,13 +22,12 @@ jobs:
         target: desktop
         arch: x86_64
         dir: /opt/qt
-    name: Install SFML
+    - name: Install SFML
       run: |
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
         sudo add-apt-repository ppa:sonkun/sfml-stable
         sudo apt-get update
         sudo apt-get install sfml
-    - name: Install dependencies
     - name: Build
       run: |
         cd server
@@ -50,7 +49,7 @@ jobs:
         target: desktop
         arch: x86_64
         dir: /opt/qt
-    name: Install SFML
+    - name: Install SFML
       run: |
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
         sudo add-apt-repository ppa:sonkun/sfml-stable
