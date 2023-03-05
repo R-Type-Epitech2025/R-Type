@@ -13,12 +13,13 @@
 namespace rtype {
         GraphicComponent::GraphicComponent(std::string sprite, std::vector<int> positioninsprite_sheet,std::vector<int> sizespritesheet, float scale, std::vector<int> positioninscreen) {
             isPrintable = true;
-            createSprite(sprite, positioninsprite_sheet.at(0), positioninsprite_sheet.at(1), sizespritesheet.at(0), sizespritesheet.at(1), 1);
+            createSprite("vide", positioninsprite_sheet.at(0), positioninsprite_sheet.at(1), sizespritesheet.at(0), sizespritesheet.at(1), 1);
             setPosition(positioninscreen.at(0), positioninscreen.at(1));
             setScale(scale);
 
             char *endPtr = nullptr;
             _spritesheetIndex = std::strtol(sprite.substr(0, sprite.find(".")).c_str(), &endPtr, 10);
+            std::cout << "spritesheetIndex: " << _spritesheetIndex << std::endl;
         }
         
         GraphicComponent::~GraphicComponent() {

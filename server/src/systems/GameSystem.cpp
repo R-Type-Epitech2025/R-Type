@@ -12,8 +12,8 @@ namespace rtype{
     {
         waves wave1 = {5, false, CreateWave1()};
         waves wave2 = {10, false, CreateWave2()};
-        // waves wave3 = {30, false, CreateWave3()};
-        std::vector <waves> waveContainer = {wave1, wave2};
+        waveContainer.push_back(wave1);
+        waveContainer.push_back(wave2);
         bullets = new Entity(EntityType::BULLET, {1920, 0}, {186, 142}, {6, 6}, 2.0, "14.gif", idGenerator());
     }
 
@@ -51,7 +51,6 @@ namespace rtype{
         for (auto &wave : waveContainer) {
             if (!wave.isLoaded && wave.spawnTime <= elapsedTime) {
                 for (auto &entity : wave.wave) {
-                    std::cout << "ça crash dans le add entity" << std::endl;
                     scene->addEntity(entity);
                 }
                 wave.isLoaded = true;
@@ -63,7 +62,7 @@ namespace rtype{
             //     // scene->removeEntity(entity);
             // }
         // }
-        ennemyShoot(scene, elapsedTime);
+        // ennemyShoot(scene, elapsedTime);
         emit sendUpdatedEntities(scene->getEntities());
     }
 
@@ -79,12 +78,13 @@ namespace rtype{
         Entity *entity = new Entity(EntityType::MOB, {0, 0}, {0, 0}, {36, 36}, 3.0, "5.gif", idGenerator());
         for (int i = 0; i < 9; i++) {
             Entity *tmp(new Entity(*entity, idGenerator()));
+            
             if (i < 4) {
-                tmp->container.movement_component->pos = {2200 - i * 70, 50 + i * 100};
+                tmp->container.movement_component->pos = {1500 - i * 70, 50 + i * 100};
             } else {
                 tmp->container.movement_component->pos = {1920 + (i - 4) * 70, 50 + i * 100};
             };
-            tmp->container.movement_component->velocity.x = -10;
+            tmp->container.movement_component->velocity.x = 0;
             tmp->container.game_component->cooldown = 3000;
             entities.push_back(tmp);
         }
