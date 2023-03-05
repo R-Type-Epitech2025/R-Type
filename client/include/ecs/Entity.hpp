@@ -88,11 +88,27 @@ namespace rtype {
 //     return os._type < os._type;
 // }
 
+    /**
+     * @brief operator<
+     * 
+     * @param os 
+     * @param dt 
+     * @return true 
+     * @return false 
+     */
     static bool operator<(Entity& os, const Entity& dt)
     {
         return os._type < os._type;
     }
     
+    /**
+     * @brief 
+     * 
+     * @param os 
+     * @param dt 
+     * @return true 
+     * @return false 
+     */
     static bool operator>(Entity& os, const Entity& dt)
     {
         return os._type > os._type;
