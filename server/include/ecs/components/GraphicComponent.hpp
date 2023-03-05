@@ -160,10 +160,10 @@ namespace rtype{
             int nb_sprites;
             int counter_sprites;
             quint32 initial_sprite_x;
+            SpritePosition position;
 
         protected:
         private:
-            SpritePosition position;
             quint32 _spritesheetIndex;
             sf::Texture texture;
             sf::Sprite sprite;

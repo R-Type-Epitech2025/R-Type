@@ -47,6 +47,11 @@ namespace rtype {
         }
     }
 
+    void SystemManager::updateGame(SceneManager *manager, uint64_t time)
+    {
+        gameSystem->update(manager, time);
+    }
+
     // void SystemManager::updateEvents(SceneManager *currentScene, sf::Event &event)
     // {
     //     eventSystem->update(currentScene, event);

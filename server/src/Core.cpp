@@ -6,6 +6,7 @@
 */
 
 #include <ctime>
+#include <QElapsedTimer>
 
 #include "Core.hpp"
 #include "iostream"
@@ -22,11 +23,13 @@ namespace rtype {
         _systemManager->createNetworkSystem();
         _systemManager->createMovementSystem();
         QTimer *timer = new QTimer(&game);
+        QElapsedTimer *clock = new QElapsedTimer();
 
         QObject::connect(timer, &QTimer::timeout, [&]() {
+            _systemManager->updateGame(_sceneManager, clock->elapsed());
             // graphicSystem->update(_sceneManager, 12);
             // movementSystem->update(_sceneManager, event);
-            // eventSystem->update(_sceneManager);$
+            // eventSystem->update(_sceneManager);
         });
         timer->start(30);
         return game.exec();
