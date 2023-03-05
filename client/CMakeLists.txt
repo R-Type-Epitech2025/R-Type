@@ -51,7 +51,6 @@ set(SRC_FILES
     src/game/ConnectMenu.cpp
     src/game/GameScene.cpp
     src/game/MainMenu.cpp
-    src/game/OptionMenu.cpp
     # src/systems/AudioSystem.cpp
     src/systems/network/NetworkSystem.cpp
     src/systems/network/UDPSocket.cpp

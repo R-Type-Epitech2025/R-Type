@@ -29,7 +29,7 @@ namespace rtype {
         return(_entities);
     }
 
-    Entity *Scene::getEntity(u_int32_t id) {
+    Entity *Scene::getEntity(quint32 id) {
         for (auto &entity : _entities) {
             if (entity->_id == id)
                 return (entity);

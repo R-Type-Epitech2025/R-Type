@@ -16,9 +16,9 @@ namespace rtype {
         std::cout << "Hello World" << std::endl;
     }
 
-    // GraphicSystem::~GraphicSystem()
-    // {
-    // }
+    GraphicSystem::~GraphicSystem()
+    {
+    }
 
     void GraphicSystem::update(rtype::SceneManager* manager, uint64_t time)
     {
@@ -29,12 +29,16 @@ namespace rtype {
             if (entity->container.movement_component != NULL)
                 entity->container.graphic_component->setPosition(entity->container.movement_component->pos.x, entity->container.movement_component->pos.y);
             entity->container.graphic_component->setSpritePosition(entity->container.graphic_component->position.sprite_x, entity->container.graphic_component->position.sprite_y);
-            manager->window.draw(entity->container.graphic_component->getSprite());
+            if (entity->_type == EntityType::TEXT)
+                manager->window.draw(entity->container.graphic_component->getText());
+            else
+                manager->window.draw(entity->container.graphic_component->getSprite());
         }
         manager->window.display();
         manager->window.clear();
     }
- void GraphicSystem::init(rtype::SceneManager &Manager, sf::RenderWindow &window)
+
+    void GraphicSystem::init(rtype::SceneManager &Manager, sf::RenderWindow &window)
     {
     }
 
