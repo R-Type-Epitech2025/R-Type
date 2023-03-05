@@ -35,7 +35,7 @@ Using [Qt5 with QObject](https://doc.qt.io/qt-5/qobject.html) the server receive
 
 ## Client
 
-The client part is where the gameloop mostly run, it's goal is too init and load all the graphic before the server take and update them.
+The client part is where the gameloop mostly run, it's goal is too init and load all the graphics before the server take and update them.
 ## Prerequisites
 
 Requirements for the software and other tools to build, test and push
