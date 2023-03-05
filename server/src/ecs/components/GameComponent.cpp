@@ -5,6 +5,8 @@
 ** GameComponent
 */
 #include "GameComponent.hpp"
+#include <QtNetwork>
+
 
 namespace rtype{
     GameComponent::GameComponent()

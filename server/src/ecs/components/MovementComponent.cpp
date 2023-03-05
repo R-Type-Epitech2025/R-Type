@@ -5,6 +5,8 @@
 ** MovementComponent
 */
 #include "ecs/components/MovementComponent.hpp"
+#include <QtNetwork>
+
 
 
 

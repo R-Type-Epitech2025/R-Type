@@ -9,32 +9,28 @@
 
 namespace rtype {
 
+    MainMenu::MainMenu() {
+        _mainMenu = new Scene("mainMenu");
+        _mainMenu->addEntity(InitBackground());
+        _mainMenu->addEntity(InitPlayButton());
+        _mainMenu->addEntity(InitLogo());
+    }
+
+    MainMenu::~MainMenu() {
+    }
+
     Entity *MainMenu::InitPlayButton() {
-        Entity *button = new Entity(EntityType::BUTTON , {500, 500},{0, 0}, {500, 500}, 1.0, "./assets/button_play.png", 4);
+        Entity *button = new Entity(EntityType::BUTTON , {675, 600},{0, 0}, {570, 279}, 1.0, "./assets/Buttons/PlayButton.png", 4, true);
         return button;
     }
 
-    Entity *MainMenu::InitExitButton() {
-        Entity *exitButton = new Entity(EntityType::BUTTON, {100, 900}, {0, 0}, {100, 100}, 1.0, "assets/button_close.png", 3);
-        return exitButton;
-    }
-
-    Entity *MainMenu::InitOptionButton() {
-        Entity *optionButton = new Entity(EntityType::BUTTON, {600, 600}, {0, 0}, {300, 300}, 1.0, "assets/button_settings.png", 2);
-        return optionButton;
+    Entity *MainMenu::InitLogo() {
+        Entity *logo = new Entity(EntityType::BUTTON, {360, 5}, {0, 0}, {1200, 665}, 1.0, "assets/superRtype.png", 2, true);
+        return logo;
     }
 
     Entity *MainMenu::InitBackground() {
-        Entity *background = new Entity(EntityType::BACKGROUND, {0, 0}, {0, 0}, {1920, 1080}, 2.0, "assets/background.png", 1);
+        Entity *background = new Entity(EntityType::BACKGROUND, {0, 0}, {0, 0}, {1920, 1080}, 1.0, "assets/background.png", 1, true);
         return background;
-    }
-
-    Scene *MainMenu::Main_Menu() {
-        Scene *mainMenu = new Scene("mainMenu");
-        mainMenu->addEntity(InitBackground());
-        mainMenu->addEntity(InitPlayButton());
-        mainMenu->addEntity(InitExitButton());
-        mainMenu->addEntity(InitOptionButton());
-        return mainMenu;
     }
 };
