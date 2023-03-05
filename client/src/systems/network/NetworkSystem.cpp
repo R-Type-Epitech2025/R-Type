@@ -34,7 +34,7 @@ namespace rtype{
             quint32 direction = static_cast<quint32>(dir);
             out << move;
             out << direction;
-
+            std::cout << "Sending move to server" << std::endl;
             _udpSocket->sendDatagram(datagram);
         }
 

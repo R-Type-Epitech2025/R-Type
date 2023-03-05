@@ -41,7 +41,10 @@ namespace rtype {
             case BACKGROUND:
                 this->container.movement_component = new MovementComponent(positioninscreen, false, velociity);
                 break;
-        }
+            case TEXT:
+            this->container.event_component = new EventComponent(type, positioninscreen, hitboxSize);
+            break;
+            }
         this->_type = type;
         if (id == 0)
             this->_id = std::hash<std::string>{}(sprite);
