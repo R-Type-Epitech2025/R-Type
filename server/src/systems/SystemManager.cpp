@@ -44,6 +44,7 @@ namespace rtype {
             QObject::connect(networkSystem, SIGNAL(playerShootEvent(quint32)), gameSystem, SLOT(onPlayerShoot(quint32)));
             QObject::connect(networkSystem, SIGNAL(playerQuitEvent(quint32)), gameSystem, SLOT(onPlayerDisconnected(quint32)));
             QObject::connect(networkSystem, SIGNAL(playerConnectEvent(quint32)), gameSystem, SLOT(onNewPlayerConnected(quint32)));
+            QObject::connect(gameSystem, SIGNAL(sendUpdatedEntities(std::vector<Entity *>&)), networkSystem, SLOT(onSendUpdatedEntities(std::vector<Entity *>&)));
         }
     }
 

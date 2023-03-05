@@ -14,7 +14,7 @@ namespace rtype {
         if (!_socket->bind(QHostAddress::LocalHost, 4242)) {
             throw std::invalid_argument("UDP Socket bind failed");
         }
-        if (!connect(_socket, SIGNAL(readyRead()), this, SLOT(onMessageReceived()), Qt::QueuedConnection)) {
+        if (!connect(_socket, SIGNAL(readyRead()), this, SLOT(onMessageReceived()))) {
             throw std::invalid_argument("UDP Socket connect failed");
         }
         std::cout << "UDP Socket binded on IP: " << _socket->localAddress().toString().toStdString() << " and port: " << _socket->localPort() << std::endl;
@@ -30,8 +30,10 @@ namespace rtype {
         while (_socket->hasPendingDatagrams()) {
             std::cout << "\tDatagram received" << std::endl;
             QNetworkDatagram data = _socket->receiveDatagram();
-            if (alreadyConnected(data.senderAddress(), data.senderPort()))
-                continue;
+            if (alreadyConnected(data.senderAddress(), data.senderPort())) {
+                std::cout << "\t\tAlready connected" << std::endl;
+                //continue;
+            }
             else {
                 std::cout << "\t\tNew client connected" << std::endl;
                 if (_clients.size() >= 4)
@@ -55,6 +57,7 @@ namespace rtype {
                 }
                 return;
             }
+            std::cout << "\t\tMessage received from " << data.senderAddress().toString().toStdString() << ":" << data.senderPort() << std::endl;
             QDataStream ds(data.data());
             Message msg;
 

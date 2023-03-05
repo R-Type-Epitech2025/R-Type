@@ -25,6 +25,7 @@ namespace rtype {
             PLAYER = 2,
             MAIN_PLAYER = 1,
             BACKGROUND = 0,
+            TEXT = 6,
         };
 class EventComponent {
         public:

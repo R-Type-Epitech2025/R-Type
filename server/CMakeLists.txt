@@ -77,16 +77,16 @@ target_include_directories(${PROJECT_NAME}
     ${SFML_INCLUDE_DIRS})
 
 # add doxygen with Doxyfile.in
-find_package(Doxygen)
-if(DOXYGEN_FOUND)
-    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
-    add_custom_target(doc
-        ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-        COMMENT "Generating API documentation with Doxygen" VERBATIM
-    )
-    add_dependencies(doc HelloWorld)
-endif(DOXYGEN_FOUND)
+# find_package(Doxygen)
+# if(DOXYGEN_FOUND)
+#     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
+#     add_custom_target(doc
+#         ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+#         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+#         COMMENT "Generating API documentation with Doxygen" VERBATIM
+#     )
+#     add_dependencies(doc HelloWorld)
+# endif(DOXYGEN_FOUND)
 
 # Setting up CPack
 set(CPACK_PACKAGE_NAME "r-type")

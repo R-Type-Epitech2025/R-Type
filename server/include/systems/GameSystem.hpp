@@ -71,6 +71,13 @@ namespace rtype{
              ** @param id the id of the player
              */
             void onPlayerShoot(quint32 id);
+
+        signals:
+            /**
+             ** @brief Emitted when there is an update to send to the client
+             ** 
+             */
+            void sendUpdatedEntities(std::vector<Entity *> &entities);
         protected:
         private:
     };

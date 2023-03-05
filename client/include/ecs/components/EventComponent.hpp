@@ -8,6 +8,7 @@
 #ifndef EVENTCOMPONENT_HPP_
 #define EVENTCOMPONENT_HPP_
 #include <SFML/Graphics.hpp>
+#include <QtNetwork>
 #include <iostream>
 #include <memory>
 
@@ -18,12 +19,13 @@ namespace rtype {
      ** 
      */
     enum EntityType {
-        MOB = 5,
-        BULLET = 4,
-        BUTTON = 3,
-        PLAYER = 2,
-        MAIN_PLAYER = 1,
         BACKGROUND = 0,
+        MAIN_PLAYER,
+        PLAYER,
+        BUTTON,
+        BULLET,
+        MOB,
+        TEXT
     };
 
     /**
@@ -42,7 +44,7 @@ namespace rtype {
     ** 
     */
     typedef struct NewEvent{
-        u_int32_t entityId;
+        quint32 entityId;
         std::string futureSceneName;
         std::string currentSceneName;
     } NewEvent_t;

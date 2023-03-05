@@ -5,36 +5,32 @@
 ** MainMenu
 */
 
-#include "game.hpp"
+#include "MainMenu.hpp"
 
 namespace rtype {
 
-    Entity *InitPlayButton() {
-        Entity *playButton = new Entity(rtype::EntityType::BUTTON, {300, 600}, {0, 0}, {300, 300}, {0, 0}, "assets/button_play.png");
-        return playButton;
+    MainMenu::MainMenu() {
+        _mainMenu = new Scene("mainMenu");
+        _mainMenu->addEntity(InitBackground());
+        _mainMenu->addEntity(InitPlayButton());
+        _mainMenu->addEntity(InitLogo());
     }
 
-    Entity *InitExitButton() {
-        Entity *exitButton = new Entity(rtype::EntityType::BUTTON, {100, 900}, {0, 0}, {100, 100}, {0, 0}, "assets/button_close.png");
-        return exitButton;
+    MainMenu::~MainMenu() {
     }
 
-    Entity *InitOptionButton() {
-        Entity *optionButton = new Entity(rtype::EntityType::BUTTON, {600, 600}, {0, 0}, {300, 300}, {0, 0}, "assets/button_settings.png");
-        return optionButton;
+    Entity *MainMenu::InitPlayButton() {
+        Entity *button = new Entity(EntityType::BUTTON , {675, 600},{0, 0}, {570, 279}, 1.0, "./assets/Buttons/PlayButton.png", 4, true);
+        return button;
     }
 
-    Entity *InitBackground() {
-        Entity *background = new Entity(rtype::EntityType::BACKGROUND, {0, 0}, {0, 0}, {1920, 1080}, {1920, 1080}, "assets/background.png");
+    Entity *MainMenu::InitLogo() {
+        Entity *logo = new Entity(EntityType::BUTTON, {360, 5}, {0, 0}, {1200, 665}, 1.0, "assets/superRtype.png", 2, true);
+        return logo;
+    }
+
+    Entity *MainMenu::InitBackground() {
+        Entity *background = new Entity(EntityType::BACKGROUND, {0, 0}, {0, 0}, {1920, 1080}, 1.0, "assets/background.png", 1, true);
         return background;
-    }
-
-    Scene *MAIN_MENU() {
-        Scene *mainMenu = new Scene();
-        mainMenu->addEntity(InitPlayButton());
-        mainMenu->addEntity(InitExitButton());
-        mainMenu->addEntity(InitOptionButton());
-        mainMenu->addEntity(InitBackground());
-        return mainMenu;
     }
 };

@@ -7,6 +7,8 @@
 
 #include "ecs/components/GraphicComponent.hpp"
 #include <SFML/Graphics.hpp>
+#include <QtNetwork>
+
 #include <iostream>
 namespace rtype {
         GraphicComponent::GraphicComponent(std::string sprite, std::vector<int> positioninsprite_sheet,std::vector<int> sizespritesheet, float scale, std::vector<int> positioninscreen) {

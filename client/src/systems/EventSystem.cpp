@@ -36,7 +36,7 @@ namespace rtype {
         scene = currentScene->getCurrentScene();
     } 
 
-    void EventSystem::createNewEvent(u_int32_t entityId, std::string newSceneName, std::string sceneName) 
+    void EventSystem::createNewEvent(quint32 entityId, std::string newSceneName, std::string sceneName) 
     {
         NewEvent_t *newEvent = new NewEvent_t;
         newEvent->entityId = entityId;

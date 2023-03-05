@@ -45,7 +45,7 @@ namespace rtype{
              ** 
              ** @param dir 
              */
-            void onSendMovePlayer(rtype::DIRECTION dir);
+            void onSendMovePlayer(DIRECTION dir);
 
             /**
              ** @brief slot activated when a message is received in the UDP socket

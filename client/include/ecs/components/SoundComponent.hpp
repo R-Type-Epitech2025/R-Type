@@ -8,6 +8,7 @@
 #ifndef SOUNDCOMPONENT_HPP_
 #define SOUNDCOMPONENT_HPP_
 #include <SFML/Audio.hpp>
+#include <QtNetwork>
 
 namespace rtype{
     class SoundComponent {

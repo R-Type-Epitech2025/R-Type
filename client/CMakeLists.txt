@@ -15,6 +15,7 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${CMAKE_CURRENT_SOURCE_DIR}/include/ecs
     ${CMAKE_CURRENT_SOURCE_DIR}/include/ecs/components
+    ${CMAKE_CURRENT_SOURCE_DIR}/include/game
     ${CMAKE_CURRENT_SOURCE_DIR}/include/systems
     ${CMAKE_CURRENT_SOURCE_DIR}/include/systems/network
     )
@@ -47,6 +48,9 @@ set(SRC_FILES
     src/systems/GraphicSystem.cpp
     src/systems/MovementSystem.cpp
     src/systems/EventSystem.cpp
+    src/game/ConnectMenu.cpp
+    src/game/GameScene.cpp
+    src/game/MainMenu.cpp
     # src/systems/AudioSystem.cpp
     src/systems/network/NetworkSystem.cpp
     src/systems/network/UDPSocket.cpp

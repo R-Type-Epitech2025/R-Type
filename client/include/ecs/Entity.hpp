@@ -38,9 +38,10 @@ namespace rtype {
         /**
          ** @brief Construct a new Entity object
          */
-        Entity(rtype::EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, uint32_t id);
+        Entity(EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, uint32_t id, bool isPrint, std::vector<int> velocity = {0, 0});
 
         /**
+<<<<<<< HEAD
          ** @brief Construct a new Entity object by copy
          ** 
          ** @param other 
@@ -53,6 +54,14 @@ namespace rtype {
 
         /**
          ** @brief Destroy the Entity object
+=======
+         ** @brief Construct a new Entity object
+         */
+        Entity(EntityType type, std::vector<int> positionInScreen, u_int32_t fontSize, sf::Color& textColor, uint32_t id, bool isPrint);
+        
+        /**
+         ** @brief Destroystd::string text, the Entity object
+>>>>>>> MergeCleanServerClient
          ** 
          */
         ~Entity();
@@ -79,7 +88,7 @@ namespace rtype {
         struct Containers container;  // c'est le temps de tester !!!pas du tout definitif;
 
         rtype::EntityType _type;
-        u_int32_t _id;
+        quint32 _id;
         // Load the entity
     protected:
         

@@ -11,60 +11,24 @@
 #include "iostream"
 
 namespace rtype {
-    Entity *InitPlayButton() {
-        Entity *playButton = new Entity(rtype::EntityType::BUTTON, {300, 600}, {0, 0}, {300, 300}, 1.0, "./assets/button_play.png", 3);
-        return playButton;
-    }
-
-    Entity *InitExitButton() {
-        Entity *exitButton = new Entity(rtype::EntityType::BUTTON, {100, 900}, {0, 0}, {100, 100}, 1.0, "./assets/button_close.png", 3);
-        return exitButton;
-    }
-
-    Entity *InitOptionButton() {
-        Entity *optionButton = new Entity(rtype::EntityType::BUTTON, {600, 600}, {0, 0}, {300, 300}, 1.0, "./assets/button_settings.png", 2);
-        return optionButton;
-    }
-
-    Entity *InitBackground() {
-        Entity *background = new Entity(rtype::EntityType::BACKGROUND, {0, 0}, {0, 0}, {1920, 1080}, 1.0, "./assets/background.png", 1);
-        return background;
-    }
-
-    Scene *ceateMenuScene() {
-        Scene *mainMenu = new Scene("first");
-        mainMenu->addEntity(InitBackground());
-        mainMenu->addEntity(InitPlayButton());
-        mainMenu->addEntity(InitExitButton());
-        mainMenu->addEntity(InitOptionButton());
-        
-        return mainMenu;
-    }
-
-
-
     Core::Core() : _sceneManager(new SceneManager()), _systemManager(new SystemManager())
     {
-    }
+        ConnectMenu *connectMenu = new ConnectMenu();
+        GameScene *gameMenu = new GameScene();
+        MainMenu *mainMenu = new MainMenu();
 
-    Scene *creategameScene()
-    {
-        int mobType = std::rand()%8 * 32;
+        _sceneManager->addScene(connectMenu->_connectMenu);
+        _sceneManager->addScene(gameMenu->_gameScene);
+        _sceneManager->addScene(mainMenu->_mainMenu);
+        _sceneManager->setScene(mainMenu->_mainMenu->getSceneName());      
 
-        Entity *background = new Entity(EntityType::BACKGROUND ,{0, 0},{0 , 0}, {1920, 1080}, 1.0, "./assets/backgournd2.jpg", 10);
-        Entity *button = new Entity(EntityType::BUTTON , {500, 500},{0, 0}, {500, 500}, 1.0, "./assets/button_play.png", 11);
-        Entity *spaceShip = new Entity(EntityType::MAIN_PLAYER , {500, 500},{0, 0}, {500, 500}, 1.0, "./assets/r-typesheet42.gif", 12);
-        Entity *ennemy = new Entity(EntityType::MOB, {1000, std::rand()%1064}, {mobType, 0}, {32, 32}, 3.0, "./assets/sprites.png", 13);
+        _systemManager->createEventSystem();
 
-        Scene *scene = new Scene("second");
-        scene->addEntity(background);
-        scene->addEntity(button);
-        scene->addEntity(spaceShip);
-        scene->addEntity(ennemy);
-        return scene;
+        
+        _systemManager->eventSystem->createNewEvent(4, gameMenu->_gameScene->getSceneName(), mainMenu->_mainMenu->getSceneName());
+
     }
     
-    //, SceneManager *sceneManager
     int Core::run(int argc, char **argv)
     {
         sf::Event event;
@@ -74,15 +38,15 @@ namespace rtype {
         
         _systemManager->createGraphicSystem();
         _systemManager->createMovementSystem();
-        _systemManager->createEventSystem();
+        //_systemManager->createEventSystem();
         _systemManager->createNetworkSystem(QString(argv[1]), QString(argv[2]).toUInt());
         
-        _systemManager->eventSystem->createNewEvent(2, "second", "first");
-        Scene *menu = ceateMenuScene();
-        Scene *gameScene = creategameScene();
-        _sceneManager->addScene(gameScene);
-        _sceneManager->addScene(menu);
-        _sceneManager->setScene("first");
+        //_systemManager->eventSystem->createNewEvent(2, "second", "first");
+        //Scene *menu = ceateMenuScene();
+        //Scene *gameScene = creategameScene();
+        //_sceneManager->addScene(gameScene);
+        //_sceneManager->addScene(menu);
+        //_sceneManager->setScene("first");
         //sceneManager, graphicSystem, movementSystem, &event, eventSystem
         QObject::connect(timer, &QTimer::timeout, [&]() {
             
