@@ -48,6 +48,13 @@ class Scene{
         std::vector<Entity*> getEntities();
 
         /**
+             ** @brief remove an entity from the scene
+             ** 
+             ** @param entity 
+             */
+        void removeEntity(Entity *entity);
+
+        /**
          ** @brief Get the Entity object
          ** 
          ** @param id 

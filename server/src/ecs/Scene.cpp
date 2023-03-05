@@ -27,6 +27,16 @@ namespace rtype {
         return(_entities);
     }
 
+    void Scene::removeEntity(Entity *entity)
+    {
+        for (auto it = _entities.begin(); it != _entities.end(); it++) {
+            if (*it == entity) {
+                _entities.erase(it);
+                break;
+            }
+        }
+    }
+
     Entity *Scene::getEntity(quint32 id) {
         for (auto &entity : _entities) {
             if (entity->_id == id)
