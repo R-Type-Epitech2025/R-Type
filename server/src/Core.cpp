@@ -24,6 +24,7 @@ namespace rtype {
         _systemManager->createMovementSystem();
         QTimer *timer = new QTimer(&game);
         QElapsedTimer *clock = new QElapsedTimer();
+        clock->start();
         Scene *scene = new Scene();
         _sceneManager->addScene("game1", scene);
         _sceneManager->setScene("game1");
