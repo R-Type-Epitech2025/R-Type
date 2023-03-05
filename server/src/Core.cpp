@@ -24,7 +24,7 @@ namespace rtype {
         QTimer *timer = new QTimer(&game);
 
         QObject::connect(timer, &QTimer::timeout, [&]() {
-            // graphicSystem->update(_sceneManager, 12);
+            _systemManager->UpdateG(_sceneManager, timer->interval());
             // movementSystem->update(_sceneManager, event);
             // eventSystem->update(_sceneManager);$
         });
