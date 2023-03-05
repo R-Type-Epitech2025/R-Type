@@ -34,7 +34,7 @@ namespace rtype{
              ** @param fontSize 
              ** @param textColor 
              */
-            GraphicComponent(std::vector<int> positioninscreen, u_int32_t fontSize, sf::Color& textColor, bool isPrint);
+            GraphicComponent(std::vector<int> positioninscreen, quint32 fontSize, sf::Color& textColor, bool isPrint);
 
             /**
              ** @brief Destroy the Graphic Component object

@@ -50,7 +50,7 @@ namespace rtype {
             this->_id = id;
     }
 
-    Entity::Entity(EntityType type, std::vector<int> positionInScreen, u_int32_t fontSize, sf::Color& textColor, uint32_t id, bool isPrint)
+    Entity::Entity(EntityType type, std::vector<int> positionInScreen, quint32 fontSize, sf::Color& textColor, uint32_t id, bool isPrint)
     {
         this->container.event_component = nullptr;
         this->container.graphic_component = new GraphicComponent(positionInScreen, fontSize, textColor, isPrint);
