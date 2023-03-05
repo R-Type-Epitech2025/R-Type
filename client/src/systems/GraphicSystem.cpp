@@ -26,7 +26,7 @@ namespace rtype {
         
         for (const Entity *entity : scene->get_entities())
         {
-            if (entity->container.movement_component != NULL)
+            if (entity->container.movement_component != nullptr)
                 entity->container.graphic_component->setPosition(entity->container.movement_component->pos.x, entity->container.movement_component->pos.y);
             entity->container.graphic_component->setSpritePosition(entity->container.graphic_component->position.sprite_x, entity->container.graphic_component->position.sprite_y);
             if (entity->_type == EntityType::TEXT)

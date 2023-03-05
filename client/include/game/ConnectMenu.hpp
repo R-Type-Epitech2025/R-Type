@@ -18,12 +18,13 @@ class ConnectMenu {
 
         Scene *_connectMenu;
     protected:
-        Entity *InitText();
+        Entity *InitText(int x, int y, std::string inputText, u_int32_t textSize, bool isWritable, u_int32_t id);
         Entity *InitBackground();
         Entity *InitOptionButton();
         Entity *InitExitButton();
         Entity *InitIdText();
         Entity *InitPortText();
+        Entity *InitPlayButton();
     private:
 };
 };
