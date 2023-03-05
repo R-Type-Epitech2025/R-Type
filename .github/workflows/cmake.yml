@@ -24,8 +24,10 @@ jobs:
         dir: /opt/qt
     - name: Install dependencies
       run: |
+        sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+        sudo add-apt-repository ppa:sonkun/sfml-stable
         sudo apt-get update
-        sudo apt-get install libsfml
+        sudo apt-get install libsfml-dev
     - name: Build
       run: |
         cd server
@@ -49,8 +51,10 @@ jobs:
         dir: /opt/qt
     - name: Install dependencies
       run: |
+        sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+        sudo add-apt-repository ppa:sonkun/sfml-stable
         sudo apt-get update
-        sudo apt-get install libsfml
+        sudo apt-get install libsfml-dev
     - name: Build
       run: |
         cd client
