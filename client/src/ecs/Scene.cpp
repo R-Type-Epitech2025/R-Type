@@ -10,7 +10,7 @@
 
 
 namespace rtype {
-    Scene::Scene(std::string sceneName)
+    Scene::Scene(std::string sceneName): QObject(nullptr)
     {
         _sceneName = sceneName;
     }
@@ -23,7 +23,7 @@ namespace rtype {
     {
         _entities.push_back(entity);
         //std::sort(_entities.begin(), _entities.end());
-    }
+    }   
 
     std::vector<rtype::Entity*> Scene::get_entities(){
         return(_entities);
@@ -36,7 +36,6 @@ namespace rtype {
         }
         return (nullptr);
     }
-
 
     void Scene::removeEntity(rtype::Entity *entity)
     {
@@ -51,6 +50,12 @@ namespace rtype {
     std::string Scene::getSceneName() const
     {
         return (_sceneName);
+    }
+
+    void Scene::onUpdateEntities(std::vector<Entity *> entities)
+    {
+        _entities = entities;
+        std::cout << "Sprites updated on the scene !" << std::endl;
     }
 }
 

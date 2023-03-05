@@ -38,13 +38,14 @@ namespace rtype {
         manager->window.clear();
     }
 
-    void GraphicSystem::init(rtype::SceneManager &Manager, sf::RenderWindow &window)
+    void GraphicSystem::init(rtype::SceneManager &manager, sf::RenderWindow &window)
     {
+        QObject::connect(this, SIGNAL(updateEntities(std::vector<Entity *>)), &manager, SLOT(onUpdateEntities(std::vector<Entity *>)));
     }
 
     void GraphicSystem::onUpdateEntities(std::vector<Entity *> entities)
     {
-        return;
+        emit updateEntities(entities);
     }
 
 } // namespace rType

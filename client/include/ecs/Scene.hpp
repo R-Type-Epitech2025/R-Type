@@ -11,7 +11,10 @@
 #include "Entity.hpp"
 
 namespace rtype {
-    class Scene{
+    class Scene : public QObject {
+
+        Q_OBJECT
+
         public:
             /**
              ** @brief Construct a new Scene object
@@ -90,6 +93,13 @@ namespace rtype {
         private:
             std::vector<Entity*> _entities;
             std::string _sceneName;
+        public slots:
+            /**
+             ** @brief slot activated when the entities need to be updated
+             ** 
+             ** @param entities 
+             */
+            void onUpdateEntities(std::vector<Entity *> entities);
     };
 };
 
