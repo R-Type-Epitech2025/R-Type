@@ -18,12 +18,12 @@ namespace rtype {
      ** 
      */
     enum EntityType {
-        MOB,
-        BULLET,
-        BUTTON,
-        PLAYER,
+        BACKGROUND = 0,
         MAIN_PLAYER,
-        BACKGROUND,
+        PLAYER,
+        BUTTON,
+        BULLET,
+        MOB,
         TEXT
     };
 

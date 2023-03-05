@@ -23,7 +23,17 @@ namespace rtype{
              ** @param scale 
              ** @param positioninscreen 
              */
-            GraphicComponent(std::string sprite, std::vector<int> positioninsprite_sheet, std::vector<int> sizespritesheet, float scale, std::vector<int> positioninscreen);
+            GraphicComponent(std::string sprite, std::vector<int> positioninsprite_sheet, std::vector<int> sizespritesheet, float scale, std::vector<int> positioninscreen, bool isPrint);
+
+            /**
+             ** @brief Construct a new Graphic Component object
+             ** 
+             ** @param text 
+             ** @param positioninscreen 
+             ** @param fontSize 
+             ** @param textColor 
+             */
+            GraphicComponent(std::vector<int> positioninscreen, u_int32_t fontSize, sf::Color& textColor, bool isPrint);
 
             /**
              ** @brief Destroy the Graphic Component object
@@ -74,6 +84,28 @@ namespace rtype{
              ** @return false 
              */
             bool getIsPrintable();
+
+            
+            /**
+             ** @brief Get the Text object
+             **
+             ** @return sf::Text 
+             */
+            sf::Text getText();
+
+            /**
+             ** @brief Get the Input Text object
+             ** 
+             ** @return std::string 
+             */
+            std::string getInputText();
+
+            /**
+             ** @brief Set the Input Text object
+             ** 
+             ** @param input 
+             */
+            void setInputText(std::string input);
 
             /**
              ** @brief Get the Sprite object
@@ -128,8 +160,10 @@ namespace rtype{
         private:
             sf::Texture texture;
             sf::Sprite sprite;
-            sf::Font font;
-            bool isPrintable;
+            sf::Font _font;
+            sf::Text _text;
+            std::string _inputText;
+            bool _print;
             float angle;
             sf::IntRect rect;
     };

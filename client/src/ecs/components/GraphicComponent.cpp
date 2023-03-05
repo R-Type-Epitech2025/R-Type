@@ -8,16 +8,28 @@
 #include "ecs/components/GraphicComponent.hpp"
 #include <SFML/Graphics.hpp>
 #include <iostream>
+
 namespace rtype {
-        GraphicComponent::GraphicComponent(std::string sprite, std::vector<int> positioninsprite_sheet,std::vector<int> sizespritesheet, float scale, std::vector<int> positioninscreen) {
-            isPrintable = true;
-            createSprite(sprite, positioninsprite_sheet.at(0), positioninsprite_sheet.at(1), sizespritesheet.at(0), sizespritesheet.at(1), 1);
+    GraphicComponent::GraphicComponent(std::string sprite, std::vector<int> positioninsprite_sheet,std::vector<int> sizespritesheet, float scale, std::vector<int> positioninscreen, bool isPrint) {
+        _print = isPrint;
+        createSprite(sprite, positioninsprite_sheet.at(0), positioninsprite_sheet.at(1), sizespritesheet.at(0), sizespritesheet.at(1), 1);
+        setPosition(positioninscreen.at(0), positioninscreen.at(1));
+        setSize(scale);
+    }
+        
+        GraphicComponent::GraphicComponent(std::vector<int> positioninscreen, u_int32_t fontSize, sf::Color& textColor, bool isPrint) {
+            _print = isPrint;
+
+            if (!_font.loadFromFile("assets/Texts/arial-unicode-ms.ttf")) {
+                std::cout << "Error loading font" << std::endl;
+                exit(84);
+            }
+            _inputText = "";
+            _text = sf::Text(_inputText, _font, fontSize);
             setPosition(positioninscreen.at(0), positioninscreen.at(1));
-            setSize(scale);
         }
-        
+
         GraphicComponent::~GraphicComponent() {
-        
         }
         
         void GraphicComponent::createSprite(const std::string& imagePath, int spritePosX, int spritePosY, int spriteWidth, int spriteHeight, int nb_sprite) {
@@ -49,10 +61,22 @@ namespace rtype {
         }
         
         bool GraphicComponent::getIsPrintable() {
-            return isPrintable;
+            return _print;
         }
         
+        sf::Text GraphicComponent::getText() {
+            return _text;
+        }
         
+        std::string GraphicComponent::getInputText() {
+            return _inputText;
+        }
+
+        void GraphicComponent::setInputText(std::string inputText) {
+            _inputText = inputText;
+            _text.setString(_inputText);
+        }
+
         sf::Sprite GraphicComponent::getSprite() {
             return sprite;
         }
@@ -68,10 +92,11 @@ namespace rtype {
         };
 
         int GraphicComponent::setfont(std::string fonts) {
-            if (!font.loadFromFile(fonts))
+            if (!_font.loadFromFile(fonts))
             {
                 std::cerr << "Impossible de charger la police de caractères !" << std::endl;
                 return EXIT_FAILURE;
             }
+            return EXIT_SUCCESS;
         }
 };

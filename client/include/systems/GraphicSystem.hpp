@@ -28,7 +28,7 @@ namespace rtype{
              ** @brief Destroy the Graphic System object
              ** 
              */
-            ~GraphicSystem() {};
+            ~GraphicSystem();
 
             /**
              ** @brief init the graphic system
