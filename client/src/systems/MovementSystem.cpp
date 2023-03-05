@@ -46,8 +46,10 @@ namespace rtype{
                     entity->container.graphic_component->setInputText(entity->container.graphic_component->getInputText() + static_cast<char>(event.text.unicode));
                 }
             }
-            if (entity != nullptr && entity->container.movement_component != nullptr)
+            if (entity != nullptr && entity->container.movement_component != nullptr) {
                 entity->container.movement_component->applyVelocity();
+                entity->container.movement_component->checkParallax();
+            }
 
         }
     }

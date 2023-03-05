@@ -62,9 +62,17 @@ namespace rtype{
              **/
             void applyVelocity();
 
+            /**
+             * @brief Check if the entity is out of the screen and set it back to the other side
+             * 
+             */
+            void checkParallax();
+            
+
 
         void LinktoKeybord(bool link);
         bool is_linked() const;
+        bool isParallax;
         protected:
         private:
             bool _link;

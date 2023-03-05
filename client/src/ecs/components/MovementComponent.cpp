@@ -14,6 +14,7 @@ namespace rtype{
         velocity.x = setVelocity[0];
         velocity.y = setVelocity[1];
         _link = keyboardLink;
+        isParallax = false;
     }
 
     MovementComponent::~MovementComponent()
@@ -34,10 +35,11 @@ namespace rtype{
         pos.y += velocity.y;  
     }
 
-    // void MovementComponent::Parralax(Entity *entity, sf::Sprite &background1, sf::Sprite &background2)
-    // {
-    //     if (background1.getPosition().x < -background1.getTexture()->getSize().x) {
-    //         background1.setPosition(background2.getPosition().x + background2.getTexture()->getSize().x, 0);
-    //     }
-    // }
+    void MovementComponent::checkParallax()
+    {
+        if (isParallax == false)
+            return;
+        if (pos.x <= -1920)
+            pos.x = 1920;
+    }
 }
