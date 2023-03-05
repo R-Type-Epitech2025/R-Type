@@ -49,6 +49,21 @@ namespace rtype{
              ** @param id the id of the player
              */
             void onPlayerShoot(quint32 id);
+
+            /**
+             ** @brief 
+             **
+             ** @param imagePath 
+             ** @param imageForeground 
+             ** @param speed 
+             ** @param x 
+             ** @param y 
+             ** @param width 
+             **/
+            void GameSystem::parralax(std::string imagePath, std::string imageForeground, float speed, float x, float y, float width);
+
+
+
         protected:
         private:
             GameComponent _game;
