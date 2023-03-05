@@ -16,7 +16,7 @@ namespace rtype {
         if (!_socket->bind(QHostAddress::LocalHost, client_port)) {
             throw std::invalid_argument("UDP Socket bind failed");
         }
-        if (!connect(_socket, SIGNAL(readyRead()), this, SLOT(onMessageReceived()), Qt::QueuedConnection)) {
+        if (!connect(_socket, SIGNAL(readyRead()), this, SLOT(onMessageReceived()))) {
             throw std::invalid_argument("Connect failed");
         }
         _serverAddress = QHostAddress(serverIp);

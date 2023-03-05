@@ -26,14 +26,9 @@ namespace rtype {
 
     void UDPSocket::onMessageReceived()
     {
-        std::cout << "Message received" << std::endl;
         while (_socket->hasPendingDatagrams()) {
-            std::cout << "\tDatagram received" << std::endl;
             QNetworkDatagram data = _socket->receiveDatagram();
-            if (alreadyConnected(data.senderAddress(), data.senderPort())) {
-                std::cout << "\t\tAlready connected" << std::endl;
-                //continue;
-            }
+            if (alreadyConnected(data.senderAddress(), data.senderPort())) {}
             else {
                 std::cout << "\t\tNew client connected" << std::endl;
                 if (_clients.size() >= 4)
@@ -44,10 +39,8 @@ namespace rtype {
 
                     ds >> msg;
                     if (msg.getEvent() != PLAYER_EVENT::CONNECT) {
-                        std::cout << "\t\t\tWrong message received" << std::endl;
                         return;
                     }
-                    std::cout << "\t\t\tAdding client to known clients" << std::endl;
                     Client client;
                     client.address = data.senderAddress();
                     client.port = data.senderPort();
@@ -57,7 +50,7 @@ namespace rtype {
                 }
                 return;
             }
-            std::cout << "\t\tMessage received from " << data.senderAddress().toString().toStdString() << ":" << data.senderPort() << std::endl;
+            std::cout << "Message received from " << data.senderAddress().toString().toStdString() << ":" << data.senderPort() << std::endl;
             QDataStream ds(data.data());
             Message msg;
 
