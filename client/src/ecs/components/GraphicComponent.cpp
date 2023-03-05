@@ -17,7 +17,7 @@ namespace rtype {
         setSize(scale);
     }
         
-    GraphicComponent::GraphicComponent(std::vector<int> positioninscreen, u_int32_t fontSize, sf::Color& textColor, bool isPrint, std::string inputText, bool writablle) {
+    GraphicComponent::GraphicComponent(std::vector<int> positioninscreen, quint32 fontSize, sf::Color& textColor, bool isPrint, std::string inputText, bool writablle) {
         _print = isPrint;
         _isWritable = writablle;
 

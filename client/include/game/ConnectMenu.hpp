@@ -18,7 +18,7 @@ class ConnectMenu {
 
         Scene *_connectMenu;
     protected:
-        Entity *InitText(int x, int y, std::string inputText, u_int32_t textSize, bool isWritable, u_int32_t id);
+        Entity *InitText(int x, int y, std::string inputText, quint32 textSize, bool isWritable, quint32 id);
         Entity *InitBackground();
         Entity *InitOptionButton();
         Entity *InitExitButton();

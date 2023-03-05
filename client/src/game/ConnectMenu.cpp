@@ -21,7 +21,7 @@ namespace rtype {
     ConnectMenu::~ConnectMenu() {
     }
     
-    Entity *ConnectMenu::InitText(int x, int y, std::string inputText, u_int32_t textSize, bool isWritable, u_int32_t id) {
+    Entity *ConnectMenu::InitText(int x, int y, std::string inputText, quint32 textSize, bool isWritable, quint32 id) {
         sf::Color textColor = sf::Color::White;
 
         Entity *text = new Entity(EntityType::TEXT, {x, y}, textSize, textColor, id, true, inputText, isWritable);

@@ -37,7 +37,7 @@ namespace rtype{
              ** @param text
              ** @param writablle
              */
-            GraphicComponent(std::vector<int> positioninscreen, u_int32_t fontSize, sf::Color& textColor, bool isPrint, std::string text, bool writablle = false);
+            GraphicComponent(std::vector<int> positioninscreen, quint32 fontSize, sf::Color& textColor, bool isPrint, std::string text, bool writablle = false);
 
             /**
              ** @brief Destroy the Graphic Component object
