@@ -34,7 +34,7 @@ namespace rtype {
         manager->window.display();
         manager->window.clear();
     }
- void GraphicSystem::init(rtype::SceneManager &Manager, sf::RenderWindow &window)
+    void GraphicSystem::init(rtype::SceneManager &Manager, sf::RenderWindow &window)
     {
     }
 

@@ -60,7 +60,7 @@ namespace rtype{
              ** @param y 
              ** @param width 
              **/
-            void GameSystem::parralax(std::string imagePath, std::string imageForeground, float speed, float x, float y, float width);
+            void parralax(std::string imagePath, float speed, float x, float y, float width);
 
 
 
