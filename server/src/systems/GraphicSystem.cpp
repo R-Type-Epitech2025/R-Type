@@ -31,6 +31,7 @@ namespace rtype {
                 scene->removeEntity(entity);
             }
     }
+    }
 
     void GraphicSystem::onUpdateSprites(std::vector<Entity *> entities)
     {
