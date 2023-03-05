@@ -5,7 +5,7 @@
 ** MovementSystem
 */
 
-#include "systems/MovementSystem.hpp"
+#include "MovementSystem.hpp"
 #include <iostream>
 
 namespace rtype{
@@ -17,7 +17,7 @@ namespace rtype{
     // MovementSystem::~MovementSystem(){
     // }
     
-    void MovementSystem::update(rtype::SceneManager *Manager, sf::Event &event){
+    void MovementSystem::update(SceneManager *Manager, sf::Event &event){
         // move all entities with a movement component
     }
 

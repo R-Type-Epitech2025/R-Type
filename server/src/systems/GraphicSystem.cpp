@@ -20,7 +20,7 @@ namespace rtype {
     // {
     // }
 
-    void GraphicSystem::update(rtype::SceneManager* manager, uint64_t time)
+    void GraphicSystem::update(SceneManager* manager, uint64_t time)
     {
     }
 

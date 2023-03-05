@@ -54,19 +54,19 @@ namespace rtype {
              ** @param scene_name 
              ** @param scene 
              */
-            void addScene(rtype::Scene *scene);
+            void addScene(Scene *scene);
 
             /**
              ** @brief Get the Current Scene object
              ** 
-             ** @return rtype::Scene* 
+             ** @return Scene* 
              */
-            rtype::Scene* getCurrentScene();
+            Scene* getCurrentScene();
 
             sf::RenderWindow window;
         protected:
-            std::map<std::string, rtype::Scene*> _scenes;
-            rtype::Scene* _currentscene;
+            std::map<std::string, Scene*> _scenes;
+            Scene* _currentscene;
             bool _shouldClose;
         private:
     };

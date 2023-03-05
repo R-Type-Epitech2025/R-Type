@@ -5,8 +5,8 @@
 ** SceneManager
 */
 
-#include "ecs/SceneManager.hpp"
-#include "ecs/Entity.hpp"
+#include "SceneManager.hpp"
+#include "Entity.hpp"
 #include <iostream>
 
 namespace rtype {
@@ -28,7 +28,7 @@ namespace rtype {
     }
 
     Scene* SceneManager::getCurrentScene(){
-        // sort(_currentscene->get_entity().begin(), _currentscene->get_entity().end(), [] (rtype::Entity *x, rtype::Entity *y) { return x->_type < y->_type; });
+        // sort(_currentscene->get_entity().begin(), _currentscene->get_entity().end(), [] (Entity *x, Entity *y) { return x->_type < y->_type; });
         return (this->_currentscene);
     }
 }

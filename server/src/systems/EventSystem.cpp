@@ -5,7 +5,7 @@
 ** EventSystem
 */
 
-#include "./systems/EventSystem.hpp"
+#include "EventSystem.hpp"
 #include <iostream>
 
 namespace rtype {
@@ -18,7 +18,7 @@ namespace rtype {
     {
     }
 
-    void EventSystem::update(rtype::SceneManager *currentScene)
+    void EventSystem::update(SceneManager *currentScene)
     {
         // check collision between entities
     }

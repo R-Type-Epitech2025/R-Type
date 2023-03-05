@@ -20,7 +20,7 @@ namespace rtype {
     {
     }
 
-    void GraphicSystem::update(rtype::SceneManager* manager, uint64_t time)
+    void GraphicSystem::update(SceneManager* manager, uint64_t time)
     {
         Scene *scene = manager->getCurrentScene();
         
@@ -38,7 +38,7 @@ namespace rtype {
         manager->window.clear();
     }
 
-    void GraphicSystem::init(rtype::SceneManager &Manager, sf::RenderWindow &window)
+    void GraphicSystem::init(SceneManager &Manager, sf::RenderWindow &window)
     {
     }
 

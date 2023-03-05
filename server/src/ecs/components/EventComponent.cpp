@@ -5,11 +5,11 @@
 ** EventComponent
 */
 
-#include "ecs/components/EventComponent.hpp"
+#include "EventComponent.hpp"
 #include <QtNetwork>
 
 namespace rtype{
-    EventComponent::EventComponent(rtype::EntityType entity, std::vector<int> positioninscreen, std::vector<int> sizeScreen)
+    EventComponent::EventComponent(EntityType entity, std::vector<int> positioninscreen, std::vector<int> sizeScreen)
     {
         this->entity = entity;
         this->_hitbox.x = positioninscreen[0];

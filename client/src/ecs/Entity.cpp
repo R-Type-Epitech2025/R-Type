@@ -5,7 +5,7 @@
 ** Entity
 */
 
-#include "ecs/Entity.hpp"
+#include "Entity.hpp"
 
 namespace rtype {
     Entity::Entity(EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, uint32_t id, bool isPrint, std::vector<int> velocity)
@@ -63,11 +63,11 @@ namespace rtype {
     }
 
 
-    DIRECTION rtype::Entity::get_directions(){
+    DIRECTION Entity::get_directions(){
         return direction;
     }
 
-    void Entity::set_direction(rtype::DIRECTION direction )  {
+    void Entity::set_direction(DIRECTION direction )  {
         this->direction = direction;
     }
     

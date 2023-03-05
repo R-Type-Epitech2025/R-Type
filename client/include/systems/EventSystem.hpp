@@ -44,7 +44,7 @@ namespace rtype{
              ** @param scene 
              ** @param event 
              */
-            void update(rtype::SceneManager *currentScene, sf::Event &event);
+            void update(SceneManager *currentScene, sf::Event &event);
 
             /**
              ** @brief destroy the event system

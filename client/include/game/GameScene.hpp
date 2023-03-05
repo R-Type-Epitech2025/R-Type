@@ -12,9 +12,18 @@
 #include "Entity.hpp"
 
 namespace rtype {
-    class GameScene {
+    class GameScene : public Scene {
         public:
+            /**
+             ** @brief Construct a new Game Scene object
+             ** 
+             **/
             GameScene();
+
+            /**
+             ** @brief Destroy the Game Scene object
+             ** 
+             **/
             ~GameScene();
     
             Scene *_gameScene;

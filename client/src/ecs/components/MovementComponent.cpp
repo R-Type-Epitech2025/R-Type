@@ -4,7 +4,7 @@
 ** File description:
 ** MovementComponent
 */
-#include "ecs/components/MovementComponent.hpp"
+#include "MovementComponent.hpp"
 
 namespace rtype{
     MovementComponent::MovementComponent(std::vector<int> positioninscreen, bool keyboardLink, std::vector<int> setVelocity)

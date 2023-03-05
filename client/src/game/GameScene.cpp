@@ -18,6 +18,7 @@ namespace rtype {
 
     GameScene::~GameScene()
     {
+        //destroy all entities in scene aller vasy encule
     }
 
     Entity *GameScene::InitBackground() {
@@ -36,5 +37,4 @@ namespace rtype {
         Entity *spaceShip = new Entity(EntityType::MAIN_PLAYER , {500, 500},{0, 0}, {500, 500}, 1.0, "./assets/r-typesheet42.gif", 3, true);
         return spaceShip;
     }
-
 }
