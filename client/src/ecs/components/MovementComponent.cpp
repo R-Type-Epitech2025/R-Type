@@ -30,4 +30,10 @@ namespace rtype{
     bool MovementComponent::is_linked() const{
         return _link;
     }
+
+    void MovementComponent::applyVelocity()
+    {
+        pos.x += velocity.x;
+        pos.y += velocity.y;  
+    }
 }

@@ -46,6 +46,7 @@ namespace rtype{
                     entity->container.graphic_component->setInputText(entity->container.graphic_component->getInputText() + static_cast<char>(event.text.unicode));
                 }
             }
+            entity->container.movement_component->applyVelocity();
         }
     }
 }

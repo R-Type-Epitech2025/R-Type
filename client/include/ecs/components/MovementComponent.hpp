@@ -52,6 +52,16 @@ namespace rtype{
             position pos;
             float rotation;
             position velocity;
+
+            /**
+             ** @brief Set the velocity strutc
+             ** 
+             ** @param velocityX
+             ** @param velocityY
+             **/
+            void applyVelocity();
+
+
         void LinktoKeybord(bool link);
         bool is_linked() const;
         protected:

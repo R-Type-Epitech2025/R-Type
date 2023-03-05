@@ -20,7 +20,7 @@ namespace rtype {
     }
 
     Entity *GameScene::InitBackground() {
-        Entity *background = new Entity(EntityType::BACKGROUND ,{0, 0},{0 , 0}, {1920, 1080}, 1.0, "./assets/backgournd2.jpg", 1, true);
+        Entity *background = new Entity(EntityType::BACKGROUND ,{0, 0},{0 , 0}, {1920, 1080}, 1.0, "./assets/backgournd2.jpg", 1, true, {-5, 0});
         return background;
     }
 
