@@ -25,7 +25,6 @@ jobs:
     - name: Install SFML
       run: |
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-        sudo add-apt-repository ppa:sonkun/sfml-stable
         sudo apt-get update
         sudo apt-get install sfml
     - name: Build
@@ -52,7 +51,6 @@ jobs:
     - name: Install SFML
       run: |
         sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-        sudo add-apt-repository ppa:sonkun/sfml-stable
         sudo apt-get update
         sudo apt-get install sfml
     - name: Build
