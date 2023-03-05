@@ -34,7 +34,7 @@ namespace rtype{
              ** @param keyboardLink 
              ** @param setVelocity 
              */
-            MovementComponent(std::vector<int> positioninscreen, bool keyboardLink, std::vector<int> setVelocity);
+            MovementComponent(std::vector<int> positioninscreen, bool keyboardLink, std::vector<int> setVelocity = {0, 0});
 
             /**
              ** @brief Destroy the Movement Component object

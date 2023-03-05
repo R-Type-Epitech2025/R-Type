@@ -8,10 +8,10 @@
 #ifndef ENTITY_HPP_
 #define ENTITY_HPP_
 
-#include "ecs/components/GraphicComponent.hpp"
-#include "ecs/components/EventComponent.hpp"
-#include "ecs/components/MovementComponent.hpp"
-#include "ecs/components/GameComponent.hpp"
+#include "GraphicComponent.hpp"
+#include "EventComponent.hpp"
+#include "MovementComponent.hpp"
+#include "GameComponent.hpp"
 
 namespace rtype {
         /**
@@ -39,7 +39,7 @@ namespace rtype {
         /**
          ** @brief Construct a new Entity object
          */
-        Entity(rtype::EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, quint32 id = 0);
+        Entity(EntityType type, std::vector<int> positioninscreen, std::vector<int> positioninsprite_sheet , std::vector<int> sizespritesheet, float scale, std::string sprite, quint32 id = 0);
 
         /**
          ** @brief Construct a new Entity object by copy
@@ -71,16 +71,16 @@ namespace rtype {
         /**
          ** @brief Get the directions object
          ** 
-         ** @return rtype::DIRECTION 
+         ** @return DIRECTION 
          */
-        rtype::DIRECTION get_directions();
+        DIRECTION get_directions();
 
         /**
          ** @brief Set the direction object
          ** 
          ** @param direction 
          */
-        void set_direction(rtype::DIRECTION direction);
+        void set_direction(DIRECTION direction);
 
         /**
          ** @brief Get the position object
@@ -135,33 +135,26 @@ namespace rtype {
 
 
         struct Containers container;  // c'est le temps de tester !!!pas du tout definitif;
-        rtype::EntityType _type;
+        EntityType _type;
         quint32 _id;
         // Load the entity
     protected:
         
     private:
-        rtype::DIRECTION direction;
+        DIRECTION direction;
         sf::Vector2f position;
         sf::Texture texture;
 };      
+    static bool operator<(Entity& os, const Entity& dt)
+    {
+        return os._type < os._type;
+    }
 
-// bool operator>(Entity& os, const Entity& dt)
-// {
-//     return os._type < os._type;
-// }
-
+    static bool operator>(Entity& os, const Entity& dt)
+    {
+        return os._type > os._type;
+    }
 };
-
-static bool operator<(rtype::Entity& os, const rtype::Entity& dt)
-{
-    return os._type < os._type;
-}
-
-static bool operator>(rtype::Entity& os, const rtype::Entity& dt)
-{
-    return os._type > os._type;
-}
 
 
 #endif /* !ENTITY_HPP_ */

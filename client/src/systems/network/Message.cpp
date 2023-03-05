@@ -38,7 +38,7 @@ namespace rtype {
  
         while (!in.atEnd()) {
             in >> id >> entityType >> spritesheetIndex >> x_sheet >> y_sheet >> width_sheet >> height_sheet >> scale >> x >> y;
-            name = "./assets/" + std::to_string(spritesheetIndex) + ".png";
+            name = "./assets/r-typesheet" + std::to_string(spritesheetIndex) + ".gif";
 
             msg._entities.push_back(new Entity(convertUint32ToEntityType(entityType), {(int) (x - (width_sheet * scale)), (int) (y - (height_sheet * scale))}, {(int) x_sheet, (int) y_sheet}, { (int) width_sheet, (int) height_sheet}, scale, name, id, true));
         }

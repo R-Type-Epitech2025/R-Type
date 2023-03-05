@@ -36,7 +36,7 @@ class EventComponent {
              ** @param positioninscreen 
              ** @param sizeHitbox 
              */
-            EventComponent(rtype::EntityType entity, std::vector<int> positioninscreen, std::vector<int> sizeHitbox);
+            EventComponent(EntityType entity, std::vector<int> positioninscreen, std::vector<int> sizeHitbox);
 
             /**
              ** @brief Destroy the Event Component object
@@ -70,7 +70,7 @@ class EventComponent {
         private:
             hitbox _hitbox;
             bool is_hitbox;
-            rtype::EntityType entity;
+            EntityType entity;
     };
 }
 

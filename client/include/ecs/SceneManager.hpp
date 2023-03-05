@@ -20,13 +20,16 @@ namespace rtype {
         DEATH,
         PAUSE
     };
-    class SceneManager {
+    class SceneManager : public QObject {
+
+        Q_OBJECT
+
         public:
             /**
              ** @brief Construct a new Scene Manager object
              ** 
              */
-            SceneManager();
+            SceneManager(QObject *parent = nullptr);
 
             /**
              ** @brief Destroy the Scene Manager object
@@ -54,21 +57,36 @@ namespace rtype {
              ** @param scene_name 
              ** @param scene 
              */
-            void addScene(rtype::Scene *scene);
+            void addScene(Scene *scene);
 
             /**
              ** @brief Get the Current Scene object
              ** 
-             ** @return rtype::Scene* 
+             ** @return Scene* 
              */
-            rtype::Scene* getCurrentScene();
+            Scene* getCurrentScene();
 
             sf::RenderWindow window;
         protected:
-            std::map<std::string, rtype::Scene*> _scenes;
-            rtype::Scene* _currentscene;
+            std::map<std::string, Scene*> _scenes;
+            Scene* _currentscene;
             bool _shouldClose;
         private:
+        public slots:
+            /**
+             ** @brief slot activated when the entities need to be updated
+             ** 
+             ** @param entities 
+             */
+            void onUpdateEntities(std::vector<Entity *> entities);
+        
+        signals:
+            /**
+             ** @brief signal emitted when the entities need to be updated
+             ** 
+             ** @param entities 
+             */
+            void updateEntities(std::vector<Entity *> entities);
     };
 };
 

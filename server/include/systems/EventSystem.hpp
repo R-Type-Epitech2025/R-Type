@@ -35,7 +35,7 @@ namespace rtype{
             EventSystem();
             ~EventSystem();
             void init(SceneManager&);
-            void update(rtype::SceneManager *currentScene);
+            void update(SceneManager *currentScene);
             void destroy(SceneManager&);
             void loadEntity();
             void unloadEntity();

@@ -34,7 +34,7 @@ namespace rtype {
          ** @param scene 
          ** @param deltaTime 
          */
-        void update(rtype::SceneManager *Manager, sf::Event &event);
+        void update(SceneManager *Manager, sf::Event &event);
 
         // void destroy() {};
         // void loadEntity(std::shared_ptr<Entity> entity, Scene &scene) {};

@@ -32,7 +32,7 @@ namespace rtype {
          ** @param Manager 
          ** @param event 
          */
-        void update(rtype::SceneManager *Manager, sf::Event &event);
+        void update(SceneManager *Manager, sf::Event &event);
         // void destroy() {};
         // void loadEntity(std::shared_ptr<Entity> entity, Scene &scene) {};
         // void unloadEntity(std::shared_ptr<Entity> entity, Scene &scene) {};

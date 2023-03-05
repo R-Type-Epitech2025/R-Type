@@ -58,7 +58,7 @@ namespace rtype {
              ** @param positioninscreen 
              ** @param sizeScreen 
              */
-            EventComponent(rtype::EntityType entity, std::vector<int> positioninscreen, std::vector<int> sizeScreen);
+            EventComponent(EntityType entity, std::vector<int> positioninscreen, std::vector<int> sizeScreen);
 
             /**
              ** @brief Destroy the Event Component object
@@ -101,7 +101,7 @@ namespace rtype {
         private:
             hitbox _hitbox;
             bool is_hitbox;
-            rtype::EntityType entity;
+            EntityType entity;
     };
 
     EntityType convertUint32ToEntityType(uint32_t type);

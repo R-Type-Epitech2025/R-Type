@@ -5,7 +5,7 @@
 ** MovementSystem
 */
 
-#include "systems/MovementSystem.hpp"
+#include "MovementSystem.hpp"
 #include <iostream>
 
 namespace rtype{
@@ -17,27 +17,27 @@ namespace rtype{
     // MovementSystem::~MovementSystem(){
     // }
     
-    void MovementSystem::update(rtype::SceneManager *Manager, sf::Event &event){
+    void MovementSystem::update(SceneManager *Manager, sf::Event &event){
         //std::cout << "position updated" << std::endl;
 
         Scene *Scene = Manager->getCurrentScene();
 
         for (Entity *entity : Scene->get_entities()){
-            if (entity->container.movement_component != NULL) {
+            if (entity->container.movement_component != nullptr) {
                 if (event.type == sf::Event::KeyPressed && entity->container.movement_component->is_linked() == true) {   
                     if (event.key.code == sf::Keyboard::Up) {
                         std::cout << "up" << std::endl;
-                        emit sendMovePlayer(rtype::DIRECTION::UP);
+                        emit sendMovePlayer(DIRECTION::UP);
                     } else if (event.key.code == sf::Keyboard::Down){
                         std::cout << "down" << std::endl;
-                        emit sendMovePlayer(rtype::DIRECTION::DOWN);
+                        emit sendMovePlayer(DIRECTION::DOWN);
                     } else if (event.key.code == sf::Keyboard::Left){
                         std::cout << "left" << std::endl;
-                        emit sendMovePlayer(rtype::DIRECTION::LEFT);
+                        emit sendMovePlayer(DIRECTION::LEFT);
                     }
                     else if (event.key.code == sf::Keyboard::Right){
                         std::cout << "right" << std::endl;
-                        emit sendMovePlayer(rtype::DIRECTION::RIGHT);
+                        emit sendMovePlayer(DIRECTION::RIGHT);
                     }
                 }
             }
@@ -46,6 +46,11 @@ namespace rtype{
                     entity->container.graphic_component->setInputText(entity->container.graphic_component->getInputText() + static_cast<char>(event.text.unicode));
                 }
             }
+            if (entity != nullptr && entity->container.movement_component != nullptr) {
+                entity->container.movement_component->applyVelocity();
+                entity->container.movement_component->checkParallax();
+            }
+
         }
     }
 }

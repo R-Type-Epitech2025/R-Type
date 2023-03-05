@@ -8,9 +8,9 @@
 #ifndef ENTITY_HPP_
 #define ENTITY_HPP_
 
-#include "ecs/components/GraphicComponent.hpp"
-#include "ecs/components/EventComponent.hpp"
-#include "ecs/components/MovementComponent.hpp"
+#include "GraphicComponent.hpp"
+#include "EventComponent.hpp"
+#include "MovementComponent.hpp"
 
 namespace rtype {
 
@@ -66,16 +66,16 @@ namespace rtype {
         /**
          ** @brief get the direction of the entity
          ** 
-         ** @return rtype::EntityType 
+         ** @return EntityType 
          */
-        rtype::DIRECTION get_directions();
+        DIRECTION get_directions();
 
         /**
          ** @brief set the direction of the entity
          ** 
          ** @return sf::Vector2f 
          */
-        void set_direction(rtype::DIRECTION direction);
+        void set_direction(DIRECTION direction);
 
         /**
          ** @brief declaration of container struct
@@ -84,13 +84,13 @@ namespace rtype {
          */
         struct Containers container;  // c'est le temps de tester !!!pas du tout definitif;
 
-        rtype::EntityType _type;
+        EntityType _type;
         quint32 _id;
         // Load the entity
     protected:
         
     private:
-        rtype::DIRECTION direction;
+        DIRECTION direction;
         sf::Vector2f position;
         sf::Texture texture;
 };      
@@ -100,17 +100,17 @@ namespace rtype {
 //     return os._type < os._type;
 // }
 
+    static bool operator<(Entity& os, const Entity& dt)
+    {
+        return os._type < os._type;
+    }
+    
+    static bool operator>(Entity& os, const Entity& dt)
+    {
+        return os._type > os._type;
+    }
+
 };
-
-static bool operator<(rtype::Entity& os, const rtype::Entity& dt)
-{
-    return os._type < os._type;
-}
-
-static bool operator>(rtype::Entity& os, const rtype::Entity& dt)
-{
-    return os._type > os._type;
-}
 
 
 #endif /* !ENTITY_HPP_ */

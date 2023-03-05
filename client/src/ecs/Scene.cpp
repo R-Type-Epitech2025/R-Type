@@ -5,12 +5,12 @@
 ** Scene
 */
 
-#include "ecs/Scene.hpp"
+#include "Scene.hpp"
 #include <iostream>
 
 
 namespace rtype {
-    Scene::Scene(std::string sceneName)
+    Scene::Scene(std::string sceneName): QObject(nullptr)
     {
         _sceneName = sceneName;
     }
@@ -19,13 +19,13 @@ namespace rtype {
     {
     }
 
-    void Scene::addEntity(rtype::Entity *entity)
+    void Scene::addEntity(Entity *entity)
     {
         _entities.push_back(entity);
         //std::sort(_entities.begin(), _entities.end());
-    }
+    }   
 
-    std::vector<rtype::Entity*> Scene::get_entities(){
+    std::vector<Entity*> Scene::get_entities(){
         return(_entities);
     }
 
@@ -37,8 +37,7 @@ namespace rtype {
         return (nullptr);
     }
 
-
-    void Scene::removeEntity(rtype::Entity *entity)
+    void Scene::removeEntity(Entity *entity)
     {
         for (auto it = _entities.begin(); it != _entities.end(); it++) {
             if (*it == entity) {
@@ -52,6 +51,12 @@ namespace rtype {
     {
         return (_sceneName);
     }
+
+    void Scene::onUpdateEntities(std::vector<Entity *> entities)
+    {
+        _entities = entities;
+        std::cout << "Sprites updated on the scene !" << std::endl;
+    }
 }
 
 // void update(Entity& entity, sf::RenderWindow& window) {
@@ -60,7 +65,7 @@ namespace rtype {
 //         window.draw(sprite);
 // }
 
-// void rtype::Scene::draw(sf::RenderWindow& window)
+// void Scene::draw(sf::RenderWindow& window)
 // {
 // //    for (auto& entity : entities) {
 // //         sf::Sprite sprite(entity.texture);
@@ -69,7 +74,7 @@ namespace rtype {
 // //     }
 // }
 
-// void rtype::Scene::getScene(std::vector<IScene> scene)
+// void Scene::getScene(std::vector<IScene> scene)
 // {
 //     // for (auto& entity : entities) {
 //     //     sf::Sprite sprite(entity.texture);

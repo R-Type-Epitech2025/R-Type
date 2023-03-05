@@ -14,13 +14,23 @@
 namespace rtype {
     class GameScene {
         public:
-            GameScene();
+            /**
+             ** @brief Construct a new Game Scene object
+             ** 
+             **/
+            GameScene() ;
+
+            /**
+             ** @brief Destroy the Game Scene object
+             ** 
+             **/
             ~GameScene();
     
             Scene *_gameScene;
         protected:
         private:
             Entity *InitBackground();
+            Entity *InitBackground2();
             Entity *InitPlayer();
     };
 };

@@ -31,16 +31,17 @@ namespace rtype{
             ~GraphicSystem();
 
             /**
-             ** @brief init the graphic system
+             ** @brief Get the Type object
              ** 
-             ** @param SceneManager 
-             ** @param sf::RenderWindow 
+             ** @return SystemType 
              */
             SystemType getType() const { return SystemType::GRAPHIC; };
 
             /**
              ** @brief init the graphic system
              ** 
+             ** @param SceneManager 
+             ** @param sf::RenderWindow 
              */
             void init(SceneManager&, sf::RenderWindow &);
 
@@ -50,7 +51,7 @@ namespace rtype{
              ** @param SceneManager 
              ** @param deltaTime 
              */
-            void update(rtype::SceneManager* Manager, uint64_t time);
+            void update(SceneManager* manager, uint64_t time);
         protected:
         private:
 
@@ -61,6 +62,14 @@ namespace rtype{
              ** @param entities 
              */
             void onUpdateEntities(std::vector<Entity *> entities);
+        
+        signals:
+            /**
+             ** @brief signal emitted when the entities need to be updated
+             ** 
+             ** @param entities 
+             */
+            void updateEntities(std::vector<Entity *> entities);
     };
 }
 
