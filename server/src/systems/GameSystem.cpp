@@ -90,7 +90,7 @@ namespace rtype{
             //     // scene->removeEntity(entity);
             // }
         // }
-        ennemyShoot(scene, elapsedTime);
+        // ennemyShoot(scene, elapsedTime);
         emit sendUpdatedEntities(scene->getEntities());
     }
 

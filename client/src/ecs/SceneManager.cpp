@@ -20,12 +20,14 @@ namespace rtype {
 
     void SceneManager::setScene(std::string scene)
     {
+        if (this->_currentscene != nullptr)
+            disconnect(this, SIGNAL(updateEntities(std::vector<EntityCreator_t *>)), this->_currentscene, SLOT(onUpdateEntities(std::vector<EntityCreator_t *>)));
         this->_currentscene = this->_scenes[scene];
+        connect(this, SIGNAL(updateEntities(std::vector<EntityCreator_t *>)), this->_currentscene, SLOT(onUpdateEntities(std::vector<EntityCreator_t *>)));
     }
 
     void SceneManager::addScene(Scene *scene){
         this->_scenes[scene->getSceneName()] = scene;
-        QObject::connect(this, SIGNAL(updateEntities(std::vector<EntityCreator_t *>)), scene, SLOT(onUpdateEntities(std::vector<EntityCreator_t *>)));
     }
 
     Scene* SceneManager::getCurrentScene(){

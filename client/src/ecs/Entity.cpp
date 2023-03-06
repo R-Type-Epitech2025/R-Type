@@ -40,8 +40,8 @@ namespace rtype {
                 this->container.movement_component = new MovementComponent(positioninscreen, false, velocity);
                 break;
             case TEXT:
-            this->container.event_component = new EventComponent(type, positioninscreen, hitboxSize);
-            break;
+                this->container.event_component = new EventComponent(type, positioninscreen, hitboxSize);
+                break;
             }
         this->_type = type;
         if (id == 0)
@@ -50,10 +50,10 @@ namespace rtype {
             this->_id = id;
     }
 
-    Entity::Entity(EntityType type, std::vector<int> positionInScreen, u_int32_t fontSize, sf::Color& textColor, uint32_t id, bool isPrint)
+    Entity::Entity(EntityType type, std::vector<int> positionInScreen, quint32 fontSize, sf::Color& textColor, uint32_t id, bool isPrint, std::string inputText, bool writablle)
     {
         this->container.event_component = nullptr;
-        this->container.graphic_component = new GraphicComponent(positionInScreen, fontSize, textColor, isPrint);
+        this->container.graphic_component = new GraphicComponent(positionInScreen, fontSize, textColor, isPrint, inputText, writablle);
         this->container.movement_component = nullptr;
         this->_type = type;
         if (id == 0)
@@ -93,5 +93,7 @@ namespace rtype {
     {
         if (this->container.graphic_component != nullptr)
             this->container.graphic_component->update(entityCreator);
+        if (this->container.movement_component != nullptr)
+            this->container.movement_component->update(entityCreator);
     }
 }

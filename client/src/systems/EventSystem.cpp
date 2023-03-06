@@ -12,6 +12,7 @@ namespace rtype {
     
     EventSystem::EventSystem(QObject *parent) : QObject(parent)
     {
+        _connectInfos = "";
     }
 
     EventSystem::~EventSystem()
@@ -27,21 +28,23 @@ namespace rtype {
                 continue;
             else {
                 Entity *tmp_entity = scene->getEntity(NewEvent->entityId);
-                if (tmp_entity->container.event_component != NULL && tmp_entity->container.event_component->eventHandler(event, currentScene->window) == true) {
+                if (tmp_entity->container.event_component != nullptr && tmp_entity->container.event_component->eventHandler(event, currentScene->window) == true) {
+                    if (NewEvent->eventName == "connect")
+                        _connectInfos = scene->getEntity(20)->container.graphic_component->getInputText();
                     currentScene->setScene(NewEvent->futureSceneName);
                     break;
                 }
             }
         }
-        scene = currentScene->getCurrentScene();
     } 
 
-    void EventSystem::createNewEvent(quint32 entityId, std::string newSceneName, std::string sceneName) 
+    void EventSystem::createNewEvent(quint32 entityId, std::string newSceneName, std::string sceneName, std::string eventName) 
     {
         NewEvent_t *newEvent = new NewEvent_t;
         newEvent->entityId = entityId;
         newEvent->futureSceneName = newSceneName;
         newEvent->currentSceneName = sceneName;
+        newEvent->eventName = eventName;
         _eventsList.push_back(newEvent);
     }
 
@@ -58,34 +61,4 @@ namespace rtype {
         }
         return false;
     }
-    
-    // void EventSystem::update(std::vector<std::shared_ptr<Entity> > &entities)
-    // {
-    //     sf::Event event;
-    //     while (_window.pollEvent(event))
-    //     {
-    //         if (event.type == sf::Event::Closed)
-    //             _window.close();
-    //         else if (event.type == sf::Event::MouseButtonPressed)
-    //         { 
-        
-    //             entities.push_back(std::shared_ptr<Entity>(new Entity()));
-    //             auto& newEntity = entities.back();
-    //             newEntity->x = event.mouseButton.x;
-    //             newEntity->y = event.mouseButton.y;
-    //             if (entities.size() == 1){
-    //                 newEntity->Player = true;
-    //                 newEntity->color = "Red";
-    //             }else{
-    //                 newEntity->Player = false;
-    //                 newEntity->color = "blue";
-    //             }
-    //         }
-    //         for (int i = 0; i < entities.size(); i++){
-    //             if (entities.at(i)->Player){   
-    //                 _movement.LinkKeybordPosition(event, entities.at(i));
-    //             }
-    //         }
-    //     }
-    // }
 }

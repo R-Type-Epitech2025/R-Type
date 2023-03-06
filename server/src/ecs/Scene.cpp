@@ -34,4 +34,13 @@ namespace rtype {
         }
         return (nullptr);
     }
+
+    void Scene::removeEntity(Entity *entity) {
+        for (auto it = _entities.begin(); it != _entities.end(); it++) {
+            if (*it == entity) {
+                _entities.erase(it);
+                break;
+            }
+        }
+    }
 }

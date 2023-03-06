@@ -54,6 +54,13 @@ class Scene{
          ** @return Entity* 
          */
         Entity *getEntity(quint32 id);
+
+        /**
+         ** @brief Remove the Entity object in the scene
+         ** 
+         ** @param entity 
+         */
+        void removeEntity(Entity *entity);
     protected:
     private:
         std::vector<Entity*> _entities;

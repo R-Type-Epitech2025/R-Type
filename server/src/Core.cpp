@@ -29,6 +29,7 @@ namespace rtype {
 
         QObject::connect(timer, &QTimer::timeout, [&]() {
             _systemManager->updateGame(_sceneManager);
+            _systemManager->updateGraphic(_sceneManager);
             // graphicSystem->update(_sceneManager, 12);
             // movementSystem->update(_sceneManager, event);
             // eventSystem->update(_sceneManager);

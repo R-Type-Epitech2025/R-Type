@@ -5,7 +5,7 @@
 ** GraphicComponent
 */
 
-#include "ecs/components/GraphicComponent.hpp"
+#include "GraphicComponent.hpp"
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
@@ -17,52 +17,53 @@ namespace rtype {
         setSize(scale);
     }
         
-        GraphicComponent::GraphicComponent(std::vector<int> positioninscreen, u_int32_t fontSize, sf::Color& textColor, bool isPrint) {
-            _print = isPrint;
+    GraphicComponent::GraphicComponent(std::vector<int> positioninscreen, quint32 fontSize, sf::Color& textColor, bool isPrint, std::string inputText, bool writablle) {
+        _print = isPrint;
+        _isWritable = writablle;
 
-            if (!_font.loadFromFile("assets/Texts/arial-unicode-ms.ttf")) {
-                std::cout << "Error loading font" << std::endl;
-                exit(84);
-            }
-            _inputText = "";
-            _text = sf::Text(_inputText, _font, fontSize);
-            setPosition(positioninscreen.at(0), positioninscreen.at(1));
+        if (!_font.loadFromFile("assets/Texts/arial-unicode-ms.ttf")) {
+            std::cout << "Error loading font" << std::endl;
+            exit(84);
         }
+        _inputText = inputText;
+        _text = sf::Text(_inputText, _font, fontSize);
+        _text.setPosition(positioninscreen.at(0), positioninscreen.at(1));
+    }
 
-        GraphicComponent::GraphicComponent(EntityCreator_t *entityCreator, sf::Texture *textureFrom) {
-            _print = true;
-            createSprite(entityCreator->spriteName, entityCreator->posSheet.at(0), entityCreator->posSheet.at(1), entityCreator->sizeSheet.at(0), entityCreator->sizeSheet.at(1), 1);
-            setPosition(entityCreator->positionInScreen.at(0), entityCreator->positionInScreen.at(1));
-            setSize(entityCreator->scale);
-            texture = *textureFrom;
-        }
+    GraphicComponent::GraphicComponent(EntityCreator_t *entityCreator, sf::Texture *textureFrom) {
+        _print = true;
+        createSprite(entityCreator->spriteName, entityCreator->posSheet.at(0), entityCreator->posSheet.at(1), entityCreator->sizeSheet.at(0), entityCreator->sizeSheet.at(1), 1);
+        setPosition(entityCreator->positionInScreen.at(0), entityCreator->positionInScreen.at(1));
+        setSize(entityCreator->scale);
+        texture = *textureFrom;
+    }
 
-        GraphicComponent::~GraphicComponent() {
-        }
+    GraphicComponent::~GraphicComponent() {
+    }
         
-        void GraphicComponent::createSprite(const std::string& imagePath, int spritePosX, int spritePosY, int spriteWidth, int spriteHeight, int nb_sprite) {
-            size.height = spriteHeight;
-            size.width = spriteWidth;
-            position.sprite_x = spritePosX;
-            position.sprite_y = spritePosY;
-            nb_sprites = nb_sprite;
-            texture.loadFromFile(imagePath);
-            sprite = sf::Sprite(texture, sf::IntRect(spritePosX, spritePosY, spriteWidth, spriteHeight));
-        }
+    void GraphicComponent::createSprite(const std::string& imagePath, int spritePosX, int spritePosY, int spriteWidth, int spriteHeight, int nb_sprite) {
+        size.height = spriteHeight;
+        size.width = spriteWidth;
+        position.sprite_x = spritePosX;
+        position.sprite_y = spritePosY;
+        nb_sprites = nb_sprite;
+        texture.loadFromFile(imagePath);
+        sprite = sf::Sprite(texture, sf::IntRect(spritePosX, spritePosY, spriteWidth, spriteHeight));
+    }
         
-        void GraphicComponent::setPosition(int x, int y) {
-            position.x = x;
-            position.y = y;
-            sprite.setPosition(x, y);
-        }
+    void GraphicComponent::setPosition(int x, int y) {
+        position.x = x;
+        position.y = y;
+        sprite.setPosition(x, y);
+    }
         
-        void GraphicComponent::setSpritePosition(int x, int y, bool init) {
-            if (init)
-                initial_sprite_x = x;
-            position.sprite_x = x;
-            position.sprite_y = y;
-            sprite.setTextureRect(sf::IntRect(x, y, size.width, size.height));
-        }
+    void GraphicComponent::setSpritePosition(int x, int y, bool init) {
+        if (init)
+            initial_sprite_x = x;
+        position.sprite_x = x;
+        position.sprite_y = y;
+        sprite.setTextureRect(sf::IntRect(x, y, size.width, size.height));
+    }
         
         void GraphicComponent::setSize(float scale) {
             sprite.setScale(scale, scale);
@@ -72,6 +73,10 @@ namespace rtype {
             return _print;
         }
         
+        bool GraphicComponent::getIsWritable() {
+            return _isWritable;
+        }
+
         sf::Text GraphicComponent::getText() {
             return _text;
         }
@@ -110,6 +115,9 @@ namespace rtype {
 
         void GraphicComponent::update(EntityCreator_t *entity)
         {
-            
+            if (entity->spriteName != "")
+                createSprite(entity->spriteName, entity->posSheet.at(0), entity->posSheet.at(1), entity->sizeSheet.at(0), entity->sizeSheet.at(1), 1);
+            setPosition(entity->positionInScreen.at(0), entity->positionInScreen.at(1));
+            setSize(entity->scale);
         }
 };

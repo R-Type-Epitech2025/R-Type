@@ -7,22 +7,10 @@
 
 #ifndef GRAPHICCOMPONENT_HPP_
 #define GRAPHICCOMPONENT_HPP_
-#include <SFML/Graphics.hpp>
-#include <QtNetwork>
-#include <memory>
-#include <iostream>
+
+#include "EntityCreator.hpp"
 
 namespace rtype{
-
-    typedef struct EntityCreator
-    {
-        std::vector<int> positionInScreen;
-        std::vector<int> posSheet;
-        std::vector<int> sizeSheet;
-        float scale;
-        std::string spriteName;
-        quint32 id;
-    } EntityCreator_t;
 
     class GraphicComponent {
         public:
@@ -33,19 +21,22 @@ namespace rtype{
              ** @param positioninsprite_sheet 
              ** @param sizespritesheet 
              ** @param scale 
-             ** @param positioninscreen 
+             ** @param positioninscreen
+             ** @param isPrint
              */
             GraphicComponent(std::string sprite, std::vector<int> positioninsprite_sheet, std::vector<int> sizespritesheet, float scale, std::vector<int> positioninscreen, bool isPrint);
 
             /**
              ** @brief Construct a new Graphic Component object
              ** 
-             ** @param text 
              ** @param positioninscreen 
              ** @param fontSize 
              ** @param textColor 
+             ** @param isPrint 
+             ** @param text
+             ** @param writablle
              */
-            GraphicComponent(std::vector<int> positioninscreen, u_int32_t fontSize, sf::Color& textColor, bool isPrint);
+            GraphicComponent(std::vector<int> positioninscreen, quint32 fontSize, sf::Color& textColor, bool isPrint, std::string text, bool writablle = false);
 
             /**
              * @brief Construct a new Graphic Component object
@@ -105,6 +96,13 @@ namespace rtype{
              */
             bool getIsPrintable();
 
+            /**
+             ** @brief Get the Is Writable object
+             ** 
+             ** @return true 
+             ** @return false 
+             */
+            bool getIsWritable();
             
             /**
              ** @brief Get the Text object
@@ -195,6 +193,7 @@ namespace rtype{
         private:
             sf::Texture texture;
             sf::Sprite sprite;
+            bool _isWritable;
             sf::Font _font;
             sf::Text _text;
             std::string _inputText;

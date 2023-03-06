@@ -20,8 +20,18 @@ namespace rtype {
     // {
     // }
 
-    void GraphicSystem::update(SceneManager* manager, uint64_t time)
+    void GraphicSystem::update(SceneManager* manager)
     {
+        Scene *scene = manager->getCurrentScene();
+
+        for (auto &entity : scene->getEntities()) {
+            if (entity->container.graphic_component->position.x > (1920 + 200) 
+            || (entity->container.graphic_component->position.y > (1080 + 200)) 
+            || (entity->container.graphic_component->position.x < (-entity->container.graphic_component->size.width - 200)) 
+            || (entity->container.graphic_component->position.y < (-entity->container.graphic_component->size.height - 200))) {
+                scene->removeEntity(entity);
+            }
+    }
     }
 
     void GraphicSystem::onUpdateSprites(std::vector<Entity *> entities)

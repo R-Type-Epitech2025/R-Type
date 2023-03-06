@@ -40,10 +40,10 @@ namespace rtype{
             /**
              ** @brief update the graphic system
              ** 
-             ** @param Manager 
+             ** @param manager 
              ** @param time 
              */
-            void update(SceneManager* Manager, uint64_t time);
+            void update(SceneManager* manager);
         protected:
         private:
         public slots:

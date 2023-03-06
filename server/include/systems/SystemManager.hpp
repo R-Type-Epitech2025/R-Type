@@ -76,14 +76,13 @@ namespace rtype {
             //  */
             // void updateEvents(SceneManager *currentScene, sf::Event &event);
 
-            // /**
-            //  ** @brief update graphic
-            //  ** 
-            //  ** @param SceneManager
-            //  ** @param time
-            //  **  
-            //  */
-            // void updateGraphic(SceneManager *Manager, uint64_t time);
+            /**
+             ** @brief update graphic
+             ** 
+             ** @param SceneManager
+             **  
+             */
+            void updateGraphic(SceneManager *manager);
 
             // /**
             //  ** @brief update movement
@@ -101,6 +100,7 @@ namespace rtype {
             // void gameQuit();
 
             GameSystem *gameSystem;
+            GraphicSystem *graphicSystem;
             MovementSystem *movementSystem;
             NetworkSystem *networkSystem;
             EventSystem *eventSystem;

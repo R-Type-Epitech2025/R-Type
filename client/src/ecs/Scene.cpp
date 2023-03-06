@@ -72,14 +72,18 @@ namespace rtype {
             }
         }
         for (int i = 0; i < entitiesCreator.size(); i++) {
+            std::cout << "It's an update !" << std::endl;
             updateTexture(entitiesCreator[i]->spriteName);
             createEntity(entitiesCreator[i]);
         }
+
+        std::cout << "New size of entities: " << _entities.size() << std::endl;
     }
 
     void Scene::updateTexture(std::string spriteName)
     {
         if (textures.find(spriteName) == textures.end()) {
+            std::cout << "\tNew texture: " << spriteName << std::endl;
             sf::Texture texture;
             texture.loadFromFile(spriteName);
             textures[spriteName] = texture;

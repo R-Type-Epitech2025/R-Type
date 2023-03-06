@@ -42,4 +42,10 @@ namespace rtype{
         if (pos.x <= -1920)
             pos.x = 1920;
     }
+
+    void MovementComponent::update(EntityCreator_t *entity)
+    {
+        pos.x = entity->positionInScreen[0];
+        pos.y = entity->positionInScreen[1];
+    }
 }

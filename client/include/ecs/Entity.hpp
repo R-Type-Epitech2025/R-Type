@@ -53,7 +53,7 @@ namespace rtype {
          ** @brief Destroy the Entity object
          ** @brief Construct a new Entity object
          */
-        Entity(EntityType type, std::vector<int> positionInScreen, u_int32_t fontSize, sf::Color& textColor, uint32_t id, bool isPrint);
+        Entity(EntityType type, std::vector<int> positionInScreen, quint32 fontSize, sf::Color& textColor, uint32_t id, bool isPrint, std::string inputText = "", bool writablle = false);
         
         /**
          ** @brief Destroystd::string text, the Entity object

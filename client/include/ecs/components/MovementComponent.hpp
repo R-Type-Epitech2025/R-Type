@@ -8,10 +8,8 @@
 #ifndef MOVEMENTCOMPONENT_HPP_
 #define MOVEMENTCOMPONENT_HPP_
 
-#include <memory>
-#include <iostream>
-#include <vector>
-#include <QtNetwork>
+#include "EntityCreator.hpp"
+
 
 namespace rtype{
     /**
@@ -68,7 +66,12 @@ namespace rtype{
              */
             void checkParallax();
             
-
+            /**
+             ** @brief Update the movement component
+             ** 
+             ** @param entity 
+             */
+            void update(EntityCreator_t *entity);
 
         void LinktoKeybord(bool link);
         bool is_linked() const;
