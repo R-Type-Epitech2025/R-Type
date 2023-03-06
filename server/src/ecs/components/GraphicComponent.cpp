@@ -83,7 +83,8 @@ namespace rtype {
         }
 
         std::vector<quint32> GraphicComponent::getSheetSize() const {
-            return {size.width / _scale, size.height / _scale};
+
+            return {size.width, size.height};
         }
 
         quint32 GraphicComponent::getScale() const {
@@ -91,6 +92,6 @@ namespace rtype {
         }
 
         std::vector<quint32> GraphicComponent::getPosition() const {
-            return {(quint32)( position.x + size.width), (quint32)(position.y + size.height)};
+            return {(quint32)(position.x + size.width * _scale), (quint32)(position.y + size.height * _scale)};
         }
 };

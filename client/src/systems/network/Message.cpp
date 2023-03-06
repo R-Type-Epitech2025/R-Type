@@ -40,7 +40,7 @@ namespace rtype {
             in >> id >> entityType >> spritesheetIndex >> x_sheet >> y_sheet >> width_sheet >> height_sheet >> scale_decimal >> x >> y;
             name = "./assets/r-typesheet" + std::to_string(spritesheetIndex) + ".gif";
 
-            float scale = (float) scale_decimal / 100;
+            float scale = (float) scale_decimal;
             entity = new EntityCreator_t;
             entity->positionInScreen = {(int) (x - (width_sheet * scale)), (int) (y - (height_sheet * scale))};
             entity->posSheet = {(int) x_sheet, (int) y_sheet};

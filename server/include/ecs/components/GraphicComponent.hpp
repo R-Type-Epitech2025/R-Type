@@ -116,8 +116,8 @@ namespace rtype{
              ** 
              */
             struct SpriteSize {
-                int width;
-                int height;
+                quint32 width;
+                quint32 height;
             };
 
             /**

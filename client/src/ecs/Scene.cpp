@@ -72,7 +72,13 @@ namespace rtype {
             }
         }
         for (int i = 0; i < entitiesCreator.size(); i++) {
-            std::cout << "It's an update !" << std::endl;
+            std::cout << "New entity:" << std::endl;
+            std::cout << "\tID: " << entitiesCreator[i]->id << std::endl;
+            std::cout << "\tPosition: " << entitiesCreator[i]->positionInScreen.at(0) << " " << entitiesCreator[i]->positionInScreen.at(1) << std::endl;
+            std::cout << "\tPosition in sheet: " << entitiesCreator[i]->posSheet.at(0) << " " << entitiesCreator[i]->posSheet.at(1) << std::endl;
+            std::cout << "\tSize in sheet: " << entitiesCreator[i]->sizeSheet.at(0) << " " << entitiesCreator[i]->sizeSheet.at(1) << std::endl;
+            std::cout << "\tScale: " << entitiesCreator[i]->scale << std::endl;
+            std::cout << "\tSprite name: " << entitiesCreator[i]->spriteName << std::endl;
             updateTexture(entitiesCreator[i]->spriteName);
             createEntity(entitiesCreator[i]);
         }
